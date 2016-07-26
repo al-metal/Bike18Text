@@ -43,6 +43,7 @@
             this.chbTitle = new System.Windows.Forms.CheckBox();
             this.chbDescription = new System.Windows.Forms.CheckBox();
             this.chbKeywords = new System.Windows.Forms.CheckBox();
+            this.btnSaveText = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // chbAltText
@@ -174,11 +175,21 @@
             this.chbKeywords.TabIndex = 14;
             this.chbKeywords.UseVisualStyleBackColor = true;
             // 
+            // btnSaveText
+            // 
+            this.btnSaveText.Location = new System.Drawing.Point(675, 194);
+            this.btnSaveText.Name = "btnSaveText";
+            this.btnSaveText.Size = new System.Drawing.Size(239, 37);
+            this.btnSaveText.TabIndex = 15;
+            this.btnSaveText.Text = "Сохранить текст";
+            this.btnSaveText.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(959, 384);
+            this.Controls.Add(this.btnSaveText);
             this.Controls.Add(this.chbKeywords);
             this.Controls.Add(this.chbDescription);
             this.Controls.Add(this.chbTitle);
@@ -218,6 +229,7 @@
         private System.Windows.Forms.CheckBox chbTitle;
         private System.Windows.Forms.CheckBox chbDescription;
         private System.Windows.Forms.CheckBox chbKeywords;
+        private System.Windows.Forms.Button btnSaveText;
     }
 }
 
