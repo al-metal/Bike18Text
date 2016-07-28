@@ -8,11 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using web;
 
 namespace Bike18Text
 {
     public partial class Form1 : Form
     {
+        WebRequest webRequest = new WebRequest();
+
         public Form1()
         {
             InitializeComponent();
@@ -216,13 +219,13 @@ namespace Bike18Text
 
         private void chbDescription_CheckedChanged(object sender, EventArgs e)
         {
-            if (chbDescription.Enabled)
-            {
-                tbDescription.Enabled = true;
-            }
-            if(!chbDescription.Enabled)
+            if (tbDescription.Enabled)
             {
                 tbDescription.Enabled = false;
+            }
+            else
+            {
+                tbDescription.Enabled = true;
             }
         }
 
@@ -240,6 +243,26 @@ namespace Bike18Text
 
         private void chbDescription_EnabledChanged(object sender, EventArgs e)
         {
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            string otv = null;
+
+            if(tbURL.Lines.Length > 0)
+            {
+                string url = tbURL.Lines[0].ToString();
+                if (chbTitle.Checked)
+                {
+                    otv = webRequest.getRequest(url);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заполните адрес раздела для работы на сайте");
+            }
+            
         }
     }
 }

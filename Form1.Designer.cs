@@ -44,6 +44,8 @@
             this.chbDescription = new System.Windows.Forms.CheckBox();
             this.chbKeywords = new System.Windows.Forms.CheckBox();
             this.btnSaveText = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.tbURL = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // chbAltText
@@ -201,11 +203,31 @@
             this.btnSaveText.UseVisualStyleBackColor = true;
             this.btnSaveText.Click += new System.EventHandler(this.btnSaveText_Click);
             // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(676, 252);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(237, 37);
+            this.btnStart.TabIndex = 16;
+            this.btnStart.Text = "Обработать";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // tbURL
+            // 
+            this.tbURL.Location = new System.Drawing.Point(12, 338);
+            this.tbURL.Name = "tbURL";
+            this.tbURL.Size = new System.Drawing.Size(637, 20);
+            this.tbURL.TabIndex = 17;
+            this.tbURL.Text = "http://bike18.nethouse.ru/products/category/1185370";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(959, 384);
+            this.Controls.Add(this.tbURL);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnSaveText);
             this.Controls.Add(this.chbKeywords);
             this.Controls.Add(this.chbDescription);
@@ -247,6 +269,8 @@
         private System.Windows.Forms.CheckBox chbDescription;
         private System.Windows.Forms.CheckBox chbKeywords;
         private System.Windows.Forms.Button btnSaveText;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.TextBox tbURL;
     }
 }
 
