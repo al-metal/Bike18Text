@@ -97,7 +97,149 @@ namespace Bike18Text
 
         private void btnSaveText_Click(object sender, EventArgs e)
         {
+            int count = 0;
+            StreamWriter writers = new StreamWriter("files\\miniText", false, Encoding.GetEncoding(1251));
+            count = rtbMiniText.Lines.Length;
+            for (int i = 0; rtbMiniText.Lines.Length > i; i++)
+            {
+                if (count - 1 == i)
+                {
+                    if (rtbMiniText.Lines[i] == "")
+                        break;
+                }
+                writers.WriteLine(rtbMiniText.Lines[i].ToString());
+            }
+            writers.Close();
 
+            count = rtbFullText.Lines.Length;
+            writers = new StreamWriter("files\\fullText", false, Encoding.GetEncoding(1251));
+            count = rtbFullText.Lines.Length;
+            for (int i = 0; count > i; i++)
+            {
+                if (count - 1 == i)
+                {
+                    if (rtbFullText.Lines[i] == "")
+                        break;
+                }
+                writers.WriteLine(rtbFullText.Lines[i].ToString());
+            }
+            writers.Close();
+
+            count = rtbAltText.Lines.Length;
+            writers = new StreamWriter("files\\altText", false, Encoding.GetEncoding(1251));
+            count = rtbAltText.Lines.Length;
+            for (int i = 0; count > i; i++)
+            {
+                if (count - 1 == i)
+                {
+                    if (rtbAltText.Lines[i] == "")
+                        break;
+                }
+                writers.WriteLine(rtbAltText.Lines[i].ToString());
+            }
+            writers.Close();
+
+            writers = new StreamWriter("files\\titleText", false, Encoding.GetEncoding(1251));
+            writers.WriteLine(tbTitle.Lines[0]);
+            writers.Close();
+
+            MessageBox.Show("Текст сохранен");
+        }
+
+        private void chbSEO_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbSEO.Checked)
+            {
+                chbKeywords.Enabled = true;
+                chbDescription.Enabled = true;
+                chbTitle.Enabled = true;
+            }
+            else
+            {
+                chbKeywords.Enabled = false;
+                chbDescription.Enabled = false;
+                chbTitle.Enabled = false;
+                chbDescription.Checked = false;
+                chbKeywords.Checked = false;
+                chbTitle.Checked = false;
+
+                tbDescription.Enabled = false;
+                tbKeywords.Enabled = false;
+                tbTitle.Enabled = false;
+                
+            }
+        }
+
+        private void chbAddTextTovar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rtbFullText.Enabled)
+            {
+                rtbFullText.Enabled = false;
+            }
+            else
+            {
+                rtbFullText.Enabled = true;
+            }
+            if (rtbMiniText.Enabled)
+            {
+                rtbMiniText.Enabled = false;
+            }
+            else
+            {
+                rtbMiniText.Enabled = true;
+            }
+        }
+
+        private void chbAltText_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rtbAltText.Enabled)
+            {
+                rtbAltText.Enabled = false;
+            }
+            else
+            {
+                rtbAltText.Enabled = true;
+            }
+        }
+
+        private void chbTitle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tbTitle.Enabled)
+            {
+                tbTitle.Enabled = false;
+            }
+            else
+            {
+                tbTitle.Enabled = true;
+            }
+        }
+
+        private void chbDescription_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbDescription.Enabled)
+            {
+                tbDescription.Enabled = true;
+            }
+            if(!chbDescription.Enabled)
+            {
+                tbDescription.Enabled = false;
+            }
+        }
+
+        private void chbKeywords_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tbKeywords.Enabled)
+            {
+                tbKeywords.Enabled = false;
+            }
+            else
+            {
+                tbKeywords.Enabled = true;
+            }
+        }
+
+        private void chbDescription_EnabledChanged(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -55,9 +55,11 @@
             this.chbAltText.TabIndex = 0;
             this.chbAltText.Text = "Альтернативный текст";
             this.chbAltText.UseVisualStyleBackColor = true;
+            this.chbAltText.CheckedChanged += new System.EventHandler(this.chbAltText_CheckedChanged);
             // 
             // rtbAltText
             // 
+            this.rtbAltText.Enabled = false;
             this.rtbAltText.Location = new System.Drawing.Point(12, 35);
             this.rtbAltText.Name = "rtbAltText";
             this.rtbAltText.Size = new System.Drawing.Size(310, 281);
@@ -73,6 +75,7 @@
             this.chbAddTextTovar.TabIndex = 2;
             this.chbAddTextTovar.Text = "Добавить текст в карточку товара";
             this.chbAddTextTovar.UseVisualStyleBackColor = true;
+            this.chbAddTextTovar.CheckedChanged += new System.EventHandler(this.chbAddTextTovar_CheckedChanged);
             // 
             // chbSEO
             // 
@@ -83,9 +86,11 @@
             this.chbSEO.TabIndex = 3;
             this.chbSEO.Text = "СЕО поля товара";
             this.chbSEO.UseVisualStyleBackColor = true;
+            this.chbSEO.CheckedChanged += new System.EventHandler(this.chbSEO_CheckedChanged);
             // 
             // rtbMiniText
             // 
+            this.rtbMiniText.Enabled = false;
             this.rtbMiniText.Location = new System.Drawing.Point(339, 35);
             this.rtbMiniText.Name = "rtbMiniText";
             this.rtbMiniText.Size = new System.Drawing.Size(310, 127);
@@ -94,6 +99,7 @@
             // 
             // rtbFullText
             // 
+            this.rtbFullText.Enabled = false;
             this.rtbFullText.Location = new System.Drawing.Point(339, 189);
             this.rtbFullText.Name = "rtbFullText";
             this.rtbFullText.Size = new System.Drawing.Size(310, 127);
@@ -102,6 +108,7 @@
             // 
             // tbTitle
             // 
+            this.tbTitle.Enabled = false;
             this.tbTitle.Location = new System.Drawing.Point(673, 50);
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(242, 20);
@@ -109,6 +116,7 @@
             // 
             // tbDescription
             // 
+            this.tbDescription.Enabled = false;
             this.tbDescription.Location = new System.Drawing.Point(673, 96);
             this.tbDescription.Name = "tbDescription";
             this.tbDescription.Size = new System.Drawing.Size(242, 20);
@@ -116,6 +124,7 @@
             // 
             // tbKeywords
             // 
+            this.tbKeywords.Enabled = false;
             this.tbKeywords.Location = new System.Drawing.Point(673, 142);
             this.tbKeywords.Name = "tbKeywords";
             this.tbKeywords.Size = new System.Drawing.Size(242, 20);
@@ -151,29 +160,36 @@
             // chbTitle
             // 
             this.chbTitle.AutoSize = true;
+            this.chbTitle.Enabled = false;
             this.chbTitle.Location = new System.Drawing.Point(921, 53);
             this.chbTitle.Name = "chbTitle";
             this.chbTitle.Size = new System.Drawing.Size(15, 14);
             this.chbTitle.TabIndex = 12;
             this.chbTitle.UseVisualStyleBackColor = true;
+            this.chbTitle.CheckedChanged += new System.EventHandler(this.chbTitle_CheckedChanged);
             // 
             // chbDescription
             // 
             this.chbDescription.AutoSize = true;
+            this.chbDescription.Enabled = false;
             this.chbDescription.Location = new System.Drawing.Point(921, 99);
             this.chbDescription.Name = "chbDescription";
             this.chbDescription.Size = new System.Drawing.Size(15, 14);
             this.chbDescription.TabIndex = 13;
             this.chbDescription.UseVisualStyleBackColor = true;
+            this.chbDescription.CheckedChanged += new System.EventHandler(this.chbDescription_CheckedChanged);
+            this.chbDescription.EnabledChanged += new System.EventHandler(this.chbDescription_EnabledChanged);
             // 
             // chbKeywords
             // 
             this.chbKeywords.AutoSize = true;
+            this.chbKeywords.Enabled = false;
             this.chbKeywords.Location = new System.Drawing.Point(921, 145);
             this.chbKeywords.Name = "chbKeywords";
             this.chbKeywords.Size = new System.Drawing.Size(15, 14);
             this.chbKeywords.TabIndex = 14;
             this.chbKeywords.UseVisualStyleBackColor = true;
+            this.chbKeywords.CheckedChanged += new System.EventHandler(this.chbKeywords_CheckedChanged);
             // 
             // btnSaveText
             // 
