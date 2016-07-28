@@ -44,6 +44,60 @@ namespace Bike18Text
             {
                 File.Create("files\\keywordsText");
             }
+
+            StreamReader text = new StreamReader("files\\altText", Encoding.GetEncoding("windows-1251"));
+            while (!text.EndOfStream)
+            {
+                string str = text.ReadLine();
+                rtbAltText.AppendText(str + "\n");
+            }
+            text.Close();
+
+            text = new StreamReader("files\\miniText", Encoding.GetEncoding("windows-1251"));
+            while (!text.EndOfStream)
+            {
+                string str = text.ReadLine();
+                rtbMiniText.AppendText(str + "\n");
+            }
+            text.Close();
+
+            text = new StreamReader("files\\fullText", Encoding.GetEncoding("windows-1251"));
+            while (!text.EndOfStream)
+            {
+                string str = text.ReadLine();
+                rtbFullText.AppendText(str + "\n");
+            }
+            text.Close();
+
+            text = new StreamReader("files\\titleText", Encoding.GetEncoding("windows-1251"));
+            while (!text.EndOfStream)
+            {
+                string str = text.ReadLine();
+                tbTitle.AppendText(str + "\n");
+            }
+            text.Close();
+
+            text = new StreamReader("files\\descriptionText", Encoding.GetEncoding("windows-1251"));
+            while (!text.EndOfStream)
+            {
+                string str = text.ReadLine();
+                tbDescription.AppendText(str + "\n");
+            }
+            text.Close();
+
+            text = new StreamReader("files\\keywordsText", Encoding.GetEncoding("windows-1251"));
+            while (!text.EndOfStream)
+            {
+                string str = text.ReadLine();
+                tbKeywords.AppendText(str + "\n");
+            }
+            text.Close();
+
+        }
+
+        private void btnSaveText_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -183,6 +183,7 @@
             this.btnSaveText.TabIndex = 15;
             this.btnSaveText.Text = "Сохранить текст";
             this.btnSaveText.UseVisualStyleBackColor = true;
+            this.btnSaveText.Click += new System.EventHandler(this.btnSaveText_Click);
             // 
             // Form1
             // 
