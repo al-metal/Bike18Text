@@ -295,6 +295,10 @@ namespace Bike18Text
                                 {
                                     seoDescription(tovar);
                                 }
+                                if (chbKeywords.Checked)
+                                {
+                                    seoKeywords(tovar);
+                                }
                             }
                         }
                         else
@@ -330,6 +334,29 @@ namespace Bike18Text
                     }
                 }
             }            
+        }
+
+        private void seoKeywords(string url)
+        {
+            if (!url.Contains("nethouse"))
+                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+
+            List<string> tovarList = webRequest.arraySaveimage(url);
+            string articl = tovarList[6].ToString();
+            string name = tovarList[4].ToString();
+
+            otv = webRequest.getRequest(url);
+            string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
+
+            string seoKeywordsText = tbKeywords.Lines[0];
+            seoKeywordsText = seoKeywordsText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+            if (seoKeywordsText.Length > 100)
+            {
+                seoKeywordsText = seoKeywordsText.Remove(100);
+                seoKeywordsText = seoKeywordsText.Remove(seoKeywordsText.LastIndexOf(" "));
+            }
+            tovarList[12] = seoKeywordsText;
+            webRequest.saveImage(tovarList);
         }
 
         private void seoDescription(string url)
