@@ -249,19 +249,76 @@ namespace Bike18Text
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if(tbURL.Lines.Length > 0)
+            if(tbURL.Lines.Length == 0)
+            {
+                MessageBox.Show("Заполните адрес раздела для работы на сайте");
+            }
+            else
             {
                 string url = tbURL.Lines[0].ToString();
+                otv = webRequest.getRequest(url);
+                MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                if(tovarUrl.Count != 0)
+                {
+
+                }
+                else
+                {
+                    for(int i = 0; categoryUrl.Count > i; i++)
+                    {
+                        otv = webRequest.getRequest(categoryUrl[i].ToString());
+                        MatchCollection category2Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                        MatchCollection tovar2Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                        if (tovar2Url.Count != 0)
+                        {
+
+                        }
+                        else
+                        {
+                            for(int x = 0; category2Url.Count > x; x++)
+                            {
+                                otv = webRequest.getRequest(category2Url[i].ToString());
+                                MatchCollection category3Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                                MatchCollection tovar3Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                                if (tovar3Url.Count != 0)
+                                {
+
+                                }
+                                else
+                                {
+                                    for (int m = 0; category3Url.Count > m; m++)
+                                    {
+                                        otv = webRequest.getRequest(category3Url[m].ToString());
+                                        MatchCollection category4Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                                        MatchCollection tovar4Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                                        if (tovar4Url.Count != 0)
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
                 if (chbTitle.Checked)
                 {
                     seoTitle(url);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Заполните адрес раздела для работы на сайте");
-            }
-            
+
+                if (chbTitle.Checked)
+                {
+                    seoTitle(url);
+                }
+            }            
         }
 
         private void seoTitle(string url)
