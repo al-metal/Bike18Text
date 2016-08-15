@@ -16,6 +16,7 @@ namespace Bike18Text
     public partial class Form1 : Form
     {
         WebRequest webRequest = new WebRequest();
+        string otv = null;
 
         public Form1()
         {
@@ -248,41 +249,12 @@ namespace Bike18Text
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            string otv = null;
-
             if(tbURL.Lines.Length > 0)
             {
                 string url = tbURL.Lines[0].ToString();
                 if (chbTitle.Checked)
                 {
-                    otv = webRequest.getRequest(url);
-                    MatchCollection razdel = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*(?=\" class=\"blue\">)").Matches(otv);
-                    for (int i = 0; razdel.Count > i; i++)
-                    {
-                        otv = webRequest.getRequest(razdel[i].ToString() + "/page/all");
-                        string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
-                        MatchCollection tovar = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*(?=\" >)").Matches(otv);
-                        for(int n = 0; tovar.Count > n; n++)
-                        {
-                            string urlTovar = tovar[n].ToString();
-                            urlTovar = urlTovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
-                            List<string> tovarList = webRequest.arraySaveimage(urlTovar);
-                            string articl = tovarList[6].ToString();
-                            string name = tovarList[4].ToString();
-
-                            string seoTitleText = tbTitle.Lines[0];
-                            seoTitleText = seoTitleText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
-                            if(seoTitleText.Length > 200)
-                            {
-                                seoTitleText = seoTitleText.Remove(200);
-                                seoTitleText = seoTitleText.Remove(seoTitleText.LastIndexOf(" "));
-                            }
-                            tovarList[13] = seoTitleText;
-                            webRequest.saveImage(tovarList);
-
-
-                        }
-                    }
+                    seoTitle(url);
                 }
             }
             else
@@ -290,6 +262,36 @@ namespace Bike18Text
                 MessageBox.Show("Заполните адрес раздела для работы на сайте");
             }
             
+        }
+
+        private void seoTitle(string url)
+        {
+            otv = webRequest.getRequest(url);
+            MatchCollection razdel = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*(?=\" class=\"blue\">)").Matches(otv);
+            for (int i = 0; razdel.Count > i; i++)
+            {
+                otv = webRequest.getRequest(razdel[i].ToString() + "/page/all");
+                string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
+                MatchCollection tovar = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*(?=\" >)").Matches(otv);
+                for (int n = 0; tovar.Count > n; n++)
+                {
+                    string urlTovar = tovar[n].ToString();
+                    urlTovar = urlTovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+                    List<string> tovarList = webRequest.arraySaveimage(urlTovar);
+                    string articl = tovarList[6].ToString();
+                    string name = tovarList[4].ToString();
+
+                    string seoTitleText = tbTitle.Lines[0];
+                    seoTitleText = seoTitleText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+                    if (seoTitleText.Length > 200)
+                    {
+                        seoTitleText = seoTitleText.Remove(200);
+                        seoTitleText = seoTitleText.Remove(seoTitleText.LastIndexOf(" "));
+                    }
+                    tovarList[13] = seoTitleText;
+                    webRequest.saveImage(tovarList);
+                }
+            }
         }
     }
 }
