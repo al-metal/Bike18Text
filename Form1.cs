@@ -269,9 +269,9 @@ namespace Bike18Text
                             seoTitle(url);
                         }
 
-                        if (chbTitle.Checked)
+                        if (chbDescription.Checked)
                         {
-                            seoTitle(url);
+                            seoDescription(url);
                         }
                     }
                 }
@@ -291,10 +291,9 @@ namespace Bike18Text
                                 {
                                     seoTitle(tovar);
                                 }
-
-                                if (chbTitle.Checked)
+                                if (chbDescription.Checked)
                                 {
-                                    seoTitle(url);
+                                    seoDescription(tovar);
                                 }
                             }
                         }
@@ -331,6 +330,29 @@ namespace Bike18Text
                     }
                 }
             }            
+        }
+
+        private void seoDescription(string url)
+        {
+            if (!url.Contains("nethouse"))
+                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+
+            List<string> tovarList = webRequest.arraySaveimage(url);
+            string articl = tovarList[6].ToString();
+            string name = tovarList[4].ToString();
+
+            otv = webRequest.getRequest(url);
+            string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
+
+            string seoDescriptionText = tbDescription.Lines[0];
+            seoDescriptionText = seoDescriptionText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+            if (seoDescriptionText.Length > 200)
+            {
+                seoDescriptionText = seoDescriptionText.Remove(200);
+                seoDescriptionText = seoDescriptionText.Remove(seoDescriptionText.LastIndexOf(" "));
+            }
+            tovarList[11] = seoDescriptionText;
+            webRequest.saveImage(tovarList);
         }
 
         private void seoTitle(string url)
