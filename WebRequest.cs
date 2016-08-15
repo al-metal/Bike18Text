@@ -282,9 +282,16 @@ namespace web
             Stream stre = req.GetRequestStream();
             stre.Write(ms, 0, ms.Length);
             stre.Close();
+            try
+            {
             HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
             StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
-        }
+            }
+            catch
+            {
+
+            }
+            }
 
         internal void savePrice(CookieContainer cookie, string urlTovar, MatchCollection articl, double priceTrue, WebRequest webRequest)
         {
