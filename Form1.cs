@@ -299,6 +299,10 @@ namespace Bike18Text
                                 {
                                     seoKeywords(tovar);
                                 }
+                                if (chbAddTextTovar.Checked)
+                                {
+                                    mini_Full_Text_tovar(tovar);
+                                }
                             }
                         }
                         else
@@ -334,6 +338,32 @@ namespace Bike18Text
                     }
                 }
             }            
+        }
+
+        private void mini_Full_Text_tovar(string url)
+        {
+            if (!url.Contains("nethouse"))
+                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+
+            List<string> tovarList = webRequest.arraySaveimage(url);
+            string articl = tovarList[6].ToString();
+            string name = tovarList[4].ToString();
+            string miniText = miniTextTemplate();
+            string fullText = fullTextTemplate();
+
+            otv = webRequest.getRequest(url);
+            string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
+
+            string seoKeywordsText = tbKeywords.Lines[0];
+            seoKeywordsText = seoKeywordsText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+            if (seoKeywordsText.Length > 100)
+            {
+                seoKeywordsText = seoKeywordsText.Remove(100);
+                seoKeywordsText = seoKeywordsText.Remove(seoKeywordsText.LastIndexOf(" "));
+            }
+            tovarList[7] = miniText;
+            tovarList[8] = fullText;
+            webRequest.saveImage(tovarList);
         }
 
         private void seoKeywords(string url)
@@ -403,6 +433,50 @@ namespace Bike18Text
             }
             tovarList[13] = seoTitleText;
             webRequest.saveImage(tovarList);
+        }
+
+        public string miniTextTemplate()
+        {
+            string miniText = null;
+            for (int z = 0; rtbMiniText.Lines.Length > z; z++)
+            {
+                if (rtbMiniText.Lines[z].ToString() == "")
+                {
+                    miniText += "<p><br /></p>";
+                }
+                else
+                {
+                    miniText += "<p>" + rtbMiniText.Lines[z].ToString() + "</p>";
+                }
+            }
+            if (miniText.Length > 1000)
+            {
+                miniText = miniText.Remove(1000);
+                miniText = miniText.Remove(miniText.LastIndexOf(" "));
+            }
+            return miniText;
+        }
+
+        public string fullTextTemplate()
+        {
+            string fullText = null;
+            for (int z = 0; rtbFullText.Lines.Length > z; z++)
+            {
+                if (rtbMiniText.Lines[z].ToString() == "")
+                {
+                    fullText += "<p><br /></p>";
+                }
+                else
+                {
+                    fullText += "<p>" + rtbMiniText.Lines[z].ToString() + "</p>";
+                }
+                if (fullText.Length > 1000)
+                {
+                    fullText = fullText.Remove(1000);
+                    fullText = fullText.Remove(fullText.LastIndexOf(" "));
+                }
+            }
+            return fullText;
         }
     }
 }
