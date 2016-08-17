@@ -265,6 +265,24 @@ namespace web
             stre.Close();
             HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
             StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
+        } // Удалить
+
+        internal void loadAltTextImage(string idImg, string altText)
+        {
+            CookieContainer cookie = webCookieBike18();
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/images/savealt");
+            req.Accept = "application/json, text/plain, */*";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36";
+            req.Method = "POST";
+            req.ContentType = "application/x-www-form-urlencoded";
+            req.CookieContainer = cookie;
+            byte[] ms = Encoding.ASCII.GetBytes("id=" + idImg + "&alt=" + altText);
+            req.ContentLength = ms.Length;
+            Stream stre = req.GetRequestStream();
+            stre.Write(ms, 0, ms.Length);
+            stre.Close();
+            HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
+            StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
         }
 
         internal void deleteProduct(List<string> getProduct)
@@ -667,7 +685,7 @@ namespace web
 
                 for(int i = 1; avatarId.Count > i; i++)
                 {
-                    listTovar.Add(avatarId[i].ToString());        //40
+                    listTovar.Add(avatarId[i].ToString());        //40 54 68 82 96 110 124 137 151 165
                     listTovar.Add(timestamp[i].ToString());       //41
                     listTovar.Add(type[i].ToString());            //42
                     listTovar.Add(name[i].ToString());            //43
