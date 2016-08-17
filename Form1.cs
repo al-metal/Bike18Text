@@ -364,37 +364,37 @@ namespace Bike18Text
             switch (countImages)
             {
                 case 39:
-                    countImages = 11;
+                    countImages = 1;
                     break;
                 case 54:
-                    countImages = 11;
+                    countImages = 2;
                     break;
                 case 68:
-                    countImages = 11;
+                    countImages = 3;
                     break;
                 case 82:
-                    countImages = 11;
+                    countImages = 4;
                     break;
                 case 96:
-                    countImages = 11;
+                    countImages = 5;
                     break;
                 case 110:
-                    countImages = 11;
+                    countImages = 6;
                     break;
                 case 124:
-                    countImages = 11;
+                    countImages = 7;
                     break;
                 case 138:
-                    countImages = 11;
+                    countImages = 8;
                     break;
                 case 152:
-                    countImages = 11;
+                    countImages = 9;
                     break;
                 case 166:
-                    countImages = 11;
+                    countImages = 10;
                     break;
                 case 180:
-                    countImages = 5;
+                    countImages = 11;
                     break;
             }
             string altText = "Test Session";
