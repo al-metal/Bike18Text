@@ -360,8 +360,9 @@ namespace Bike18Text
             if (!url.Contains("nethouse"))
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
             List<string> tovarList = webRequest.listTovar(url);
-            int countImages = tovarList.Count;
-            switch (countImages)
+            int countStringTovar = tovarList.Count;
+            int countImages = 0;
+            switch (countStringTovar)
             {
                 case 39:
                     countImages = 1;
@@ -397,8 +398,26 @@ namespace Bike18Text
                     countImages = 11;
                     break;
             }
-            string altText = "Test Session";
-            webRequest.altTextImage(tovarList, altText);
+            string altText = "New altText";
+            if (countImages == 1)
+            {
+                string idImg = tovarList[17].ToString();
+                webRequest.loadAltTextImage(idImg, altText);
+            }
+            else
+            {
+                for (int i = 0; countImages - 1 > i; i++)
+                {
+                    countStringTovar -= 14;
+                    string idImg = tovarList[countStringTovar].ToString();
+                    webRequest.loadAltTextImage(idImg, altText);
+                }
+            }
+            if(countStringTovar <= 40)
+            {
+                string idImg = tovarList[17].ToString();
+                webRequest.loadAltTextImage(idImg, altText);
+            }
             webRequest.saveImage(tovarList);
         }
 
