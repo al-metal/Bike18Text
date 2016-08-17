@@ -219,7 +219,7 @@
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(637, 20);
             this.tbURL.TabIndex = 17;
-            this.tbURL.Text = "http://bike18.ru/products/category/1185370";
+            this.tbURL.Text = "http://bike18.nethouse.ru/products/category/1364365";
             // 
             // Form1
             // 

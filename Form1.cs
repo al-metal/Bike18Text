@@ -266,12 +266,23 @@ namespace Bike18Text
                         string tovar = tovarUrl[z].ToString();
                         if (chbTitle.Checked)
                         {
-                            seoTitle(url);
+                            seoTitle(tovar);
                         }
-
                         if (chbDescription.Checked)
                         {
-                            seoDescription(url);
+                            seoDescription(tovar);
+                        }
+                        if (chbKeywords.Checked)
+                        {
+                            seoKeywords(tovar);
+                        }
+                        if (chbAddTextTovar.Checked)
+                        {
+                            mini_Full_Text_tovar(tovar);
+                        }
+                        if (chbAltText.Checked)
+                        {
+                            altText(tovar);
                         }
                     }
                 }
@@ -302,6 +313,10 @@ namespace Bike18Text
                                 if (chbAddTextTovar.Checked)
                                 {
                                     mini_Full_Text_tovar(tovar);
+                                }
+                                if (chbAltText.Checked)
+                                {
+                                    altText(tovar);
                                 }
                             }
                         }
@@ -340,6 +355,53 @@ namespace Bike18Text
             }            
         }
 
+        private void altText(string url)
+        {
+            if (!url.Contains("nethouse"))
+                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+            List<string> tovarList = webRequest.listTovar(url);
+            int countImages = tovarList.Count;
+            switch (countImages)
+            {
+                case 39:
+                    countImages = 11;
+                    break;
+                case 54:
+                    countImages = 11;
+                    break;
+                case 68:
+                    countImages = 11;
+                    break;
+                case 82:
+                    countImages = 11;
+                    break;
+                case 96:
+                    countImages = 11;
+                    break;
+                case 110:
+                    countImages = 11;
+                    break;
+                case 124:
+                    countImages = 11;
+                    break;
+                case 138:
+                    countImages = 11;
+                    break;
+                case 152:
+                    countImages = 11;
+                    break;
+                case 166:
+                    countImages = 11;
+                    break;
+                case 180:
+                    countImages = 5;
+                    break;
+            }
+            string altText = "Test Session";
+            webRequest.altTextImage(tovarList, altText);
+            webRequest.saveImage(tovarList);
+        }
+
         private void mini_Full_Text_tovar(string url)
         {
             if (!url.Contains("nethouse"))
@@ -354,13 +416,20 @@ namespace Bike18Text
             otv = webRequest.getRequest(url);
             string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
 
-            string seoKeywordsText = tbKeywords.Lines[0];
-            seoKeywordsText = seoKeywordsText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
-            if (seoKeywordsText.Length > 100)
+            miniText = miniText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+            fullText = fullText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+
+            if (fullText.Length > 1000)
             {
-                seoKeywordsText = seoKeywordsText.Remove(100);
-                seoKeywordsText = seoKeywordsText.Remove(seoKeywordsText.LastIndexOf(" "));
+                fullText = fullText.Remove(1000);
+                fullText = fullText.Remove(fullText.LastIndexOf(" "));
             }
+            if (miniText.Length > 1000)
+            {
+                miniText = miniText.Remove(1000);
+                miniText = miniText.Remove(miniText.LastIndexOf(" "));
+            }
+
             tovarList[7] = miniText;
             tovarList[8] = fullText;
             webRequest.saveImage(tovarList);
@@ -449,11 +518,6 @@ namespace Bike18Text
                     miniText += "<p>" + rtbMiniText.Lines[z].ToString() + "</p>";
                 }
             }
-            if (miniText.Length > 1000)
-            {
-                miniText = miniText.Remove(1000);
-                miniText = miniText.Remove(miniText.LastIndexOf(" "));
-            }
             return miniText;
         }
 
@@ -469,11 +533,6 @@ namespace Bike18Text
                 else
                 {
                     fullText += "<p>" + rtbMiniText.Lines[z].ToString() + "</p>";
-                }
-                if (fullText.Length > 1000)
-                {
-                    fullText = fullText.Remove(1000);
-                    fullText = fullText.Remove(fullText.LastIndexOf(" "));
                 }
             }
             return fullText;
