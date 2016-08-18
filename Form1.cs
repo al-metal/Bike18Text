@@ -361,6 +361,33 @@ namespace Bike18Text
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
             List<string> tovarList = webRequest.listTovar(url);
             int countStringTovar = tovarList.Count;
+            int countImages = returnCountImage(countStringTovar);
+            
+            string altText = "New altText";
+            if (countImages == 1)
+            {
+                string idImg = tovarList[17].ToString();
+                webRequest.loadAltTextImage(idImg, altText);
+            }
+            else
+            {
+                for (int i = 0; countImages - 1 > i; i++)
+                {
+                    countStringTovar -= 14;
+                    string idImg = tovarList[countStringTovar].ToString();
+                    webRequest.loadAltTextImage(idImg, altText);
+                }
+            }
+            if(countStringTovar <= 40)
+            {
+                string idImg = tovarList[17].ToString();
+                webRequest.loadAltTextImage(idImg, altText);
+            }
+            webRequest.saveImage(tovarList);
+        }
+
+        private int returnCountImage(int countStringTovar)
+        {
             int countImages = 0;
             switch (countStringTovar)
             {
@@ -398,27 +425,7 @@ namespace Bike18Text
                     countImages = 11;
                     break;
             }
-            string altText = "New altText";
-            if (countImages == 1)
-            {
-                string idImg = tovarList[17].ToString();
-                webRequest.loadAltTextImage(idImg, altText);
-            }
-            else
-            {
-                for (int i = 0; countImages - 1 > i; i++)
-                {
-                    countStringTovar -= 14;
-                    string idImg = tovarList[countStringTovar].ToString();
-                    webRequest.loadAltTextImage(idImg, altText);
-                }
-            }
-            if(countStringTovar <= 40)
-            {
-                string idImg = tovarList[17].ToString();
-                webRequest.loadAltTextImage(idImg, altText);
-            }
-            webRequest.saveImage(tovarList);
+            return countImages;
         }
 
         private void mini_Full_Text_tovar(string url)
