@@ -277,26 +277,7 @@ namespace Bike18Text
                     for(int z = 0; tovarUrl.Count > z; z++)
                     {
                         string tovar = tovarUrl[z].ToString();
-                        if (chbTitle.Checked)
-                        {
-                            seoTitle(tovar);
-                        }
-                        if (chbDescription.Checked)
-                        {
-                            seoDescription(tovar);
-                        }
-                        if (chbKeywords.Checked)
-                        {
-                            seoKeywords(tovar);
-                        }
-                        if (chbFullText.Checked)
-                        {
-                            mini_Full_Text_tovar(tovar);
-                        }
-                        if (chbAltText.Checked)
-                        {
-                            altText(tovar);
-                        }
+                        updateText(tovar);
                     }
                 }
                 else
@@ -311,26 +292,7 @@ namespace Bike18Text
                             for (int z = 0; tovar2Url.Count > z; z++)
                             {
                                 string tovar = tovar2Url[z].ToString();
-                                if (chbTitle.Checked)
-                                {
-                                    seoTitle(tovar);
-                                }
-                                if (chbDescription.Checked)
-                                {
-                                    seoDescription(tovar);
-                                }
-                                if (chbKeywords.Checked)
-                                {
-                                    seoKeywords(tovar);
-                                }
-                                if (chbFullText.Checked)
-                                {
-                                    mini_Full_Text_tovar(tovar);
-                                }
-                                if (chbAltText.Checked)
-                                {
-                                    altText(tovar);
-                                }
+                                updateText(tovar);
                             }
                         }
                         else
@@ -342,7 +304,11 @@ namespace Bike18Text
                                 MatchCollection tovar3Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
                                 if (tovar3Url.Count != 0)
                                 {
-
+                                    for (int z = 0; tovar3Url.Count > z; z++)
+                                    {
+                                        string tovar = tovar3Url[z].ToString();
+                                        updateText(tovar);
+                                    }
                                 }
                                 else
                                 {
@@ -353,7 +319,11 @@ namespace Bike18Text
                                         MatchCollection tovar4Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
                                         if (tovar4Url.Count != 0)
                                         {
-
+                                            for (int z = 0; tovar4Url.Count > z; z++)
+                                            {
+                                                string tovar = tovar4Url[z].ToString();
+                                                updateText(tovar);
+                                            }
                                         }
                                         else
                                         {
@@ -366,6 +336,35 @@ namespace Bike18Text
                     }
                 }
             }            
+        }
+
+        private void updateText(string tovar)
+        {
+            if (chbTitle.Checked)
+            {
+                seoTitle(tovar);
+            }
+            if (chbDescription.Checked)
+            {
+                seoDescription(tovar);
+            }
+            if (chbKeywords.Checked)
+            {
+                seoKeywords(tovar);
+            }
+            if (chbFullText.Checked)
+            {
+                full_Text_tovar(tovar);
+            }
+
+            if (chbMiniText.Checked)
+            {
+                mini_Text_tovar(tovar);
+            }
+            if (chbAltText.Checked)
+            {
+                altText(tovar);
+            }
         }
 
         private void altText(string url)
@@ -452,7 +451,7 @@ namespace Bike18Text
             return countImages;
         }
 
-        private void mini_Full_Text_tovar(string url)
+        private void mini_Text_tovar(string url)
         {
             if (!url.Contains("nethouse"))
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
@@ -467,13 +466,7 @@ namespace Bike18Text
             string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
 
             miniText = miniText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
-            fullText = fullText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
 
-            if (fullText.Length > 1000)
-            {
-                fullText = fullText.Remove(1000);
-                fullText = fullText.Remove(fullText.LastIndexOf(" "));
-            }
             if (miniText.Length > 1000)
             {
                 miniText = miniText.Remove(1000);
@@ -481,6 +474,31 @@ namespace Bike18Text
             }
 
             tovarList[7] = miniText;
+            webRequest.saveImage(tovarList);
+        }
+
+        private void full_Text_tovar(string url)
+        {
+            if (!url.Contains("nethouse"))
+                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+
+            List<string> tovarList = webRequest.arraySaveimage(url);
+            string articl = tovarList[6].ToString();
+            string name = tovarList[4].ToString();
+            string miniText = miniTextTemplate();
+            string fullText = fullTextTemplate();
+
+            otv = webRequest.getRequest(url);
+            string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
+
+            fullText = fullText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+
+            if (fullText.Length > 1000)
+            {
+                fullText = fullText.Remove(1000);
+                fullText = fullText.Remove(fullText.LastIndexOf(" "));
+            }
+
             tovarList[8] = fullText;
             webRequest.saveImage(tovarList);
         }
