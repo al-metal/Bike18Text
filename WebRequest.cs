@@ -276,7 +276,7 @@ namespace web
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
             req.CookieContainer = cookie;
-            byte[] ms = Encoding.ASCII.GetBytes("id=" + idImg + "&alt=" + altText);
+            byte[] ms = Encoding.GetEncoding("utf-8").GetBytes("id=" + idImg + "&alt=" + altText);
             req.ContentLength = ms.Length;
             Stream stre = req.GetRequestStream();
             stre.Write(ms, 0, ms.Length);
@@ -683,7 +683,7 @@ namespace web
                 listTovar.Add(isCustom);        //38
                 listTovar.Add(reklama);         //39
 
-                for(int i = 1; avatarId.Count > i; i++)
+                for(int i = 1; timestamp.Count > i; i++)
                 {
                     listTovar.Add(avatarId[i].ToString());        //40 54 68 82 96 110 124 137 151 165
                     listTovar.Add(timestamp[i].ToString());       //41
