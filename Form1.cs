@@ -460,13 +460,7 @@ namespace Bike18Text
             string miniText = miniTextTemplate();
 
             miniText = AutoCorrect(url, miniText);
-
-            if (miniText.Length > 1000)
-            {
-                miniText = miniText.Remove(1000);
-                miniText = miniText.Remove(miniText.LastIndexOf(" "));
-            }
-
+            miniText = autoCrop(miniText, 1000);
             tovarList[7] = miniText;
             webRequest.saveImage(tovarList);
         }
@@ -480,12 +474,7 @@ namespace Bike18Text
             string fullText = fullTextTemplate();
 
             fullText = AutoCorrect(url, fullText);
-
-            if (fullText.Length > 1000)
-            {
-                fullText = fullText.Remove(1000);
-                fullText = fullText.Remove(fullText.LastIndexOf(" "));
-            }
+            fullText = autoCrop(fullText, 1000);
 
             tovarList[8] = fullText;
             webRequest.saveImage(tovarList);
@@ -500,11 +489,7 @@ namespace Bike18Text
 
             string seoKeywordsText = tbKeywords.Lines[0];
             seoKeywordsText = AutoCorrect(url, seoKeywordsText);
-            if (seoKeywordsText.Length > 100)
-            {
-                seoKeywordsText = seoKeywordsText.Remove(100);
-                seoKeywordsText = seoKeywordsText.Remove(seoKeywordsText.LastIndexOf(" "));
-            }
+            seoKeywordsText = autoCrop(seoKeywordsText, 100);
             tovarList[12] = seoKeywordsText;
             webRequest.saveImage(tovarList);
         }
@@ -518,11 +503,7 @@ namespace Bike18Text
             
             string seoDescriptionText = tbDescription.Lines[0];
             seoDescriptionText = AutoCorrect(url, seoDescriptionText);
-            if (seoDescriptionText.Length > 200)
-            {
-                seoDescriptionText = seoDescriptionText.Remove(200);
-                seoDescriptionText = seoDescriptionText.Remove(seoDescriptionText.LastIndexOf(" "));
-            }
+            seoDescriptionText = autoCrop(seoDescriptionText, 200);
             tovarList[11] = seoDescriptionText;
             webRequest.saveImage(tovarList);
         }
@@ -536,11 +517,7 @@ namespace Bike18Text
             
             string seoTitleText = tbTitle.Lines[0];
             seoTitleText = AutoCorrect(url, seoTitleText);
-            if (seoTitleText.Length > 200)
-            {
-                seoTitleText = seoTitleText.Remove(200);
-                seoTitleText = seoTitleText.Remove(seoTitleText.LastIndexOf(" "));
-            }
+            seoTitleText = autoCrop(seoTitleText, 200);
             tovarList[13] = seoTitleText;
             webRequest.saveImage(tovarList);
         }
@@ -605,6 +582,16 @@ namespace Bike18Text
             }
             text = text.Replace("НАЗВАНИЕ", name).Replace("ЦЕНА", price).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ1", category1).Replace("РАЗДЕЛ2", category2);
             
+            return text;
+        }
+
+        public string autoCrop(string text, int count)
+        {
+            if (text.Length > count)
+            {
+                text = text.Remove(count);
+                text = text.Remove(text.LastIndexOf(" "));
+            }
             return text;
         }
     }
