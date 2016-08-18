@@ -363,13 +363,9 @@ namespace Bike18Text
             int countStringTovar = tovarList.Count;
             int countImages = returnCountImage(countStringTovar);
             
-            string altText = "New altText";
-            if (countImages == 1)
-            {
-                string idImg = tovarList[17].ToString();
-                webRequest.loadAltTextImage(idImg, altText);
-            }
-            else
+            string altText = "SUZUKI BANDIT GSF-250";
+
+            if(countImages > 1)
             {
                 for (int i = 0; countImages - 1 > i; i++)
                 {
@@ -378,7 +374,7 @@ namespace Bike18Text
                     webRequest.loadAltTextImage(idImg, altText);
                 }
             }
-            if(countStringTovar <= 40)
+            if (countImages == 1 || countStringTovar <= 40)
             {
                 string idImg = tovarList[17].ToString();
                 webRequest.loadAltTextImage(idImg, altText);
