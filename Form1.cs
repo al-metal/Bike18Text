@@ -457,15 +457,9 @@ namespace Bike18Text
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
-            string articl = tovarList[6].ToString();
-            string name = tovarList[4].ToString();
             string miniText = miniTextTemplate();
-            string fullText = fullTextTemplate();
 
-            otv = webRequest.getRequest(url);
-            string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
-
-            miniText = miniText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+            miniText = AutoCorrect(url, miniText);
 
             if (miniText.Length > 1000)
             {
@@ -483,15 +477,9 @@ namespace Bike18Text
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
-            string articl = tovarList[6].ToString();
-            string name = tovarList[4].ToString();
-            string miniText = miniTextTemplate();
             string fullText = fullTextTemplate();
 
-            otv = webRequest.getRequest(url);
-            string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
-
-            fullText = fullText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+            fullText = AutoCorrect(url, fullText);
 
             if (fullText.Length > 1000)
             {
@@ -509,14 +497,9 @@ namespace Bike18Text
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
-            string articl = tovarList[6].ToString();
-            string name = tovarList[4].ToString();
-
-            otv = webRequest.getRequest(url);
-            string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
 
             string seoKeywordsText = tbKeywords.Lines[0];
-            seoKeywordsText = seoKeywordsText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+            seoKeywordsText = AutoCorrect(url, seoKeywordsText);
             if (seoKeywordsText.Length > 100)
             {
                 seoKeywordsText = seoKeywordsText.Remove(100);
@@ -532,14 +515,9 @@ namespace Bike18Text
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
-            string articl = tovarList[6].ToString();
-            string name = tovarList[4].ToString();
-
-            otv = webRequest.getRequest(url);
-            string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
-
+            
             string seoDescriptionText = tbDescription.Lines[0];
-            seoDescriptionText = seoDescriptionText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+            seoDescriptionText = AutoCorrect(url, seoDescriptionText);
             if (seoDescriptionText.Length > 200)
             {
                 seoDescriptionText = seoDescriptionText.Remove(200);
@@ -555,14 +533,9 @@ namespace Bike18Text
             url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
-            string articl = tovarList[6].ToString();
-            string name = tovarList[4].ToString();
-
-            otv = webRequest.getRequest(url);
-            string razdelName = new Regex("(?<=<h1 class=\"category-name\">).*?(?=</h1>)").Match(otv).ToString();
-
+            
             string seoTitleText = tbTitle.Lines[0];
-            seoTitleText = seoTitleText.Replace("НАЗВАНИЕ", name).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ", razdelName);
+            seoTitleText = AutoCorrect(url, seoTitleText);
             if (seoTitleText.Length > 200)
             {
                 seoTitleText = seoTitleText.Remove(200);
@@ -606,5 +579,33 @@ namespace Bike18Text
             return fullText;
         }
 
+        public string AutoCorrect(string urlTovar, string text)
+        { 
+            List<string> tovarList = webRequest.listTovar(urlTovar);
+            otv = webRequest.getRequest(urlTovar);
+            string name = tovarList[4].ToString();
+            string price = tovarList[9].ToString();
+            string articl = tovarList[6].ToString();
+            string category1 = "";
+            string category2 = "";
+
+            MatchCollection categories = new Regex("(?<=<span class=\"separator\">/</span><a href=\").*?(?=</a>)").Matches(otv);
+            int countCategories = categories.Count;
+            if(countCategories == 1)
+            {
+                category1 = categories[0].ToString();
+                category1 = category1.Remove(0, category1.IndexOf(">") +1);
+            }
+            else
+            {
+                category1 = categories[countCategories - 1].ToString();
+                category2 = categories[countCategories - 2].ToString();
+                category1 = category1.Remove(0, category1.IndexOf(">") + 1);
+                category2 = category2.Remove(0, category2.IndexOf(">") + 1);
+            }
+            text = text.Replace("НАЗВАНИЕ", name).Replace("ЦЕНА", price).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ1", category1).Replace("РАЗДЕЛ2", category2);
+            
+            return text;
+        }
     }
 }
