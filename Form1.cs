@@ -17,6 +17,7 @@ namespace Bike18Text
     {
         WebRequest webRequest = new WebRequest();
         string otv = null;
+        int countStrAltText = 0;
 
         public Form1()
         {
@@ -363,12 +364,11 @@ namespace Bike18Text
             int countStringTovar = tovarList.Count;
             int countImages = returnCountImage(countStringTovar);
             
-            string altText = "SUZUKI BANDIT GSF-250";
-
             if(countImages > 1)
             {
                 for (int i = 0; countImages - 1 > i; i++)
                 {
+                    string altText = returnAltText();
                     countStringTovar -= 14;
                     string idImg = tovarList[countStringTovar].ToString();
                     webRequest.loadAltTextImage(idImg, altText);
@@ -376,10 +376,27 @@ namespace Bike18Text
             }
             if (countImages == 1 || countStringTovar <= 40)
             {
+                string altText = returnAltText();
                 string idImg = tovarList[17].ToString();
                 webRequest.loadAltTextImage(idImg, altText);
             }
-            webRequest.saveImage(tovarList);
+            webRequest.saveImage(tovarList);    
+        }
+
+        private string returnAltText()
+        {
+            string altText = "";
+            List<string> ListAltText = new List<string>();
+            foreach (string str in rtbAltText.Lines)
+            {
+                if (str != "")
+                    ListAltText.Add(str);
+            }
+            if (countStrAltText >= ListAltText.Count)
+                countStrAltText = 0;
+            altText = ListAltText[countStrAltText].ToString();
+            countStrAltText++;
+            return altText;
         }
 
         private int returnCountImage(int countStringTovar)
