@@ -30,7 +30,7 @@
         {
             this.chbAltText = new System.Windows.Forms.CheckBox();
             this.rtbAltText = new System.Windows.Forms.RichTextBox();
-            this.chbAddTextTovar = new System.Windows.Forms.CheckBox();
+            this.chbFullText = new System.Windows.Forms.CheckBox();
             this.chbSEO = new System.Windows.Forms.CheckBox();
             this.rtbMiniText = new System.Windows.Forms.RichTextBox();
             this.rtbFullText = new System.Windows.Forms.RichTextBox();
@@ -46,6 +46,7 @@
             this.btnSaveText = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.tbURL = new System.Windows.Forms.TextBox();
+            this.chbMiniText = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chbAltText
@@ -68,16 +69,16 @@
             this.rtbAltText.TabIndex = 1;
             this.rtbAltText.Text = "";
             // 
-            // chbAddTextTovar
+            // chbFullText
             // 
-            this.chbAddTextTovar.AutoSize = true;
-            this.chbAddTextTovar.Location = new System.Drawing.Point(339, 12);
-            this.chbAddTextTovar.Name = "chbAddTextTovar";
-            this.chbAddTextTovar.Size = new System.Drawing.Size(202, 17);
-            this.chbAddTextTovar.TabIndex = 2;
-            this.chbAddTextTovar.Text = "Добавить текст в карточку товара";
-            this.chbAddTextTovar.UseVisualStyleBackColor = true;
-            this.chbAddTextTovar.CheckedChanged += new System.EventHandler(this.chbAddTextTovar_CheckedChanged);
+            this.chbFullText.AutoSize = true;
+            this.chbFullText.Location = new System.Drawing.Point(339, 168);
+            this.chbFullText.Name = "chbFullText";
+            this.chbFullText.Size = new System.Drawing.Size(153, 17);
+            this.chbFullText.TabIndex = 2;
+            this.chbFullText.Text = "Полное описание товара";
+            this.chbFullText.UseVisualStyleBackColor = true;
+            this.chbFullText.CheckedChanged += new System.EventHandler(this.chbAddTextTovar_CheckedChanged);
             // 
             // chbSEO
             // 
@@ -221,11 +222,23 @@
             this.tbURL.TabIndex = 17;
             this.tbURL.Text = "http://bike18.nethouse.ru/products/category/1364365";
             // 
+            // chbMiniText
+            // 
+            this.chbMiniText.AutoSize = true;
+            this.chbMiniText.Location = new System.Drawing.Point(339, 12);
+            this.chbMiniText.Name = "chbMiniText";
+            this.chbMiniText.Size = new System.Drawing.Size(157, 17);
+            this.chbMiniText.TabIndex = 18;
+            this.chbMiniText.Text = "Краткое описание товара";
+            this.chbMiniText.UseVisualStyleBackColor = true;
+            this.chbMiniText.CheckedChanged += new System.EventHandler(this.chbFullText_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(959, 384);
+            this.Controls.Add(this.chbMiniText);
             this.Controls.Add(this.tbURL);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnSaveText);
@@ -241,7 +254,7 @@
             this.Controls.Add(this.rtbFullText);
             this.Controls.Add(this.rtbMiniText);
             this.Controls.Add(this.chbSEO);
-            this.Controls.Add(this.chbAddTextTovar);
+            this.Controls.Add(this.chbFullText);
             this.Controls.Add(this.rtbAltText);
             this.Controls.Add(this.chbAltText);
             this.Name = "Form1";
@@ -255,7 +268,7 @@
 
         private System.Windows.Forms.CheckBox chbAltText;
         private System.Windows.Forms.RichTextBox rtbAltText;
-        private System.Windows.Forms.CheckBox chbAddTextTovar;
+        private System.Windows.Forms.CheckBox chbFullText;
         private System.Windows.Forms.CheckBox chbSEO;
         private System.Windows.Forms.RichTextBox rtbMiniText;
         private System.Windows.Forms.RichTextBox rtbFullText;
@@ -271,6 +284,7 @@
         private System.Windows.Forms.Button btnSaveText;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.TextBox tbURL;
+        private System.Windows.Forms.CheckBox chbMiniText;
     }
 }
 

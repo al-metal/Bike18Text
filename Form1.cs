@@ -149,6 +149,14 @@ namespace Bike18Text
             writers.WriteLine(tbTitle.Lines[0]);
             writers.Close();
 
+            writers = new StreamWriter("files\\descriptionText", false, Encoding.GetEncoding(1251));
+            writers.WriteLine(tbDescription.Lines[0]);
+            writers.Close();
+
+            writers = new StreamWriter("files\\keywordsText", false, Encoding.GetEncoding(1251));
+            writers.WriteLine(tbKeywords.Lines[0]);
+            writers.Close();
+
             MessageBox.Show("Текст сохранен");
         }
 
@@ -185,14 +193,6 @@ namespace Bike18Text
             else
             {
                 rtbFullText.Enabled = true;
-            }
-            if (rtbMiniText.Enabled)
-            {
-                rtbMiniText.Enabled = false;
-            }
-            else
-            {
-                rtbMiniText.Enabled = true;
             }
         }
 
@@ -244,6 +244,18 @@ namespace Bike18Text
             }
         }
 
+        private void chbFullText_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rtbMiniText.Enabled)
+            {
+                rtbMiniText.Enabled = false;
+            }
+            else
+            {
+                rtbMiniText.Enabled = true;
+            }
+        }
+
         private void chbDescription_EnabledChanged(object sender, EventArgs e)
         {
         }
@@ -277,7 +289,7 @@ namespace Bike18Text
                         {
                             seoKeywords(tovar);
                         }
-                        if (chbAddTextTovar.Checked)
+                        if (chbFullText.Checked)
                         {
                             mini_Full_Text_tovar(tovar);
                         }
@@ -311,7 +323,7 @@ namespace Bike18Text
                                 {
                                     seoKeywords(tovar);
                                 }
-                                if (chbAddTextTovar.Checked)
+                                if (chbFullText.Checked)
                                 {
                                     mini_Full_Text_tovar(tovar);
                                 }
@@ -379,8 +391,7 @@ namespace Bike18Text
                 string altText = returnAltText();
                 string idImg = tovarList[17].ToString();
                 webRequest.loadAltTextImage(idImg, altText);
-            }
-            webRequest.saveImage(tovarList);    
+            }   
         }
 
         private string returnAltText()
@@ -576,5 +587,6 @@ namespace Bike18Text
             }
             return fullText;
         }
+
     }
 }
