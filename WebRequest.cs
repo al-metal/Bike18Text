@@ -46,6 +46,36 @@ namespace web
             return otv;
         }
 
+        public string PostRequest(CookieContainer cookie, string nethouseTovar)
+        {
+            string otv = null;
+            do
+            {
+                HttpWebResponse res = null;
+
+                HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(nethouseTovar);
+                //req.Proxy = null;
+                req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
+                req.Method = "POST";
+                req.ContentType = "application/x-www-form-urlencoded";
+                req.CookieContainer = cookie;
+                try
+                {
+                    res = (HttpWebResponse)req.GetResponse();
+                    StreamReader ressr = new StreamReader(res.GetResponseStream());
+                    otv = ressr.ReadToEnd();
+                }
+                catch (WebException e)
+                {
+                    //file.fileWriter("err", e.Data["DateTimeInfo"] + " " + nethouseTovar);
+                    break;
+                }
+            } while (otv == null);
+            return otv;
+        }
+
+
         public CookieContainer webCookieBike18()
         {
             CookieContainer cooc = new CookieContainer();
@@ -94,34 +124,8 @@ namespace web
             return cooc;
         }
 
-        public string PostRequest(CookieContainer cookie, string nethouseTovar)
-        {
-            string otv = null;
-            do
-            {
-                HttpWebResponse res = null;
-                
-                HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(nethouseTovar);
-                //req.Proxy = null;
-                req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-                req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
-                req.Method = "POST";
-                req.ContentType = "application/x-www-form-urlencoded";
-                req.CookieContainer = cookie;
-                try
-                {
-                    res = (HttpWebResponse)req.GetResponse();
-                    StreamReader ressr = new StreamReader(res.GetResponseStream());
-                    otv = ressr.ReadToEnd();
-                }
-                catch (WebException e)
-                {
-                    //file.fileWriter("err", e.Data["DateTimeInfo"] + " " + nethouseTovar);
-                    break;
-                }
-            } while (otv == null);
-            return otv;
-        }
+
+        
 
         internal int price(double priceTovarRacerMotors, double discount)
         {
@@ -168,10 +172,11 @@ namespace web
 
                 otv = webRequest.PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
                 string slug = new Regex("(?<=\",\"slug\":\").*?(?=\")").Match(otv).ToString();
+                string productCastomGroup = new Regex("(?<=productCustomGroup\":).*?(?=,\")").Match(otv).ToString();
                 String discountCoast = new Regex("(?<=discountCost\":\").*?(?=\")").Match(otv).Value;
                 String serial = new Regex("(?<=serial\":\").*?(?=\")").Match(otv).Value;
                 String categoryId = new Regex("(?<=\",\"categoryId\":\").*?(?=\")").Match(otv).Value;
-                String productGroup = new Regex("(?<=\",\"productGroup\":).*?(?=,\")").Match(otv).Value;
+                String productGroup = new Regex("(?<=productGroup\":).*?(?=,\")").Match(otv).Value;
                 String havenDetail = new Regex("(?<=haveDetail\".).*?(?=,\")").Match(otv).Value;
                 String canMakeOrder = new Regex("(?<=canMakeOrder\".).*?(?=,\")").Match(otv).Value;
                 canMakeOrder = canMakeOrder.Replace("false", "0");
@@ -180,6 +185,30 @@ namespace web
                 String showOnMain = new Regex("(?<=showOnMain\".).*?(?=,\")").Match(otv).Value;
                 String customDays = new Regex("(?<=,\"customDays\":\").*?(?=\")").Match(otv).Value;
                 String isCustom = new Regex("(?<=\",\"isCustom\":).*?(?=,)").Match(otv).Value;
+                string atribut = "";
+                string atributes = new Regex("(?<=attributes\":{\").*?(?=,\"customDays)").Match(otv).Value;
+                MatchCollection stringAtributes = new Regex("(?<=\":{\").*?(?=])").Matches(atributes);
+                for(int i = 0; stringAtributes.Count > i; i++)
+                {
+                    string id = new Regex("(?<=primaryKey\":).*?(?=,\")").Match(stringAtributes[i].ToString()).Value;
+                    string valueId = new Regex("(?<=\"valueId\":\").*?(?=\")").Match(stringAtributes[i].ToString()).Value;
+                    string valueText = new Regex("(?<=valueText\":).*?(?=})").Match(stringAtributes[i].ToString()).Value;
+                    string text = new Regex("(?<=\"text\":).*?(?=})").Match(stringAtributes[i].ToString()).Value;
+                    string checkBox = new Regex("(?<=checkbox\":).*?(?=})").Match(stringAtributes[i].ToString()).Value;
+
+                    if (valueId != "")
+                    {
+                        atribut = atribut + "&attributes[" + i + "][primaryKey]=" + id + "&attributes[" + i + "][attributeId]=" + id + "&attributes[" + i + "][values][0][empty]=0&attributes[" + i + "][values][0][valueId]=" + valueId;
+                    }
+                    else
+                    {
+                        if(text != "")
+                            atribut = atribut + "&attributes[" + i + "][primaryKey]=" + id + "&attributes[" + i + "][attributeId]=" + id + "&attributes[" + i + "][values][0][empty]=0&attributes[" + i + "][values][0][text]=" + text;
+                        if(checkBox != "")
+                            atribut = atribut + "&attributes[" + i + "][primaryKey]=" + id + "&attributes[" + i + "][attributeId]=" + id + "&attributes[" + i + "][values][0][empty]=0&attributes[" + i + "][values][0][checkbox]=" + checkBox;
+                    }
+                }
+                atribut = atribut.Replace("true", "1");
 
                 otv = webRequest.PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
                 String avatarId = new Regex("(?<=\"id\":\").*?(?=\")").Match(otv).Value;
@@ -244,6 +273,8 @@ namespace web
                 saveImage.Add(customDays);      //37
                 saveImage.Add(isCustom);        //38
                 saveImage.Add(reklama);         //39
+                saveImage.Add(atribut);         //40
+                saveImage.Add(productCastomGroup); //41
             }
             return saveImage;
         }
@@ -314,7 +345,7 @@ namespace web
             req.CookieContainer = cookie;
             string descFull = getProduct[8].ToString();
             descFull = descFull.Replace("&laquo;", "«").Replace("&raquo;", "»");
-            byte[] ms = System.Text.Encoding.GetEncoding("utf-8").GetBytes("id=" + getProduct[0] + "&slug=" + getProduct[1] + "&categoryId=" + getProduct[2] + "&productGroup=" + getProduct[3] + "&name=" + getProduct[4] + "&serial=" + getProduct[5] + "&serialByUser=" + getProduct[6] + "&desc=" + getProduct[7] + "&descFull=" + descFull + "&cost=" + getProduct[9] + "&discountCost=" + getProduct[10] + "&seoMetaDesc=" + getProduct[11] + "&seoMetaKeywords=" + getProduct[12] + "&seoTitle=" + getProduct[13] + "&haveDetail=" + getProduct[14] + "&canMakeOrder=" + getProduct[15] + "&balance=100&showOnMain=" + getProduct[16] + "&isVisible=1&hasSale=0&avatar[id]=" + getProduct[17] + "&avatar[objectId]=" + getProduct[18] + "&avatar[timestamp]=" + getProduct[19] + "&avatar[type]=" + getProduct[20] + "&avatar[name]=" + getProduct[21] + "&avatar[desc]=" + getProduct[22] + "&avatar[ext]=" + getProduct[23] + "&avatar[formats][raw]=" + getProduct[24] + "&avatar[formats][W215]=" + getProduct[25] + "&avatar[formats][150x120]=" + getProduct[26] + "&avatar[formats][104x82]=" + getProduct[27] + "&avatar[formatParams][raw][fileSize]=" + getProduct[28] + "&avatar[alt]=" + getProduct[29] + "&avatar[isVisibleOnMain]=" + getProduct[30] + "&avatar[priority]=" + getProduct[31] + "&avatar[url]=" + getProduct[32] + "&avatar[filters][crop][left]=" + getProduct[33] + "&avatar[filters][crop][top]=" + getProduct[34] + "&avatar[filters][crop][right]=" + getProduct[35] + "&avatar[filters][crop][bottom]=" + getProduct[36] + "&customDays=" + getProduct[37] + "&isCustom=" + getProduct[38] + getProduct[39] + "&alsoBuyLabel=%D0%9F%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B5%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B%20%D0%B2%20%D0%BD%D0%B0%D1%88%D0%B5%D0%BC%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B5");
+            byte[] ms = System.Text.Encoding.GetEncoding("utf-8").GetBytes("id=" + getProduct[0] + "&slug=" + getProduct[1] + "&categoryId=" + getProduct[2] + "&productGroup=" + getProduct[3] + "&name=" + getProduct[4] + "&serial=" + getProduct[5] + "&serialByUser=" + getProduct[6] + "&desc=" + getProduct[7] + "&descFull=" + descFull + "&cost=" + getProduct[9] + "&discountCost=" + getProduct[10] + "&seoMetaDesc=" + getProduct[11] + "&seoMetaKeywords=" + getProduct[12] + "&seoTitle=" + getProduct[13] + "&haveDetail=" + getProduct[14] + "&canMakeOrder=" + getProduct[15] + "&balance=100&showOnMain=" + getProduct[16] + "&isVisible=1&hasSale=0&avatar[id]=" + getProduct[17] + "&avatar[objectId]=" + getProduct[18] + "&avatar[timestamp]=" + getProduct[19] + "&avatar[type]=" + getProduct[20] + "&avatar[name]=" + getProduct[21] + "&avatar[desc]=" + getProduct[22] + "&avatar[ext]=" + getProduct[23] + "&avatar[formats][raw]=" + getProduct[24] + "&avatar[formats][W215]=" + getProduct[25] + "&avatar[formats][150x120]=" + getProduct[26] + "&avatar[formats][104x82]=" + getProduct[27] + "&avatar[formatParams][raw][fileSize]=" + getProduct[28] + "&avatar[alt]=" + getProduct[29] + "&avatar[isVisibleOnMain]=" + getProduct[30] + "&avatar[priority]=" + getProduct[31] + "&avatar[url]=" + getProduct[32] + "&avatar[filters][crop][left]=" + getProduct[33] + "&avatar[filters][crop][top]=" + getProduct[34] + "&avatar[filters][crop][right]=" + getProduct[35] + "&avatar[filters][crop][bottom]=" + getProduct[36] + "&customDays=" + getProduct[37] + "&isCustom=" + getProduct[38] + getProduct[39] + getProduct[40] + "&alsoBuyLabel=%D0%9F%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B5%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B%20%D0%B2%20%D0%BD%D0%B0%D1%88%D0%B5%D0%BC%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B5");
             req.ContentLength = ms.Length;
             Stream stre = req.GetRequestStream();
             stre.Write(ms, 0, ms.Length);
@@ -329,6 +360,37 @@ namespace web
 
             }
             }
+
+        internal void saveTovar(List<string> getProduct)
+        {
+            CookieContainer cookie = webCookieBike18();
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/catalog/saveproduct");
+            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
+            req.Method = "POST";
+            req.ContentType = "application/x-www-form-urlencoded";
+            req.CookieContainer = cookie;
+            string descFull = getProduct[8].ToString();
+            descFull = descFull.Replace("&laquo;", "«").Replace("&raquo;", "»");
+            string request = "id=" + getProduct[0] + "&slug=" + getProduct[1] + "&categoryId=" + getProduct[2] + "&productCustomGroup=" + getProduct[41] + "&productGroup=" + getProduct[3] + "&name=" + getProduct[4] + "&serial=" + getProduct[5] + "&serialByUser=" + getProduct[6] + "&desc=" + getProduct[7] + "&descFull=" + getProduct[8] + "&cost=" + getProduct[9] + "&discountCost=" + getProduct[10] + "&seoMetaDesc=" + getProduct[11] + "&seoMetaKeywords=" + getProduct[12] + "&seoTitle=" + getProduct[13] + "&haveDetail=" + getProduct[14] + "&canMakeOrder=" + getProduct[15] + "&balance=100&showOnMain=" + getProduct[16] + "&isVisible=1&hasSale=0" + "&customDays=" + getProduct[37] + "&isCustom=" + getProduct[38] + getProduct[39] + getProduct[40] + "&alsoBuyLabel=%D0%9F%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B5%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B%20%D0%B2%20%D0%BD%D0%B0%D1%88%D0%B5%D0%BC%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B5";
+            request = request.Replace("false", "0").Replace("true", "1").Replace("&mdash;", "-").Replace("&laquo;", "\"").Replace("&raquo;", "\"").Replace("&mdash;", "-");
+
+            request = request.Replace("false", "0").Replace("true", "1");
+            byte[] ms = System.Text.Encoding.GetEncoding("utf-8").GetBytes(request);
+            req.ContentLength = ms.Length;
+            Stream stre = req.GetRequestStream();
+            stre.Write(ms, 0, ms.Length);
+            stre.Close();
+            try
+            {
+                HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
+                StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
+            }
+            catch
+            {
+
+            }
+        }
 
         internal void savePrice(CookieContainer cookie, string urlTovar, MatchCollection articl, double priceTrue, WebRequest webRequest)
         {
