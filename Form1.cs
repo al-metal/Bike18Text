@@ -519,7 +519,7 @@ namespace Bike18Text
             seoTitleText = AutoCorrect(url, seoTitleText);
             seoTitleText = autoCrop(seoTitleText, 200);
             tovarList[13] = seoTitleText;
-            webRequest.saveImage(tovarList);
+            webRequest.saveTovar(tovarList);
         }
 
         public string miniTextTemplate()
@@ -593,6 +593,24 @@ namespace Bike18Text
                 text = text.Remove(text.LastIndexOf(" "));
             }
             return text;
+        }
+
+        private void btnMiniTextBold_Click(object sender, EventArgs e)
+        {
+            FontStyle newFontStyle;
+            Font currentFont = rtbMiniText.SelectionFont;
+            if (rtbMiniText.SelectedText != null)
+            {
+                if (rtbMiniText.SelectionFont.Bold == true)
+                {
+                    newFontStyle = FontStyle.Regular;
+                }
+                else
+                {
+                    newFontStyle = FontStyle.Bold;
+                }
+                rtbMiniText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
+            }
         }
     }
 }
