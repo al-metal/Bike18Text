@@ -612,5 +612,35 @@ namespace Bike18Text
                 rtbMiniText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
+
+        private void btnAlignRigth_Click(object sender, EventArgs e)
+        {
+            if (rtbMiniText.SelectedText != null)
+            {
+                if (rtbMiniText.SelectionAlignment == HorizontalAlignment.Right)
+                {
+                    rtbMiniText.SelectionAlignment = HorizontalAlignment.Left;
+                }
+                else
+                {
+                    rtbMiniText.SelectionAlignment = HorizontalAlignment.Right;
+                }
+            }
+        }
+
+        private void btnAlignCenter_Click(object sender, EventArgs e)
+        {
+            if (rtbMiniText.SelectedText != null)
+            {
+                if (rtbMiniText.SelectionAlignment == HorizontalAlignment.Center)
+                {
+                    rtbMiniText.SelectionAlignment = HorizontalAlignment.Left;
+                }
+                else
+                {
+                    rtbMiniText.SelectionAlignment = HorizontalAlignment.Center;
+                }
+            }
+        }
     }
 }
