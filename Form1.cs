@@ -17,6 +17,8 @@ namespace Bike18Text
     {
         WebRequest webRequest = new WebRequest();
         string otv = null;
+        string boldOpen = "<span style=\"\"font-weight: bold; font-weight: bold; \"\">";
+        string boldClose = "</span>";
         int countStrAltText = 0;
 
         public Form1()
@@ -560,9 +562,9 @@ namespace Bike18Text
         { 
             List<string> tovarList = webRequest.listTovar(urlTovar);
             otv = webRequest.getRequest(urlTovar);
-            string name = tovarList[4].ToString();
-            string price = tovarList[9].ToString();
-            string articl = tovarList[6].ToString();
+            string name = boldOpen + tovarList[4].ToString() + boldClose;
+            string price = boldOpen + tovarList[9].ToString() + boldClose;
+            string articl = boldOpen + tovarList[6].ToString() + boldClose;
             string category1 = "";
             string category2 = "";
 
@@ -580,6 +582,8 @@ namespace Bike18Text
                 category1 = category1.Remove(0, category1.IndexOf(">") + 1);
                 category2 = category2.Remove(0, category2.IndexOf(">") + 1);
             }
+            category1 = boldOpen + category1 + boldClose;
+            category2 = boldOpen + category2 + boldClose;
             text = text.Replace("НАЗВАНИЕ", name).Replace("ЦЕНА", price).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ1", category1).Replace("РАЗДЕЛ2", category2);
             
             return text;
