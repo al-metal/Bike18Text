@@ -55,9 +55,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.btnMiniTextBold = new System.Windows.Forms.Button();
-            this.btnAlignRigth = new System.Windows.Forms.Button();
-            this.btnAlignCenter = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -128,7 +125,7 @@
             this.rtbMiniText.Location = new System.Drawing.Point(0, 26);
             this.rtbMiniText.Name = "rtbMiniText";
             this.rtbMiniText.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rtbMiniText.Size = new System.Drawing.Size(305, 173);
+            this.rtbMiniText.Size = new System.Drawing.Size(305, 193);
             this.rtbMiniText.TabIndex = 4;
             this.rtbMiniText.Text = "";
             // 
@@ -140,7 +137,7 @@
             this.rtbFullText.Enabled = false;
             this.rtbFullText.Location = new System.Drawing.Point(3, 26);
             this.rtbFullText.Name = "rtbFullText";
-            this.rtbFullText.Size = new System.Drawing.Size(302, 175);
+            this.rtbFullText.Size = new System.Drawing.Size(302, 193);
             this.rtbFullText.TabIndex = 5;
             this.rtbFullText.Text = "";
             // 
@@ -203,10 +200,10 @@
             // 
             // chbTitle
             // 
-            this.chbTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.chbTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbTitle.AutoSize = true;
             this.chbTitle.Enabled = false;
-            this.chbTitle.Location = new System.Drawing.Point(291, 64);
+            this.chbTitle.Location = new System.Drawing.Point(291, 58);
             this.chbTitle.Name = "chbTitle";
             this.chbTitle.Size = new System.Drawing.Size(15, 14);
             this.chbTitle.TabIndex = 12;
@@ -215,10 +212,10 @@
             // 
             // chbDescription
             // 
-            this.chbDescription.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.chbDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbDescription.AutoSize = true;
             this.chbDescription.Enabled = false;
-            this.chbDescription.Location = new System.Drawing.Point(291, 103);
+            this.chbDescription.Location = new System.Drawing.Point(291, 97);
             this.chbDescription.Name = "chbDescription";
             this.chbDescription.Size = new System.Drawing.Size(15, 14);
             this.chbDescription.TabIndex = 13;
@@ -228,10 +225,10 @@
             // 
             // chbKeywords
             // 
-            this.chbKeywords.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.chbKeywords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbKeywords.AutoSize = true;
             this.chbKeywords.Enabled = false;
-            this.chbKeywords.Location = new System.Drawing.Point(291, 139);
+            this.chbKeywords.Location = new System.Drawing.Point(291, 136);
             this.chbKeywords.Name = "chbKeywords";
             this.chbKeywords.Size = new System.Drawing.Size(15, 14);
             this.chbKeywords.TabIndex = 14;
@@ -298,9 +295,6 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnAlignCenter);
-            this.panel3.Controls.Add(this.btnAlignRigth);
-            this.panel3.Controls.Add(this.btnMiniTextBold);
             this.panel3.Controls.Add(this.chbMiniText);
             this.panel3.Controls.Add(this.rtbMiniText);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -388,39 +382,6 @@
             this.panel7.Size = new System.Drawing.Size(313, 222);
             this.panel7.TabIndex = 26;
             // 
-            // btnMiniTextBold
-            // 
-            this.btnMiniTextBold.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnMiniTextBold.Location = new System.Drawing.Point(3, 199);
-            this.btnMiniTextBold.Name = "btnMiniTextBold";
-            this.btnMiniTextBold.Size = new System.Drawing.Size(21, 20);
-            this.btnMiniTextBold.TabIndex = 19;
-            this.btnMiniTextBold.Text = "B";
-            this.btnMiniTextBold.UseVisualStyleBackColor = true;
-            this.btnMiniTextBold.Click += new System.EventHandler(this.btnMiniTextBold_Click);
-            // 
-            // btnAlignRigth
-            // 
-            this.btnAlignRigth.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAlignRigth.Location = new System.Drawing.Point(30, 199);
-            this.btnAlignRigth.Name = "btnAlignRigth";
-            this.btnAlignRigth.Size = new System.Drawing.Size(21, 20);
-            this.btnAlignRigth.TabIndex = 20;
-            this.btnAlignRigth.Text = "R";
-            this.btnAlignRigth.UseVisualStyleBackColor = true;
-            this.btnAlignRigth.Click += new System.EventHandler(this.btnAlignRigth_Click);
-            // 
-            // btnAlignCenter
-            // 
-            this.btnAlignCenter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAlignCenter.Location = new System.Drawing.Point(57, 199);
-            this.btnAlignCenter.Name = "btnAlignCenter";
-            this.btnAlignCenter.Size = new System.Drawing.Size(21, 20);
-            this.btnAlignCenter.TabIndex = 21;
-            this.btnAlignCenter.Text = "C";
-            this.btnAlignCenter.UseVisualStyleBackColor = true;
-            this.btnAlignCenter.Click += new System.EventHandler(this.btnAlignCenter_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -477,9 +438,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button btnMiniTextBold;
-        private System.Windows.Forms.Button btnAlignRigth;
-        private System.Windows.Forms.Button btnAlignCenter;
     }
 }
 
