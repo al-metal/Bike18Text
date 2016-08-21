@@ -55,6 +55,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btnMiniTextUrl = new System.Windows.Forms.Button();
+            this.tbMiniTextURL = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -125,7 +127,7 @@
             this.rtbMiniText.Location = new System.Drawing.Point(0, 26);
             this.rtbMiniText.Name = "rtbMiniText";
             this.rtbMiniText.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rtbMiniText.Size = new System.Drawing.Size(305, 193);
+            this.rtbMiniText.Size = new System.Drawing.Size(305, 171);
             this.rtbMiniText.TabIndex = 4;
             this.rtbMiniText.Text = "";
             // 
@@ -295,6 +297,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.tbMiniTextURL);
+            this.panel3.Controls.Add(this.btnMiniTextUrl);
             this.panel3.Controls.Add(this.chbMiniText);
             this.panel3.Controls.Add(this.rtbMiniText);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -382,6 +386,25 @@
             this.panel7.Size = new System.Drawing.Size(313, 222);
             this.panel7.TabIndex = 26;
             // 
+            // btnMiniTextUrl
+            // 
+            this.btnMiniTextUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMiniTextUrl.Location = new System.Drawing.Point(3, 199);
+            this.btnMiniTextUrl.Name = "btnMiniTextUrl";
+            this.btnMiniTextUrl.Size = new System.Drawing.Size(24, 23);
+            this.btnMiniTextUrl.TabIndex = 19;
+            this.btnMiniTextUrl.Text = "U";
+            this.btnMiniTextUrl.UseVisualStyleBackColor = true;
+            this.btnMiniTextUrl.Click += new System.EventHandler(this.btnMiniTextUrl_Click);
+            // 
+            // tbMiniTextURL
+            // 
+            this.tbMiniTextURL.Location = new System.Drawing.Point(33, 199);
+            this.tbMiniTextURL.Name = "tbMiniTextURL";
+            this.tbMiniTextURL.Size = new System.Drawing.Size(272, 20);
+            this.tbMiniTextURL.TabIndex = 20;
+            this.tbMiniTextURL.Text = "http://";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -438,6 +461,8 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button btnMiniTextUrl;
+        private System.Windows.Forms.TextBox tbMiniTextURL;
     }
 }
 

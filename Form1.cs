@@ -646,5 +646,17 @@ namespace Bike18Text
                 }
             }
         }
+
+        private void btnMiniTextUrl_Click(object sender, EventArgs e)
+        {
+            if(rtbMiniText.SelectedText != "" & tbMiniTextURL.Text != "http://")
+            {
+                rtbMiniText.SelectedText = "<ссылка на =\"" + tbMiniTextURL.Text + "\">" + rtbMiniText.SelectedText + "</ссылка>"; 
+            }
+            else
+            {
+                MessageBox.Show("Проверте выделен ли текст и заполнена ли ссылка");
+            }
+        }
     }
 }
