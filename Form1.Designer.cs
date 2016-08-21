@@ -56,6 +56,8 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnMiniTextBold = new System.Windows.Forms.Button();
+            this.btnAlignRigth = new System.Windows.Forms.Button();
+            this.btnAlignCenter = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -88,7 +90,6 @@
             this.rtbAltText.Enabled = false;
             this.rtbAltText.Location = new System.Drawing.Point(3, 26);
             this.rtbAltText.Name = "rtbAltText";
-            this.rtbAltText.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.rtbAltText.Size = new System.Drawing.Size(307, 421);
             this.rtbAltText.TabIndex = 1;
             this.rtbAltText.Text = "";
@@ -126,6 +127,7 @@
             this.rtbMiniText.Enabled = false;
             this.rtbMiniText.Location = new System.Drawing.Point(0, 26);
             this.rtbMiniText.Name = "rtbMiniText";
+            this.rtbMiniText.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rtbMiniText.Size = new System.Drawing.Size(305, 173);
             this.rtbMiniText.TabIndex = 4;
             this.rtbMiniText.Text = "";
@@ -296,6 +298,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnAlignCenter);
+            this.panel3.Controls.Add(this.btnAlignRigth);
             this.panel3.Controls.Add(this.btnMiniTextBold);
             this.panel3.Controls.Add(this.chbMiniText);
             this.panel3.Controls.Add(this.rtbMiniText);
@@ -395,6 +399,28 @@
             this.btnMiniTextBold.UseVisualStyleBackColor = true;
             this.btnMiniTextBold.Click += new System.EventHandler(this.btnMiniTextBold_Click);
             // 
+            // btnAlignRigth
+            // 
+            this.btnAlignRigth.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAlignRigth.Location = new System.Drawing.Point(30, 199);
+            this.btnAlignRigth.Name = "btnAlignRigth";
+            this.btnAlignRigth.Size = new System.Drawing.Size(21, 20);
+            this.btnAlignRigth.TabIndex = 20;
+            this.btnAlignRigth.Text = "R";
+            this.btnAlignRigth.UseVisualStyleBackColor = true;
+            this.btnAlignRigth.Click += new System.EventHandler(this.btnAlignRigth_Click);
+            // 
+            // btnAlignCenter
+            // 
+            this.btnAlignCenter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAlignCenter.Location = new System.Drawing.Point(57, 199);
+            this.btnAlignCenter.Name = "btnAlignCenter";
+            this.btnAlignCenter.Size = new System.Drawing.Size(21, 20);
+            this.btnAlignCenter.TabIndex = 21;
+            this.btnAlignCenter.Text = "C";
+            this.btnAlignCenter.UseVisualStyleBackColor = true;
+            this.btnAlignCenter.Click += new System.EventHandler(this.btnAlignCenter_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -452,6 +478,8 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button btnMiniTextBold;
+        private System.Windows.Forms.Button btnAlignRigth;
+        private System.Windows.Forms.Button btnAlignCenter;
     }
 }
 
