@@ -535,7 +535,16 @@ namespace Bike18Text
                 }
                 else
                 {
-                    miniText += "<p>" + rtbMiniText.Lines[z].ToString() + "</p>";
+                    string str = rtbMiniText.Lines[z].ToString();
+                    if (str.Contains("<ссылка"))
+                    {
+                        string urlstring = new Regex("<ссылка .*</ссылка>").Match(str).ToString();
+                        string text = new Regex("(?<=>).*(?=<)").Match(urlstring).ToString();
+                        string url = new Regex("(?<=\").*(?=\")").Match(urlstring).ToString();
+                        string newString = "<p><span><a target=\"_blank\" href=\"" + url + "\">" + text + "</a></span></p>";
+                        str = str.Replace(urlstring, newString);
+                    }
+                    miniText += "<p>" + str + "</p>";
                 }
             }
             return miniText;
