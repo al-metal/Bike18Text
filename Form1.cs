@@ -519,7 +519,7 @@ namespace Bike18Text
             seoTitleText = AutoCorrect(url, seoTitleText);
             seoTitleText = autoCrop(seoTitleText, 200);
             tovarList[13] = seoTitleText;
-            webRequest.saveImage(tovarList);
+            webRequest.saveTovar(tovarList);
         }
 
         public string miniTextTemplate()
@@ -594,7 +594,6 @@ namespace Bike18Text
             }
             return text;
         }
-
 
         private void btnMiniTextBold_Click(object sender, EventArgs e)
         {
