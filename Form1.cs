@@ -337,7 +337,8 @@ namespace Bike18Text
                         }
                     }
                 }
-            }            
+            }
+            MessageBox.Show("Готово!");
         }
 
         private void updateText(string tovar)
@@ -461,7 +462,7 @@ namespace Bike18Text
             List<string> tovarList = webRequest.arraySaveimage(url);
             string miniText = miniTextTemplate();
 
-            miniText = AutoCorrect(url, miniText);
+            miniText = AutoCorrect(url, miniText, "");
             miniText = autoCrop(miniText, 1000);
             tovarList[7] = miniText;
             webRequest.saveImage(tovarList);
@@ -475,7 +476,7 @@ namespace Bike18Text
             List<string> tovarList = webRequest.arraySaveimage(url);
             string fullText = fullTextTemplate();
 
-            fullText = AutoCorrect(url, fullText);
+            fullText = AutoCorrect(url, fullText, "");
             fullText = autoCrop(fullText, 1000);
 
             tovarList[8] = fullText;
@@ -490,7 +491,7 @@ namespace Bike18Text
             List<string> tovarList = webRequest.arraySaveimage(url);
 
             string seoKeywordsText = tbKeywords.Lines[0];
-            seoKeywordsText = AutoCorrect(url, seoKeywordsText);
+            seoKeywordsText = AutoCorrect(url, seoKeywordsText, "seo");
             seoKeywordsText = autoCrop(seoKeywordsText, 100);
             tovarList[12] = seoKeywordsText;
             webRequest.saveImage(tovarList);
@@ -504,7 +505,7 @@ namespace Bike18Text
             List<string> tovarList = webRequest.arraySaveimage(url);
             
             string seoDescriptionText = tbDescription.Lines[0];
-            seoDescriptionText = AutoCorrect(url, seoDescriptionText);
+            seoDescriptionText = AutoCorrect(url, seoDescriptionText, "seo");
             seoDescriptionText = autoCrop(seoDescriptionText, 200);
             tovarList[11] = seoDescriptionText;
             webRequest.saveImage(tovarList);
@@ -518,7 +519,7 @@ namespace Bike18Text
             List<string> tovarList = webRequest.arraySaveimage(url);
             
             string seoTitleText = tbTitle.Lines[0];
-            seoTitleText = AutoCorrect(url, seoTitleText);
+            seoTitleText = AutoCorrect(url, seoTitleText, "seo");
             seoTitleText = autoCrop(seoTitleText, 200);
             tovarList[13] = seoTitleText;
             webRequest.saveTovar(tovarList);
@@ -567,13 +568,21 @@ namespace Bike18Text
             return fullText;
         }
 
-        public string AutoCorrect(string urlTovar, string text)
+        public string AutoCorrect(string urlTovar, string text, string descriptionCartTovar)
         { 
-            List<string> tovarList = webRequest.listTovar(urlTovar);
+            List<string> tovarList = webRequest.arraySaveimage(urlTovar);
             otv = webRequest.getRequest(urlTovar);
-            string name = boldOpen + tovarList[4].ToString() + boldClose;
-            string price = boldOpen + tovarList[9].ToString() + boldClose;
-            string articl = boldOpen + tovarList[6].ToString() + boldClose;
+
+            string name = tovarList[4].ToString();
+            string price = tovarList[9].ToString();
+            string articl = tovarList[6].ToString();
+            if (descriptionCartTovar != "seo")
+            {
+                name = boldOpen + tovarList[4].ToString() + boldClose;
+                price = boldOpen + tovarList[9].ToString() + boldClose;
+                articl = boldOpen + tovarList[6].ToString() + boldClose;
+            }
+            
             string category1 = "";
             string category2 = "";
 
@@ -658,7 +667,7 @@ namespace Bike18Text
 
         private void btnMiniTextUrl_Click(object sender, EventArgs e)
         {
-            if(rtbMiniText.SelectedText != "" & tbMiniTextURL.Text != "http://")
+            if (rtbMiniText.SelectedText != "" & tbMiniTextURL.Text != "" & tbMiniTextURL.Text.Contains("http://"))
             {
                 rtbMiniText.SelectedText = "<ссылка на =\"" + tbMiniTextURL.Text + "\">" + rtbMiniText.SelectedText + "</ссылка>"; 
             }
