@@ -49,14 +49,14 @@
             this.chbMiniText = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.tbMiniTextURL = new System.Windows.Forms.TextBox();
+            this.btnMiniTextUrl = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.btnMiniTextUrl = new System.Windows.Forms.Button();
-            this.tbMiniTextURL = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -268,7 +268,7 @@
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(632, 20);
             this.tbURL.TabIndex = 17;
-            this.tbURL.Text = "http://bike18.nethouse.ru/products/category/1364365";
+            this.tbURL.Text = "http://bike18.ru/products/category/1652595";
             // 
             // chbMiniText
             // 
@@ -306,6 +306,25 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(313, 222);
             this.panel3.TabIndex = 22;
+            // 
+            // tbMiniTextURL
+            // 
+            this.tbMiniTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbMiniTextURL.Location = new System.Drawing.Point(33, 199);
+            this.tbMiniTextURL.Name = "tbMiniTextURL";
+            this.tbMiniTextURL.Size = new System.Drawing.Size(272, 20);
+            this.tbMiniTextURL.TabIndex = 20;
+            // 
+            // btnMiniTextUrl
+            // 
+            this.btnMiniTextUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMiniTextUrl.Location = new System.Drawing.Point(3, 199);
+            this.btnMiniTextUrl.Name = "btnMiniTextUrl";
+            this.btnMiniTextUrl.Size = new System.Drawing.Size(24, 23);
+            this.btnMiniTextUrl.TabIndex = 19;
+            this.btnMiniTextUrl.Text = "U";
+            this.btnMiniTextUrl.UseVisualStyleBackColor = true;
+            this.btnMiniTextUrl.Click += new System.EventHandler(this.btnMiniTextUrl_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -385,25 +404,6 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(313, 222);
             this.panel7.TabIndex = 26;
-            // 
-            // btnMiniTextUrl
-            // 
-            this.btnMiniTextUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMiniTextUrl.Location = new System.Drawing.Point(3, 199);
-            this.btnMiniTextUrl.Name = "btnMiniTextUrl";
-            this.btnMiniTextUrl.Size = new System.Drawing.Size(24, 23);
-            this.btnMiniTextUrl.TabIndex = 19;
-            this.btnMiniTextUrl.Text = "U";
-            this.btnMiniTextUrl.UseVisualStyleBackColor = true;
-            this.btnMiniTextUrl.Click += new System.EventHandler(this.btnMiniTextUrl_Click);
-            // 
-            // tbMiniTextURL
-            // 
-            this.tbMiniTextURL.Location = new System.Drawing.Point(33, 199);
-            this.tbMiniTextURL.Name = "tbMiniTextURL";
-            this.tbMiniTextURL.Size = new System.Drawing.Size(272, 20);
-            this.tbMiniTextURL.TabIndex = 20;
-            this.tbMiniTextURL.Text = "http://";
             // 
             // Form1
             // 
