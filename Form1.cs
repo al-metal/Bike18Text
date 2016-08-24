@@ -694,5 +694,30 @@ namespace Bike18Text
                 MessageBox.Show("Проверте выделен ли текст и заполнена ли ссылка");
             }
         }
+
+        private void lblName_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText("НАЗВАНИЕ");
+        }
+
+        private void lblCategory2_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText("РАЗДЕЛ2");
+        }
+
+        private void lblCategory1_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText("РАЗДЕЛ1");
+        }
+
+        private void lblPrice_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText("ЦЕНА");
+        }
+
+        private void lblArticl_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText("АРТИКУЛ");
+        }
     }
 }

@@ -60,6 +60,11 @@
             this.btnFullTextURL = new System.Windows.Forms.Button();
             this.tbFullTextURL = new System.Windows.Forms.TextBox();
             this.chbAlsoBuy = new System.Windows.Forms.CheckBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblArticl = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblCategory1 = new System.Windows.Forms.Label();
+            this.lblCategory2 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -367,6 +372,11 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.lblCategory2);
+            this.panel5.Controls.Add(this.lblCategory1);
+            this.panel5.Controls.Add(this.lblPrice);
+            this.panel5.Controls.Add(this.lblArticl);
+            this.panel5.Controls.Add(this.lblName);
             this.panel5.Controls.Add(this.btnStart);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(641, 231);
@@ -447,6 +457,61 @@
             this.chbAlsoBuy.Text = "С этим товаром покупают";
             this.chbAlsoBuy.UseVisualStyleBackColor = true;
             // 
+            // lblName
+            // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(3, 77);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(187, 13);
+            this.lblName.TabIndex = 17;
+            this.lblName.Text = "НАЗВАНИЕ - наименование товара";
+            this.lblName.Click += new System.EventHandler(this.lblName_Click);
+            // 
+            // lblArticl
+            // 
+            this.lblArticl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblArticl.AutoSize = true;
+            this.lblArticl.Location = new System.Drawing.Point(3, 101);
+            this.lblArticl.Name = "lblArticl";
+            this.lblArticl.Size = new System.Drawing.Size(146, 13);
+            this.lblArticl.TabIndex = 18;
+            this.lblArticl.Text = "АРТИКУЛ - артикул товара";
+            this.lblArticl.Click += new System.EventHandler(this.lblArticl_Click);
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(3, 123);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(138, 13);
+            this.lblPrice.TabIndex = 19;
+            this.lblPrice.Text = "ЦЕНА - стоимость товара";
+            this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
+            // 
+            // lblCategory1
+            // 
+            this.lblCategory1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCategory1.AutoSize = true;
+            this.lblCategory1.Location = new System.Drawing.Point(3, 145);
+            this.lblCategory1.Name = "lblCategory1";
+            this.lblCategory1.Size = new System.Drawing.Size(245, 13);
+            this.lblCategory1.TabIndex = 20;
+            this.lblCategory1.Text = "РАЗДЕЛ1 - раздел в котором находится товар";
+            this.lblCategory1.Click += new System.EventHandler(this.lblCategory1_Click);
+            // 
+            // lblCategory2
+            // 
+            this.lblCategory2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCategory2.AutoSize = true;
+            this.lblCategory2.Location = new System.Drawing.Point(3, 168);
+            this.lblCategory2.Name = "lblCategory2";
+            this.lblCategory2.Size = new System.Drawing.Size(258, 13);
+            this.lblCategory2.TabIndex = 21;
+            this.lblCategory2.Text = "РАЗДЕЛ2 - раздел в котором находится раздел1";
+            this.lblCategory2.Click += new System.EventHandler(this.lblCategory2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,6 +530,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -508,6 +574,11 @@
         private System.Windows.Forms.TextBox tbFullTextURL;
         private System.Windows.Forms.Button btnFullTextURL;
         private System.Windows.Forms.CheckBox chbAlsoBuy;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblCategory2;
+        private System.Windows.Forms.Label lblCategory1;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblArticl;
     }
 }
 
