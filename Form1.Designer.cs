@@ -57,6 +57,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btnFullTextURL = new System.Windows.Forms.Button();
+            this.tbFullTextURL = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -139,7 +141,7 @@
             this.rtbFullText.Enabled = false;
             this.rtbFullText.Location = new System.Drawing.Point(3, 26);
             this.rtbFullText.Name = "rtbFullText";
-            this.rtbFullText.Size = new System.Drawing.Size(302, 193);
+            this.rtbFullText.Size = new System.Drawing.Size(302, 171);
             this.rtbFullText.TabIndex = 5;
             this.rtbFullText.Text = "";
             // 
@@ -318,7 +320,7 @@
             // btnMiniTextUrl
             // 
             this.btnMiniTextUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMiniTextUrl.Location = new System.Drawing.Point(3, 199);
+            this.btnMiniTextUrl.Location = new System.Drawing.Point(3, 197);
             this.btnMiniTextUrl.Name = "btnMiniTextUrl";
             this.btnMiniTextUrl.Size = new System.Drawing.Size(24, 23);
             this.btnMiniTextUrl.TabIndex = 19;
@@ -397,6 +399,8 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.tbFullTextURL);
+            this.panel7.Controls.Add(this.btnFullTextURL);
             this.panel7.Controls.Add(this.rtbFullText);
             this.panel7.Controls.Add(this.chbFullText);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -404,6 +408,25 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(313, 222);
             this.panel7.TabIndex = 26;
+            // 
+            // btnFullTextURL
+            // 
+            this.btnFullTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFullTextURL.Location = new System.Drawing.Point(3, 197);
+            this.btnFullTextURL.Name = "btnFullTextURL";
+            this.btnFullTextURL.Size = new System.Drawing.Size(24, 23);
+            this.btnFullTextURL.TabIndex = 6;
+            this.btnFullTextURL.Text = "U";
+            this.btnFullTextURL.UseVisualStyleBackColor = true;
+            this.btnFullTextURL.Click += new System.EventHandler(this.btnFullTextURL_Click);
+            // 
+            // tbFullTextURL
+            // 
+            this.tbFullTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbFullTextURL.Location = new System.Drawing.Point(33, 199);
+            this.tbFullTextURL.Name = "tbFullTextURL";
+            this.tbFullTextURL.Size = new System.Drawing.Size(272, 20);
+            this.tbFullTextURL.TabIndex = 7;
             // 
             // Form1
             // 
@@ -463,6 +486,8 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button btnMiniTextUrl;
         private System.Windows.Forms.TextBox tbMiniTextURL;
+        private System.Windows.Forms.TextBox tbFullTextURL;
+        private System.Windows.Forms.Button btnFullTextURL;
     }
 }
 

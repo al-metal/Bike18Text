@@ -556,13 +556,22 @@ namespace Bike18Text
             string fullText = null;
             for (int z = 0; rtbFullText.Lines.Length > z; z++)
             {
-                if (rtbMiniText.Lines[z].ToString() == "")
+                if (rtbFullText.Lines[z].ToString() == "")
                 {
                     fullText += "<p><br /></p>";
                 }
                 else
                 {
-                    fullText += "<p>" + rtbMiniText.Lines[z].ToString() + "</p>";
+                    string str = rtbFullText.Lines[z].ToString();
+                    if (str.Contains("<ссылка"))
+                    {
+                        string urlstring = new Regex("<ссылка .*</ссылка>").Match(str).ToString();
+                        string text = new Regex("(?<=>).*(?=<)").Match(urlstring).ToString();
+                        string url = new Regex("(?<=\").*(?=\")").Match(urlstring).ToString();
+                        string newString = "<span><a target=\"_blank\" href=\"" + url + "\">" + text + "</a></span>";
+                        str = str.Replace(urlstring, newString);
+                    }
+                    fullText += "<p>" + str + "</p>";
                 }
             }
             return fullText;
@@ -670,6 +679,18 @@ namespace Bike18Text
             if (rtbMiniText.SelectedText != "" & tbMiniTextURL.Text != "" & tbMiniTextURL.Text.Contains("http://"))
             {
                 rtbMiniText.SelectedText = "<ссылка на =\"" + tbMiniTextURL.Text + "\">" + rtbMiniText.SelectedText + "</ссылка>"; 
+            }
+            else
+            {
+                MessageBox.Show("Проверте выделен ли текст и заполнена ли ссылка");
+            }
+        }
+
+        private void btnFullTextURL_Click(object sender, EventArgs e)
+        {
+            if (rtbFullText.SelectedText != "" & tbFullTextURL.Text != "" & tbFullTextURL.Text.Contains("http://"))
+            {
+                rtbFullText.SelectedText = "<ссылка на =\"" + tbFullTextURL.Text + "\">" + rtbFullText.SelectedText + "</ссылка>";
             }
             else
             {
