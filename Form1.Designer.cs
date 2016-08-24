@@ -241,7 +241,8 @@
             // 
             // btnSaveText
             // 
-            this.btnSaveText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSaveText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveText.Location = new System.Drawing.Point(0, 0);
             this.btnSaveText.Name = "btnSaveText";
             this.btnSaveText.Size = new System.Drawing.Size(315, 20);
@@ -252,10 +253,10 @@
             // 
             // btnStart
             // 
-            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnStart.Location = new System.Drawing.Point(3, 8);
+            this.btnStart.Location = new System.Drawing.Point(3, 184);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(309, 35);
             this.btnStart.TabIndex = 16;
@@ -312,6 +313,7 @@
             // tbMiniTextURL
             // 
             this.tbMiniTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbMiniTextURL.Enabled = false;
             this.tbMiniTextURL.Location = new System.Drawing.Point(33, 199);
             this.tbMiniTextURL.Name = "tbMiniTextURL";
             this.tbMiniTextURL.Size = new System.Drawing.Size(272, 20);
@@ -320,6 +322,7 @@
             // btnMiniTextUrl
             // 
             this.btnMiniTextUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMiniTextUrl.Enabled = false;
             this.btnMiniTextUrl.Location = new System.Drawing.Point(3, 197);
             this.btnMiniTextUrl.Name = "btnMiniTextUrl";
             this.btnMiniTextUrl.Size = new System.Drawing.Size(24, 23);
@@ -412,6 +415,7 @@
             // btnFullTextURL
             // 
             this.btnFullTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFullTextURL.Enabled = false;
             this.btnFullTextURL.Location = new System.Drawing.Point(3, 197);
             this.btnFullTextURL.Name = "btnFullTextURL";
             this.btnFullTextURL.Size = new System.Drawing.Size(24, 23);
@@ -423,6 +427,7 @@
             // tbFullTextURL
             // 
             this.tbFullTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbFullTextURL.Enabled = false;
             this.tbFullTextURL.Location = new System.Drawing.Point(33, 199);
             this.tbFullTextURL.Name = "tbFullTextURL";
             this.tbFullTextURL.Size = new System.Drawing.Size(272, 20);

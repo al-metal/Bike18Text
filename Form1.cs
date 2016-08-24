@@ -191,10 +191,14 @@ namespace Bike18Text
             if (rtbFullText.Enabled)
             {
                 rtbFullText.Enabled = false;
+                btnFullTextURL.Enabled = false;
+                tbFullTextURL.Enabled = false;
             }
             else
             {
                 rtbFullText.Enabled = true;
+                btnFullTextURL.Enabled = true;
+                tbFullTextURL.Enabled = true;
             }
         }
 
@@ -251,10 +255,14 @@ namespace Bike18Text
             if (rtbMiniText.Enabled)
             {
                 rtbMiniText.Enabled = false;
+                btnMiniTextUrl.Enabled = false;
+                tbMiniTextURL.Enabled = false;
             }
             else
             {
                 rtbMiniText.Enabled = true;
+                btnMiniTextUrl.Enabled = true;
+                tbMiniTextURL.Enabled = true;
             }
         }
 
