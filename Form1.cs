@@ -17,8 +17,8 @@ namespace Bike18Text
     {
         WebRequest webRequest = new WebRequest();
         string otv = null;
-        string boldOpen = "<span style=\"\"font-weight: bold; font-weight: bold; \"\">";
-        string boldClose = "</span>";
+        string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
+        string boldClose = "</span>%26nbsp%3B";
         int countStrAltText = 0;
 
         public Form1()
@@ -542,7 +542,7 @@ namespace Bike18Text
                         string urlstring = new Regex("<ссылка .*</ссылка>").Match(str).ToString();
                         string text = new Regex("(?<=>).*(?=<)").Match(urlstring).ToString();
                         string url = new Regex("(?<=\").*(?=\")").Match(urlstring).ToString();
-                        string newString = "<p><span><a target=\"_blank\" href=\"" + url + "\">" + text + "</a></span></p>";
+                        string newString = "<span><a target=\"_blank\" href=\"" + url + "\">" + text + "</a></span>";
                         str = str.Replace(urlstring, newString);
                     }
                     miniText += "<p>" + str + "</p>";
