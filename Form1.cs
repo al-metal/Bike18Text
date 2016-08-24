@@ -351,32 +351,33 @@ namespace Bike18Text
 
         private void updateText(string tovar)
         {
-
+            if (!tovar.Contains("nethouse"))
+                tovar = tovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+            List<string> tovarList = webRequest.arraySaveimage(tovar);
+            
             if (chbTitle.Checked)
-            {
-                seoTitle(tovar);
-            }
+                seoTitle(tovarList, tovar);
+
             if (chbDescription.Checked)
-            {
-                seoDescription(tovar);
-            }
+                seoDescription(tovarList, tovar);
+
             if (chbKeywords.Checked)
-            {
-                seoKeywords(tovar);
-            }
+                seoKeywords(tovarList, tovar);
+
             if (chbFullText.Checked)
-            {
-                full_Text_tovar(tovar);
-            }
+                tovarList[8] = full_Text_tovar(tovarList, tovar);
 
             if (chbMiniText.Checked)
-            {
-                mini_Text_tovar(tovar);
-            }
+                tovarList[7] = mini_Text_tovar(tovarList, tovar);
+
             if (chbAltText.Checked)
             {
                 altText(tovar);
             }
+
+            if (chbAlsoBuy.Checked)
+                tovarList[42] = alsoBuyTovars(tovarList);
+            webRequest.saveTovar(tovarList);
         }
 
         private void altText(string url)
@@ -463,92 +464,44 @@ namespace Bike18Text
             return countImages;
         }
 
-        private void mini_Text_tovar(string url)
+        private string mini_Text_tovar(List<string> tovarList, string url)
         {
-            if (!url.Contains("nethouse"))
-                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
-
-            List<string> tovarList = webRequest.arraySaveimage(url);
-            string alsoBuy = tovarList[42].ToString();
-            if (chbAlsoBuy.Checked)
-                alsoBuy = alsoBuyTovars(tovarList);
             string miniText = miniTextTemplate();
-
-            miniText = AutoCorrect(url, miniText, "");
+            miniText = AutoCorrect(url, miniText, "", tovarList);
             miniText = autoCrop(miniText, 1000);
-            tovarList[7] = miniText;
-            tovarList[42] = alsoBuy;
-            webRequest.saveTovar(tovarList);
+            return miniText;
         }
 
-        private void full_Text_tovar(string url)
+        private string full_Text_tovar(List<string> tovarList, string url)
         {
-            if (!url.Contains("nethouse"))
-                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
-
-            List<string> tovarList = webRequest.arraySaveimage(url);
-            string alsoBuy = tovarList[42].ToString();
-            if (chbAlsoBuy.Checked)
-                alsoBuy = alsoBuyTovars(tovarList);
             string fullText = fullTextTemplate();
-
-            fullText = AutoCorrect(url, fullText, "");
+            fullText = AutoCorrect(url, fullText, "", tovarList);
             fullText = autoCrop(fullText, 1000);
-
-            tovarList[8] = fullText;
-            tovarList[42] = alsoBuy;
-            webRequest.saveTovar(tovarList);
+            return fullText;
         }
 
-        private void seoKeywords(string url)
+        private string seoKeywords(List<string> tovarList, string url)
         {
-            if (!url.Contains("nethouse"))
-                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
-
-            List<string> tovarList = webRequest.arraySaveimage(url);
-            string alsoBuy = tovarList[42].ToString();
-            if (chbAlsoBuy.Checked)
-                alsoBuy = alsoBuyTovars(tovarList);
             string seoKeywordsText = tbKeywords.Lines[0];
-            seoKeywordsText = AutoCorrect(url, seoKeywordsText, "seo");
+            seoKeywordsText = AutoCorrect(url, seoKeywordsText, "seo", tovarList);
             seoKeywordsText = autoCrop(seoKeywordsText, 100);
-            tovarList[12] = seoKeywordsText;
-            tovarList[42] = alsoBuy;
-            webRequest.saveTovar(tovarList);
+            return seoKeywordsText;
         }
 
-        private void seoDescription(string url)
+        private string seoDescription(List<string> tovarList, string url)
         {
-            if (!url.Contains("nethouse"))
-                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
-
-            List<string> tovarList = webRequest.arraySaveimage(url);
-            string alsoBuy = tovarList[42].ToString();
-            if (chbAlsoBuy.Checked)
-                alsoBuy = alsoBuyTovars(tovarList);
             string seoDescriptionText = tbDescription.Lines[0];
-            seoDescriptionText = AutoCorrect(url, seoDescriptionText, "seo");
+            seoDescriptionText = AutoCorrect(url, seoDescriptionText, "seo", tovarList);
             seoDescriptionText = autoCrop(seoDescriptionText, 200);
-            tovarList[11] = seoDescriptionText;
-            tovarList[42] = alsoBuy;
-            webRequest.saveTovar(tovarList);
+            return seoDescriptionText;
         }
 
-        private void seoTitle(string url)
+        private string seoTitle(List<string> tovarList, string url)
         {
-            if(!url.Contains("nethouse"))
-            url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
-
-            List<string> tovarList = webRequest.arraySaveimage(url);
-            string alsoBuy = tovarList[42].ToString();
-            if (chbAlsoBuy.Checked)
-                alsoBuy = alsoBuyTovars(tovarList);
             string seoTitleText = tbTitle.Lines[0];
-            seoTitleText = AutoCorrect(url, seoTitleText, "seo");
+            seoTitleText = AutoCorrect(url, seoTitleText, "seo", tovarList);
             seoTitleText = autoCrop(seoTitleText, 200);
-            tovarList[13] = seoTitleText;
-            tovarList[42] = alsoBuy;
-            webRequest.saveTovar(tovarList);
+            return seoTitleText;
         }
 
         private string alsoBuyTovars(List<string> tovarList)
@@ -622,9 +575,8 @@ namespace Bike18Text
             return fullText;
         }
 
-        public string AutoCorrect(string urlTovar, string text, string descriptionCartTovar)
+        public string AutoCorrect(string urlTovar, string text, string descriptionCartTovar, List<string> tovarList)
         { 
-            List<string> tovarList = webRequest.arraySaveimage(urlTovar);
             otv = webRequest.getRequest(urlTovar);
 
             string name = tovarList[4].ToString();
