@@ -59,6 +59,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnFullTextURL = new System.Windows.Forms.Button();
             this.tbFullTextURL = new System.Windows.Forms.TextBox();
+            this.chbAlsoBuy = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -375,6 +376,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.chbAlsoBuy);
             this.panel4.Controls.Add(this.chbKeywords);
             this.panel4.Controls.Add(this.chbDescription);
             this.panel4.Controls.Add(this.chbTitle);
@@ -432,6 +434,18 @@
             this.tbFullTextURL.Name = "tbFullTextURL";
             this.tbFullTextURL.Size = new System.Drawing.Size(272, 20);
             this.tbFullTextURL.TabIndex = 7;
+            // 
+            // chbAlsoBuy
+            // 
+            this.chbAlsoBuy.AutoSize = true;
+            this.chbAlsoBuy.Checked = true;
+            this.chbAlsoBuy.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbAlsoBuy.Location = new System.Drawing.Point(3, 159);
+            this.chbAlsoBuy.Name = "chbAlsoBuy";
+            this.chbAlsoBuy.Size = new System.Drawing.Size(158, 17);
+            this.chbAlsoBuy.TabIndex = 15;
+            this.chbAlsoBuy.Text = "С этим товаром покупают";
+            this.chbAlsoBuy.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -493,6 +507,7 @@
         private System.Windows.Forms.TextBox tbMiniTextURL;
         private System.Windows.Forms.TextBox tbFullTextURL;
         private System.Windows.Forms.Button btnFullTextURL;
+        private System.Windows.Forms.CheckBox chbAlsoBuy;
     }
 }
 

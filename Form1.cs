@@ -351,6 +351,7 @@ namespace Bike18Text
 
         private void updateText(string tovar)
         {
+
             if (chbTitle.Checked)
             {
                 seoTitle(tovar);
@@ -468,12 +469,16 @@ namespace Bike18Text
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
+            string alsoBuy = tovarList[42].ToString();
+            if (chbAlsoBuy.Checked)
+                alsoBuy = alsoBuyTovars(tovarList);
             string miniText = miniTextTemplate();
 
             miniText = AutoCorrect(url, miniText, "");
             miniText = autoCrop(miniText, 1000);
             tovarList[7] = miniText;
-            webRequest.saveImage(tovarList);
+            tovarList[42] = alsoBuy;
+            webRequest.saveTovar(tovarList);
         }
 
         private void full_Text_tovar(string url)
@@ -482,13 +487,17 @@ namespace Bike18Text
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
+            string alsoBuy = tovarList[42].ToString();
+            if (chbAlsoBuy.Checked)
+                alsoBuy = alsoBuyTovars(tovarList);
             string fullText = fullTextTemplate();
 
             fullText = AutoCorrect(url, fullText, "");
             fullText = autoCrop(fullText, 1000);
 
             tovarList[8] = fullText;
-            webRequest.saveImage(tovarList);
+            tovarList[42] = alsoBuy;
+            webRequest.saveTovar(tovarList);
         }
 
         private void seoKeywords(string url)
@@ -497,12 +506,15 @@ namespace Bike18Text
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
-
+            string alsoBuy = tovarList[42].ToString();
+            if (chbAlsoBuy.Checked)
+                alsoBuy = alsoBuyTovars(tovarList);
             string seoKeywordsText = tbKeywords.Lines[0];
             seoKeywordsText = AutoCorrect(url, seoKeywordsText, "seo");
             seoKeywordsText = autoCrop(seoKeywordsText, 100);
             tovarList[12] = seoKeywordsText;
-            webRequest.saveImage(tovarList);
+            tovarList[42] = alsoBuy;
+            webRequest.saveTovar(tovarList);
         }
 
         private void seoDescription(string url)
@@ -511,12 +523,15 @@ namespace Bike18Text
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
-            
+            string alsoBuy = tovarList[42].ToString();
+            if (chbAlsoBuy.Checked)
+                alsoBuy = alsoBuyTovars(tovarList);
             string seoDescriptionText = tbDescription.Lines[0];
             seoDescriptionText = AutoCorrect(url, seoDescriptionText, "seo");
             seoDescriptionText = autoCrop(seoDescriptionText, 200);
             tovarList[11] = seoDescriptionText;
-            webRequest.saveImage(tovarList);
+            tovarList[42] = alsoBuy;
+            webRequest.saveTovar(tovarList);
         }
 
         private void seoTitle(string url)
@@ -525,12 +540,34 @@ namespace Bike18Text
             url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> tovarList = webRequest.arraySaveimage(url);
-            
+            string alsoBuy = tovarList[42].ToString();
+            if (chbAlsoBuy.Checked)
+                alsoBuy = alsoBuyTovars(tovarList);
             string seoTitleText = tbTitle.Lines[0];
             seoTitleText = AutoCorrect(url, seoTitleText, "seo");
             seoTitleText = autoCrop(seoTitleText, 200);
             tovarList[13] = seoTitleText;
+            tovarList[42] = alsoBuy;
             webRequest.saveTovar(tovarList);
+        }
+
+        private string alsoBuyTovars(List<string> tovarList)
+        {
+            string name = tovarList[4].ToString();
+            otv = webRequest.getRequest("http://bike18.ru/products/search/page/1?sort=0&balance=&categoryId=&min_cost=&max_cost=&text=" + name);
+            MatchCollection searchTovars = new Regex("(?<=<div class=\"product-item preview-size-156\" id=\"item).*?(?=\"><div class=\"background\">)").Matches(otv);
+            string alsoBuy = "";
+            int count = 0;
+            if (searchTovars.Count > 1)
+            {
+                for (int i = 1; 5 > i; i++)
+                {
+
+                    alsoBuy += "&alsoBuy[" + count + "]=" + searchTovars[i].ToString();
+                    count++;
+                }
+            }
+            return alsoBuy;
         }
 
         public string miniTextTemplate()
