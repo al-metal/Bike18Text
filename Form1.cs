@@ -205,12 +205,14 @@ namespace Bike18Text
         {
             if (rtbFullText.Enabled)
             {
+                chbReplaceFullText.Enabled = false;
                 rtbFullText.Enabled = false;
                 btnFullTextURL.Enabled = false;
                 tbFullTextURL.Enabled = false;
             }
             else
             {
+                chbReplaceFullText.Enabled = true;
                 rtbFullText.Enabled = true;
                 btnFullTextURL.Enabled = true;
                 tbFullTextURL.Enabled = true;
@@ -382,7 +384,17 @@ namespace Bike18Text
                 tovarList[12] = seoKeywords(tovarList, tovar);
 
             if (chbFullText.Checked)
+            {
+                if(chbReplaceFullText.Checked)
                 tovarList[8] = full_Text_tovar(tovarList, tovar);
+                else
+                {
+                    string fullText = tovarList[8].ToString();
+                    fullText += full_Text_tovar(tovarList, tovar);
+                    tovarList[8] = autoCrop(fullText, 1000);
+                }
+            }
+                
 
             if (chbMiniText.Checked)
             {
@@ -510,6 +522,7 @@ namespace Bike18Text
         {
             string miniText = miniTextTemplate();
             miniText = AutoCorrect(url, miniText, "", tovarList);
+            miniText = autoCrop(miniText, 1000);
             return miniText;
         }
 
@@ -782,6 +795,7 @@ namespace Bike18Text
             get { return tbLogin.Lines[0].ToString(); }
             //set { tbLogin.Text = value; }
         }
+
         public string textPass
         {
             //<--Данная конструкция позволяет получить доступ

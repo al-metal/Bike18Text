@@ -71,6 +71,7 @@
             this.tbFullTextURL = new System.Windows.Forms.TextBox();
             this.btnFullTextURL = new System.Windows.Forms.Button();
             this.chbReplaceMiniText = new System.Windows.Forms.CheckBox();
+            this.chbReplaceFullText = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -535,6 +536,7 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.chbReplaceFullText);
             this.panel7.Controls.Add(this.tbFullTextURL);
             this.panel7.Controls.Add(this.btnFullTextURL);
             this.panel7.Controls.Add(this.rtbFullText);
@@ -576,6 +578,17 @@
             this.chbReplaceMiniText.TabIndex = 21;
             this.chbReplaceMiniText.Text = "Заменить описание";
             this.chbReplaceMiniText.UseVisualStyleBackColor = true;
+            // 
+            // chbReplaceFullText
+            // 
+            this.chbReplaceFullText.AutoSize = true;
+            this.chbReplaceFullText.Enabled = false;
+            this.chbReplaceFullText.Location = new System.Drawing.Point(153, 3);
+            this.chbReplaceFullText.Name = "chbReplaceFullText";
+            this.chbReplaceFullText.Size = new System.Drawing.Size(166, 17);
+            this.chbReplaceFullText.TabIndex = 22;
+            this.chbReplaceFullText.Text = "Заменить полное описание";
+            this.chbReplaceFullText.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -650,6 +663,7 @@
         public System.Windows.Forms.Panel panel5;
         public System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.CheckBox chbReplaceMiniText;
+        private System.Windows.Forms.CheckBox chbReplaceFullText;
     }
 }
 
