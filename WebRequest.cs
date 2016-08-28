@@ -374,8 +374,9 @@ namespace web
             }
             }
 
-        internal void saveTovar(List<string> getProduct)
+        internal string saveTovar(List<string> getProduct)
         {
+            string otv = "";
             CookieContainer cookie = webCookieBike18();
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/catalog/saveproduct");
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -398,11 +399,13 @@ namespace web
             {
                 HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
                 StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
+                otv = ressr1.ReadToEnd();
             }
             catch
             {
 
             }
+            return otv;
         }
 
         internal void savePrice(CookieContainer cookie, string urlTovar, MatchCollection articl, double priceTrue, WebRequest webRequest)
