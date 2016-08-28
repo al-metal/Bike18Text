@@ -65,6 +65,11 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tbFullTextURL = new System.Windows.Forms.TextBox();
             this.btnFullTextURL = new System.Windows.Forms.Button();
+            this.tbLogin = new System.Windows.Forms.TextBox();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.btnSaveLoginPass = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -372,6 +377,11 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnSaveLoginPass);
+            this.panel5.Controls.Add(this.lblPassword);
+            this.panel5.Controls.Add(this.lblLogin);
+            this.panel5.Controls.Add(this.tbPassword);
+            this.panel5.Controls.Add(this.tbLogin);
             this.panel5.Controls.Add(this.lblCategory2);
             this.panel5.Controls.Add(this.lblCategory1);
             this.panel5.Controls.Add(this.lblPrice);
@@ -512,6 +522,48 @@
             this.btnFullTextURL.UseVisualStyleBackColor = true;
             this.btnFullTextURL.Click += new System.EventHandler(this.btnFullTextURL_Click);
             // 
+            // tbLogin
+            // 
+            this.tbLogin.Location = new System.Drawing.Point(3, 16);
+            this.tbLogin.Name = "tbLogin";
+            this.tbLogin.Size = new System.Drawing.Size(100, 20);
+            this.tbLogin.TabIndex = 22;
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Location = new System.Drawing.Point(109, 16);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(100, 20);
+            this.tbPassword.TabIndex = 23;
+            // 
+            // lblLogin
+            // 
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Location = new System.Drawing.Point(3, 3);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(38, 13);
+            this.lblLogin.TabIndex = 24;
+            this.lblLogin.Text = "Логин";
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(111, 3);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(45, 13);
+            this.lblPassword.TabIndex = 25;
+            this.lblPassword.Text = "Пароль";
+            // 
+            // btnSaveLoginPass
+            // 
+            this.btnSaveLoginPass.Location = new System.Drawing.Point(231, 14);
+            this.btnSaveLoginPass.Name = "btnSaveLoginPass";
+            this.btnSaveLoginPass.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveLoginPass.TabIndex = 26;
+            this.btnSaveLoginPass.Text = "Сохранить";
+            this.btnSaveLoginPass.UseVisualStyleBackColor = true;
+            this.btnSaveLoginPass.Click += new System.EventHandler(this.btnSaveLoginPass_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -563,10 +615,8 @@
         private System.Windows.Forms.CheckBox chbMiniText;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button btnMiniTextUrl;
@@ -579,6 +629,13 @@
         private System.Windows.Forms.Label lblCategory1;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblArticl;
+        private System.Windows.Forms.Button btnSaveLoginPass;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.TextBox tbPassword;
+        public System.Windows.Forms.TextBox tbLogin;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.Panel panel5;
     }
 }
 

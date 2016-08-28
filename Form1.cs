@@ -54,6 +54,10 @@ namespace Bike18Text
             {
                 File.Create("files\\keywordsText");
             }
+            if (!File.Exists("files\\file"))
+            {
+                File.Create("files\\file");
+            }
 
             StreamReader text = new StreamReader("files\\altText", Encoding.GetEncoding("windows-1251"));
             while (!text.EndOfStream)
@@ -100,6 +104,15 @@ namespace Bike18Text
             {
                 string str = text.ReadLine();
                 tbKeywords.AppendText(str + "\n");
+            }
+            text.Close();
+            text = new StreamReader("files\\file", Encoding.GetEncoding("windows-1251"));
+            while (!text.EndOfStream)
+            {
+                string str = text.ReadLine();
+                tbLogin.AppendText(str + "\n");
+                str = text.ReadLine();
+                tbPassword.AppendText(str + "\n");
             }
             text.Close();
 
@@ -356,7 +369,7 @@ namespace Bike18Text
             if (!tovar.Contains("nethouse"))
                 tovar = tovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
             List<string> tovarList = webRequest.arraySaveimage(tovar);
-            string ss = tovarList[7].ToString();
+
             if (chbTitle.Checked)
                 tovarList[13] = seoTitle(tovarList, tovar);
 
@@ -738,6 +751,22 @@ namespace Bike18Text
         private void lblArticl_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("АРТИКУЛ");
+        }
+
+        private void btnSaveLoginPass_Click(object sender, EventArgs e)
+        {
+            StreamWriter writers = new StreamWriter("files\\file", false, Encoding.GetEncoding(1251));
+            writers.WriteLine(tbLogin.Lines[0].ToString());
+            writers.Close();
+            writers = new StreamWriter("files\\file", true, Encoding.GetEncoding(1251));
+            writers.WriteLine(tbPassword.Lines[0].ToString());
+            
+            writers.Close();
+            MessageBox.Show("Логин и пароль сохранены!");
+        }
+        public string getLogin()
+        {
+            return tbLogin.Lines[0].ToString();
         }
     }
 }
