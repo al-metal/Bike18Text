@@ -272,12 +272,14 @@ namespace Bike18Text
                 rtbMiniText.Enabled = false;
                 btnMiniTextUrl.Enabled = false;
                 tbMiniTextURL.Enabled = false;
+                chbReplaceMiniText.Enabled = false;
             }
             else
             {
                 rtbMiniText.Enabled = true;
                 btnMiniTextUrl.Enabled = true;
                 tbMiniTextURL.Enabled = true;
+                chbReplaceMiniText.Enabled = true;
             }
         }
 

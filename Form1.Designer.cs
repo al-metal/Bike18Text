@@ -70,6 +70,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tbFullTextURL = new System.Windows.Forms.TextBox();
             this.btnFullTextURL = new System.Windows.Forms.Button();
+            this.chbReplaceMiniText = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -311,6 +312,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.chbReplaceMiniText);
             this.panel3.Controls.Add(this.tbMiniTextURL);
             this.panel3.Controls.Add(this.btnMiniTextUrl);
             this.panel3.Controls.Add(this.chbMiniText);
@@ -564,6 +566,17 @@
             this.btnFullTextURL.UseVisualStyleBackColor = true;
             this.btnFullTextURL.Click += new System.EventHandler(this.btnFullTextURL_Click);
             // 
+            // chbReplaceMiniText
+            // 
+            this.chbReplaceMiniText.AutoSize = true;
+            this.chbReplaceMiniText.Enabled = false;
+            this.chbReplaceMiniText.Location = new System.Drawing.Point(163, 3);
+            this.chbReplaceMiniText.Name = "chbReplaceMiniText";
+            this.chbReplaceMiniText.Size = new System.Drawing.Size(127, 17);
+            this.chbReplaceMiniText.TabIndex = 21;
+            this.chbReplaceMiniText.Text = "Заменить описание";
+            this.chbReplaceMiniText.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -636,6 +649,7 @@
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.Panel panel5;
         public System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.CheckBox chbReplaceMiniText;
     }
 }
 
