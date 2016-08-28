@@ -764,9 +764,20 @@ namespace Bike18Text
             writers.Close();
             MessageBox.Show("Логин и пароль сохранены!");
         }
-        public string getLogin()
+
+        public string textLogin
         {
-            return tbLogin.Lines[0].ToString();
+            //<--Данная конструкция позволяет получить доступ
+            //к private элементам формы
+            get { return tbLogin.Lines[0].ToString(); }
+            //set { tbLogin.Text = value; }
+        }
+        public string textPass
+        {
+            //<--Данная конструкция позволяет получить доступ
+            //к private элементам формы
+            get { return tbPassword.Lines[0].ToString(); }
+            //set { tbLogin.Text = value; }
         }
     }
 }
