@@ -10,12 +10,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using web;
+using Формирование_ЧПУ;
 
 namespace Bike18Text
 {
     public partial class Form1 : Form
     {
         WebRequest webRequest = new WebRequest();
+        CHPU chpu = new CHPU();
         string otv = null;
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
         string boldClose = "</span>%26nbsp%3B";
@@ -354,15 +356,15 @@ namespace Bike18Text
             if (!tovar.Contains("nethouse"))
                 tovar = tovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
             List<string> tovarList = webRequest.arraySaveimage(tovar);
-            
+            string ss = tovarList[7].ToString();
             if (chbTitle.Checked)
-                seoTitle(tovarList, tovar);
+                tovarList[13] = seoTitle(tovarList, tovar);
 
             if (chbDescription.Checked)
-                seoDescription(tovarList, tovar);
+                tovarList[11] = seoDescription(tovarList, tovar);
 
             if (chbKeywords.Checked)
-                seoKeywords(tovarList, tovar);
+                tovarList[12] = seoKeywords(tovarList, tovar);
 
             if (chbFullText.Checked)
                 tovarList[8] = full_Text_tovar(tovarList, tovar);
@@ -377,7 +379,23 @@ namespace Bike18Text
 
             if (chbAlsoBuy.Checked)
                 tovarList[42] = alsoBuyTovars(tovarList);
-            webRequest.saveTovar(tovarList);
+
+            tovarList[1] = slug(tovarList);
+            otv = webRequest.saveTovar(tovarList);
+            if (otv.Contains("errors"))
+            {
+
+            }
+
+
+
+        }
+
+        private string slug(List<string> tovarList)
+        {
+            string str = tovarList[4].ToString();
+            str = chpu.vozvr(str);
+            return str;
         }
 
         private void altText(string url)
@@ -582,12 +600,7 @@ namespace Bike18Text
             string name = tovarList[4].ToString();
             string price = tovarList[9].ToString();
             string articl = tovarList[6].ToString();
-            if (descriptionCartTovar != "seo")
-            {
-                name = boldOpen + tovarList[4].ToString() + boldClose;
-                price = boldOpen + tovarList[9].ToString() + boldClose;
-                articl = boldOpen + tovarList[6].ToString() + boldClose;
-            }
+            
             
             string category1 = "";
             string category2 = "";
@@ -606,8 +619,15 @@ namespace Bike18Text
                 category1 = category1.Remove(0, category1.IndexOf(">") + 1);
                 category2 = category2.Remove(0, category2.IndexOf(">") + 1);
             }
-            category1 = boldOpen + category1 + boldClose;
-            category2 = boldOpen + category2 + boldClose;
+            if (descriptionCartTovar != "seo")
+            {
+                name = boldOpen + tovarList[4].ToString() + boldClose;
+                price = boldOpen + tovarList[9].ToString() + boldClose;
+                articl = boldOpen + tovarList[6].ToString() + boldClose;
+                category1 = boldOpen + category1 + boldClose;
+                category2 = boldOpen + category2 + boldClose;
+            }
+            
             text = text.Replace("НАЗВАНИЕ", name).Replace("ЦЕНА", price).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ1", category1).Replace("РАЗДЕЛ2", category2);
             
             return text;
