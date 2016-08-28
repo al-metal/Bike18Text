@@ -385,7 +385,16 @@ namespace Bike18Text
                 tovarList[8] = full_Text_tovar(tovarList, tovar);
 
             if (chbMiniText.Checked)
-                tovarList[7] = mini_Text_tovar(tovarList, tovar);
+            {
+                if(chbReplaceMiniText.Checked)
+                    tovarList[7] = mini_Text_tovar(tovarList, tovar);
+                else
+                {
+                    string miniText = tovarList[7].ToString();
+                    miniText += mini_Text_tovar(tovarList, tovar);
+                    tovarList[7] = autoCrop(miniText, 1000);
+                }
+            }
 
             if (chbAltText.Checked)
             {
@@ -501,7 +510,6 @@ namespace Bike18Text
         {
             string miniText = miniTextTemplate();
             miniText = AutoCorrect(url, miniText, "", tovarList);
-            miniText = autoCrop(miniText, 1000);
             return miniText;
         }
 
