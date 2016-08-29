@@ -10,12 +10,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using web;
+using Формирование_ЧПУ;
 
 namespace Bike18Text
 {
     public partial class Form1 : Form
     {
         WebRequest webRequest = new WebRequest();
+        CHPU chpu = new CHPU();
         string otv = null;
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
         string boldClose = "</span>%26nbsp%3B";
@@ -51,6 +53,10 @@ namespace Bike18Text
             if (!File.Exists("files\\keywordsText"))
             {
                 File.Create("files\\keywordsText");
+            }
+            if (!File.Exists("files\\file"))
+            {
+                File.Create("files\\file");
             }
 
             StreamReader text = new StreamReader("files\\altText", Encoding.GetEncoding("windows-1251"));
@@ -98,6 +104,15 @@ namespace Bike18Text
             {
                 string str = text.ReadLine();
                 tbKeywords.AppendText(str + "\n");
+            }
+            text.Close();
+            text = new StreamReader("files\\file", Encoding.GetEncoding("windows-1251"));
+            while (!text.EndOfStream)
+            {
+                string str = text.ReadLine();
+                tbLogin.AppendText(str + "\n");
+                str = text.ReadLine();
+                tbPassword.AppendText(str + "\n");
             }
             text.Close();
 
@@ -190,12 +205,14 @@ namespace Bike18Text
         {
             if (rtbFullText.Enabled)
             {
+                chbReplaceFullText.Enabled = false;
                 rtbFullText.Enabled = false;
                 btnFullTextURL.Enabled = false;
                 tbFullTextURL.Enabled = false;
             }
             else
             {
+                chbReplaceFullText.Enabled = true;
                 rtbFullText.Enabled = true;
                 btnFullTextURL.Enabled = true;
                 tbFullTextURL.Enabled = true;
@@ -257,12 +274,14 @@ namespace Bike18Text
                 rtbMiniText.Enabled = false;
                 btnMiniTextUrl.Enabled = false;
                 tbMiniTextURL.Enabled = false;
+                chbReplaceMiniText.Enabled = false;
             }
             else
             {
                 rtbMiniText.Enabled = true;
                 btnMiniTextUrl.Enabled = true;
                 tbMiniTextURL.Enabled = true;
+                chbReplaceMiniText.Enabled = true;
             }
         }
 
@@ -354,21 +373,40 @@ namespace Bike18Text
             if (!tovar.Contains("nethouse"))
                 tovar = tovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
             List<string> tovarList = webRequest.arraySaveimage(tovar);
-            
+
             if (chbTitle.Checked)
-                seoTitle(tovarList, tovar);
+                tovarList[13] = seoTitle(tovarList, tovar);
 
             if (chbDescription.Checked)
-                seoDescription(tovarList, tovar);
+                tovarList[11] = seoDescription(tovarList, tovar);
 
             if (chbKeywords.Checked)
-                seoKeywords(tovarList, tovar);
+                tovarList[12] = seoKeywords(tovarList, tovar);
 
             if (chbFullText.Checked)
+            {
+                if(chbReplaceFullText.Checked)
                 tovarList[8] = full_Text_tovar(tovarList, tovar);
+                else
+                {
+                    string fullText = tovarList[8].ToString();
+                    fullText += full_Text_tovar(tovarList, tovar);
+                    tovarList[8] = autoCrop(fullText, 1000);
+                }
+            }
+                
 
             if (chbMiniText.Checked)
-                tovarList[7] = mini_Text_tovar(tovarList, tovar);
+            {
+                if(chbReplaceMiniText.Checked)
+                    tovarList[7] = mini_Text_tovar(tovarList, tovar);
+                else
+                {
+                    string miniText = tovarList[7].ToString();
+                    miniText += mini_Text_tovar(tovarList, tovar);
+                    tovarList[7] = autoCrop(miniText, 1000);
+                }
+            }
 
             if (chbAltText.Checked)
             {
@@ -377,7 +415,23 @@ namespace Bike18Text
 
             if (chbAlsoBuy.Checked)
                 tovarList[42] = alsoBuyTovars(tovarList);
-            webRequest.saveTovar(tovarList);
+
+            tovarList[1] = slug(tovarList);
+            otv = webRequest.saveTovar(tovarList);
+            if (otv.Contains("errors"))
+            {
+
+            }
+
+
+
+        }
+
+        private string slug(List<string> tovarList)
+        {
+            string str = tovarList[4].ToString();
+            str = chpu.vozvr(str);
+            return str;
         }
 
         private void altText(string url)
@@ -582,12 +636,7 @@ namespace Bike18Text
             string name = tovarList[4].ToString();
             string price = tovarList[9].ToString();
             string articl = tovarList[6].ToString();
-            if (descriptionCartTovar != "seo")
-            {
-                name = boldOpen + tovarList[4].ToString() + boldClose;
-                price = boldOpen + tovarList[9].ToString() + boldClose;
-                articl = boldOpen + tovarList[6].ToString() + boldClose;
-            }
+            
             
             string category1 = "";
             string category2 = "";
@@ -606,8 +655,15 @@ namespace Bike18Text
                 category1 = category1.Remove(0, category1.IndexOf(">") + 1);
                 category2 = category2.Remove(0, category2.IndexOf(">") + 1);
             }
-            category1 = boldOpen + category1 + boldClose;
-            category2 = boldOpen + category2 + boldClose;
+            if (descriptionCartTovar != "seo")
+            {
+                name = boldOpen + tovarList[4].ToString() + boldClose;
+                price = boldOpen + tovarList[9].ToString() + boldClose;
+                articl = boldOpen + tovarList[6].ToString() + boldClose;
+                category1 = boldOpen + category1 + boldClose;
+                category2 = boldOpen + category2 + boldClose;
+            }
+            
             text = text.Replace("НАЗВАНИЕ", name).Replace("ЦЕНА", price).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ1", category1).Replace("РАЗДЕЛ2", category2);
             
             return text;
@@ -718,6 +774,34 @@ namespace Bike18Text
         private void lblArticl_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("АРТИКУЛ");
+        }
+
+        private void btnSaveLoginPass_Click(object sender, EventArgs e)
+        {
+            StreamWriter writers = new StreamWriter("files\\file", false, Encoding.GetEncoding(1251));
+            writers.WriteLine(tbLogin.Lines[0].ToString());
+            writers.Close();
+            writers = new StreamWriter("files\\file", true, Encoding.GetEncoding(1251));
+            writers.WriteLine(tbPassword.Lines[0].ToString());
+            
+            writers.Close();
+            MessageBox.Show("Логин и пароль сохранены!");
+        }
+
+        public string textLogin
+        {
+            //<--Данная конструкция позволяет получить доступ
+            //к private элементам формы
+            get { return tbLogin.Lines[0].ToString(); }
+            //set { tbLogin.Text = value; }
+        }
+
+        public string textPass
+        {
+            //<--Данная конструкция позволяет получить доступ
+            //к private элементам формы
+            get { return tbPassword.Lines[0].ToString(); }
+            //set { tbLogin.Text = value; }
         }
     }
 }

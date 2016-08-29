@@ -54,17 +54,24 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnSaveLoginPass = new System.Windows.Forms.Button();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.tbLogin = new System.Windows.Forms.TextBox();
+            this.lblCategory2 = new System.Windows.Forms.Label();
+            this.lblCategory1 = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblArticl = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.chbAlsoBuy = new System.Windows.Forms.CheckBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.btnFullTextURL = new System.Windows.Forms.Button();
             this.tbFullTextURL = new System.Windows.Forms.TextBox();
-            this.chbAlsoBuy = new System.Windows.Forms.CheckBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblArticl = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.lblCategory1 = new System.Windows.Forms.Label();
-            this.lblCategory2 = new System.Windows.Forms.Label();
+            this.btnFullTextURL = new System.Windows.Forms.Button();
+            this.chbReplaceMiniText = new System.Windows.Forms.CheckBox();
+            this.chbReplaceFullText = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -277,6 +284,10 @@
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(632, 20);
             this.tbURL.TabIndex = 17;
+<<<<<<< HEAD
+=======
+            this.tbURL.Text = "http://bike18.ru/products/category/1652579";
+>>>>>>> origin/master
             // 
             // chbMiniText
             // 
@@ -305,6 +316,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.chbReplaceMiniText);
             this.panel3.Controls.Add(this.tbMiniTextURL);
             this.panel3.Controls.Add(this.btnMiniTextUrl);
             this.panel3.Controls.Add(this.chbMiniText);
@@ -371,6 +383,11 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnSaveLoginPass);
+            this.panel5.Controls.Add(this.lblPassword);
+            this.panel5.Controls.Add(this.lblLogin);
+            this.panel5.Controls.Add(this.tbPassword);
+            this.panel5.Controls.Add(this.tbLogin);
             this.panel5.Controls.Add(this.lblCategory2);
             this.panel5.Controls.Add(this.lblCategory1);
             this.panel5.Controls.Add(this.lblPrice);
@@ -382,6 +399,103 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(315, 222);
             this.panel5.TabIndex = 24;
+            // 
+            // btnSaveLoginPass
+            // 
+            this.btnSaveLoginPass.Location = new System.Drawing.Point(231, 14);
+            this.btnSaveLoginPass.Name = "btnSaveLoginPass";
+            this.btnSaveLoginPass.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveLoginPass.TabIndex = 26;
+            this.btnSaveLoginPass.Text = "Сохранить";
+            this.btnSaveLoginPass.UseVisualStyleBackColor = true;
+            this.btnSaveLoginPass.Click += new System.EventHandler(this.btnSaveLoginPass_Click);
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(111, 3);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(45, 13);
+            this.lblPassword.TabIndex = 25;
+            this.lblPassword.Text = "Пароль";
+            // 
+            // lblLogin
+            // 
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Location = new System.Drawing.Point(3, 3);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(38, 13);
+            this.lblLogin.TabIndex = 24;
+            this.lblLogin.Text = "Логин";
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Location = new System.Drawing.Point(109, 16);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(100, 20);
+            this.tbPassword.TabIndex = 23;
+            // 
+            // tbLogin
+            // 
+            this.tbLogin.Location = new System.Drawing.Point(3, 16);
+            this.tbLogin.Name = "tbLogin";
+            this.tbLogin.Size = new System.Drawing.Size(100, 20);
+            this.tbLogin.TabIndex = 22;
+            // 
+            // lblCategory2
+            // 
+            this.lblCategory2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCategory2.AutoSize = true;
+            this.lblCategory2.Location = new System.Drawing.Point(3, 168);
+            this.lblCategory2.Name = "lblCategory2";
+            this.lblCategory2.Size = new System.Drawing.Size(258, 13);
+            this.lblCategory2.TabIndex = 21;
+            this.lblCategory2.Text = "РАЗДЕЛ2 - раздел в котором находится раздел1";
+            this.lblCategory2.Click += new System.EventHandler(this.lblCategory2_Click);
+            // 
+            // lblCategory1
+            // 
+            this.lblCategory1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCategory1.AutoSize = true;
+            this.lblCategory1.Location = new System.Drawing.Point(3, 145);
+            this.lblCategory1.Name = "lblCategory1";
+            this.lblCategory1.Size = new System.Drawing.Size(245, 13);
+            this.lblCategory1.TabIndex = 20;
+            this.lblCategory1.Text = "РАЗДЕЛ1 - раздел в котором находится товар";
+            this.lblCategory1.Click += new System.EventHandler(this.lblCategory1_Click);
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(3, 123);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(138, 13);
+            this.lblPrice.TabIndex = 19;
+            this.lblPrice.Text = "ЦЕНА - стоимость товара";
+            this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
+            // 
+            // lblArticl
+            // 
+            this.lblArticl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblArticl.AutoSize = true;
+            this.lblArticl.Location = new System.Drawing.Point(3, 101);
+            this.lblArticl.Name = "lblArticl";
+            this.lblArticl.Size = new System.Drawing.Size(146, 13);
+            this.lblArticl.TabIndex = 18;
+            this.lblArticl.Text = "АРТИКУЛ - артикул товара";
+            this.lblArticl.Click += new System.EventHandler(this.lblArticl_Click);
+            // 
+            // lblName
+            // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(3, 77);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(187, 13);
+            this.lblName.TabIndex = 17;
+            this.lblName.Text = "НАЗВАНИЕ - наименование товара";
+            this.lblName.Click += new System.EventHandler(this.lblName_Click);
             // 
             // panel4
             // 
@@ -402,6 +516,18 @@
             this.panel4.Size = new System.Drawing.Size(315, 222);
             this.panel4.TabIndex = 23;
             // 
+            // chbAlsoBuy
+            // 
+            this.chbAlsoBuy.AutoSize = true;
+            this.chbAlsoBuy.Checked = true;
+            this.chbAlsoBuy.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbAlsoBuy.Location = new System.Drawing.Point(3, 159);
+            this.chbAlsoBuy.Name = "chbAlsoBuy";
+            this.chbAlsoBuy.Size = new System.Drawing.Size(158, 17);
+            this.chbAlsoBuy.TabIndex = 15;
+            this.chbAlsoBuy.Text = "С этим товаром покупают";
+            this.chbAlsoBuy.UseVisualStyleBackColor = true;
+            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.btnSaveText);
@@ -413,6 +539,7 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.chbReplaceFullText);
             this.panel7.Controls.Add(this.tbFullTextURL);
             this.panel7.Controls.Add(this.btnFullTextURL);
             this.panel7.Controls.Add(this.rtbFullText);
@@ -422,6 +549,15 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(313, 222);
             this.panel7.TabIndex = 26;
+            // 
+            // tbFullTextURL
+            // 
+            this.tbFullTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbFullTextURL.Enabled = false;
+            this.tbFullTextURL.Location = new System.Drawing.Point(33, 199);
+            this.tbFullTextURL.Name = "tbFullTextURL";
+            this.tbFullTextURL.Size = new System.Drawing.Size(272, 20);
+            this.tbFullTextURL.TabIndex = 7;
             // 
             // btnFullTextURL
             // 
@@ -435,81 +571,27 @@
             this.btnFullTextURL.UseVisualStyleBackColor = true;
             this.btnFullTextURL.Click += new System.EventHandler(this.btnFullTextURL_Click);
             // 
-            // tbFullTextURL
+            // chbReplaceMiniText
             // 
-            this.tbFullTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbFullTextURL.Enabled = false;
-            this.tbFullTextURL.Location = new System.Drawing.Point(33, 199);
-            this.tbFullTextURL.Name = "tbFullTextURL";
-            this.tbFullTextURL.Size = new System.Drawing.Size(272, 20);
-            this.tbFullTextURL.TabIndex = 7;
+            this.chbReplaceMiniText.AutoSize = true;
+            this.chbReplaceMiniText.Enabled = false;
+            this.chbReplaceMiniText.Location = new System.Drawing.Point(163, 3);
+            this.chbReplaceMiniText.Name = "chbReplaceMiniText";
+            this.chbReplaceMiniText.Size = new System.Drawing.Size(127, 17);
+            this.chbReplaceMiniText.TabIndex = 21;
+            this.chbReplaceMiniText.Text = "Заменить описание";
+            this.chbReplaceMiniText.UseVisualStyleBackColor = true;
             // 
-            // chbAlsoBuy
+            // chbReplaceFullText
             // 
-            this.chbAlsoBuy.AutoSize = true;
-            this.chbAlsoBuy.Checked = true;
-            this.chbAlsoBuy.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbAlsoBuy.Location = new System.Drawing.Point(3, 159);
-            this.chbAlsoBuy.Name = "chbAlsoBuy";
-            this.chbAlsoBuy.Size = new System.Drawing.Size(158, 17);
-            this.chbAlsoBuy.TabIndex = 15;
-            this.chbAlsoBuy.Text = "С этим товаром покупают";
-            this.chbAlsoBuy.UseVisualStyleBackColor = true;
-            // 
-            // lblName
-            // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(3, 77);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(187, 13);
-            this.lblName.TabIndex = 17;
-            this.lblName.Text = "НАЗВАНИЕ - наименование товара";
-            this.lblName.Click += new System.EventHandler(this.lblName_Click);
-            // 
-            // lblArticl
-            // 
-            this.lblArticl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblArticl.AutoSize = true;
-            this.lblArticl.Location = new System.Drawing.Point(3, 101);
-            this.lblArticl.Name = "lblArticl";
-            this.lblArticl.Size = new System.Drawing.Size(146, 13);
-            this.lblArticl.TabIndex = 18;
-            this.lblArticl.Text = "АРТИКУЛ - артикул товара";
-            this.lblArticl.Click += new System.EventHandler(this.lblArticl_Click);
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(3, 123);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(138, 13);
-            this.lblPrice.TabIndex = 19;
-            this.lblPrice.Text = "ЦЕНА - стоимость товара";
-            this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
-            // 
-            // lblCategory1
-            // 
-            this.lblCategory1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCategory1.AutoSize = true;
-            this.lblCategory1.Location = new System.Drawing.Point(3, 145);
-            this.lblCategory1.Name = "lblCategory1";
-            this.lblCategory1.Size = new System.Drawing.Size(245, 13);
-            this.lblCategory1.TabIndex = 20;
-            this.lblCategory1.Text = "РАЗДЕЛ1 - раздел в котором находится товар";
-            this.lblCategory1.Click += new System.EventHandler(this.lblCategory1_Click);
-            // 
-            // lblCategory2
-            // 
-            this.lblCategory2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCategory2.AutoSize = true;
-            this.lblCategory2.Location = new System.Drawing.Point(3, 168);
-            this.lblCategory2.Name = "lblCategory2";
-            this.lblCategory2.Size = new System.Drawing.Size(258, 13);
-            this.lblCategory2.TabIndex = 21;
-            this.lblCategory2.Text = "РАЗДЕЛ2 - раздел в котором находится раздел1";
-            this.lblCategory2.Click += new System.EventHandler(this.lblCategory2_Click);
+            this.chbReplaceFullText.AutoSize = true;
+            this.chbReplaceFullText.Enabled = false;
+            this.chbReplaceFullText.Location = new System.Drawing.Point(153, 3);
+            this.chbReplaceFullText.Name = "chbReplaceFullText";
+            this.chbReplaceFullText.Size = new System.Drawing.Size(166, 17);
+            this.chbReplaceFullText.TabIndex = 22;
+            this.chbReplaceFullText.Text = "Заменить полное описание";
+            this.chbReplaceFullText.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -562,10 +644,8 @@
         private System.Windows.Forms.CheckBox chbMiniText;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button btnMiniTextUrl;
@@ -578,6 +658,15 @@
         private System.Windows.Forms.Label lblCategory1;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblArticl;
+        private System.Windows.Forms.Button btnSaveLoginPass;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label lblLogin;
+        public System.Windows.Forms.TextBox tbLogin;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.Panel panel5;
+        public System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.CheckBox chbReplaceMiniText;
+        private System.Windows.Forms.CheckBox chbReplaceFullText;
     }
 }
 

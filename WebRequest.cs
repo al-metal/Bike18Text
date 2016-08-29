@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bike18Text;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,12 +7,13 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace web
 {
     class WebRequest
     {
-        //WebRequest webRequest = new WebRequest();
+        
 
         public string getRequestEncod(string url)
         {
@@ -78,6 +80,9 @@ namespace web
 
         public CookieContainer webCookieBike18()
         {
+            Form1 form = new Form1();
+            string login = form.textLogin;
+            string pass = form.textPass;
             CookieContainer cooc = new CookieContainer();
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://nethouse.ru/signin");
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -85,7 +90,7 @@ namespace web
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
             req.CookieContainer = cooc;
-            byte[] ms = Encoding.ASCII.GetBytes("login=bike18.ru&password=nethouse182016Bike&quick_expire=0&submit=%D0%92%D0%BE%D0%B9%D1%82%D0%B8");
+            byte[] ms = Encoding.ASCII.GetBytes("login=" + login + "&password=" + pass + "&quick_expire=0&submit=%D0%92%D0%BE%D0%B9%D1%82%D0%B8");
             req.ContentLength = ms.Length;
             Stream stre = req.GetRequestStream();
             stre.Write(ms, 0, ms.Length);
@@ -374,8 +379,9 @@ namespace web
             }
             }
 
-        internal void saveTovar(List<string> getProduct)
+        internal string saveTovar(List<string> getProduct)
         {
+            string otv = "";
             CookieContainer cookie = webCookieBike18();
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/catalog/saveproduct");
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -398,11 +404,13 @@ namespace web
             {
                 HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
                 StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
+                otv = ressr1.ReadToEnd();
             }
             catch
             {
 
             }
+            return otv;
         }
 
         internal void savePrice(CookieContainer cookie, string urlTovar, MatchCollection articl, double priceTrue, WebRequest webRequest)
