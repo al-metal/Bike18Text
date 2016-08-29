@@ -49,6 +49,7 @@
             this.chbMiniText = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.chbReplaceMiniText = new System.Windows.Forms.CheckBox();
             this.tbMiniTextURL = new System.Windows.Forms.TextBox();
             this.btnMiniTextUrl = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -68,10 +69,9 @@
             this.chbAlsoBuy = new System.Windows.Forms.CheckBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.chbReplaceFullText = new System.Windows.Forms.CheckBox();
             this.tbFullTextURL = new System.Windows.Forms.TextBox();
             this.btnFullTextURL = new System.Windows.Forms.Button();
-            this.chbReplaceMiniText = new System.Windows.Forms.CheckBox();
-            this.chbReplaceFullText = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -284,10 +284,7 @@
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(632, 20);
             this.tbURL.TabIndex = 17;
-<<<<<<< HEAD
-=======
             this.tbURL.Text = "http://bike18.ru/products/category/1652579";
->>>>>>> origin/master
             // 
             // chbMiniText
             // 
@@ -326,6 +323,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(313, 222);
             this.panel3.TabIndex = 22;
+            // 
+            // chbReplaceMiniText
+            // 
+            this.chbReplaceMiniText.AutoSize = true;
+            this.chbReplaceMiniText.Enabled = false;
+            this.chbReplaceMiniText.Location = new System.Drawing.Point(163, 3);
+            this.chbReplaceMiniText.Name = "chbReplaceMiniText";
+            this.chbReplaceMiniText.Size = new System.Drawing.Size(127, 17);
+            this.chbReplaceMiniText.TabIndex = 21;
+            this.chbReplaceMiniText.Text = "Заменить описание";
+            this.chbReplaceMiniText.UseVisualStyleBackColor = true;
             // 
             // tbMiniTextURL
             // 
@@ -550,6 +558,17 @@
             this.panel7.Size = new System.Drawing.Size(313, 222);
             this.panel7.TabIndex = 26;
             // 
+            // chbReplaceFullText
+            // 
+            this.chbReplaceFullText.AutoSize = true;
+            this.chbReplaceFullText.Enabled = false;
+            this.chbReplaceFullText.Location = new System.Drawing.Point(153, 3);
+            this.chbReplaceFullText.Name = "chbReplaceFullText";
+            this.chbReplaceFullText.Size = new System.Drawing.Size(166, 17);
+            this.chbReplaceFullText.TabIndex = 22;
+            this.chbReplaceFullText.Text = "Заменить полное описание";
+            this.chbReplaceFullText.UseVisualStyleBackColor = true;
+            // 
             // tbFullTextURL
             // 
             this.tbFullTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -570,28 +589,6 @@
             this.btnFullTextURL.Text = "U";
             this.btnFullTextURL.UseVisualStyleBackColor = true;
             this.btnFullTextURL.Click += new System.EventHandler(this.btnFullTextURL_Click);
-            // 
-            // chbReplaceMiniText
-            // 
-            this.chbReplaceMiniText.AutoSize = true;
-            this.chbReplaceMiniText.Enabled = false;
-            this.chbReplaceMiniText.Location = new System.Drawing.Point(163, 3);
-            this.chbReplaceMiniText.Name = "chbReplaceMiniText";
-            this.chbReplaceMiniText.Size = new System.Drawing.Size(127, 17);
-            this.chbReplaceMiniText.TabIndex = 21;
-            this.chbReplaceMiniText.Text = "Заменить описание";
-            this.chbReplaceMiniText.UseVisualStyleBackColor = true;
-            // 
-            // chbReplaceFullText
-            // 
-            this.chbReplaceFullText.AutoSize = true;
-            this.chbReplaceFullText.Enabled = false;
-            this.chbReplaceFullText.Location = new System.Drawing.Point(153, 3);
-            this.chbReplaceFullText.Name = "chbReplaceFullText";
-            this.chbReplaceFullText.Size = new System.Drawing.Size(166, 17);
-            this.chbReplaceFullText.TabIndex = 22;
-            this.chbReplaceFullText.Text = "Заменить полное описание";
-            this.chbReplaceFullText.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

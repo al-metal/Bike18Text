@@ -391,7 +391,7 @@ namespace Bike18Text
                 {
                     string fullText = tovarList[8].ToString();
                     fullText += full_Text_tovar(tovarList, tovar);
-                    tovarList[8] = autoCrop(fullText, 1000);
+                    tovarList[8] = autoCrop(fullText, 1600);
                 }
             }
                 
@@ -404,7 +404,7 @@ namespace Bike18Text
                 {
                     string miniText = tovarList[7].ToString();
                     miniText += mini_Text_tovar(tovarList, tovar);
-                    tovarList[7] = autoCrop(miniText, 1000);
+                    tovarList[7] = autoCrop(miniText, 1600);
                 }
             }
 
@@ -415,16 +415,28 @@ namespace Bike18Text
 
             if (chbAlsoBuy.Checked)
                 tovarList[42] = alsoBuyTovars(tovarList);
-
+           
             tovarList[1] = slug(tovarList);
             otv = webRequest.saveTovar(tovarList);
             if (otv.Contains("errors"))
             {
+                int g = 1;
+                if (otv.Contains("slug"))
+                {
+                    do
+                    {
+                        string s = tovarList[1].ToString();
+                        s = s.Remove(s.Length - 1, 1);
+                        s = s + g;
+                        g++;
+                        tovarList[1] = s;
+                        otv = webRequest.saveTovar(tovarList);
+                    }
+                    while (otv.Contains("errors"));
+
+                }
 
             }
-
-
-
         }
 
         private string slug(List<string> tovarList)
