@@ -295,6 +295,8 @@ namespace Bike18Text
             Properties.Settings.Default.password = tbPassword.Text;
             Properties.Settings.Default.Save();
 
+            string article = "";
+
             if (tbURL.Lines.Length == 0)
             {
                 MessageBox.Show("Заполните адрес раздела для работы на сайте");
@@ -303,8 +305,13 @@ namespace Bike18Text
 
             string url = tbURL.Lines[0].ToString();
             otv = webRequest.getRequest(url);
+            article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString();
             MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
             MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+
+            if (article != "")
+                updateText(url);
+
             if (tovarUrl.Count != 0)
             {
                 for (int z = 0; tovarUrl.Count > z; z++)
@@ -313,7 +320,8 @@ namespace Bike18Text
                     updateText(tovar);
                 }
             }
-            else
+
+            if(categoryUrl.Count != 0)
             {
                 for (int i = 0; categoryUrl.Count > i; i++)
                 {
@@ -371,29 +379,29 @@ namespace Bike18Text
             MessageBox.Show("Готово!");
         }
 
-        private void updateText(string tovar)
+        private void updateText(string urlTovar)
         {
-            if (!tovar.Contains("nethouse"))
-                tovar = tovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
-            List<string> tovarList = webRequest.arraySaveimage(tovar);
+            if (!urlTovar.Contains("nethouse"))
+                urlTovar = urlTovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+            List<string> tovarList = webRequest.arraySaveimage(urlTovar);
 
             if (chbTitle.Checked)
-                tovarList[13] = seoTitle(tovarList, tovar);
+                tovarList[13] = seoTitle(tovarList, urlTovar);
 
             if (chbDescription.Checked)
-                tovarList[11] = seoDescription(tovarList, tovar);
+                tovarList[11] = seoDescription(tovarList, urlTovar);
 
             if (chbKeywords.Checked)
-                tovarList[12] = seoKeywords(tovarList, tovar);
+                tovarList[12] = seoKeywords(tovarList, urlTovar);
 
             if (chbFullText.Checked)
             {
                 if (chbReplaceFullText.Checked)
-                    tovarList[8] = full_Text_tovar(tovarList, tovar);
+                    tovarList[8] = full_Text_tovar(tovarList, urlTovar);
                 else
                 {
                     string fullText = tovarList[8].ToString();
-                    fullText += full_Text_tovar(tovarList, tovar);
+                    fullText += full_Text_tovar(tovarList, urlTovar);
                     tovarList[8] = autoCrop(fullText, 1600);
                 }
             }
@@ -402,18 +410,18 @@ namespace Bike18Text
             if (chbMiniText.Checked)
             {
                 if (chbReplaceMiniText.Checked)
-                    tovarList[7] = mini_Text_tovar(tovarList, tovar);
+                    tovarList[7] = mini_Text_tovar(tovarList, urlTovar);
                 else
                 {
                     string miniText = tovarList[7].ToString();
-                    miniText += mini_Text_tovar(tovarList, tovar);
+                    miniText += mini_Text_tovar(tovarList, urlTovar);
                     tovarList[7] = autoCrop(miniText, 1600);
                 }
             }
 
             if (chbAltText.Checked)
             {
-                altText(tovar);
+                altText(urlTovar);
             }
 
             if (chbAlsoBuy.Checked)
