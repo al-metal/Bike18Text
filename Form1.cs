@@ -291,6 +291,10 @@ namespace Bike18Text
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.login = tbLogin.Text;
+            Properties.Settings.Default.password = tbPassword.Text;
+            Properties.Settings.Default.Save();
+
             if(tbURL.Lines.Length == 0)
             {
                 MessageBox.Show("Заполните адрес раздела для работы на сайте");
@@ -788,18 +792,6 @@ namespace Bike18Text
             Clipboard.SetText("АРТИКУЛ");
         }
 
-        private void btnSaveLoginPass_Click(object sender, EventArgs e)
-        {
-            StreamWriter writers = new StreamWriter("files\\file", false, Encoding.GetEncoding(1251));
-            writers.WriteLine(tbLogin.Lines[0].ToString());
-            writers.Close();
-            writers = new StreamWriter("files\\file", true, Encoding.GetEncoding(1251));
-            writers.WriteLine(tbPassword.Lines[0].ToString());
-            
-            writers.Close();
-            MessageBox.Show("Логин и пароль сохранены!");
-        }
-
         public string textLogin
         {
             //<--Данная конструкция позволяет получить доступ
@@ -814,6 +806,12 @@ namespace Bike18Text
             //к private элементам формы
             get { return tbPassword.Lines[0].ToString(); }
             //set { tbLogin.Text = value; }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            tbLogin.Text = Properties.Settings.Default.login.ToString();
+            tbPassword.Text = Properties.Settings.Default.password.ToString();
         }
     }
 }
