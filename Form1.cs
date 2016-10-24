@@ -57,10 +57,6 @@ namespace Bike18Text
             {
                 File.Create("files\\keywordsText");
             }
-            if (!File.Exists("files\\file"))
-            {
-                File.Create("files\\file");
-            }
 
             StreamReader text = new StreamReader("files\\altText", Encoding.GetEncoding("windows-1251"));
             while (!text.EndOfStream)
@@ -109,16 +105,6 @@ namespace Bike18Text
                 tbKeywords.AppendText(str + "\n");
             }
             text.Close();
-            text = new StreamReader("files\\file", Encoding.GetEncoding("windows-1251"));
-            while (!text.EndOfStream)
-            {
-                string str = text.ReadLine();
-                tbLogin.AppendText(str + "\n");
-                str = text.ReadLine();
-                tbPassword.AppendText(str + "\n");
-            }
-            text.Close();
-
         }
 
         private void btnSaveText_Click(object sender, EventArgs e)
