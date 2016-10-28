@@ -301,11 +301,16 @@ namespace Bike18Text
             string url = tbURL.Lines[0].ToString();
             otv = webRequest.getRequest(url);
             article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString();
-            MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
-            MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
 
             if (article != "")
+            {
                 updateText(url, cookie);
+                MessageBox.Show("Готово!");
+                return;
+            }
+
+            MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+            MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
 
             if (tovarUrl.Count != 0)
             {
@@ -444,7 +449,14 @@ namespace Bike18Text
         private string slug(List<string> tovarList)
         {
             string str = tovarList[4].ToString();
-            str = chpu.vozvr(str);
+            if (chbUrlArticle.Checked)
+            {
+                string chpuArticle = chpu.vozvr(tovarList[6].ToString());
+                str = chpu.vozvr(str) + "-" + chpuArticle;
+            }
+            else
+                str = chpu.vozvr(str);
+
             return str;
         }
 

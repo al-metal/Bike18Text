@@ -71,6 +71,7 @@
             this.chbReplaceFullText = new System.Windows.Forms.CheckBox();
             this.tbFullTextURL = new System.Windows.Forms.TextBox();
             this.btnFullTextURL = new System.Windows.Forms.Button();
+            this.chbUrlArticle = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -496,6 +497,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.chbUrlArticle);
             this.panel4.Controls.Add(this.chbAlsoBuy);
             this.panel4.Controls.Add(this.chbKeywords);
             this.panel4.Controls.Add(this.chbDescription);
@@ -579,6 +581,16 @@
             this.btnFullTextURL.UseVisualStyleBackColor = true;
             this.btnFullTextURL.Click += new System.EventHandler(this.btnFullTextURL_Click);
             // 
+            // chbUrlArticle
+            // 
+            this.chbUrlArticle.AutoSize = true;
+            this.chbUrlArticle.Location = new System.Drawing.Point(3, 180);
+            this.chbUrlArticle.Name = "chbUrlArticle";
+            this.chbUrlArticle.Size = new System.Drawing.Size(186, 17);
+            this.chbUrlArticle.TabIndex = 16;
+            this.chbUrlArticle.Text = "Добавлять к url артикул товара";
+            this.chbUrlArticle.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -653,6 +665,7 @@
         public System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.CheckBox chbReplaceMiniText;
         private System.Windows.Forms.CheckBox chbReplaceFullText;
+        private System.Windows.Forms.CheckBox chbUrlArticle;
     }
 }
 
