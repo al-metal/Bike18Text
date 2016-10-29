@@ -21,6 +21,7 @@ namespace Bike18Text
         web.WebRequest webRequest = new web.WebRequest();
         CHPU chpu = new CHPU();
         nethouse nethouse = new nethouse();
+        
         string otv = null;
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
         string boldClose = "</span>%26nbsp%3B";
@@ -827,6 +828,20 @@ namespace Bike18Text
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void создатьШаблонToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Templates form2 = new Templates();
+            tableLayoutPanel1.Enabled = false;
+            form2.Activate();
+            form2.TopMost = true;
+            form2.Show();
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Enabled = true;
         }
     }
 }
