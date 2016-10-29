@@ -46,5 +46,17 @@ namespace Bike18Text.Properties {
                 this["password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string template {
+            get {
+                return ((string)(this["template"]));
+            }
+            set {
+                this["template"] = value;
+            }
+        }
     }
 }
