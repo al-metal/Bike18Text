@@ -823,5 +823,10 @@ namespace Bike18Text
             tbLogin.Text = Properties.Settings.Default.login.ToString();
             tbPassword.Text = Properties.Settings.Default.password.ToString();
         }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
