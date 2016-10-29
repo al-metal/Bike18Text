@@ -65,13 +65,14 @@
             this.lblArticl = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.chbUrlArticle = new System.Windows.Forms.CheckBox();
             this.chbAlsoBuy = new System.Windows.Forms.CheckBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.chbReplaceFullText = new System.Windows.Forms.CheckBox();
             this.tbFullTextURL = new System.Windows.Forms.TextBox();
             this.btnFullTextURL = new System.Windows.Forms.Button();
+            this.chbUrlArticle = new System.Windows.Forms.CheckBox();
+
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -515,16 +516,6 @@
             this.panel4.Size = new System.Drawing.Size(315, 222);
             this.panel4.TabIndex = 23;
             // 
-            // chbUrlArticle
-            // 
-            this.chbUrlArticle.AutoSize = true;
-            this.chbUrlArticle.Location = new System.Drawing.Point(3, 180);
-            this.chbUrlArticle.Name = "chbUrlArticle";
-            this.chbUrlArticle.Size = new System.Drawing.Size(186, 17);
-            this.chbUrlArticle.TabIndex = 16;
-            this.chbUrlArticle.Text = "Добавлять к url артикул товара";
-            this.chbUrlArticle.UseVisualStyleBackColor = true;
-            // 
             // chbAlsoBuy
             // 
             this.chbAlsoBuy.AutoSize = true;
@@ -591,6 +582,18 @@
             this.btnFullTextURL.UseVisualStyleBackColor = true;
             this.btnFullTextURL.Click += new System.EventHandler(this.btnFullTextURL_Click);
             // 
+
+            // chbUrlArticle
+            // 
+            this.chbUrlArticle.AutoSize = true;
+            this.chbUrlArticle.Location = new System.Drawing.Point(3, 180);
+            this.chbUrlArticle.Name = "chbUrlArticle";
+            this.chbUrlArticle.Size = new System.Drawing.Size(186, 17);
+            this.chbUrlArticle.TabIndex = 16;
+            this.chbUrlArticle.Text = "Добавлять к url артикул товара";
+            this.chbUrlArticle.UseVisualStyleBackColor = true;
+            // 
+
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

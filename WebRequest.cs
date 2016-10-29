@@ -145,7 +145,7 @@ namespace web
         {
             WebRequest webRequest = new WebRequest();
             CookieContainer cookie = webRequest.webCookieBike18();
-            List<string> saveImage = new List<string>();
+            List <string> saveImage = new List<string>();
 
             string otv = webRequest.PostRequest(cookie, urlTovar);
             if (otv != null)
@@ -166,7 +166,7 @@ namespace web
                 String title = new Regex("(?<=<title>).*?(?=</title>)").Match(otv).Value;
                 String visible = new Regex("(?<=,\"balance\":).*?(?=,\")").Match(otv).Value;
                 string reklama = new Regex("(?<=<div class=\"marker-icon size-big type-4\"><div class=\"left\"></div><div class=\"center\"><div class=\"text\">).*?(?=</div></div>)").Match(otv).ToString();
-                if (reklama == "акция")
+                    if(reklama == "акция")
                 {
                     reklama = "&markers[3]=1";
                 }
@@ -193,7 +193,7 @@ namespace web
                 string atribut = "";
                 string atributes = new Regex("(?<=attributes\":{\").*?(?=,\"customDays)").Match(otv).Value;
                 MatchCollection stringAtributes = new Regex("(?<=\":{\").*?(?=])").Matches(atributes);
-                for (int i = 0; stringAtributes.Count > i; i++)
+                for(int i = 0; stringAtributes.Count > i; i++)
                 {
                     string id = new Regex("(?<=primaryKey\":).*?(?=,\")").Match(stringAtributes[i].ToString()).Value;
                     string valueId = new Regex("(?<=\"valueId\":\").*?(?=\")").Match(stringAtributes[i].ToString()).Value;
@@ -207,9 +207,9 @@ namespace web
                     }
                     else
                     {
-                        if (text != "")
+                        if(text != "")
                             atribut = atribut + "&attributes[" + i + "][primaryKey]=" + id + "&attributes[" + i + "][attributeId]=" + id + "&attributes[" + i + "][values][0][empty]=0&attributes[" + i + "][values][0][text]=" + text;
-                        if (checkBox != "")
+                        if(checkBox != "")
                             atribut = atribut + "&attributes[" + i + "][primaryKey]=" + id + "&attributes[" + i + "][attributeId]=" + id + "&attributes[" + i + "][values][0][empty]=0&attributes[" + i + "][values][0][checkbox]=" + checkBox;
                     }
                 }
