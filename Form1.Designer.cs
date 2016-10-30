@@ -76,6 +76,8 @@
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -610,6 +612,7 @@
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создатьШаблонToolStripMenuItem,
+            this.открытьШаблонToolStripMenuItem,
             this.tsmExit});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
@@ -628,6 +631,19 @@
             this.tsmExit.Size = new System.Drawing.Size(165, 22);
             this.tsmExit.Text = "Выход";
             this.tsmExit.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+            // 
+            // открытьШаблонToolStripMenuItem
+            // 
+            this.открытьШаблонToolStripMenuItem.Name = "открытьШаблонToolStripMenuItem";
+            this.открытьШаблонToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.открытьШаблонToolStripMenuItem.Text = "Открыть шаблон";
+            this.открытьШаблонToolStripMenuItem.Click += new System.EventHandler(this.открытьШаблонToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Шаблон|*.template";
+            this.openFileDialog1.InitialDirectory = "Environment.CurrentDirectory";
             // 
             // Form1
             // 
@@ -713,6 +729,8 @@
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem создатьШаблонToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmExit;
+        private System.Windows.Forms.ToolStripMenuItem открытьШаблонToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

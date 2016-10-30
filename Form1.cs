@@ -23,6 +23,7 @@ namespace Bike18Text
         nethouse nethouse = new nethouse();
         
         string otv = null;
+        string path = Environment.CurrentDirectory + "\\files";
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
         string boldClose = "</span>%26nbsp%3B";
         int countStrAltText = 0;
@@ -842,6 +843,12 @@ namespace Bike18Text
         private void Form1_Activated(object sender, EventArgs e)
         {
             tableLayoutPanel1.Enabled = true;
+        }
+
+        private void открытьШаблонToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = path;
+            openFileDialog1.ShowDialog();
         }
     }
 }
