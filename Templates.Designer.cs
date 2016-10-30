@@ -62,7 +62,7 @@
             // 
             // tbDescription
             // 
-            this.tbDescription.Location = new System.Drawing.Point(397, 61);
+            this.tbDescription.Location = new System.Drawing.Point(397, 66);
             this.tbDescription.Name = "tbDescription";
             this.tbDescription.Size = new System.Drawing.Size(365, 20);
             this.tbDescription.TabIndex = 3;
@@ -89,6 +89,7 @@
             this.btnSaveTemplate.TabIndex = 6;
             this.btnSaveTemplate.Text = "Сохранить шаблон";
             this.btnSaveTemplate.UseVisualStyleBackColor = true;
+            this.btnSaveTemplate.Click += new System.EventHandler(this.btnSaveTemplate_Click);
             // 
             // Templates
             // 
