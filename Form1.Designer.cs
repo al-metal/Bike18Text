@@ -75,8 +75,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -621,16 +621,9 @@
             // создатьШаблонToolStripMenuItem
             // 
             this.создатьШаблонToolStripMenuItem.Name = "создатьШаблонToolStripMenuItem";
-            this.создатьШаблонToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.создатьШаблонToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.создатьШаблонToolStripMenuItem.Text = "Создать шаблон";
             this.создатьШаблонToolStripMenuItem.Click += new System.EventHandler(this.создатьШаблонToolStripMenuItem_Click);
-            // 
-            // tsmExit
-            // 
-            this.tsmExit.Name = "tsmExit";
-            this.tsmExit.Size = new System.Drawing.Size(165, 22);
-            this.tsmExit.Text = "Выход";
-            this.tsmExit.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // открытьШаблонToolStripMenuItem
             // 
@@ -638,6 +631,13 @@
             this.открытьШаблонToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.открытьШаблонToolStripMenuItem.Text = "Открыть шаблон";
             this.открытьШаблонToolStripMenuItem.Click += new System.EventHandler(this.открытьШаблонToolStripMenuItem_Click);
+            // 
+            // tsmExit
+            // 
+            this.tsmExit.Name = "tsmExit";
+            this.tsmExit.Size = new System.Drawing.Size(169, 22);
+            this.tsmExit.Text = "Выход";
+            this.tsmExit.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 

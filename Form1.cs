@@ -23,10 +23,12 @@ namespace Bike18Text
         nethouse nethouse = new nethouse();
         
         string otv = null;
-        string path = Environment.CurrentDirectory + "\\files";
+        string pathDirectory = Environment.CurrentDirectory + "\\files";
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
         string boldClose = "</span>%26nbsp%3B";
+        string template = Properties.Settings.Default.template.ToString();
         int countStrAltText = 0;
+
 
         public Form1()
         {
@@ -847,8 +849,38 @@ namespace Bike18Text
 
         private void открытьШаблонToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openFileDialog1.InitialDirectory = path;
+            openFileDialog1.InitialDirectory = pathDirectory;
             openFileDialog1.ShowDialog();
+            string fileTemplate = openFileDialog1.FileName.ToString();
+            string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));
+            if (templateString.Length == 5)
+            {
+                LoadTemplate(templateString);
+            }
+            else
+                MessageBox.Show("Некорректный файл, выберите другой");
+        }
+
+        private void LoadTemplate(string[] templateString)
+        {
+            rtbFullText.Clear();
+            rtbMiniText.Clear();
+
+            tbTitle.Text = templateString[2].ToString().Replace("\\r\\n", "");
+            tbDescription.Text = templateString[3].ToString().Replace("\\r\\n", "");
+            tbKeywords.Text = templateString[4].ToString().Replace("\\r\\n", "");
+            string miniTextString = templateString[0].ToString().Replace("\\r\\n", "†");
+            string[] miniText = miniTextString.Split('†');
+            foreach (string str in miniText)
+            {
+                rtbMiniText.AppendText(str + "\n");
+            }
+            string fullTextString = templateString[1].ToString().Replace("\\r\\n", "†");
+            string[] fullText = fullTextString.Split('†');
+            foreach (string str in fullText)
+            {
+                rtbFullText.AppendText(str + "\n");
+            }
         }
     }
 }
