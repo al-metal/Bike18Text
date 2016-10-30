@@ -41,26 +41,11 @@ namespace Bike18Text
             {
                 File.Create("files\\altText");
             }
-            if (!File.Exists("files\\miniText"))
-            {
-                File.Create("files\\miniText");
-            }
-            if (!File.Exists("files\\fullText"))
-            {
-                File.Create("files\\fullText");
-            }
-            if (!File.Exists("files\\titleText"))
-            {
-                File.Create("files\\titleText");
-            }
-            if (!File.Exists("files\\descriptionText"))
-            {
-                File.Create("files\\descriptionText");
-            }
-            if (!File.Exists("files\\keywordsText"))
-            {
-                File.Create("files\\keywordsText");
-            }
+
+            if (template != "")
+                ShowTemplate(template);
+            else
+                MessageBox.Show("Проблема с шаблоном, он потерялся, выберите его в ручную!");
 
             StreamReader text = new StreamReader("files\\altText", Encoding.GetEncoding("windows-1251"));
             while (!text.EndOfStream)
@@ -69,105 +54,6 @@ namespace Bike18Text
                 rtbAltText.AppendText(str + "\n");
             }
             text.Close();
-
-            text = new StreamReader("files\\miniText", Encoding.GetEncoding("windows-1251"));
-            while (!text.EndOfStream)
-            {
-                string str = text.ReadLine();
-                rtbMiniText.AppendText(str + "\n");
-            }
-            text.Close();
-
-            text = new StreamReader("files\\fullText", Encoding.GetEncoding("windows-1251"));
-            while (!text.EndOfStream)
-            {
-                string str = text.ReadLine();
-                rtbFullText.AppendText(str + "\n");
-            }
-            text.Close();
-
-            text = new StreamReader("files\\titleText", Encoding.GetEncoding("windows-1251"));
-            while (!text.EndOfStream)
-            {
-                string str = text.ReadLine();
-                tbTitle.AppendText(str + "\n");
-            }
-            text.Close();
-
-            text = new StreamReader("files\\descriptionText", Encoding.GetEncoding("windows-1251"));
-            while (!text.EndOfStream)
-            {
-                string str = text.ReadLine();
-                tbDescription.AppendText(str + "\n");
-            }
-            text.Close();
-
-            text = new StreamReader("files\\keywordsText", Encoding.GetEncoding("windows-1251"));
-            while (!text.EndOfStream)
-            {
-                string str = text.ReadLine();
-                tbKeywords.AppendText(str + "\n");
-            }
-            text.Close();
-        }
-
-        private void btnSaveText_Click(object sender, EventArgs e)
-        {
-            int count = 0;
-            StreamWriter writers = new StreamWriter("files\\miniText", false, Encoding.GetEncoding(1251));
-            count = rtbMiniText.Lines.Length;
-            for (int i = 0; rtbMiniText.Lines.Length > i; i++)
-            {
-                if (count - 1 == i)
-                {
-                    if (rtbMiniText.Lines[i] == "")
-                        break;
-                }
-                writers.WriteLine(rtbMiniText.Lines[i].ToString());
-            }
-            writers.Close();
-
-            count = rtbFullText.Lines.Length;
-            writers = new StreamWriter("files\\fullText", false, Encoding.GetEncoding(1251));
-            count = rtbFullText.Lines.Length;
-            for (int i = 0; count > i; i++)
-            {
-                if (count - 1 == i)
-                {
-                    if (rtbFullText.Lines[i] == "")
-                        break;
-                }
-                writers.WriteLine(rtbFullText.Lines[i].ToString());
-            }
-            writers.Close();
-
-            count = rtbAltText.Lines.Length;
-            writers = new StreamWriter("files\\altText", false, Encoding.GetEncoding(1251));
-            count = rtbAltText.Lines.Length;
-            for (int i = 0; count > i; i++)
-            {
-                if (count - 1 == i)
-                {
-                    if (rtbAltText.Lines[i] == "")
-                        break;
-                }
-                writers.WriteLine(rtbAltText.Lines[i].ToString());
-            }
-            writers.Close();
-
-            writers = new StreamWriter("files\\titleText", false, Encoding.GetEncoding(1251));
-            writers.WriteLine(tbTitle.Lines[0]);
-            writers.Close();
-
-            writers = new StreamWriter("files\\descriptionText", false, Encoding.GetEncoding(1251));
-            writers.WriteLine(tbDescription.Lines[0]);
-            writers.Close();
-
-            writers = new StreamWriter("files\\keywordsText", false, Encoding.GetEncoding(1251));
-            writers.WriteLine(tbKeywords.Lines[0]);
-            writers.Close();
-
-            MessageBox.Show("Текст сохранен");
         }
 
         private void chbSEO_CheckedChanged(object sender, EventArgs e)
@@ -852,35 +738,38 @@ namespace Bike18Text
             openFileDialog1.InitialDirectory = pathDirectory;
             openFileDialog1.ShowDialog();
             string fileTemplate = openFileDialog1.FileName.ToString();
+            Properties.Settings.Default.template = fileTemplate;
+            Properties.Settings.Default.Save();
+
+            ShowTemplate(fileTemplate);
+        }
+
+        private void ShowTemplate(string fileTemplate)
+        {
             string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));
             if (templateString.Length == 5)
             {
-                LoadTemplate(templateString);
+                rtbFullText.Clear();
+                rtbMiniText.Clear();
+
+                tbTitle.Text = templateString[2].ToString().Replace("\\r\\n", "");
+                tbDescription.Text = templateString[3].ToString().Replace("\\r\\n", "");
+                tbKeywords.Text = templateString[4].ToString().Replace("\\r\\n", "");
+                string miniTextString = templateString[0].ToString().Replace("\\r\\n", "†");
+                string[] miniText = miniTextString.Split('†');
+                foreach (string str in miniText)
+                {
+                    rtbMiniText.AppendText(str + "\n");
+                }
+                string fullTextString = templateString[1].ToString().Replace("\\r\\n", "†");
+                string[] fullText = fullTextString.Split('†');
+                foreach (string str in fullText)
+                {
+                    rtbFullText.AppendText(str + "\n");
+                }
             }
             else
                 MessageBox.Show("Некорректный файл, выберите другой");
-        }
-
-        private void LoadTemplate(string[] templateString)
-        {
-            rtbFullText.Clear();
-            rtbMiniText.Clear();
-
-            tbTitle.Text = templateString[2].ToString().Replace("\\r\\n", "");
-            tbDescription.Text = templateString[3].ToString().Replace("\\r\\n", "");
-            tbKeywords.Text = templateString[4].ToString().Replace("\\r\\n", "");
-            string miniTextString = templateString[0].ToString().Replace("\\r\\n", "†");
-            string[] miniText = miniTextString.Split('†');
-            foreach (string str in miniText)
-            {
-                rtbMiniText.AppendText(str + "\n");
-            }
-            string fullTextString = templateString[1].ToString().Replace("\\r\\n", "†");
-            string[] fullText = fullTextString.Split('†');
-            foreach (string str in fullText)
-            {
-                rtbFullText.AppendText(str + "\n");
-            }
         }
     }
 }

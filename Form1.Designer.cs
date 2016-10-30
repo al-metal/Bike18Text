@@ -43,7 +43,6 @@
             this.chbTitle = new System.Windows.Forms.CheckBox();
             this.chbDescription = new System.Windows.Forms.CheckBox();
             this.chbKeywords = new System.Windows.Forms.CheckBox();
-            this.btnSaveText = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.tbURL = new System.Windows.Forms.TextBox();
             this.chbMiniText = new System.Windows.Forms.CheckBox();
@@ -84,7 +83,6 @@
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -258,18 +256,6 @@
             this.chbKeywords.TabIndex = 14;
             this.chbKeywords.UseVisualStyleBackColor = true;
             this.chbKeywords.CheckedChanged += new System.EventHandler(this.chbKeywords_CheckedChanged);
-            // 
-            // btnSaveText
-            // 
-            this.btnSaveText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveText.Location = new System.Drawing.Point(0, 0);
-            this.btnSaveText.Name = "btnSaveText";
-            this.btnSaveText.Size = new System.Drawing.Size(315, 20);
-            this.btnSaveText.TabIndex = 15;
-            this.btnSaveText.Text = "Сохранить текст";
-            this.btnSaveText.UseVisualStyleBackColor = true;
-            this.btnSaveText.Click += new System.EventHandler(this.btnSaveText_Click);
             // 
             // btnStart
             // 
@@ -546,7 +532,6 @@
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.btnSaveText);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(641, 495);
             this.panel6.Name = "panel6";
@@ -669,7 +654,6 @@
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -696,7 +680,6 @@
         private System.Windows.Forms.CheckBox chbTitle;
         private System.Windows.Forms.CheckBox chbDescription;
         private System.Windows.Forms.CheckBox chbKeywords;
-        private System.Windows.Forms.Button btnSaveText;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.TextBox tbURL;
         private System.Windows.Forms.CheckBox chbMiniText;
