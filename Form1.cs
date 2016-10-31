@@ -738,10 +738,15 @@ namespace Bike18Text
             openFileDialog1.InitialDirectory = pathDirectory;
             openFileDialog1.ShowDialog();
             string fileTemplate = openFileDialog1.FileName.ToString();
-            Properties.Settings.Default.template = fileTemplate;
-            Properties.Settings.Default.Save();
 
-            ShowTemplate(fileTemplate);
+            if(openFileDialog1.FileName != "openFileDialog1")
+            {
+                Properties.Settings.Default.template = fileTemplate;
+                Properties.Settings.Default.Save();
+
+                ShowTemplate(fileTemplate);
+            }
+                
         }
 
         private void ShowTemplate(string fileTemplate)
