@@ -13,9 +13,6 @@ namespace Bike18Text
 {
     public partial class Templates : Form
     {
-        string pathDirectory = Environment.CurrentDirectory + "\\files";
-        string template = Properties.Settings.Default.template.ToString();
-
         public Templates()
         {
             InitializeComponent();
@@ -79,14 +76,6 @@ namespace Bike18Text
             writers.Close();
 
             MessageBox.Show("OK");
-        }
-
-        private void btnOpenTemplate_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.InitialDirectory = pathDirectory;
-            openFileDialog1.ShowDialog();
-            string fileTemplate = openFileDialog1.FileName.ToString();
-            string nameTemplate = openFileDialog1.Title.ToString();
         }
     }
 }
