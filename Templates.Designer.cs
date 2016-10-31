@@ -35,6 +35,8 @@
             this.tbKeywords = new System.Windows.Forms.TextBox();
             this.tbNameTemplate = new System.Windows.Forms.TextBox();
             this.btnSaveTemplate = new System.Windows.Forms.Button();
+            this.btnOpenTemplate = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // rtbMiniText
@@ -91,11 +93,26 @@
             this.btnSaveTemplate.UseVisualStyleBackColor = true;
             this.btnSaveTemplate.Click += new System.EventHandler(this.btnSaveTemplate_Click);
             // 
+            // btnOpenTemplate
+            // 
+            this.btnOpenTemplate.Location = new System.Drawing.Point(397, 173);
+            this.btnOpenTemplate.Name = "btnOpenTemplate";
+            this.btnOpenTemplate.Size = new System.Drawing.Size(192, 23);
+            this.btnOpenTemplate.TabIndex = 7;
+            this.btnOpenTemplate.Text = "Открыть шаблон";
+            this.btnOpenTemplate.UseVisualStyleBackColor = true;
+            this.btnOpenTemplate.Click += new System.EventHandler(this.btnOpenTemplate_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Templates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 478);
+            this.Controls.Add(this.btnOpenTemplate);
             this.Controls.Add(this.btnSaveTemplate);
             this.Controls.Add(this.tbNameTemplate);
             this.Controls.Add(this.tbKeywords);
@@ -120,5 +137,7 @@
         private System.Windows.Forms.TextBox tbKeywords;
         private System.Windows.Forms.TextBox tbNameTemplate;
         private System.Windows.Forms.Button btnSaveTemplate;
+        private System.Windows.Forms.Button btnOpenTemplate;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
