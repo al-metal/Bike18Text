@@ -30,6 +30,7 @@ namespace Bike18Text
         int countStrAltText = 0;
 
 
+
         public Form1()
         {
             InitializeComponent();
@@ -41,6 +42,8 @@ namespace Bike18Text
             {
                 File.Create("files\\altText");
             }
+            if (template == "openFileDialog1")
+                template = "";
 
             if (template != "")
                 ShowTemplate(template);
@@ -724,12 +727,11 @@ namespace Bike18Text
             Templates form2 = new Templates();
             tableLayoutPanel1.Enabled = false;
             form2.Activate();
-            form2.TopMost = true;
-            form2.Show();
+            form2.ShowDialog();
         }
 
         private void Form1_Activated(object sender, EventArgs e)
-        {
+        { 
             tableLayoutPanel1.Enabled = true;
         }
 
@@ -749,7 +751,7 @@ namespace Bike18Text
                 
         }
 
-        private void ShowTemplate(string fileTemplate)
+        public void ShowTemplate(string fileTemplate)
         {
             string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));
             if (templateString.Length == 5)

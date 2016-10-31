@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Bike18Text
@@ -33,8 +27,7 @@ namespace Bike18Text
 
             if (File.Exists(nameFile))
             {
-                MessageBox.Show("Данный шаблон уже существует");
-                return;
+                File.Delete(nameFile);
             }
 
             int count = 0;
@@ -86,7 +79,36 @@ namespace Bike18Text
             openFileDialog1.InitialDirectory = pathDirectory;
             openFileDialog1.ShowDialog();
             string fileTemplate = openFileDialog1.FileName.ToString();
-            string nameTemplate = openFileDialog1.Title.ToString();
+            tbNameTemplate.Text = Path.GetFileNameWithoutExtension(openFileDialog1.SafeFileName);
+            ShowTemplate(fileTemplate);
+        }
+
+        public void ShowTemplate(string fileTemplate)
+        {
+            string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));
+            if (templateString.Length == 5)
+            {
+                rtbFullText.Clear();
+                rtbMiniText.Clear();
+
+                tbTitle.Text = templateString[2].ToString().Replace("\\r\\n", "");
+                tbDescription.Text = templateString[3].ToString().Replace("\\r\\n", "");
+                tbKeywords.Text = templateString[4].ToString().Replace("\\r\\n", "");
+                string miniTextString = templateString[0].ToString().Replace("\\r\\n", "†");
+                string[] miniText = miniTextString.Split('†');
+                foreach (string str in miniText)
+                {
+                    rtbMiniText.AppendText(str + "\n");
+                }
+                string fullTextString = templateString[1].ToString().Replace("\\r\\n", "†");
+                string[] fullText = fullTextString.Split('†');
+                foreach (string str in fullText)
+                {
+                    rtbFullText.AppendText(str + "\n");
+                }
+            }
+            else
+                MessageBox.Show("Некорректный файл, выберите другой");
         }
     }
 }
