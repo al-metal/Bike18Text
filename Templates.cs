@@ -94,6 +94,8 @@ namespace Bike18Text
             }
         }
 
+
+
         public void ShowTemplate(string fileTemplate)
         {
             string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));

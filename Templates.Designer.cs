@@ -38,6 +38,15 @@
             this.btnOpenTemplate = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnBoldMini = new System.Windows.Forms.Button();
+            this.btnCenterMini = new System.Windows.Forms.Button();
+            this.btnRigthMini = new System.Windows.Forms.Button();
+            this.btnURLMini = new System.Windows.Forms.Button();
+            this.tbURLMini = new System.Windows.Forms.TextBox();
+            this.tbURLFull = new System.Windows.Forms.TextBox();
+            this.btnURLFull = new System.Windows.Forms.Button();
+            this.btnRigthFull = new System.Windows.Forms.Button();
+            this.btnCenterFull = new System.Windows.Forms.Button();
+            this.btnBoldFull = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtbMiniText
@@ -119,11 +128,97 @@
             this.btnBoldMini.UseVisualStyleBackColor = true;
             this.btnBoldMini.Click += new System.EventHandler(this.btnBoldMini_Click);
             // 
+            // btnCenterMini
+            // 
+            this.btnCenterMini.Location = new System.Drawing.Point(40, 231);
+            this.btnCenterMini.Name = "btnCenterMini";
+            this.btnCenterMini.Size = new System.Drawing.Size(22, 23);
+            this.btnCenterMini.TabIndex = 9;
+            this.btnCenterMini.Text = "C";
+            this.btnCenterMini.UseVisualStyleBackColor = true;
+            // 
+            // btnRigthMini
+            // 
+            this.btnRigthMini.Location = new System.Drawing.Point(68, 231);
+            this.btnRigthMini.Name = "btnRigthMini";
+            this.btnRigthMini.Size = new System.Drawing.Size(22, 23);
+            this.btnRigthMini.TabIndex = 10;
+            this.btnRigthMini.Text = "R";
+            this.btnRigthMini.UseVisualStyleBackColor = true;
+            // 
+            // btnURLMini
+            // 
+            this.btnURLMini.Location = new System.Drawing.Point(96, 231);
+            this.btnURLMini.Name = "btnURLMini";
+            this.btnURLMini.Size = new System.Drawing.Size(22, 23);
+            this.btnURLMini.TabIndex = 11;
+            this.btnURLMini.Text = "U";
+            this.btnURLMini.UseVisualStyleBackColor = true;
+            // 
+            // tbURLMini
+            // 
+            this.tbURLMini.Location = new System.Drawing.Point(124, 233);
+            this.tbURLMini.Name = "tbURLMini";
+            this.tbURLMini.Size = new System.Drawing.Size(267, 20);
+            this.tbURLMini.TabIndex = 12;
+            // 
+            // tbURLFull
+            // 
+            this.tbURLFull.Location = new System.Drawing.Point(124, 460);
+            this.tbURLFull.Name = "tbURLFull";
+            this.tbURLFull.Size = new System.Drawing.Size(267, 20);
+            this.tbURLFull.TabIndex = 17;
+            // 
+            // btnURLFull
+            // 
+            this.btnURLFull.Location = new System.Drawing.Point(96, 458);
+            this.btnURLFull.Name = "btnURLFull";
+            this.btnURLFull.Size = new System.Drawing.Size(22, 23);
+            this.btnURLFull.TabIndex = 16;
+            this.btnURLFull.Text = "U";
+            this.btnURLFull.UseVisualStyleBackColor = true;
+            // 
+            // btnRigthFull
+            // 
+            this.btnRigthFull.Location = new System.Drawing.Point(68, 458);
+            this.btnRigthFull.Name = "btnRigthFull";
+            this.btnRigthFull.Size = new System.Drawing.Size(22, 23);
+            this.btnRigthFull.TabIndex = 15;
+            this.btnRigthFull.Text = "R";
+            this.btnRigthFull.UseVisualStyleBackColor = true;
+            // 
+            // btnCenterFull
+            // 
+            this.btnCenterFull.Location = new System.Drawing.Point(40, 458);
+            this.btnCenterFull.Name = "btnCenterFull";
+            this.btnCenterFull.Size = new System.Drawing.Size(22, 23);
+            this.btnCenterFull.TabIndex = 14;
+            this.btnCenterFull.Text = "C";
+            this.btnCenterFull.UseVisualStyleBackColor = true;
+            // 
+            // btnBoldFull
+            // 
+            this.btnBoldFull.Location = new System.Drawing.Point(12, 458);
+            this.btnBoldFull.Name = "btnBoldFull";
+            this.btnBoldFull.Size = new System.Drawing.Size(22, 23);
+            this.btnBoldFull.TabIndex = 13;
+            this.btnBoldFull.Text = "b";
+            this.btnBoldFull.UseVisualStyleBackColor = true;
+            // 
             // Templates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 478);
+            this.ClientSize = new System.Drawing.Size(774, 490);
+            this.Controls.Add(this.tbURLFull);
+            this.Controls.Add(this.btnURLFull);
+            this.Controls.Add(this.btnRigthFull);
+            this.Controls.Add(this.btnCenterFull);
+            this.Controls.Add(this.btnBoldFull);
+            this.Controls.Add(this.tbURLMini);
+            this.Controls.Add(this.btnURLMini);
+            this.Controls.Add(this.btnRigthMini);
+            this.Controls.Add(this.btnCenterMini);
             this.Controls.Add(this.btnBoldMini);
             this.Controls.Add(this.btnOpenTemplate);
             this.Controls.Add(this.btnSaveTemplate);
@@ -153,5 +248,14 @@
         private System.Windows.Forms.Button btnOpenTemplate;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnBoldMini;
+        private System.Windows.Forms.Button btnCenterMini;
+        private System.Windows.Forms.Button btnRigthMini;
+        private System.Windows.Forms.Button btnURLMini;
+        private System.Windows.Forms.TextBox tbURLMini;
+        private System.Windows.Forms.TextBox tbURLFull;
+        private System.Windows.Forms.Button btnURLFull;
+        private System.Windows.Forms.Button btnRigthFull;
+        private System.Windows.Forms.Button btnCenterFull;
+        private System.Windows.Forms.Button btnBoldFull;
     }
 }
