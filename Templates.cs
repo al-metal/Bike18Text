@@ -17,7 +17,7 @@ namespace Bike18Text
 
         private void btnSaveTemplate_Click(object sender, EventArgs e)
         {
-            if(tbNameTemplate.Text == "")
+            if (tbNameTemplate.Text == "")
             {
                 MessageBox.Show("Не введено имя шаблона!");
                 return;
@@ -87,14 +87,73 @@ namespace Bike18Text
         {
             if (rtbMiniText.SelectedText != null)
             {
-                if (rtbMiniText.SelectionFont.Bold != true)
-                {
-                    rtbMiniText.SelectedText = rtbMiniText.SelectedText.Replace(rtbMiniText.SelectedText, "<b>" + rtbMiniText.SelectedText + "</b>");
-                }
+                rtbMiniText.SelectedText = rtbMiniText.SelectedText.Replace(rtbMiniText.SelectedText, "<b>" + rtbMiniText.SelectedText + "</b>");
             }
         }
 
+        private void btnCenterMini_Click(object sender, EventArgs e)
+        {
+            if (rtbMiniText.SelectedText != null)
+            {
+                rtbMiniText.SelectedText = rtbMiniText.SelectedText.Replace(rtbMiniText.SelectedText, "<align center>" + rtbMiniText.SelectedText + "</align>");
+            }
+        }
 
+        private void btnRigthMini_Click(object sender, EventArgs e)
+        {
+            if (rtbMiniText.SelectedText != null)
+            {
+                rtbMiniText.SelectedText = rtbMiniText.SelectedText.Replace(rtbMiniText.SelectedText, "<align rigth>" + rtbMiniText.SelectedText + "</align>");
+            }
+        }
+
+        private void btnRigthFull_Click(object sender, EventArgs e)
+        {
+            if (rtbFullText.SelectedText != null)
+            {
+                rtbFullText.SelectedText = rtbFullText.SelectedText.Replace(rtbFullText.SelectedText, "<align rigth>" + rtbFullText.SelectedText + "</align>");
+            }
+        }
+
+        private void btnCenterFull_Click(object sender, EventArgs e)
+        {
+            if (rtbFullText.SelectedText != null)
+            {
+                rtbFullText.SelectedText = rtbFullText.SelectedText.Replace(rtbFullText.SelectedText, "<align center>" + rtbFullText.SelectedText + "</align>");
+            }
+        }
+
+        private void btnBoldFull_Click(object sender, EventArgs e)
+        {
+            if (rtbFullText.SelectedText != null)
+            {
+                rtbFullText.SelectedText = rtbFullText.SelectedText.Replace(rtbFullText.SelectedText, "<b>" + rtbFullText.SelectedText + "</b>");
+            }
+        }
+
+        private void btnURLMini_Click(object sender, EventArgs e)
+        {
+            if (rtbMiniText.SelectedText != "" & tbURLMini.Text != "" & tbURLMini.Text.Contains("http://"))
+            {
+                rtbMiniText.SelectedText = "<ссылка на =\"" + tbURLMini.Text + "\">" + rtbMiniText.SelectedText + "</ссылка>";
+            }
+            else
+            {
+                MessageBox.Show("Проверте выделен ли текст и заполнена ли ссылка");
+            }
+        }
+
+        private void btnURLFull_Click(object sender, EventArgs e)
+        {
+            if (rtbFullText.SelectedText != "" & tbURLFull.Text != "" & tbURLFull.Text.Contains("http://"))
+            {
+                rtbFullText.SelectedText = "<ссылка на =\"" + tbURLFull.Text + "\">" + rtbFullText.SelectedText + "</ссылка>";
+            }
+            else
+            {
+                MessageBox.Show("Проверте выделен ли текст и заполнена ли ссылка");
+            }
+        }
 
         public void ShowTemplate(string fileTemplate)
         {
@@ -123,7 +182,6 @@ namespace Bike18Text
             else
                 MessageBox.Show("Некорректный файл, выберите другой");
         }
-
-        
+                
     }
 }

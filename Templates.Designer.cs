@@ -136,6 +136,7 @@
             this.btnCenterMini.TabIndex = 9;
             this.btnCenterMini.Text = "C";
             this.btnCenterMini.UseVisualStyleBackColor = true;
+            this.btnCenterMini.Click += new System.EventHandler(this.btnCenterMini_Click);
             // 
             // btnRigthMini
             // 
@@ -145,6 +146,7 @@
             this.btnRigthMini.TabIndex = 10;
             this.btnRigthMini.Text = "R";
             this.btnRigthMini.UseVisualStyleBackColor = true;
+            this.btnRigthMini.Click += new System.EventHandler(this.btnRigthMini_Click);
             // 
             // btnURLMini
             // 
@@ -154,6 +156,7 @@
             this.btnURLMini.TabIndex = 11;
             this.btnURLMini.Text = "U";
             this.btnURLMini.UseVisualStyleBackColor = true;
+            this.btnURLMini.Click += new System.EventHandler(this.btnURLMini_Click);
             // 
             // tbURLMini
             // 
@@ -177,6 +180,7 @@
             this.btnURLFull.TabIndex = 16;
             this.btnURLFull.Text = "U";
             this.btnURLFull.UseVisualStyleBackColor = true;
+            this.btnURLFull.Click += new System.EventHandler(this.btnURLFull_Click);
             // 
             // btnRigthFull
             // 
@@ -186,6 +190,7 @@
             this.btnRigthFull.TabIndex = 15;
             this.btnRigthFull.Text = "R";
             this.btnRigthFull.UseVisualStyleBackColor = true;
+            this.btnRigthFull.Click += new System.EventHandler(this.btnRigthFull_Click);
             // 
             // btnCenterFull
             // 
@@ -195,6 +200,7 @@
             this.btnCenterFull.TabIndex = 14;
             this.btnCenterFull.Text = "C";
             this.btnCenterFull.UseVisualStyleBackColor = true;
+            this.btnCenterFull.Click += new System.EventHandler(this.btnCenterFull_Click);
             // 
             // btnBoldFull
             // 
@@ -204,6 +210,7 @@
             this.btnBoldFull.TabIndex = 13;
             this.btnBoldFull.Text = "b";
             this.btnBoldFull.UseVisualStyleBackColor = true;
+            this.btnBoldFull.Click += new System.EventHandler(this.btnBoldFull_Click);
             // 
             // Templates
             // 
