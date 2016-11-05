@@ -37,13 +37,14 @@
             this.btnSaveTemplate = new System.Windows.Forms.Button();
             this.btnOpenTemplate = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnBoldMini = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtbMiniText
             // 
             this.rtbMiniText.Location = new System.Drawing.Point(12, 20);
             this.rtbMiniText.Name = "rtbMiniText";
-            this.rtbMiniText.Size = new System.Drawing.Size(379, 214);
+            this.rtbMiniText.Size = new System.Drawing.Size(379, 205);
             this.rtbMiniText.TabIndex = 0;
             this.rtbMiniText.Text = "";
             // 
@@ -51,7 +52,7 @@
             // 
             this.rtbFullText.Location = new System.Drawing.Point(12, 260);
             this.rtbFullText.Name = "rtbFullText";
-            this.rtbFullText.Size = new System.Drawing.Size(379, 206);
+            this.rtbFullText.Size = new System.Drawing.Size(379, 194);
             this.rtbFullText.TabIndex = 1;
             this.rtbFullText.Text = "";
             // 
@@ -108,11 +109,22 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Шаблон|*.template";
             // 
+            // btnBoldMini
+            // 
+            this.btnBoldMini.Location = new System.Drawing.Point(12, 231);
+            this.btnBoldMini.Name = "btnBoldMini";
+            this.btnBoldMini.Size = new System.Drawing.Size(22, 23);
+            this.btnBoldMini.TabIndex = 8;
+            this.btnBoldMini.Text = "b";
+            this.btnBoldMini.UseVisualStyleBackColor = true;
+            this.btnBoldMini.Click += new System.EventHandler(this.btnBoldMini_Click);
+            // 
             // Templates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 478);
+            this.Controls.Add(this.btnBoldMini);
             this.Controls.Add(this.btnOpenTemplate);
             this.Controls.Add(this.btnSaveTemplate);
             this.Controls.Add(this.tbNameTemplate);
@@ -140,5 +152,6 @@
         private System.Windows.Forms.Button btnSaveTemplate;
         private System.Windows.Forms.Button btnOpenTemplate;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnBoldMini;
     }
 }

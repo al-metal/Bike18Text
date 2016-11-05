@@ -83,6 +83,17 @@ namespace Bike18Text
             ShowTemplate(fileTemplate);
         }
 
+        private void btnBoldMini_Click(object sender, EventArgs e)
+        {
+            if (rtbMiniText.SelectedText != null)
+            {
+                if (rtbMiniText.SelectionFont.Bold != true)
+                {
+                    rtbMiniText.SelectedText = rtbMiniText.SelectedText.Replace(rtbMiniText.SelectedText, "<b>" + rtbMiniText.SelectedText + "</b>");
+                }
+            }
+        }
+
         public void ShowTemplate(string fileTemplate)
         {
             string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));
@@ -110,5 +121,7 @@ namespace Bike18Text
             else
                 MessageBox.Show("Некорректный файл, выберите другой");
         }
+
+        
     }
 }
