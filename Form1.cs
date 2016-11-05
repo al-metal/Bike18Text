@@ -311,8 +311,6 @@ namespace Bike18Text
 
         private void updateText(string urlTovar, CookieContainer cookie)
         {
-            if (!urlTovar.Contains("nethouse"))
-                urlTovar = urlTovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
             List<string> tovarList = nethouse.GetProductList(cookie, urlTovar);
 
             if (chbTitle.Checked)
@@ -388,33 +386,7 @@ namespace Bike18Text
                 str = chpu.vozvr(str);
 
             return str;
-        }
-
-        private void altText(string url)
-        {
-            if (!url.Contains("nethouse"))
-                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
-            List<string> tovarList = webRequest.listTovar(url);
-            int countStringTovar = tovarList.Count;
-            int countImages = returnCountImage(countStringTovar);
-
-            if (countImages > 1)
-            {
-                for (int i = 0; countImages - 1 > i; i++)
-                {
-                    string altText = returnAltText();
-                    countStringTovar -= 14;
-                    string idImg = tovarList[countStringTovar].ToString();
-                    webRequest.loadAltTextImage(idImg, altText);
-                }
-            }
-            if (countImages == 1 || countStringTovar <= 40)
-            {
-                string altText = returnAltText();
-                string idImg = tovarList[17].ToString();
-                webRequest.loadAltTextImage(idImg, altText);
-            }
-        }
+        }       
 
         private string returnAltText()
         {
@@ -473,23 +445,8 @@ namespace Bike18Text
             }
             return countImages;
         }
-
-        private string mini_Text_tovar(List<string> tovarList, string url)
-        {
-            string miniText = miniTextTemplate();
-            miniText = AutoCorrect(url, miniText, "", tovarList);
-            miniText = autoCrop(miniText, 1000);
-            return miniText;
-        }
-
-        private string full_Text_tovar(List<string> tovarList, string url)
-        {
-            string fullText = fullTextTemplate();
-            fullText = AutoCorrect(url, fullText, "", tovarList);
-            fullText = autoCrop(fullText, 1000);
-            return fullText;
-        }
-
+        
+        #region//Обработка текста
         private string seoKeywords(List<string> tovarList, string url)
         {
             string seoKeywordsText = tbKeywords.Lines[0];
@@ -514,6 +471,48 @@ namespace Bike18Text
             return seoTitleText;
         }
 
+        private string mini_Text_tovar(List<string> tovarList, string url)
+        {
+            string miniText = miniTextTemplate();
+            miniText = AutoCorrect(url, miniText, "", tovarList);
+            miniText = autoCrop(miniText, 1000);
+            return miniText;
+        }
+
+        private string full_Text_tovar(List<string> tovarList, string url)
+        {
+            string fullText = fullTextTemplate();
+            fullText = AutoCorrect(url, fullText, "", tovarList);
+            fullText = autoCrop(fullText, 1000);
+            return fullText;
+        }
+
+        private void altText(string url)
+        {
+            if (!url.Contains("nethouse"))
+                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+            List<string> tovarList = webRequest.listTovar(url);
+            int countStringTovar = tovarList.Count;
+            int countImages = returnCountImage(countStringTovar);
+
+            if (countImages > 1)
+            {
+                for (int i = 0; countImages - 1 > i; i++)
+                {
+                    string altText = returnAltText();
+                    countStringTovar -= 14;
+                    string idImg = tovarList[countStringTovar].ToString();
+                    webRequest.loadAltTextImage(idImg, altText);
+                }
+            }
+            if (countImages == 1 || countStringTovar <= 40)
+            {
+                string altText = returnAltText();
+                string idImg = tovarList[17].ToString();
+                webRequest.loadAltTextImage(idImg, altText);
+            }
+        }
+
         private string alsoBuyTovars(List<string> tovarList)
         {
             string name = tovarList[4].ToString();
@@ -532,6 +531,7 @@ namespace Bike18Text
             }
             return alsoBuy;
         }
+        #endregion
 
         public string miniTextTemplate()
         {
@@ -553,6 +553,7 @@ namespace Bike18Text
                         string newString = "<span><a target=\"_blank\" href=\"" + url + "\">" + text + "</a></span>";
                         str = str.Replace(urlstring, newString);
                     }
+
                     miniText += "<p>" + str + "</p>";
                 }
             }
