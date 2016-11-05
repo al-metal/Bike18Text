@@ -59,6 +59,19 @@ namespace Bike18Text
             text.Close();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            tbLogin.Text = Properties.Settings.Default.login.ToString();
+            tbPassword.Text = Properties.Settings.Default.password.ToString();
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            ShowTemplate(template);
+            tableLayoutPanel1.Enabled = true;
+        }
+
+        #region///ChekBox
         private void chbSEO_CheckedChanged(object sender, EventArgs e)
         {
             if (chbSEO.Checked)
@@ -89,15 +102,11 @@ namespace Bike18Text
             {
                 chbReplaceFullText.Enabled = false;
                 rtbFullText.Enabled = false;
-                btnFullTextURL.Enabled = false;
-                tbFullTextURL.Enabled = false;
             }
             else
             {
                 chbReplaceFullText.Enabled = true;
                 rtbFullText.Enabled = true;
-                btnFullTextURL.Enabled = true;
-                tbFullTextURL.Enabled = true;
             }
         }
 
@@ -154,15 +163,11 @@ namespace Bike18Text
             if (rtbMiniText.Enabled)
             {
                 rtbMiniText.Enabled = false;
-                btnMiniTextUrl.Enabled = false;
-                tbMiniTextURL.Enabled = false;
                 chbReplaceMiniText.Enabled = false;
             }
             else
             {
                 rtbMiniText.Enabled = true;
-                btnMiniTextUrl.Enabled = true;
-                tbMiniTextURL.Enabled = true;
                 chbReplaceMiniText.Enabled = true;
             }
         }
@@ -170,6 +175,38 @@ namespace Bike18Text
         private void chbDescription_EnabledChanged(object sender, EventArgs e)
         {
         }
+        #endregion
+
+        #region//OpenFileDialog
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void создатьШаблонToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Templates form2 = new Templates();
+            tableLayoutPanel1.Enabled = false;
+            form2.Activate();
+            form2.ShowDialog();
+        }
+
+        private void открытьШаблонToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = pathDirectory;
+            openFileDialog1.ShowDialog();
+            string fileTemplate = openFileDialog1.FileName.ToString();
+
+            if (openFileDialog1.FileName != "openFileDialog1")
+            {
+                Properties.Settings.Default.template = fileTemplate;
+                Properties.Settings.Default.Save();
+
+                ShowTemplate(fileTemplate);
+            }
+
+        }
+        #endregion
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -555,8 +592,7 @@ namespace Bike18Text
             string name = tovarList[4].ToString();
             string price = tovarList[9].ToString();
             string articl = tovarList[6].ToString();
-
-
+            
             string category1 = "";
             string category2 = "";
 
@@ -598,103 +634,6 @@ namespace Bike18Text
             return text;
         }
 
-        private void btnMiniTextBold_Click(object sender, EventArgs e)
-        {
-            FontStyle newFontStyle;
-            Font currentFont = rtbMiniText.SelectionFont;
-            if (rtbMiniText.SelectedText != null)
-            {
-                if (rtbMiniText.SelectionFont.Bold == true)
-                {
-                    newFontStyle = FontStyle.Regular;
-                }
-                else
-                {
-                    newFontStyle = FontStyle.Bold;
-                }
-                rtbMiniText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
-            }
-        }
-
-        private void btnAlignRigth_Click(object sender, EventArgs e)
-        {
-            if (rtbMiniText.SelectedText != null)
-            {
-                if (rtbMiniText.SelectionAlignment == HorizontalAlignment.Right)
-                {
-                    rtbMiniText.SelectionAlignment = HorizontalAlignment.Left;
-                }
-                else
-                {
-                    rtbMiniText.SelectionAlignment = HorizontalAlignment.Right;
-                }
-            }
-        }
-
-        private void btnAlignCenter_Click(object sender, EventArgs e)
-        {
-            if (rtbMiniText.SelectedText != null)
-            {
-                if (rtbMiniText.SelectionAlignment == HorizontalAlignment.Center)
-                {
-                    rtbMiniText.SelectionAlignment = HorizontalAlignment.Left;
-                }
-                else
-                {
-                    rtbMiniText.SelectionAlignment = HorizontalAlignment.Center;
-                }
-            }
-        }
-
-        private void btnMiniTextUrl_Click(object sender, EventArgs e)
-        {
-            if (rtbMiniText.SelectedText != "" & tbMiniTextURL.Text != "" & tbMiniTextURL.Text.Contains("http://"))
-            {
-                rtbMiniText.SelectedText = "<ссылка на =\"" + tbMiniTextURL.Text + "\">" + rtbMiniText.SelectedText + "</ссылка>";
-            }
-            else
-            {
-                MessageBox.Show("Проверте выделен ли текст и заполнена ли ссылка");
-            }
-        }
-
-        private void btnFullTextURL_Click(object sender, EventArgs e)
-        {
-            if (rtbFullText.SelectedText != "" & tbFullTextURL.Text != "" & tbFullTextURL.Text.Contains("http://"))
-            {
-                rtbFullText.SelectedText = "<ссылка на =\"" + tbFullTextURL.Text + "\">" + rtbFullText.SelectedText + "</ссылка>";
-            }
-            else
-            {
-                MessageBox.Show("Проверте выделен ли текст и заполнена ли ссылка");
-            }
-        }
-
-        private void lblName_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText("НАЗВАНИЕ");
-        }
-
-        private void lblCategory2_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText("РАЗДЕЛ2");
-        }
-
-        private void lblCategory1_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText("РАЗДЕЛ1");
-        }
-
-        private void lblPrice_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText("ЦЕНА");
-        }
-
-        private void lblArticl_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText("АРТИКУЛ");
-        }
-
         public string textLogin
         {
             //<--Данная конструкция позволяет получить доступ
@@ -709,46 +648,6 @@ namespace Bike18Text
             //к private элементам формы
             get { return tbPassword.Lines[0].ToString(); }
             //set { tbLogin.Text = value; }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            tbLogin.Text = Properties.Settings.Default.login.ToString();
-            tbPassword.Text = Properties.Settings.Default.password.ToString();
-        }
-
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void создатьШаблонToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Templates form2 = new Templates();
-            tableLayoutPanel1.Enabled = false;
-            form2.Activate();
-            form2.ShowDialog();
-        }
-
-        private void Form1_Activated(object sender, EventArgs e)
-        { 
-            tableLayoutPanel1.Enabled = true;
-        }
-
-        private void открытьШаблонToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.InitialDirectory = pathDirectory;
-            openFileDialog1.ShowDialog();
-            string fileTemplate = openFileDialog1.FileName.ToString();
-
-            if(openFileDialog1.FileName != "openFileDialog1")
-            {
-                Properties.Settings.Default.template = fileTemplate;
-                Properties.Settings.Default.Save();
-
-                ShowTemplate(fileTemplate);
-            }
-                
         }
 
         public void ShowTemplate(string fileTemplate)

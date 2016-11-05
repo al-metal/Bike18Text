@@ -13,6 +13,16 @@ namespace Bike18Text
         public Templates()
         {
             InitializeComponent();
+            if (template == "openFileDialog1")
+                template = "";
+
+            if (template != "")
+                ShowTemplate(template);
+            else
+                MessageBox.Show("Проблема с шаблоном, он потерялся, выберите его в ручную!");
+            string ss = template.Remove(0, (template.LastIndexOf('\\')) + 1);
+            ss = ss.Remove(ss.IndexOf('.'));
+            tbNameTemplate.Text = ss;
         }
 
         private void btnSaveTemplate_Click(object sender, EventArgs e)
@@ -83,6 +93,7 @@ namespace Bike18Text
             ShowTemplate(fileTemplate);
         }
 
+        #region///Кнопки редактирования шаблона
         private void btnBoldMini_Click(object sender, EventArgs e)
         {
             if (rtbMiniText.SelectedText != null)
@@ -154,6 +165,34 @@ namespace Bike18Text
                 MessageBox.Show("Проверте выделен ли текст и заполнена ли ссылка");
             }
         }
+        #endregion
+
+        #region//Копирование ключевых слов в буфер обмена
+        private void lblName_Click_1(object sender, EventArgs e)
+        {
+            Clipboard.SetText("НАЗВАНИЕ");
+        }
+
+        private void lblArticl_Click_1(object sender, EventArgs e)
+        {
+            Clipboard.SetText("АРТИКУЛ");
+        }
+
+        private void lblPrice_Click_1(object sender, EventArgs e)
+        {
+            Clipboard.SetText("ЦЕНА");
+        }
+
+        private void lblCategory1_Click_1(object sender, EventArgs e)
+        {
+            Clipboard.SetText("РАЗДЕЛ1");
+        }
+
+        private void lblCategory2_Click_1(object sender, EventArgs e)
+        {
+            Clipboard.SetText("РАЗДЕЛ2");
+        }
+        #endregion
 
         public void ShowTemplate(string fileTemplate)
         {
@@ -182,6 +221,5 @@ namespace Bike18Text
             else
                 MessageBox.Show("Некорректный файл, выберите другой");
         }
-                
     }
 }

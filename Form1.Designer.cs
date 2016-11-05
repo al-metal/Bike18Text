@@ -49,8 +49,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chbReplaceMiniText = new System.Windows.Forms.CheckBox();
-            this.tbMiniTextURL = new System.Windows.Forms.TextBox();
-            this.btnMiniTextUrl = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -58,19 +56,12 @@
             this.lblLogin = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbLogin = new System.Windows.Forms.TextBox();
-            this.lblCategory2 = new System.Windows.Forms.Label();
-            this.lblCategory1 = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.lblArticl = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.chbUrlArticle = new System.Windows.Forms.CheckBox();
             this.chbAlsoBuy = new System.Windows.Forms.CheckBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.chbReplaceFullText = new System.Windows.Forms.CheckBox();
-            this.tbFullTextURL = new System.Windows.Forms.TextBox();
-            this.btnFullTextURL = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,7 +138,7 @@
             this.rtbMiniText.Location = new System.Drawing.Point(0, 26);
             this.rtbMiniText.Name = "rtbMiniText";
             this.rtbMiniText.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rtbMiniText.Size = new System.Drawing.Size(305, 189);
+            this.rtbMiniText.Size = new System.Drawing.Size(305, 211);
             this.rtbMiniText.TabIndex = 4;
             this.rtbMiniText.Text = "";
             // 
@@ -159,7 +150,7 @@
             this.rtbFullText.Enabled = false;
             this.rtbFullText.Location = new System.Drawing.Point(3, 26);
             this.rtbFullText.Name = "rtbFullText";
-            this.rtbFullText.Size = new System.Drawing.Size(302, 189);
+            this.rtbFullText.Size = new System.Drawing.Size(302, 211);
             this.rtbFullText.TabIndex = 5;
             this.rtbFullText.Text = "";
             // 
@@ -307,8 +298,6 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.chbReplaceMiniText);
-            this.panel3.Controls.Add(this.tbMiniTextURL);
-            this.panel3.Controls.Add(this.btnMiniTextUrl);
             this.panel3.Controls.Add(this.chbMiniText);
             this.panel3.Controls.Add(this.rtbMiniText);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -327,27 +316,6 @@
             this.chbReplaceMiniText.TabIndex = 21;
             this.chbReplaceMiniText.Text = "Заменить описание";
             this.chbReplaceMiniText.UseVisualStyleBackColor = true;
-            // 
-            // tbMiniTextURL
-            // 
-            this.tbMiniTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbMiniTextURL.Enabled = false;
-            this.tbMiniTextURL.Location = new System.Drawing.Point(33, 217);
-            this.tbMiniTextURL.Name = "tbMiniTextURL";
-            this.tbMiniTextURL.Size = new System.Drawing.Size(272, 20);
-            this.tbMiniTextURL.TabIndex = 20;
-            // 
-            // btnMiniTextUrl
-            // 
-            this.btnMiniTextUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMiniTextUrl.Enabled = false;
-            this.btnMiniTextUrl.Location = new System.Drawing.Point(3, 215);
-            this.btnMiniTextUrl.Name = "btnMiniTextUrl";
-            this.btnMiniTextUrl.Size = new System.Drawing.Size(24, 23);
-            this.btnMiniTextUrl.TabIndex = 19;
-            this.btnMiniTextUrl.Text = "U";
-            this.btnMiniTextUrl.UseVisualStyleBackColor = true;
-            this.btnMiniTextUrl.Click += new System.EventHandler(this.btnMiniTextUrl_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -388,11 +356,6 @@
             this.panel5.Controls.Add(this.lblLogin);
             this.panel5.Controls.Add(this.tbPassword);
             this.panel5.Controls.Add(this.tbLogin);
-            this.panel5.Controls.Add(this.lblCategory2);
-            this.panel5.Controls.Add(this.lblCategory1);
-            this.panel5.Controls.Add(this.lblPrice);
-            this.panel5.Controls.Add(this.lblArticl);
-            this.panel5.Controls.Add(this.lblName);
             this.panel5.Controls.Add(this.btnStart);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(641, 249);
@@ -432,61 +395,6 @@
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(135, 20);
             this.tbLogin.TabIndex = 22;
-            // 
-            // lblCategory2
-            // 
-            this.lblCategory2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCategory2.AutoSize = true;
-            this.lblCategory2.Location = new System.Drawing.Point(3, 186);
-            this.lblCategory2.Name = "lblCategory2";
-            this.lblCategory2.Size = new System.Drawing.Size(258, 13);
-            this.lblCategory2.TabIndex = 21;
-            this.lblCategory2.Text = "РАЗДЕЛ2 - раздел в котором находится раздел1";
-            this.lblCategory2.Click += new System.EventHandler(this.lblCategory2_Click);
-            // 
-            // lblCategory1
-            // 
-            this.lblCategory1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCategory1.AutoSize = true;
-            this.lblCategory1.Location = new System.Drawing.Point(3, 163);
-            this.lblCategory1.Name = "lblCategory1";
-            this.lblCategory1.Size = new System.Drawing.Size(245, 13);
-            this.lblCategory1.TabIndex = 20;
-            this.lblCategory1.Text = "РАЗДЕЛ1 - раздел в котором находится товар";
-            this.lblCategory1.Click += new System.EventHandler(this.lblCategory1_Click);
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(3, 141);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(138, 13);
-            this.lblPrice.TabIndex = 19;
-            this.lblPrice.Text = "ЦЕНА - стоимость товара";
-            this.lblPrice.Click += new System.EventHandler(this.lblPrice_Click);
-            // 
-            // lblArticl
-            // 
-            this.lblArticl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblArticl.AutoSize = true;
-            this.lblArticl.Location = new System.Drawing.Point(3, 119);
-            this.lblArticl.Name = "lblArticl";
-            this.lblArticl.Size = new System.Drawing.Size(146, 13);
-            this.lblArticl.TabIndex = 18;
-            this.lblArticl.Text = "АРТИКУЛ - артикул товара";
-            this.lblArticl.Click += new System.EventHandler(this.lblArticl_Click);
-            // 
-            // lblName
-            // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(3, 95);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(187, 13);
-            this.lblName.TabIndex = 17;
-            this.lblName.Text = "НАЗВАНИЕ - наименование товара";
-            this.lblName.Click += new System.EventHandler(this.lblName_Click);
             // 
             // panel4
             // 
@@ -541,8 +449,6 @@
             // panel7
             // 
             this.panel7.Controls.Add(this.chbReplaceFullText);
-            this.panel7.Controls.Add(this.tbFullTextURL);
-            this.panel7.Controls.Add(this.btnFullTextURL);
             this.panel7.Controls.Add(this.rtbFullText);
             this.panel7.Controls.Add(this.chbFullText);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -561,27 +467,6 @@
             this.chbReplaceFullText.TabIndex = 22;
             this.chbReplaceFullText.Text = "Заменить полное описание";
             this.chbReplaceFullText.UseVisualStyleBackColor = true;
-            // 
-            // tbFullTextURL
-            // 
-            this.tbFullTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbFullTextURL.Enabled = false;
-            this.tbFullTextURL.Location = new System.Drawing.Point(33, 217);
-            this.tbFullTextURL.Name = "tbFullTextURL";
-            this.tbFullTextURL.Size = new System.Drawing.Size(272, 20);
-            this.tbFullTextURL.TabIndex = 7;
-            // 
-            // btnFullTextURL
-            // 
-            this.btnFullTextURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFullTextURL.Enabled = false;
-            this.btnFullTextURL.Location = new System.Drawing.Point(3, 215);
-            this.btnFullTextURL.Name = "btnFullTextURL";
-            this.btnFullTextURL.Size = new System.Drawing.Size(24, 23);
-            this.btnFullTextURL.TabIndex = 6;
-            this.btnFullTextURL.Text = "U";
-            this.btnFullTextURL.UseVisualStyleBackColor = true;
-            this.btnFullTextURL.Click += new System.EventHandler(this.btnFullTextURL_Click);
             // 
             // menuStrip1
             // 
@@ -689,16 +574,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button btnMiniTextUrl;
-        private System.Windows.Forms.TextBox tbMiniTextURL;
-        private System.Windows.Forms.TextBox tbFullTextURL;
-        private System.Windows.Forms.Button btnFullTextURL;
         private System.Windows.Forms.CheckBox chbAlsoBuy;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label lblCategory2;
-        private System.Windows.Forms.Label lblCategory1;
-        private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.Label lblArticl;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblLogin;
         public System.Windows.Forms.TextBox tbLogin;
