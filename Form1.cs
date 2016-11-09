@@ -67,7 +67,8 @@ namespace Bike18Text
 
         private void Form1_Activated(object sender, EventArgs e)
         {
-            ShowTemplate(template);
+            if (template != "")
+                ShowTemplate(template);
             tableLayoutPanel1.Enabled = true;
         }
 
@@ -342,7 +343,7 @@ namespace Bike18Text
                 {
                     string miniText = tovarList[7].ToString();
                     miniText += mini_Text_tovar(tovarList, urlTovar);
-                    tovarList[7] = autoCrop(miniText, 1600);
+                    tovarList[7] = autoCrop(miniText, 16000);
                 }
             }
 
@@ -475,7 +476,7 @@ namespace Bike18Text
         {
             string miniText = miniTextTemplate();
             miniText = AutoCorrect(url, miniText, "", tovarList);
-            miniText = autoCrop(miniText, 1000);
+            miniText = autoCrop(miniText, 10000);
             return miniText;
         }
 
@@ -553,7 +554,26 @@ namespace Bike18Text
                         string newString = "<span><a target=\"_blank\" href=\"" + url + "\">" + text + "</a></span>";
                         str = str.Replace(urlstring, newString);
                     }
-
+                    if (str.Contains("<b>"))
+                    {
+                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
+                    }
+                    if (str.Contains("</b>"))
+                    {
+                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
+                    }
+                    if (str.Contains("<align center>"))
+                    {
+                        str = str.Replace("<align center>", "<p style=\"text-align: center;\">");
+                    }
+                    if (str.Contains("<align rigth>"))
+                    {
+                        str = str.Replace("<align rigth>", "<p style=\"text-align: right;\">");
+                    }
+                    if (str.Contains("</align>"))
+                    {
+                        str = str.Replace("</align>", "</p>");
+                    }
                     miniText += "<p>" + str + "</p>";
                 }
             }
@@ -579,6 +599,26 @@ namespace Bike18Text
                         string url = new Regex("(?<=\").*(?=\")").Match(urlstring).ToString();
                         string newString = "<span><a target=\"_blank\" href=\"" + url + "\">" + text + "</a></span>";
                         str = str.Replace(urlstring, newString);
+                    }
+                    if (str.Contains("<b>"))
+                    {
+                        str = str.Replace("<b>", "<span style=\"\"font-weight: bold; font-weight: bold;\"\">");
+                    }
+                    if (str.Contains("</b>"))
+                    {
+                        str = str.Replace("<b>", "<span style=\"\"font-weight: bold; font-weight: bold;\"\">");
+                    }
+                    if(str.Contains("<align center>"))
+                    {
+                        str = str.Replace("<align center>", "<p style=\"text-align: center;\">");
+                    }
+                    if (str.Contains("<align rigth>"))
+                    {
+                        str = str.Replace("<align rigth>", "<p style=\"text-align: rigth;\">");
+                    }
+                    if (str.Contains("</align>"))
+                    {
+                        str = str.Replace("</align>", "</p>");
                     }
                     fullText += "<p>" + str + "</p>";
                 }
