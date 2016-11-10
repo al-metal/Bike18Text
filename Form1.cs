@@ -68,7 +68,11 @@ namespace Bike18Text
         private void Form1_Activated(object sender, EventArgs e)
         {
             if (template != "")
+            {
+                Properties.Settings.Default.template = template;
+                Properties.Settings.Default.Save();
                 ShowTemplate(template);
+            }
             tableLayoutPanel1.Enabled = true;
         }
 
@@ -693,30 +697,41 @@ namespace Bike18Text
 
         public void ShowTemplate(string fileTemplate)
         {
-            string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));
-            if (templateString.Length == 5)
+            if (File.Exists(fileTemplate))
             {
-                rtbFullText.Clear();
-                rtbMiniText.Clear();
+                string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));
+                if (templateString.Length == 5)
+                {
+                    rtbFullText.Clear();
+                    rtbMiniText.Clear();
 
-                tbTitle.Text = templateString[2].ToString().Replace("\\r\\n", "");
-                tbDescription.Text = templateString[3].ToString().Replace("\\r\\n", "");
-                tbKeywords.Text = templateString[4].ToString().Replace("\\r\\n", "");
-                string miniTextString = templateString[0].ToString().Replace("\\r\\n", "†");
-                string[] miniText = miniTextString.Split('†');
-                foreach (string str in miniText)
-                {
-                    rtbMiniText.AppendText(str + "\n");
+                    tbTitle.Text = templateString[2].ToString().Replace("\\r\\n", "");
+                    tbDescription.Text = templateString[3].ToString().Replace("\\r\\n", "");
+                    tbKeywords.Text = templateString[4].ToString().Replace("\\r\\n", "");
+                    string miniTextString = templateString[0].ToString().Replace("\\r\\n", "†");
+                    string[] miniText = miniTextString.Split('†');
+                    foreach (string str in miniText)
+                    {
+                        rtbMiniText.AppendText(str + "\n");
+                    }
+                    string fullTextString = templateString[1].ToString().Replace("\\r\\n", "†");
+                    string[] fullText = fullTextString.Split('†');
+                    foreach (string str in fullText)
+                    {
+                        rtbFullText.AppendText(str + "\n");
+                    }
                 }
-                string fullTextString = templateString[1].ToString().Replace("\\r\\n", "†");
-                string[] fullText = fullTextString.Split('†');
-                foreach (string str in fullText)
+                else
                 {
-                    rtbFullText.AppendText(str + "\n");
+                    MessageBox.Show("Некорректный файл, выберите другой");
+                    return;
                 }
             }
             else
-                MessageBox.Show("Некорректный файл, выберите другой");
+            {
+                Properties.Settings.Default.template = "";
+                Properties.Settings.Default.Save();
+            }
         }
 
         public string specChar(string text)

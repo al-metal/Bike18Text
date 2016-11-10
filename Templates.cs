@@ -20,9 +20,12 @@ namespace Bike18Text
                 ShowTemplate(template);
             else
                 MessageBox.Show("Проблема с шаблоном, он потерялся, выберите его в ручную!");
-            string ss = template.Remove(0, (template.LastIndexOf('\\')) + 1);
-            ss = ss.Remove(ss.IndexOf('.'));
-            tbNameTemplate.Text = ss;
+            if (template != "")
+            {
+                string ss = template.Remove(0, (template.LastIndexOf('\\')) + 1);
+                ss = ss.Remove(ss.IndexOf('.'));
+                tbNameTemplate.Text = ss;
+            }
         }
 
         private void btnSaveTemplate_Click(object sender, EventArgs e)
@@ -50,7 +53,10 @@ namespace Bike18Text
                     if (rtbMiniText.Lines[i] == "")
                         break;
                 }
-                writers.Write(rtbMiniText.Lines[i].ToString() + "\\r\\n");
+                if (count - 1 == i)
+                    writers.Write(rtbMiniText.Lines[i].ToString());
+                else
+                    writers.Write(rtbMiniText.Lines[i].ToString() + "\\r\\n");
             }
             writers.WriteLine("");
             writers.Close();
@@ -64,7 +70,10 @@ namespace Bike18Text
                     if (rtbFullText.Lines[i] == "")
                         break;
                 }
-                writers.Write(rtbFullText.Lines[i].ToString() + "\\r\\n");
+                if(count - 1 == i)
+                    writers.Write(rtbFullText.Lines[i].ToString());
+                else
+                    writers.Write(rtbFullText.Lines[i].ToString() + "\\r\\n");
             }
             writers.WriteLine("");
             writers.Close();
