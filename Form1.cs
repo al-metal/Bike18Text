@@ -213,6 +213,7 @@ namespace Bike18Text
         {
             Properties.Settings.Default.login = tbLogin.Text;
             Properties.Settings.Default.password = tbPassword.Text;
+            Properties.Settings.Default.template = template;
             Properties.Settings.Default.Save();
 
             string article = "";
@@ -331,7 +332,7 @@ namespace Bike18Text
                 {
                     string fullText = tovarList[8].ToString();
                     fullText += full_Text_tovar(tovarList, urlTovar);
-                    tovarList[8] = autoCrop(fullText, 1600);
+                    tovarList[8] = fullText;
                 }
             }
             
@@ -484,7 +485,6 @@ namespace Bike18Text
         {
             string fullText = fullTextTemplate();
             fullText = AutoCorrect(url, fullText, "", tovarList);
-            fullText = autoCrop(fullText, 1000);
             return fullText;
         }
 
@@ -602,19 +602,19 @@ namespace Bike18Text
                     }
                     if (str.Contains("<b>"))
                     {
-                        str = str.Replace("<b>", "<span style=\"\"font-weight: bold; font-weight: bold;\"\">");
+                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
                     }
                     if (str.Contains("</b>"))
                     {
-                        str = str.Replace("<b>", "<span style=\"\"font-weight: bold; font-weight: bold;\"\">");
+                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
                     }
-                    if(str.Contains("<align center>"))
+                    if (str.Contains("<align center>"))
                     {
                         str = str.Replace("<align center>", "<p style=\"text-align: center;\">");
                     }
                     if (str.Contains("<align rigth>"))
                     {
-                        str = str.Replace("<align rigth>", "<p style=\"text-align: rigth;\">");
+                        str = str.Replace("<align rigth>", "<p style=\"text-align: right;\">");
                     }
                     if (str.Contains("</align>"))
                     {
@@ -659,9 +659,9 @@ namespace Bike18Text
                 category1 = boldOpen + category1 + boldClose;
                 category2 = boldOpen + category2 + boldClose;
             }
-
+            text = specChar(text);
             text = text.Replace("НАЗВАНИЕ", name).Replace("ЦЕНА", price).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ1", category1).Replace("РАЗДЕЛ2", category2);
-
+            
             return text;
         }
 
@@ -717,6 +717,13 @@ namespace Bike18Text
             }
             else
                 MessageBox.Show("Некорректный файл, выберите другой");
+        }
+
+        public string specChar(string text)
+        {
+            text = text.Replace("&quot;", "\"").Replace("&amp;", "&").Replace("&lt;", "<").Replace("&gt;", ">").Replace("&laquo;", "«").Replace("&raquo;", "»").Replace("&ndash;", "-").Replace("&mdash;", "-").Replace("&lsquo;", "‘").Replace("&rsquo;", "’").Replace("&sbquo;", "‚").Replace("&ldquo;", "\"").Replace("&rdquo;", "”").Replace("&bdquo;", "„").Replace("&#43;", "+").Replace("&#40;", "(").Replace("&nbsp;", " ").Replace("&#41;", ")").Replace("&amp;quot;", "").Replace("&#039;", "'").Replace("&amp;gt;", ">").Replace("&#43;", "+").Replace("&#40;", "(").Replace("&nbsp;", " ").Replace("&#41;", ")").Replace("&#39;", "'");
+
+            return text;
         }
     }
 }
