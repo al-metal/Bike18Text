@@ -68,6 +68,8 @@
             this.открытьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -471,7 +473,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem});
+            this.файлToolStripMenuItem,
+            this.справкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(959, 24);
@@ -481,8 +484,8 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.создатьШаблонToolStripMenuItem,
             this.открытьШаблонToolStripMenuItem,
+            this.создатьШаблонToolStripMenuItem,
             this.tsmExit});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
@@ -491,8 +494,8 @@
             // создатьШаблонToolStripMenuItem
             // 
             this.создатьШаблонToolStripMenuItem.Name = "создатьШаблонToolStripMenuItem";
-            this.создатьШаблонToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.создатьШаблонToolStripMenuItem.Text = "Создать шаблон";
+            this.создатьШаблонToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.создатьШаблонToolStripMenuItem.Text = "Работа с шаблоном";
             this.создатьШаблонToolStripMenuItem.Click += new System.EventHandler(this.создатьШаблонToolStripMenuItem_Click);
             // 
             // открытьШаблонToolStripMenuItem
@@ -514,6 +517,21 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Шаблон|*.template";
             this.openFileDialog1.InitialDirectory = "Environment.CurrentDirectory";
+            // 
+            // справкаToolStripMenuItem
+            // 
+            this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.оПрограммеToolStripMenuItem});
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.справкаToolStripMenuItem.Text = "Справка";
+            // 
+            // оПрограммеToolStripMenuItem
+            // 
+            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -590,6 +608,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmExit;
         private System.Windows.Forms.ToolStripMenuItem открытьШаблонToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
     }
 }
 

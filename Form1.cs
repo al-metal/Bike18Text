@@ -740,5 +740,10 @@ namespace Bike18Text
 
             return text;
         }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Разработка программы: al-metal\ne-mail: al-metal@bk.ru", "О программе");
+        }
     }
 }

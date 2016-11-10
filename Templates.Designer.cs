@@ -52,13 +52,17 @@
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblArticl = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // rtbMiniText
             // 
             this.rtbMiniText.Location = new System.Drawing.Point(12, 20);
             this.rtbMiniText.Name = "rtbMiniText";
-            this.rtbMiniText.Size = new System.Drawing.Size(379, 205);
+            this.rtbMiniText.Size = new System.Drawing.Size(607, 205);
             this.rtbMiniText.TabIndex = 0;
             this.rtbMiniText.Text = "";
             // 
@@ -66,41 +70,41 @@
             // 
             this.rtbFullText.Location = new System.Drawing.Point(12, 260);
             this.rtbFullText.Name = "rtbFullText";
-            this.rtbFullText.Size = new System.Drawing.Size(379, 194);
+            this.rtbFullText.Size = new System.Drawing.Size(607, 194);
             this.rtbFullText.TabIndex = 1;
             this.rtbFullText.Text = "";
             // 
             // tbTitle
             // 
-            this.tbTitle.Location = new System.Drawing.Point(397, 20);
+            this.tbTitle.Location = new System.Drawing.Point(628, 24);
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(365, 20);
             this.tbTitle.TabIndex = 2;
             // 
             // tbDescription
             // 
-            this.tbDescription.Location = new System.Drawing.Point(397, 66);
+            this.tbDescription.Location = new System.Drawing.Point(628, 70);
             this.tbDescription.Name = "tbDescription";
             this.tbDescription.Size = new System.Drawing.Size(365, 20);
             this.tbDescription.TabIndex = 3;
             // 
             // tbKeywords
             // 
-            this.tbKeywords.Location = new System.Drawing.Point(397, 107);
+            this.tbKeywords.Location = new System.Drawing.Point(628, 111);
             this.tbKeywords.Name = "tbKeywords";
             this.tbKeywords.Size = new System.Drawing.Size(365, 20);
             this.tbKeywords.TabIndex = 4;
             // 
             // tbNameTemplate
             // 
-            this.tbNameTemplate.Location = new System.Drawing.Point(397, 147);
+            this.tbNameTemplate.Location = new System.Drawing.Point(628, 151);
             this.tbNameTemplate.Name = "tbNameTemplate";
             this.tbNameTemplate.Size = new System.Drawing.Size(192, 20);
             this.tbNameTemplate.TabIndex = 5;
             // 
             // btnSaveTemplate
             // 
-            this.btnSaveTemplate.Location = new System.Drawing.Point(595, 147);
+            this.btnSaveTemplate.Location = new System.Drawing.Point(826, 151);
             this.btnSaveTemplate.Name = "btnSaveTemplate";
             this.btnSaveTemplate.Size = new System.Drawing.Size(167, 20);
             this.btnSaveTemplate.TabIndex = 6;
@@ -110,7 +114,7 @@
             // 
             // btnOpenTemplate
             // 
-            this.btnOpenTemplate.Location = new System.Drawing.Point(397, 173);
+            this.btnOpenTemplate.Location = new System.Drawing.Point(628, 177);
             this.btnOpenTemplate.Name = "btnOpenTemplate";
             this.btnOpenTemplate.Size = new System.Drawing.Size(192, 23);
             this.btnOpenTemplate.TabIndex = 7;
@@ -167,14 +171,14 @@
             // 
             this.tbURLMini.Location = new System.Drawing.Point(124, 233);
             this.tbURLMini.Name = "tbURLMini";
-            this.tbURLMini.Size = new System.Drawing.Size(267, 20);
+            this.tbURLMini.Size = new System.Drawing.Size(495, 20);
             this.tbURLMini.TabIndex = 12;
             // 
             // tbURLFull
             // 
             this.tbURLFull.Location = new System.Drawing.Point(124, 460);
             this.tbURLFull.Name = "tbURLFull";
-            this.tbURLFull.Size = new System.Drawing.Size(267, 20);
+            this.tbURLFull.Size = new System.Drawing.Size(495, 20);
             this.tbURLFull.TabIndex = 17;
             // 
             // btnURLFull
@@ -221,7 +225,7 @@
             // 
             this.lblCategory2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCategory2.AutoSize = true;
-            this.lblCategory2.Location = new System.Drawing.Point(397, 303);
+            this.lblCategory2.Location = new System.Drawing.Point(628, 307);
             this.lblCategory2.Name = "lblCategory2";
             this.lblCategory2.Size = new System.Drawing.Size(258, 13);
             this.lblCategory2.TabIndex = 26;
@@ -232,7 +236,7 @@
             // 
             this.lblCategory1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCategory1.AutoSize = true;
-            this.lblCategory1.Location = new System.Drawing.Point(397, 280);
+            this.lblCategory1.Location = new System.Drawing.Point(628, 284);
             this.lblCategory1.Name = "lblCategory1";
             this.lblCategory1.Size = new System.Drawing.Size(245, 13);
             this.lblCategory1.TabIndex = 25;
@@ -243,7 +247,7 @@
             // 
             this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(397, 258);
+            this.lblPrice.Location = new System.Drawing.Point(628, 262);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(138, 13);
             this.lblPrice.TabIndex = 24;
@@ -254,7 +258,7 @@
             // 
             this.lblArticl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblArticl.AutoSize = true;
-            this.lblArticl.Location = new System.Drawing.Point(397, 236);
+            this.lblArticl.Location = new System.Drawing.Point(628, 240);
             this.lblArticl.Name = "lblArticl";
             this.lblArticl.Size = new System.Drawing.Size(146, 13);
             this.lblArticl.TabIndex = 23;
@@ -265,18 +269,58 @@
             // 
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(397, 212);
+            this.lblName.Location = new System.Drawing.Point(628, 216);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(187, 13);
             this.lblName.TabIndex = 22;
             this.lblName.Text = "НАЗВАНИЕ - наименование товара";
             this.lblName.Click += new System.EventHandler(this.lblName_Click_1);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(628, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Ключевые слова";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(625, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Описание";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(625, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Заголовок";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(628, 135);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(104, 13);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "Название шаблона";
+            // 
             // Templates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 490);
+            this.ClientSize = new System.Drawing.Size(1005, 490);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCategory2);
             this.Controls.Add(this.lblCategory1);
             this.Controls.Add(this.lblPrice);
@@ -302,7 +346,7 @@
             this.Controls.Add(this.rtbMiniText);
             this.Name = "Templates";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Создание шаблона";
+            this.Text = "Работа с шаблоном";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,5 +378,9 @@
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblArticl;
         private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }
