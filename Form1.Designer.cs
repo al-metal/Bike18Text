@@ -64,12 +64,12 @@
             this.chbReplaceFullText = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.создатьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.создатьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -491,6 +491,13 @@
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
+            // открытьШаблонToolStripMenuItem
+            // 
+            this.открытьШаблонToolStripMenuItem.Name = "открытьШаблонToolStripMenuItem";
+            this.открытьШаблонToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.открытьШаблонToolStripMenuItem.Text = "Открыть шаблон";
+            this.открытьШаблонToolStripMenuItem.Click += new System.EventHandler(this.открытьШаблонToolStripMenuItem_Click);
+            // 
             // создатьШаблонToolStripMenuItem
             // 
             this.создатьШаблонToolStripMenuItem.Name = "создатьШаблонToolStripMenuItem";
@@ -498,25 +505,12 @@
             this.создатьШаблонToolStripMenuItem.Text = "Работа с шаблоном";
             this.создатьШаблонToolStripMenuItem.Click += new System.EventHandler(this.создатьШаблонToolStripMenuItem_Click);
             // 
-            // открытьШаблонToolStripMenuItem
-            // 
-            this.открытьШаблонToolStripMenuItem.Name = "открытьШаблонToolStripMenuItem";
-            this.открытьШаблонToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.открытьШаблонToolStripMenuItem.Text = "Открыть шаблон";
-            this.открытьШаблонToolStripMenuItem.Click += new System.EventHandler(this.открытьШаблонToolStripMenuItem_Click);
-            // 
             // tsmExit
             // 
             this.tsmExit.Name = "tsmExit";
-            this.tsmExit.Size = new System.Drawing.Size(169, 22);
+            this.tsmExit.Size = new System.Drawing.Size(185, 22);
             this.tsmExit.Text = "Выход";
             this.tsmExit.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Шаблон|*.template";
-            this.openFileDialog1.InitialDirectory = "Environment.CurrentDirectory";
             // 
             // справкаToolStripMenuItem
             // 
@@ -529,9 +523,15 @@
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Шаблон|*.template";
+            this.openFileDialog1.InitialDirectory = "Environment.CurrentDirectory";
             // 
             // Form1
             // 
