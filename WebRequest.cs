@@ -35,14 +35,12 @@ namespace web
         {
             HttpWebResponse res = null;
             HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(url);
-            //req.Timeout = 10000;
             req.Proxy = null;
-            //HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
             res = (HttpWebResponse)req.GetResponse();
             StreamReader ressr = new StreamReader(res.GetResponseStream());
-            String otv = ressr.ReadToEnd();
+            string otv = ressr.ReadToEnd();
             res.GetResponseStream().Close();
             req.GetResponse().Close();
             res.Close();
@@ -326,6 +324,7 @@ namespace web
             HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
             StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
             res1.Close();
+            ressr1.Close();
         }
 
         internal void deleteProduct(List<string> getProduct)
@@ -763,7 +762,7 @@ namespace web
                 listTovar.Add(isCustom);        //38
                 listTovar.Add(reklama);         //39
 
-                for(int i = 1; timestamp.Count > i; i++)
+                for(int i = 0; ext.Count > i; i++)
                 {
                     listTovar.Add(avatarId[i].ToString());        //40 54 68 82 96 110 124 138 152 166 180 194 208
                     listTovar.Add(timestamp[i].ToString());       //41
