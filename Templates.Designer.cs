@@ -56,6 +56,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.rtbAltText = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // rtbMiniText
@@ -312,11 +313,20 @@
             this.label4.TabIndex = 30;
             this.label4.Text = "Название шаблона";
             // 
+            // rtbAltText
+            // 
+            this.rtbAltText.Location = new System.Drawing.Point(628, 323);
+            this.rtbAltText.Name = "rtbAltText";
+            this.rtbAltText.Size = new System.Drawing.Size(365, 158);
+            this.rtbAltText.TabIndex = 31;
+            this.rtbAltText.Text = "";
+            // 
             // Templates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 490);
+            this.Controls.Add(this.rtbAltText);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -382,5 +392,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RichTextBox rtbAltText;
     }
 }

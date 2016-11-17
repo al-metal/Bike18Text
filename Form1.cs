@@ -38,10 +38,7 @@ namespace Bike18Text
             {
                 Directory.CreateDirectory("files");
             }
-            if (!File.Exists("files\\altText"))
-            {
-                File.Create("files\\altText");
-            }
+            
             if (template == "openFileDialog1")
                 template = "";
 
@@ -49,14 +46,6 @@ namespace Bike18Text
                 ShowTemplate(template);
             else
                 MessageBox.Show("Проблема с шаблоном, он потерялся, выберите его в ручную!");
-
-            StreamReader text = new StreamReader("files\\altText", Encoding.GetEncoding("windows-1251"));
-            while (!text.EndOfStream)
-            {
-                string str = text.ReadLine();
-                rtbAltText.AppendText(str + "\n");
-            }
-            text.Close();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -687,31 +676,16 @@ namespace Bike18Text
             return text;
         }
 
-        //public string textLogin
-        //{
-        //    //<--Данная конструкция позволяет получить доступ
-        //    //к private элементам формы
-        //    get { return tbLogin.Lines[0].ToString(); }
-        //    //set { tbLogin.Text = value; }
-        //}
-
-        //public string textPass
-        //{
-        //    //<--Данная конструкция позволяет получить доступ
-        //    //к private элементам формы
-        //    get { return tbPassword.Lines[0].ToString(); }
-        //    //set { tbLogin.Text = value; }
-        //}
-
         public void ShowTemplate(string fileTemplate)
         {
             if (File.Exists(fileTemplate))
             {
                 string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));
-                if (templateString.Length == 5)
+                if (templateString.Length == 6)
                 {
                     rtbFullText.Clear();
                     rtbMiniText.Clear();
+                    rtbAltText.Clear();
 
                     tbTitle.Text = templateString[2].ToString().Replace("\\r\\n", "");
                     tbDescription.Text = templateString[3].ToString().Replace("\\r\\n", "");
@@ -727,6 +701,12 @@ namespace Bike18Text
                     foreach (string str in fullText)
                     {
                         rtbFullText.AppendText(str + "\n");
+                    }
+                    string altTextString = templateString[5].ToString().Replace("\\r\\n", "†");
+                    string[] altText = altTextString.Split('†');
+                    foreach (string str in altText)
+                    {
+                        rtbAltText.AppendText(str + "\n");
                     }
                 }
                 else

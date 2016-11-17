@@ -39,9 +39,7 @@ namespace Bike18Text
             string nameFile = "files\\" + tbNameTemplate.Text + ".template";
 
             if (File.Exists(nameFile))
-            {
                 File.Delete(nameFile);
-            }
 
             int count = 0;
             StreamWriter writers = new StreamWriter(nameFile, true, Encoding.GetEncoding(1251));
@@ -88,6 +86,23 @@ namespace Bike18Text
 
             writers = new StreamWriter(nameFile, true, Encoding.GetEncoding(1251));
             writers.WriteLine(tbKeywords.Lines[0] + "\\r\\n");
+            writers.Close();
+
+            writers = new StreamWriter(nameFile, true, Encoding.GetEncoding(1251));
+            count = rtbAltText.Lines.Length;
+            for (int i = 0; rtbAltText.Lines.Length > i; i++)
+            {
+                if (count - 1 == i)
+                {
+                    if (rtbAltText.Lines[i] == "")
+                        break;
+                }
+                if (count - 1 == i)
+                    writers.Write(rtbAltText.Lines[i].ToString());
+                else
+                    writers.Write(rtbAltText.Lines[i].ToString() + "\\r\\n");
+            }
+            writers.WriteLine("");
             writers.Close();
 
             MessageBox.Show("OK");
@@ -206,7 +221,7 @@ namespace Bike18Text
         public void ShowTemplate(string fileTemplate)
         {
             string[] templateString = File.ReadAllLines(fileTemplate, Encoding.GetEncoding(1251));
-            if (templateString.Length == 5)
+            if (templateString.Length == 6)
             {
                 rtbFullText.Clear();
                 rtbMiniText.Clear();
@@ -225,6 +240,12 @@ namespace Bike18Text
                 foreach (string str in fullText)
                 {
                     rtbFullText.AppendText(str + "\n");
+                }
+                string altTextString = templateString[5].ToString().Replace("\\r\\n", "†");
+                string[] altText = altTextString.Split('†');
+                foreach (string str in altText)
+                {
+                    rtbAltText.AppendText(str + "\n");
                 }
             }
             else
