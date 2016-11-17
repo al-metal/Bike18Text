@@ -19,13 +19,14 @@ namespace web
         {
             HttpWebResponse res = null;
             HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(url);
-           // req.Proxy = null;
+            req.Proxy = null;
             //HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
             res = (HttpWebResponse)req.GetResponse();
             StreamReader ressr = new StreamReader(res.GetResponseStream(), Encoding.GetEncoding(1251));
             String otv = ressr.ReadToEnd();
+            res.Close();
 
             return otv;
         }
@@ -35,7 +36,7 @@ namespace web
             HttpWebResponse res = null;
             HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(url);
             //req.Timeout = 10000;
-            //req.Proxy = null;
+            req.Proxy = null;
             //HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
@@ -44,6 +45,7 @@ namespace web
             String otv = ressr.ReadToEnd();
             res.GetResponseStream().Close();
             req.GetResponse().Close();
+            res.Close();
 
             return otv;
         }
@@ -51,29 +53,20 @@ namespace web
         public string PostRequest(CookieContainer cookie, string nethouseTovar)
         {
             string otv = null;
-            do
-            {
+
                 HttpWebResponse res = null;
 
-                HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(nethouseTovar);
-                //req.Proxy = null;
+                HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(nethouseTovar);
+                req.Proxy = null;
                 req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
                 req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
                 req.Method = "POST";
                 req.ContentType = "application/x-www-form-urlencoded";
                 req.CookieContainer = cookie;
-                try
-                {
                     res = (HttpWebResponse)req.GetResponse();
                     StreamReader ressr = new StreamReader(res.GetResponseStream());
                     otv = ressr.ReadToEnd();
-                }
-                catch (WebException e)
-                {
-                    //file.fileWriter("err", e.Data["DateTimeInfo"] + " " + nethouseTovar);
-                    break;
-                }
-            } while (otv == null);
+            res.Close();
             return otv;
         }
 

@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Bike18
 {
@@ -35,7 +36,7 @@ namespace Bike18
 
         public List<string> GetProductList(CookieContainer cookie, string urlTovar)
         {
-            if(!urlTovar.Contains("nethouse"))
+            if (!urlTovar.Contains("nethouse"))
                 urlTovar = urlTovar.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             List<string> listTovar = new List<string>();
@@ -255,7 +256,7 @@ namespace Bike18
         public string SaveTovar(CookieContainer cookie, List<string> getProduct)
         {
             string otv = "";
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/catalog/saveproduct");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://bike18.nethouse.ru/api/catalog/saveproduct");
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
             req.Method = "POST";
@@ -273,16 +274,11 @@ namespace Bike18
             Stream stre = req.GetRequestStream();
             stre.Write(ms, 0, ms.Length);
             stre.Close();
-            try
-            {
-                HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
-                StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
-                otv = ressr1.ReadToEnd();
-            }
-            catch
-            {
+            HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
+            StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
+            otv = ressr1.ReadToEnd();
+            res1.Close();
 
-            }
             return otv;
         }
 
