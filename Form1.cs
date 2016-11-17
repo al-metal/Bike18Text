@@ -690,24 +690,39 @@ namespace Bike18Text
                     tbTitle.Text = templateString[2].ToString().Replace("\\r\\n", "");
                     tbDescription.Text = templateString[3].ToString().Replace("\\r\\n", "");
                     tbKeywords.Text = templateString[4].ToString().Replace("\\r\\n", "");
+
                     string miniTextString = templateString[0].ToString().Replace("\\r\\n", "†");
+                    miniTextString = miniTextString.TrimEnd('†');
                     string[] miniText = miniTextString.Split('†');
                     foreach (string str in miniText)
                     {
                         rtbMiniText.AppendText(str + "\n");
                     }
+
                     string fullTextString = templateString[1].ToString().Replace("\\r\\n", "†");
+                    fullTextString = fullTextString.TrimEnd('†');
                     string[] fullText = fullTextString.Split('†');
                     foreach (string str in fullText)
                     {
                         rtbFullText.AppendText(str + "\n");
                     }
                     string altTextString = templateString[5].ToString().Replace("\\r\\n", "†");
+                    altTextString = altTextString.TrimEnd('†');
                     string[] altText = altTextString.Split('†');
                     foreach (string str in altText)
                     {
                         rtbAltText.AppendText(str + "\n");
                     }
+                    if (File.Exists(fileTemplate))
+                        File.Delete(fileTemplate);
+                    StreamWriter writers = new StreamWriter(fileTemplate, true, Encoding.GetEncoding(1251));
+                    writers.WriteLine(miniTextString.Replace("†", "\\r\\n"));
+                    writers.WriteLine(fullTextString.Replace("†", "\\r\\n"));
+                    writers.WriteLine(tbTitle.Text);
+                    writers.WriteLine(tbDescription.Text);
+                    writers.WriteLine(tbKeywords.Text);
+                    writers.WriteLine(altTextString.Replace("†", "\\r\\n"));
+                    writers.Close();
                 }
                 else
                 {
