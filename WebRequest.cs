@@ -309,13 +309,13 @@ namespace web
             StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
         } // Удалить
 
-        internal void loadAltTextImage(string idImg, string altText)
+        internal void loadAltTextImage(CookieContainer cookie, string idImg, string altText)
         {
-            CookieContainer cookie = webCookieBike18();
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/images/savealt");
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://bike18.nethouse.ru/api/images/savealt");
             req.Accept = "application/json, text/plain, */*";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
             req.Method = "POST";
+            req.Proxy = null;
             req.ContentType = "application/x-www-form-urlencoded";
             req.CookieContainer = cookie;
             byte[] ms = Encoding.GetEncoding("utf-8").GetBytes("id=" + idImg + "&alt=" + altText);
@@ -325,6 +325,7 @@ namespace web
             stre.Close();
             HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
             StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
+            res1.Close();
         }
 
         internal void deleteProduct(List<string> getProduct)
@@ -647,11 +648,13 @@ namespace web
             return otv;
         }
 
-        internal List<string> listTovar(string url)
+        internal List<string> listTovarImages(CookieContainer cookie, string url)
         {
             WebRequest webRequest = new WebRequest();
-            CookieContainer cookie = webRequest.webCookieBike18();
             List<string> listTovar = new List<string>();
+
+            if (!url.Contains("nethouse"))
+                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
             string otv = webRequest.PostRequest(cookie, url);
             if (otv != null)
@@ -762,7 +765,7 @@ namespace web
 
                 for(int i = 1; timestamp.Count > i; i++)
                 {
-                    listTovar.Add(avatarId[i].ToString());        //40 54 68 82 96 110 124 137 151 165
+                    listTovar.Add(avatarId[i].ToString());        //40 54 68 82 96 110 124 138 152 166 180 194 208
                     listTovar.Add(timestamp[i].ToString());       //41
                     listTovar.Add(type[i].ToString());            //42
                     listTovar.Add(name[i].ToString());            //43
@@ -773,7 +776,7 @@ namespace web
                     listTovar.Add(srimg[i].ToString());           //48
                     listTovar.Add(minimg[i].ToString());          //49
                     listTovar.Add(filesize[i].ToString());        //50
-                    listTovar.Add(alt[i].ToString());             //51 65 79 93 107 121 135 149 163 177
+                    listTovar.Add(alt[i].ToString());             //51 65 79 93 107 121 135 149 163 177 191 205 219 233
                     listTovar.Add(isvisibleonmain[i].ToString()); //52
                     listTovar.Add(avatarurl[i].ToString());       //53
                 }
