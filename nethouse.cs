@@ -31,6 +31,7 @@ namespace Bike18
             stre.Write(ms, 0, ms.Length);
             stre.Close();
             HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+            res.Close();
             return cookie;
         }
 
@@ -278,6 +279,7 @@ namespace Bike18
             StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
             otv = ressr1.ReadToEnd();
             res1.Close();
+            ressr1.Close();
 
             return otv;
         }
