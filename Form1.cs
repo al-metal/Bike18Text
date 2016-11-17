@@ -21,7 +21,7 @@ namespace Bike18Text
         web.WebRequest webRequest = new web.WebRequest();
         CHPU chpu = new CHPU();
         nethouse nethouse = new nethouse();
-        
+
         string otv = null;
         string pathDirectory = Environment.CurrentDirectory + "\\files";
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
@@ -223,7 +223,7 @@ namespace Bike18Text
             string article = "";
             CookieContainer cookie = nethouse.CookieNethouse(tbLogin.Text, tbPassword.Text);
 
-            if(cookie.Count != 4)
+            if (cookie.Count != 4)
             {
                 MessageBox.Show("Логин или пароль введены не верно!");
                 return;
@@ -257,7 +257,7 @@ namespace Bike18Text
                 }
             }
 
-            if(categoryUrl.Count != 0)
+            if (categoryUrl.Count != 0)
             {
                 for (int i = 0; categoryUrl.Count > i; i++)
                 {
@@ -339,7 +339,7 @@ namespace Bike18Text
                     tovarList[8] = fullText;
                 }
             }
-            
+
             if (chbMiniText.Checked)
             {
                 if (chbReplaceMiniText.Checked)
@@ -353,7 +353,7 @@ namespace Bike18Text
             }
 
             if (chbAltText.Checked)
-                altText(urlTovar);
+                altText(cookie, urlTovar);
 
             if (chbAlsoBuy.Checked)
                 tovarList[42] = alsoBuyTovars(tovarList);
@@ -392,7 +392,7 @@ namespace Bike18Text
                 str = chpu.vozvr(str);
 
             return str;
-        }       
+        }
 
         private string returnAltText()
         {
@@ -415,7 +415,7 @@ namespace Bike18Text
             int countImages = 0;
             switch (countStringTovar)
             {
-                case 39:
+                case 40:
                     countImages = 1;
                     break;
                 case 54:
@@ -448,10 +448,19 @@ namespace Bike18Text
                 case 180:
                     countImages = 11;
                     break;
+                case 194:
+                    countImages = 12;
+                    break;
+                case 208:
+                    countImages = 13;
+                    break;
+                case 222:
+                    countImages = 14;
+                    break;
             }
             return countImages;
         }
-        
+
         #region//Обработка текста
         private string seoKeywords(List<string> tovarList, string url)
         {
@@ -492,30 +501,29 @@ namespace Bike18Text
             return fullText;
         }
 
-        private void altText(string url)
+        private void altText(CookieContainer cookie, string url)
         {
-            if (!url.Contains("nethouse"))
-                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
-            List<string> tovarList = webRequest.listTovar(url);
+            List<string> tovarList = webRequest.listTovarImages(cookie, url);
             int countStringTovar = tovarList.Count;
             int countImages = returnCountImage(countStringTovar);
+            string altText = "";
+            string idImg = "";
 
             if (countImages > 1)
             {
                 for (int i = 0; countImages - 1 > i; i++)
                 {
-                    string altText = returnAltText();
+                    altText = returnAltText();
+                    altText = AutoCorrect(url, altText, "seo", tovarList);
                     countStringTovar -= 14;
-                    string idImg = tovarList[countStringTovar].ToString();
-                    webRequest.loadAltTextImage(idImg, altText);
+                    idImg = tovarList[countStringTovar].ToString();
+                    webRequest.loadAltTextImage(cookie, idImg, altText);
                 }
             }
-            if (countImages == 1 || countStringTovar <= 40)
-            {
-                string altText = returnAltText();
-                string idImg = tovarList[17].ToString();
-                webRequest.loadAltTextImage(idImg, altText);
-            }
+            altText = returnAltText();
+            altText = AutoCorrect(url, altText, "seo", tovarList);
+            idImg = tovarList[17].ToString();
+            webRequest.loadAltTextImage(cookie, idImg, altText);
         }
 
         private string alsoBuyTovars(List<string> tovarList)
@@ -637,7 +645,7 @@ namespace Bike18Text
             string name = tovarList[4].ToString();
             string price = tovarList[9].ToString();
             string articl = tovarList[6].ToString();
-            
+
             string category1 = "";
             string category2 = "";
 
@@ -665,7 +673,7 @@ namespace Bike18Text
             }
             text = specChar(text);
             text = text.Replace("НАЗВАНИЕ", name).Replace("ЦЕНА", price).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ1", category1).Replace("РАЗДЕЛ2", category2);
-            
+
             return text;
         }
 
