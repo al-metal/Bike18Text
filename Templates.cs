@@ -105,7 +105,7 @@ namespace Bike18Text
             writers.WriteLine("");
             writers.Close();
 
-            MessageBox.Show("OK");
+            MessageBox.Show("Сохранение шаблона прошло успешно", "Внимание!");
         }
 
         private void btnOpenTemplate_Click(object sender, EventArgs e)

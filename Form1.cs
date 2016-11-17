@@ -301,7 +301,7 @@ namespace Bike18Text
                     }
                 }
             }
-            MessageBox.Show("Готово!");
+            MessageBox.Show("Обновление товара прошло успешно!", "Внимание");
         }
 
         private void updateText(string urlTovar, CookieContainer cookie)
