@@ -373,7 +373,7 @@ namespace Bike18Text
                         s = s + g;
                         g++;
                         tovarList[1] = s;
-                        otv = webRequest.saveTovar(tovarList);
+                        otv = nethouse.SaveTovar(cookie, tovarList);
                     }
                     while (otv.Contains("errors"));
                 }
@@ -687,21 +687,21 @@ namespace Bike18Text
             return text;
         }
 
-        public string textLogin
-        {
-            //<--Данная конструкция позволяет получить доступ
-            //к private элементам формы
-            get { return tbLogin.Lines[0].ToString(); }
-            //set { tbLogin.Text = value; }
-        }
+        //public string textLogin
+        //{
+        //    //<--Данная конструкция позволяет получить доступ
+        //    //к private элементам формы
+        //    get { return tbLogin.Lines[0].ToString(); }
+        //    //set { tbLogin.Text = value; }
+        //}
 
-        public string textPass
-        {
-            //<--Данная конструкция позволяет получить доступ
-            //к private элементам формы
-            get { return tbPassword.Lines[0].ToString(); }
-            //set { tbLogin.Text = value; }
-        }
+        //public string textPass
+        //{
+        //    //<--Данная конструкция позволяет получить доступ
+        //    //к private элементам формы
+        //    get { return tbPassword.Lines[0].ToString(); }
+        //    //set { tbLogin.Text = value; }
+        //}
 
         public void ShowTemplate(string fileTemplate)
         {
