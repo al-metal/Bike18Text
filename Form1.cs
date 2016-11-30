@@ -1,4 +1,5 @@
 ﻿using Bike18;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -747,6 +748,43 @@ namespace Bike18Text
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Разработка программы: al-metal\ne-mail: al-metal@bk.ru", "О программе");
+        }
+
+        private void btnLoadURLs_Click(object sender, EventArgs e)
+        {
+            ofdLoadURLs.ShowDialog();
+
+            string fileUrls = ofdLoadURLs.FileName.ToString();
+
+            if (ofdLoadURLs.FileName != "openFileDialog1" & ofdLoadURLs.FileName != "")
+            {
+                label4.Visible = true;
+                label5.Visible = true;
+                lblUrlAllCount.Visible = true;
+                lblUrlCount.Visible = true;
+
+                List<string> urls = new List<string>();
+                List<string> urlsBad = new List<string>();
+
+                FileInfo file = new FileInfo(fileUrls);
+                ExcelPackage p = new ExcelPackage(file);
+
+                ExcelWorksheet w = p.Workbook.Worksheets[1];
+                int q = w.Dimension.Rows;
+                btnLoadURLs.Text = "Идет разбор списка...";
+                for (int i = 2; q > i; i++)
+                {
+                    string str = w.Cells[i, 2].Value.ToString();
+                    if (str.Contains("category"))
+                        urlsBad.Add(str);
+                    else
+                        urls.Add(str);
+                }
+                lblUrlCount.Text = urls.Count.ToString();
+                lblUrlAllCount.Text = q.ToString();
+
+                btnLoadURLs.Text = "Загрузить список ссылок";
+            }            
         }
     }
 }

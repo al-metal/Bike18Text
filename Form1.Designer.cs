@@ -70,6 +70,12 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnLoadURLs = new System.Windows.Forms.Button();
+            this.ofdLoadURLs = new System.Windows.Forms.OpenFileDialog();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblUrlCount = new System.Windows.Forms.Label();
+            this.lblUrlAllCount = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -255,7 +261,7 @@
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnStart.Location = new System.Drawing.Point(3, 202);
+            this.btnStart.Location = new System.Drawing.Point(3, 45);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(309, 35);
             this.btnStart.TabIndex = 16;
@@ -354,6 +360,11 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.lblUrlCount);
+            this.panel5.Controls.Add(this.lblUrlAllCount);
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Controls.Add(this.btnLoadURLs);
             this.panel5.Controls.Add(this.lblPassword);
             this.panel5.Controls.Add(this.lblLogin);
             this.panel5.Controls.Add(this.tbPassword);
@@ -533,6 +544,61 @@
             this.openFileDialog1.Filter = "Шаблон|*.template";
             this.openFileDialog1.InitialDirectory = "Environment.CurrentDirectory";
             // 
+            // btnLoadURLs
+            // 
+            this.btnLoadURLs.Location = new System.Drawing.Point(3, 215);
+            this.btnLoadURLs.Name = "btnLoadURLs";
+            this.btnLoadURLs.Size = new System.Drawing.Size(158, 22);
+            this.btnLoadURLs.TabIndex = 0;
+            this.btnLoadURLs.Text = "Загрузить список ссылок";
+            this.btnLoadURLs.UseVisualStyleBackColor = true;
+            this.btnLoadURLs.Click += new System.EventHandler(this.btnLoadURLs_Click);
+            // 
+            // ofdLoadURLs
+            // 
+            this.ofdLoadURLs.Filter = "Excel|*.xlsx";
+            this.ofdLoadURLs.InitialDirectory = "Environment.CurrentDirectory";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(167, 198);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Всего ссылок:";
+            this.label4.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(167, 220);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Ссылок на товар:";
+            this.label5.Visible = false;
+            // 
+            // lblUrlCount
+            // 
+            this.lblUrlCount.AutoSize = true;
+            this.lblUrlCount.Location = new System.Drawing.Point(267, 220);
+            this.lblUrlCount.Name = "lblUrlCount";
+            this.lblUrlCount.Size = new System.Drawing.Size(13, 13);
+            this.lblUrlCount.TabIndex = 29;
+            this.lblUrlCount.Text = "0";
+            this.lblUrlCount.Visible = false;
+            // 
+            // lblUrlAllCount
+            // 
+            this.lblUrlAllCount.AutoSize = true;
+            this.lblUrlAllCount.Location = new System.Drawing.Point(267, 198);
+            this.lblUrlAllCount.Name = "lblUrlAllCount";
+            this.lblUrlAllCount.Size = new System.Drawing.Size(13, 13);
+            this.lblUrlAllCount.TabIndex = 28;
+            this.lblUrlAllCount.Text = "0";
+            this.lblUrlAllCount.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,6 +676,12 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.Button btnLoadURLs;
+        private System.Windows.Forms.OpenFileDialog ofdLoadURLs;
+        private System.Windows.Forms.Label lblUrlCount;
+        private System.Windows.Forms.Label lblUrlAllCount;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
 
