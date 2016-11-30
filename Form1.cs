@@ -22,6 +22,8 @@ namespace Bike18Text
         web.WebRequest webRequest = new web.WebRequest();
         CHPU chpu = new CHPU();
         nethouse nethouse = new nethouse();
+        List<string> urls = new List<string>();
+        List<string> urlsBad = new List<string>();
 
         string otv = null;
         string pathDirectory = Environment.CurrentDirectory + "\\files";
@@ -39,7 +41,7 @@ namespace Bike18Text
             {
                 Directory.CreateDirectory("files");
             }
-            
+
             if (template == "openFileDialog1")
                 template = "";
 
@@ -224,77 +226,82 @@ namespace Bike18Text
                 return;
             }
 
-            string url = tbURL.Lines[0].ToString();
-            otv = webRequest.getRequest(url);
-            article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString();
+            if (rbString.Checked)
+                urls.Add(tbURL.Lines[0].ToString());
 
-            if (article != "")
+            foreach (string str in urls)
             {
-                updateText(url, cookie);
-                MessageBox.Show("Готово!");
-                return;
-            }
+                otv = webRequest.getRequest(str);
+                article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString();
 
-            MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
-            MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
-
-            if (tovarUrl.Count != 0)
-            {
-                for (int z = 0; tovarUrl.Count > z; z++)
+                if (article != "")
                 {
-                    string tovar = tovarUrl[z].ToString();
-                    updateText(tovar, cookie);
+                    updateText(str, cookie);
+                    MessageBox.Show("Готово!");
+                    return;
                 }
-            }
 
-            if (categoryUrl.Count != 0)
-            {
-                for (int i = 0; categoryUrl.Count > i; i++)
+                MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+
+                if (tovarUrl.Count != 0)
                 {
-                    otv = webRequest.getRequest(categoryUrl[i].ToString());
-                    MatchCollection category2Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
-                    MatchCollection tovar2Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
-                    if (tovar2Url.Count != 0)
+                    for (int z = 0; tovarUrl.Count > z; z++)
                     {
-                        for (int z = 0; tovar2Url.Count > z; z++)
-                        {
-                            string tovar = tovar2Url[z].ToString();
-                            updateText(tovar, cookie);
-                        }
+                        string tovar = tovarUrl[z].ToString();
+                        updateText(tovar, cookie);
                     }
-                    else
-                    {
-                        for (int x = 0; category2Url.Count > x; x++)
-                        {
-                            otv = webRequest.getRequest(category2Url[i].ToString());
-                            MatchCollection category3Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
-                            MatchCollection tovar3Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
-                            if (tovar3Url.Count != 0)
-                            {
-                                for (int z = 0; tovar3Url.Count > z; z++)
-                                {
-                                    string tovar = tovar3Url[z].ToString();
-                                    updateText(tovar, cookie);
-                                }
-                            }
-                            else
-                            {
-                                for (int m = 0; category3Url.Count > m; m++)
-                                {
-                                    otv = webRequest.getRequest(category3Url[m].ToString());
-                                    MatchCollection category4Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
-                                    MatchCollection tovar4Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
-                                    if (tovar4Url.Count != 0)
-                                    {
-                                        for (int z = 0; tovar4Url.Count > z; z++)
-                                        {
-                                            string tovar = tovar4Url[z].ToString();
-                                            updateText(tovar, cookie);
-                                        }
-                                    }
-                                    else
-                                    {
+                }
 
+                if (categoryUrl.Count != 0)
+                {
+                    for (int i = 0; categoryUrl.Count > i; i++)
+                    {
+                        otv = webRequest.getRequest(categoryUrl[i].ToString());
+                        MatchCollection category2Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                        MatchCollection tovar2Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                        if (tovar2Url.Count != 0)
+                        {
+                            for (int z = 0; tovar2Url.Count > z; z++)
+                            {
+                                string tovar = tovar2Url[z].ToString();
+                                updateText(tovar, cookie);
+                            }
+                        }
+                        else
+                        {
+                            for (int x = 0; category2Url.Count > x; x++)
+                            {
+                                otv = webRequest.getRequest(category2Url[i].ToString());
+                                MatchCollection category3Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                                MatchCollection tovar3Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                                if (tovar3Url.Count != 0)
+                                {
+                                    for (int z = 0; tovar3Url.Count > z; z++)
+                                    {
+                                        string tovar = tovar3Url[z].ToString();
+                                        updateText(tovar, cookie);
+                                    }
+                                }
+                                else
+                                {
+                                    for (int m = 0; category3Url.Count > m; m++)
+                                    {
+                                        otv = webRequest.getRequest(category3Url[m].ToString());
+                                        MatchCollection category4Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                                        MatchCollection tovar4Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                                        if (tovar4Url.Count != 0)
+                                        {
+                                            for (int z = 0; tovar4Url.Count > z; z++)
+                                            {
+                                                string tovar = tovar4Url[z].ToString();
+                                                updateText(tovar, cookie);
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                        }
                                     }
                                 }
                             }
@@ -763,8 +770,8 @@ namespace Bike18Text
                 lblUrlAllCount.Visible = true;
                 lblUrlCount.Visible = true;
 
-                List<string> urls = new List<string>();
-                List<string> urlsBad = new List<string>();
+                urls = new List<string>();
+                urlsBad = new List<string>();
 
                 FileInfo file = new FileInfo(fileUrls);
                 ExcelPackage p = new ExcelPackage(file);
@@ -784,7 +791,33 @@ namespace Bike18Text
                 lblUrlAllCount.Text = q.ToString();
 
                 btnLoadURLs.Text = "Загрузить список ссылок";
-            }            
+            }
+        }
+
+        private void rbString_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbString.Checked)
+            {
+                btnLoadURLs.Visible = false;
+                lblUrlAllCount.Visible = false;
+                lblUrlCount.Visible = false;
+                label4.Visible = false;
+                label5.Visible = false;
+                tbURL.Enabled = true;
+            }
+        }
+
+        private void rbFiles_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbFiles.Checked)
+            {
+                btnLoadURLs.Visible = true;
+                lblUrlAllCount.Visible = true;
+                lblUrlCount.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+                tbURL.Enabled = false;
+            }
         }
     }
 }

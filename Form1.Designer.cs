@@ -76,6 +76,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblUrlCount = new System.Windows.Forms.Label();
             this.lblUrlAllCount = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbString = new System.Windows.Forms.RadioButton();
+            this.rbFiles = new System.Windows.Forms.RadioButton();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -84,6 +87,7 @@
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chbAltText
@@ -360,6 +364,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.lblUrlCount);
             this.panel5.Controls.Add(this.lblUrlAllCount);
             this.panel5.Controls.Add(this.label5);
@@ -552,6 +557,7 @@
             this.btnLoadURLs.TabIndex = 0;
             this.btnLoadURLs.Text = "Загрузить список ссылок";
             this.btnLoadURLs.UseVisualStyleBackColor = true;
+            this.btnLoadURLs.Visible = false;
             this.btnLoadURLs.Click += new System.EventHandler(this.btnLoadURLs_Click);
             // 
             // ofdLoadURLs
@@ -599,6 +605,41 @@
             this.lblUrlAllCount.Text = "0";
             this.lblUrlAllCount.Visible = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbFiles);
+            this.groupBox1.Controls.Add(this.rbString);
+            this.groupBox1.Location = new System.Drawing.Point(11, 86);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(295, 45);
+            this.groupBox1.TabIndex = 30;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Источник ссылок";
+            // 
+            // rbString
+            // 
+            this.rbString.AutoSize = true;
+            this.rbString.Checked = true;
+            this.rbString.Location = new System.Drawing.Point(6, 19);
+            this.rbString.Name = "rbString";
+            this.rbString.Size = new System.Drawing.Size(61, 17);
+            this.rbString.TabIndex = 0;
+            this.rbString.TabStop = true;
+            this.rbString.Text = "Строка";
+            this.rbString.UseVisualStyleBackColor = true;
+            this.rbString.CheckedChanged += new System.EventHandler(this.rbString_CheckedChanged);
+            // 
+            // rbFiles
+            // 
+            this.rbFiles.AutoSize = true;
+            this.rbFiles.Location = new System.Drawing.Point(73, 19);
+            this.rbFiles.Name = "rbFiles";
+            this.rbFiles.Size = new System.Drawing.Size(54, 17);
+            this.rbFiles.TabIndex = 1;
+            this.rbFiles.Text = "Файл";
+            this.rbFiles.UseVisualStyleBackColor = true;
+            this.rbFiles.CheckedChanged += new System.EventHandler(this.rbFiles_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,6 +668,8 @@
             this.panel7.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -682,6 +725,9 @@
         private System.Windows.Forms.Label lblUrlAllCount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbFiles;
+        private System.Windows.Forms.RadioButton rbString;
     }
 }
 
