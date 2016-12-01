@@ -232,15 +232,14 @@ namespace Bike18Text
             foreach (string str in urls)
             {
                 otv = webRequest.getRequest(str);
+                if (otv == "err")
+                    continue;
                 article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString();
 
                 if (article != "")
-                {
                     updateText(str, cookie);
-                    MessageBox.Show("Готово!");
-                    return;
-                }
-
+                else
+                {
                 MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
                 MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
 
@@ -308,6 +307,7 @@ namespace Bike18Text
                         }
                     }
                 }
+            }
             }
             MessageBox.Show("Обновление товара прошло успешно!", "Внимание");
         }
