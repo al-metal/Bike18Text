@@ -1,4 +1,5 @@
-﻿using Bike18Text;
+﻿using Bike18;
+using Bike18Text;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,8 +12,10 @@ using System.Windows.Forms;
 
 namespace web
 {
+    
     class WebRequest
     {
+        httpRequest httpReq = new httpRequest();
         public string getRequestEncod(string url)
         {
             HttpWebResponse res = null;
@@ -29,19 +32,51 @@ namespace web
             return otv;
         }
 
+        public string getRequest(CookieContainer cookie, string url)
+        {
+            string otv = null;
+            HttpWebResponse res = null;
+            HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(url);
+            //req.Proxy = null;
+            req.Accept = "application/json, text/plain, */*";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
+            req.CookieContainer = cookie;
+
+                res = (HttpWebResponse)req.GetResponse();
+                StreamReader ressr = new StreamReader(res.GetResponseStream());
+                otv = ressr.ReadToEnd();
+                res.GetResponseStream().Close();
+                req.GetResponse().Close();
+                res.Close();
+
+            
+
+
+            return otv;
+        }
+
         public string getRequest(string url)
         {
+            string otv = null;
             HttpWebResponse res = null;
             HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(url);
             req.Proxy = null;
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
-            res = (HttpWebResponse)req.GetResponse();
-            StreamReader ressr = new StreamReader(res.GetResponseStream());
-            string otv = ressr.ReadToEnd();
-            res.GetResponseStream().Close();
-            req.GetResponse().Close();
-            res.Close();
+            try
+            {
+                res = (HttpWebResponse)req.GetResponse();
+                StreamReader ressr = new StreamReader(res.GetResponseStream());
+                otv = ressr.ReadToEnd();
+                res.GetResponseStream().Close();
+                req.GetResponse().Close();
+                res.Close();
+            }
+            catch
+            {
+                otv = "err";
+            }
+
 
             return otv;
         }
@@ -49,20 +84,20 @@ namespace web
         public string PostRequest(CookieContainer cookie, string nethouseTovar)
         {
             string otv = null;
-
-                HttpWebResponse res = null;
-
-                HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(nethouseTovar);
-                req.Proxy = null;
-                req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-                req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
-                req.Method = "POST";
-                req.ContentType = "application/x-www-form-urlencoded";
-                req.CookieContainer = cookie;
-                    res = (HttpWebResponse)req.GetResponse();
-                    StreamReader ressr = new StreamReader(res.GetResponseStream());
-                    otv = ressr.ReadToEnd();
+            HttpWebResponse res = null;
+            HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(nethouseTovar);
+            req.Proxy = null;
+            req.KeepAlive = false;
+            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
+            req.Method = "POST";
+            req.ContentType = "application/x-www-form-urlencoded";
+            req.CookieContainer = cookie;
+            res = (HttpWebResponse)req.GetResponse();
+            StreamReader ressr = new StreamReader(res.GetResponseStream());
+            otv = ressr.ReadToEnd();
             res.Close();
+            ressr.Close();
             return otv;
         }
 
@@ -234,7 +269,7 @@ namespace web
             if (!url.Contains("nethouse"))
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
-            string otv = webRequest.PostRequest(cookie, url);
+            string otv = httpReq.PostRequest(cookie, url);
             if (otv != null)
             {
                 string productId = new Regex("(?<=<section class=\"comment\" id=\").*?(?=\">)").Match(otv).ToString();
@@ -262,7 +297,7 @@ namespace web
                     reklama = "&markers[1]=1";
                 }
 
-                otv = webRequest.PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
+                otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
                 string slug = new Regex("(?<=\",\"slug\":\").*?(?=\")").Match(otv).ToString();
                 string discountCoast = new Regex("(?<=discountCost\":\").*?(?=\")").Match(otv).Value;
                 string serial = new Regex("(?<=serial\":\").*?(?=\")").Match(otv).Value;
@@ -277,7 +312,7 @@ namespace web
                 string customDays = new Regex("(?<=,\"customDays\":\").*?(?=\")").Match(otv).Value;
                 string isCustom = new Regex("(?<=\",\"isCustom\":).*?(?=,)").Match(otv).Value;
 
-                otv = webRequest.PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
+                otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
                 MatchCollection avatarId = new Regex("(?<=\"id\":\").*?(?=\")").Matches(otv);
                 string objektId = new Regex("(?<=\"objectId\":\").*?(?=\")").Match(otv).Value;
                 MatchCollection timestamp = new Regex("(?<=\"timestamp\":\").*?(?=\")").Matches(otv);
@@ -293,7 +328,7 @@ namespace web
                 MatchCollection alt = new Regex("(?<=\"alt\":\").*?(?=\")").Matches(otv);
                 MatchCollection isvisibleonmain = new Regex("(?<=\"isVisibleOnMain\".).*?(?=,)").Matches(otv);
                 string prioriti = new Regex("(?<=\"priority\":\").*?(?=\")").Match(otv).Value;
-                MatchCollection avatarurl = new Regex("(?<=\"url\":\").*?(?=\")").Matches(otv);
+                MatchCollection avatarurl = new Regex("(?<=\"raw\":\").*?(?=\",\")").Matches(otv);
                 string filtersleft = new Regex("(?<=\"left\":).*?(?=,)").Match(otv).Value;
                 string filterstop = new Regex("(?<=\"top\":).*?(?=,)").Match(otv).Value;
                 string filtersright = new Regex("(?<=\"right\":).*?(?=,)").Match(otv).Value;
