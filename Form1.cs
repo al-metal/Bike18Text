@@ -781,11 +781,22 @@ namespace Bike18Text
                 btnLoadURLs.Text = "Идет разбор списка...";
                 for (int i = 2; q > i; i++)
                 {
-                    string str = w.Cells[i, 2].Value.ToString();
-                    if (str.Contains("category"))
-                        urlsBad.Add(str);
-                    else
-                        urls.Add(str);
+                    try
+                    {
+                        string url = w.Cells[i, 2].Value.ToString();
+                        if (url != null)
+                        {
+                            if (url.Contains("category"))
+                                urlsBad.Add(url);
+                            else
+                                urls.Add(url);
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                    
                 }
                 lblUrlCount.Text = urls.Count.ToString();
                 lblUrlAllCount.Text = q.ToString();

@@ -52,6 +52,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbFiles = new System.Windows.Forms.RadioButton();
+            this.rbString = new System.Windows.Forms.RadioButton();
+            this.lblUrlCount = new System.Windows.Forms.Label();
+            this.lblUrlAllCount = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnLoadURLs = new System.Windows.Forms.Button();
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblLogin = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
@@ -70,24 +78,16 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnLoadURLs = new System.Windows.Forms.Button();
             this.ofdLoadURLs = new System.Windows.Forms.OpenFileDialog();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblUrlCount = new System.Windows.Forms.Label();
-            this.lblUrlAllCount = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbString = new System.Windows.Forms.RadioButton();
-            this.rbFiles = new System.Windows.Forms.RadioButton();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chbAltText
@@ -381,6 +381,92 @@
             this.panel5.Size = new System.Drawing.Size(315, 240);
             this.panel5.TabIndex = 24;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbFiles);
+            this.groupBox1.Controls.Add(this.rbString);
+            this.groupBox1.Location = new System.Drawing.Point(11, 86);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(295, 45);
+            this.groupBox1.TabIndex = 30;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Источник ссылок";
+            // 
+            // rbFiles
+            // 
+            this.rbFiles.AutoSize = true;
+            this.rbFiles.Location = new System.Drawing.Point(73, 19);
+            this.rbFiles.Name = "rbFiles";
+            this.rbFiles.Size = new System.Drawing.Size(54, 17);
+            this.rbFiles.TabIndex = 1;
+            this.rbFiles.Text = "Файл";
+            this.rbFiles.UseVisualStyleBackColor = true;
+            this.rbFiles.CheckedChanged += new System.EventHandler(this.rbFiles_CheckedChanged);
+            // 
+            // rbString
+            // 
+            this.rbString.AutoSize = true;
+            this.rbString.Checked = true;
+            this.rbString.Location = new System.Drawing.Point(6, 19);
+            this.rbString.Name = "rbString";
+            this.rbString.Size = new System.Drawing.Size(61, 17);
+            this.rbString.TabIndex = 0;
+            this.rbString.TabStop = true;
+            this.rbString.Text = "Строка";
+            this.rbString.UseVisualStyleBackColor = true;
+            this.rbString.CheckedChanged += new System.EventHandler(this.rbString_CheckedChanged);
+            // 
+            // lblUrlCount
+            // 
+            this.lblUrlCount.AutoSize = true;
+            this.lblUrlCount.Location = new System.Drawing.Point(267, 220);
+            this.lblUrlCount.Name = "lblUrlCount";
+            this.lblUrlCount.Size = new System.Drawing.Size(13, 13);
+            this.lblUrlCount.TabIndex = 29;
+            this.lblUrlCount.Text = "0";
+            this.lblUrlCount.Visible = false;
+            // 
+            // lblUrlAllCount
+            // 
+            this.lblUrlAllCount.AutoSize = true;
+            this.lblUrlAllCount.Location = new System.Drawing.Point(267, 198);
+            this.lblUrlAllCount.Name = "lblUrlAllCount";
+            this.lblUrlAllCount.Size = new System.Drawing.Size(13, 13);
+            this.lblUrlAllCount.TabIndex = 28;
+            this.lblUrlAllCount.Text = "0";
+            this.lblUrlAllCount.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(167, 220);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Ссылок на товар:";
+            this.label5.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(167, 198);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Всего строк:";
+            this.label4.Visible = false;
+            // 
+            // btnLoadURLs
+            // 
+            this.btnLoadURLs.Location = new System.Drawing.Point(3, 215);
+            this.btnLoadURLs.Name = "btnLoadURLs";
+            this.btnLoadURLs.Size = new System.Drawing.Size(158, 22);
+            this.btnLoadURLs.TabIndex = 0;
+            this.btnLoadURLs.Text = "Загрузить список ссылок";
+            this.btnLoadURLs.UseVisualStyleBackColor = true;
+            this.btnLoadURLs.Visible = false;
+            this.btnLoadURLs.Click += new System.EventHandler(this.btnLoadURLs_Click);
+            // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
@@ -549,96 +635,10 @@
             this.openFileDialog1.Filter = "Шаблон|*.template";
             this.openFileDialog1.InitialDirectory = "Environment.CurrentDirectory";
             // 
-            // btnLoadURLs
-            // 
-            this.btnLoadURLs.Location = new System.Drawing.Point(3, 215);
-            this.btnLoadURLs.Name = "btnLoadURLs";
-            this.btnLoadURLs.Size = new System.Drawing.Size(158, 22);
-            this.btnLoadURLs.TabIndex = 0;
-            this.btnLoadURLs.Text = "Загрузить список ссылок";
-            this.btnLoadURLs.UseVisualStyleBackColor = true;
-            this.btnLoadURLs.Visible = false;
-            this.btnLoadURLs.Click += new System.EventHandler(this.btnLoadURLs_Click);
-            // 
             // ofdLoadURLs
             // 
             this.ofdLoadURLs.Filter = "Excel|*.xlsx";
             this.ofdLoadURLs.InitialDirectory = "Environment.CurrentDirectory";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(167, 198);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 13);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "Всего ссылок:";
-            this.label4.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(167, 220);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 13);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "Ссылок на товар:";
-            this.label5.Visible = false;
-            // 
-            // lblUrlCount
-            // 
-            this.lblUrlCount.AutoSize = true;
-            this.lblUrlCount.Location = new System.Drawing.Point(267, 220);
-            this.lblUrlCount.Name = "lblUrlCount";
-            this.lblUrlCount.Size = new System.Drawing.Size(13, 13);
-            this.lblUrlCount.TabIndex = 29;
-            this.lblUrlCount.Text = "0";
-            this.lblUrlCount.Visible = false;
-            // 
-            // lblUrlAllCount
-            // 
-            this.lblUrlAllCount.AutoSize = true;
-            this.lblUrlAllCount.Location = new System.Drawing.Point(267, 198);
-            this.lblUrlAllCount.Name = "lblUrlAllCount";
-            this.lblUrlAllCount.Size = new System.Drawing.Size(13, 13);
-            this.lblUrlAllCount.TabIndex = 28;
-            this.lblUrlAllCount.Text = "0";
-            this.lblUrlAllCount.Visible = false;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.rbFiles);
-            this.groupBox1.Controls.Add(this.rbString);
-            this.groupBox1.Location = new System.Drawing.Point(11, 86);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(295, 45);
-            this.groupBox1.TabIndex = 30;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Источник ссылок";
-            // 
-            // rbString
-            // 
-            this.rbString.AutoSize = true;
-            this.rbString.Checked = true;
-            this.rbString.Location = new System.Drawing.Point(6, 19);
-            this.rbString.Name = "rbString";
-            this.rbString.Size = new System.Drawing.Size(61, 17);
-            this.rbString.TabIndex = 0;
-            this.rbString.TabStop = true;
-            this.rbString.Text = "Строка";
-            this.rbString.UseVisualStyleBackColor = true;
-            this.rbString.CheckedChanged += new System.EventHandler(this.rbString_CheckedChanged);
-            // 
-            // rbFiles
-            // 
-            this.rbFiles.AutoSize = true;
-            this.rbFiles.Location = new System.Drawing.Point(73, 19);
-            this.rbFiles.Name = "rbFiles";
-            this.rbFiles.Size = new System.Drawing.Size(54, 17);
-            this.rbFiles.TabIndex = 1;
-            this.rbFiles.Text = "Файл";
-            this.rbFiles.UseVisualStyleBackColor = true;
-            this.rbFiles.CheckedChanged += new System.EventHandler(this.rbFiles_CheckedChanged);
             // 
             // Form1
             // 
@@ -662,14 +662,14 @@
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
