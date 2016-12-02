@@ -779,7 +779,7 @@ namespace Bike18Text
                 ExcelWorksheet w = p.Workbook.Worksheets[1];
                 int q = w.Dimension.Rows;
                 btnLoadURLs.Text = "Идет разбор списка...";
-                for (int i = 2; q > i; i++)
+                for (int i = 0; q > i; i++)
                 {
                     try
                     {
