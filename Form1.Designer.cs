@@ -79,6 +79,7 @@
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ofdLoadURLs = new System.Windows.Forms.OpenFileDialog();
+            this.chbCHPU = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -502,6 +503,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.chbCHPU);
             this.panel4.Controls.Add(this.chbUrlArticle);
             this.panel4.Controls.Add(this.chbAlsoBuy);
             this.panel4.Controls.Add(this.chbKeywords);
@@ -523,7 +525,7 @@
             // chbUrlArticle
             // 
             this.chbUrlArticle.AutoSize = true;
-            this.chbUrlArticle.Location = new System.Drawing.Point(3, 180);
+            this.chbUrlArticle.Location = new System.Drawing.Point(3, 205);
             this.chbUrlArticle.Name = "chbUrlArticle";
             this.chbUrlArticle.Size = new System.Drawing.Size(186, 17);
             this.chbUrlArticle.TabIndex = 16;
@@ -640,6 +642,16 @@
             this.ofdLoadURLs.Filter = "Excel|*.xlsx";
             this.ofdLoadURLs.InitialDirectory = "Environment.CurrentDirectory";
             // 
+            // chbCHPU
+            // 
+            this.chbCHPU.AutoSize = true;
+            this.chbCHPU.Location = new System.Drawing.Point(3, 182);
+            this.chbCHPU.Name = "chbCHPU";
+            this.chbCHPU.Size = new System.Drawing.Size(103, 17);
+            this.chbCHPU.TabIndex = 17;
+            this.chbCHPU.Text = "Заменять ЧПУ";
+            this.chbCHPU.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -728,6 +740,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbFiles;
         private System.Windows.Forms.RadioButton rbString;
+        private System.Windows.Forms.CheckBox chbCHPU;
     }
 }
 
