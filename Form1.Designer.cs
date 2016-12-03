@@ -65,6 +65,7 @@
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbLogin = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.chbCHPU = new System.Windows.Forms.CheckBox();
             this.chbUrlArticle = new System.Windows.Forms.CheckBox();
             this.chbAlsoBuy = new System.Windows.Forms.CheckBox();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -79,7 +80,6 @@
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ofdLoadURLs = new System.Windows.Forms.OpenFileDialog();
-            this.chbCHPU = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -522,6 +522,16 @@
             this.panel4.Size = new System.Drawing.Size(315, 240);
             this.panel4.TabIndex = 23;
             // 
+            // chbCHPU
+            // 
+            this.chbCHPU.AutoSize = true;
+            this.chbCHPU.Location = new System.Drawing.Point(3, 182);
+            this.chbCHPU.Name = "chbCHPU";
+            this.chbCHPU.Size = new System.Drawing.Size(103, 17);
+            this.chbCHPU.TabIndex = 17;
+            this.chbCHPU.Text = "Заменять ЧПУ";
+            this.chbCHPU.UseVisualStyleBackColor = true;
+            // 
             // chbUrlArticle
             // 
             this.chbUrlArticle.AutoSize = true;
@@ -641,16 +651,6 @@
             // 
             this.ofdLoadURLs.Filter = "Excel|*.xlsx";
             this.ofdLoadURLs.InitialDirectory = "Environment.CurrentDirectory";
-            // 
-            // chbCHPU
-            // 
-            this.chbCHPU.AutoSize = true;
-            this.chbCHPU.Location = new System.Drawing.Point(3, 182);
-            this.chbCHPU.Name = "chbCHPU";
-            this.chbCHPU.Size = new System.Drawing.Size(103, 17);
-            this.chbCHPU.TabIndex = 17;
-            this.chbCHPU.Text = "Заменять ЧПУ";
-            this.chbCHPU.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

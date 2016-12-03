@@ -29,13 +29,13 @@ namespace Bike18Text
         string pathDirectory = Environment.CurrentDirectory + "\\files";
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
         string boldClose = "</span>%26nbsp%3B";
-        string template = Properties.Settings.Default.template.ToString();
         int countStrAltText = 0;
 
 
 
         public Form1()
         {
+            string template = Properties.Settings.Default.template.ToString();
             InitializeComponent();
             if (!Directory.Exists("files"))
             {
@@ -59,6 +59,7 @@ namespace Bike18Text
 
         private void Form1_Activated(object sender, EventArgs e)
         {
+            string template = Properties.Settings.Default.template.ToString();
             if (template != "")
             {
                 Properties.Settings.Default.template = template;
@@ -198,7 +199,7 @@ namespace Bike18Text
             {
                 Properties.Settings.Default.template = fileTemplate;
                 Properties.Settings.Default.Save();
-
+                
                 ShowTemplate(fileTemplate);
             }
 
@@ -207,6 +208,7 @@ namespace Bike18Text
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            string template = Properties.Settings.Default.template.ToString();
             Properties.Settings.Default.login = tbLogin.Text;
             Properties.Settings.Default.password = tbPassword.Text;
             Properties.Settings.Default.template = template;
@@ -788,7 +790,7 @@ namespace Bike18Text
                         string url = w.Cells[i, 2].Value.ToString();
                         if (url != null)
                         {
-                            if (url.Contains("category"))
+                            if (url.Contains("category") || !url.Contains("products/"))
                                 urlsBad.Add(url);
                             else
                                 urls.Add(url);
