@@ -567,27 +567,32 @@ namespace Bike18Text
                         string newString = "<span><a target=\"_blank\" href=\"" + url + "\">" + text + "</a></span>";
                         str = str.Replace(urlstring, newString);
                     }
-                    if (str.Contains("<b>"))
-                    {
-                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
-                    }
-                    if (str.Contains("</b>"))
-                    {
-                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
-                    }
+
                     if (str.Contains("<align center>"))
-                    {
                         str = str.Replace("<align center>", "<p style=\"text-align: center;\">");
-                    }
+
                     if (str.Contains("<align rigth>"))
-                    {
                         str = str.Replace("<align rigth>", "<p style=\"text-align: right;\">");
-                    }
+
                     if (str.Contains("</align>"))
-                    {
                         str = str.Replace("</align>", "</p>");
-                    }
-                    miniText += "<p>" + str + "</p>";
+
+                    if (str.Contains("<b>"))
+                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
+
+                    if (str.Contains("</b>"))
+                        str = str.Replace("</b>", "</span>");
+
+                    if (str.Contains("<em>"))
+                        str = str.Replace("<em>", "<span style=\"font - style: italic; \">");
+
+                    if (str.Contains("</em>"))
+                        str = str.Replace("</em>", "</span>");
+
+                    if (!str.Contains("<p"))
+                        miniText += "<p>" + str + "</p>";
+                    else
+                        miniText += str;
                 }
             }
             return miniText;
@@ -613,27 +618,32 @@ namespace Bike18Text
                         string newString = "<span><a target=\"_blank\" href=\"" + url + "\">" + text + "</a></span>";
                         str = str.Replace(urlstring, newString);
                     }
-                    if (str.Contains("<b>"))
-                    {
-                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
-                    }
-                    if (str.Contains("</b>"))
-                    {
-                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
-                    }
+
                     if (str.Contains("<align center>"))
-                    {
                         str = str.Replace("<align center>", "<p style=\"text-align: center;\">");
-                    }
+
                     if (str.Contains("<align rigth>"))
-                    {
                         str = str.Replace("<align rigth>", "<p style=\"text-align: right;\">");
-                    }
+
                     if (str.Contains("</align>"))
-                    {
                         str = str.Replace("</align>", "</p>");
-                    }
-                    fullText += "<p>" + str + "</p>";
+
+                    if (str.Contains("<b>"))
+                        str = str.Replace("<b>", "<span style=\"font-weight: bold; font-weight: bold;\">");
+
+                    if (str.Contains("</b>"))
+                        str = str.Replace("</b>", "</span>");
+
+                    if (str.Contains("<em>"))
+                        str = str.Replace("<em>", "<span style=\"font-style: italic;\">");
+
+                    if (str.Contains("</em>"))
+                        str = str.Replace("</em>", "</span>");
+
+                    if (!str.Contains("<p"))
+                        fullText += "<p>" + str + "</p>";
+                    else
+                        fullText += str;
                 }
             }
             return fullText;
