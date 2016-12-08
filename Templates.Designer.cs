@@ -57,6 +57,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.rtbAltText = new System.Windows.Forms.RichTextBox();
+            this.btnEmMini = new System.Windows.Forms.Button();
+            this.btnEmFull = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtbMiniText
@@ -130,9 +132,10 @@
             // 
             // btnBoldMini
             // 
+            this.btnBoldMini.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnBoldMini.Location = new System.Drawing.Point(12, 231);
             this.btnBoldMini.Name = "btnBoldMini";
-            this.btnBoldMini.Size = new System.Drawing.Size(22, 23);
+            this.btnBoldMini.Size = new System.Drawing.Size(30, 23);
             this.btnBoldMini.TabIndex = 8;
             this.btnBoldMini.Text = "b";
             this.btnBoldMini.UseVisualStyleBackColor = true;
@@ -140,9 +143,9 @@
             // 
             // btnCenterMini
             // 
-            this.btnCenterMini.Location = new System.Drawing.Point(40, 231);
+            this.btnCenterMini.Location = new System.Drawing.Point(84, 231);
             this.btnCenterMini.Name = "btnCenterMini";
-            this.btnCenterMini.Size = new System.Drawing.Size(22, 23);
+            this.btnCenterMini.Size = new System.Drawing.Size(30, 23);
             this.btnCenterMini.TabIndex = 9;
             this.btnCenterMini.Text = "C";
             this.btnCenterMini.UseVisualStyleBackColor = true;
@@ -150,9 +153,9 @@
             // 
             // btnRigthMini
             // 
-            this.btnRigthMini.Location = new System.Drawing.Point(68, 231);
+            this.btnRigthMini.Location = new System.Drawing.Point(120, 231);
             this.btnRigthMini.Name = "btnRigthMini";
-            this.btnRigthMini.Size = new System.Drawing.Size(22, 23);
+            this.btnRigthMini.Size = new System.Drawing.Size(30, 23);
             this.btnRigthMini.TabIndex = 10;
             this.btnRigthMini.Text = "R";
             this.btnRigthMini.UseVisualStyleBackColor = true;
@@ -160,9 +163,9 @@
             // 
             // btnURLMini
             // 
-            this.btnURLMini.Location = new System.Drawing.Point(96, 231);
+            this.btnURLMini.Location = new System.Drawing.Point(156, 231);
             this.btnURLMini.Name = "btnURLMini";
-            this.btnURLMini.Size = new System.Drawing.Size(22, 23);
+            this.btnURLMini.Size = new System.Drawing.Size(30, 23);
             this.btnURLMini.TabIndex = 11;
             this.btnURLMini.Text = "U";
             this.btnURLMini.UseVisualStyleBackColor = true;
@@ -170,23 +173,23 @@
             // 
             // tbURLMini
             // 
-            this.tbURLMini.Location = new System.Drawing.Point(124, 233);
+            this.tbURLMini.Location = new System.Drawing.Point(192, 233);
             this.tbURLMini.Name = "tbURLMini";
-            this.tbURLMini.Size = new System.Drawing.Size(495, 20);
+            this.tbURLMini.Size = new System.Drawing.Size(427, 20);
             this.tbURLMini.TabIndex = 12;
             // 
             // tbURLFull
             // 
-            this.tbURLFull.Location = new System.Drawing.Point(124, 460);
+            this.tbURLFull.Location = new System.Drawing.Point(192, 460);
             this.tbURLFull.Name = "tbURLFull";
-            this.tbURLFull.Size = new System.Drawing.Size(495, 20);
+            this.tbURLFull.Size = new System.Drawing.Size(427, 20);
             this.tbURLFull.TabIndex = 17;
             // 
             // btnURLFull
             // 
-            this.btnURLFull.Location = new System.Drawing.Point(96, 458);
+            this.btnURLFull.Location = new System.Drawing.Point(156, 458);
             this.btnURLFull.Name = "btnURLFull";
-            this.btnURLFull.Size = new System.Drawing.Size(22, 23);
+            this.btnURLFull.Size = new System.Drawing.Size(30, 23);
             this.btnURLFull.TabIndex = 16;
             this.btnURLFull.Text = "U";
             this.btnURLFull.UseVisualStyleBackColor = true;
@@ -194,9 +197,9 @@
             // 
             // btnRigthFull
             // 
-            this.btnRigthFull.Location = new System.Drawing.Point(68, 458);
+            this.btnRigthFull.Location = new System.Drawing.Point(120, 458);
             this.btnRigthFull.Name = "btnRigthFull";
-            this.btnRigthFull.Size = new System.Drawing.Size(22, 23);
+            this.btnRigthFull.Size = new System.Drawing.Size(30, 23);
             this.btnRigthFull.TabIndex = 15;
             this.btnRigthFull.Text = "R";
             this.btnRigthFull.UseVisualStyleBackColor = true;
@@ -204,9 +207,9 @@
             // 
             // btnCenterFull
             // 
-            this.btnCenterFull.Location = new System.Drawing.Point(40, 458);
+            this.btnCenterFull.Location = new System.Drawing.Point(84, 458);
             this.btnCenterFull.Name = "btnCenterFull";
-            this.btnCenterFull.Size = new System.Drawing.Size(22, 23);
+            this.btnCenterFull.Size = new System.Drawing.Size(30, 23);
             this.btnCenterFull.TabIndex = 14;
             this.btnCenterFull.Text = "C";
             this.btnCenterFull.UseVisualStyleBackColor = true;
@@ -214,9 +217,10 @@
             // 
             // btnBoldFull
             // 
+            this.btnBoldFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnBoldFull.Location = new System.Drawing.Point(12, 458);
             this.btnBoldFull.Name = "btnBoldFull";
-            this.btnBoldFull.Size = new System.Drawing.Size(22, 23);
+            this.btnBoldFull.Size = new System.Drawing.Size(30, 23);
             this.btnBoldFull.TabIndex = 13;
             this.btnBoldFull.Text = "b";
             this.btnBoldFull.UseVisualStyleBackColor = true;
@@ -321,11 +325,35 @@
             this.rtbAltText.TabIndex = 31;
             this.rtbAltText.Text = "";
             // 
+            // btnEmMini
+            // 
+            this.btnEmMini.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnEmMini.Location = new System.Drawing.Point(48, 231);
+            this.btnEmMini.Name = "btnEmMini";
+            this.btnEmMini.Size = new System.Drawing.Size(30, 23);
+            this.btnEmMini.TabIndex = 32;
+            this.btnEmMini.Text = "em";
+            this.btnEmMini.UseVisualStyleBackColor = true;
+            this.btnEmMini.Click += new System.EventHandler(this.btnEmMini_Click);
+            // 
+            // btnEmFull
+            // 
+            this.btnEmFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnEmFull.Location = new System.Drawing.Point(48, 458);
+            this.btnEmFull.Name = "btnEmFull";
+            this.btnEmFull.Size = new System.Drawing.Size(30, 23);
+            this.btnEmFull.TabIndex = 33;
+            this.btnEmFull.Text = "em";
+            this.btnEmFull.UseVisualStyleBackColor = true;
+            this.btnEmFull.Click += new System.EventHandler(this.btnEmFull_Click);
+            // 
             // Templates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 490);
+            this.Controls.Add(this.btnEmFull);
+            this.Controls.Add(this.btnEmMini);
             this.Controls.Add(this.rtbAltText);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -393,5 +421,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox rtbAltText;
+        private System.Windows.Forms.Button btnEmMini;
+        private System.Windows.Forms.Button btnEmFull;
     }
 }

@@ -189,6 +189,23 @@ namespace Bike18Text
                 MessageBox.Show("Проверте выделен ли текст и заполнена ли ссылка");
             }
         }
+
+        private void btnEmMini_Click(object sender, EventArgs e)
+        {
+            if (rtbMiniText.SelectedText != null)
+            {
+                rtbMiniText.SelectedText = rtbMiniText.SelectedText.Replace(rtbMiniText.SelectedText, "<em>" + rtbMiniText.SelectedText + "</em>");
+            }
+        }
+
+        private void btnEmFull_Click(object sender, EventArgs e)
+        {
+            if (rtbFullText.SelectedText != null)
+            {
+                rtbFullText.SelectedText = rtbFullText.SelectedText.Replace(rtbFullText.SelectedText, "<em>" + rtbFullText.SelectedText + "</em>");
+            }
+        }
+
         #endregion
 
         #region//Копирование ключевых слов в буфер обмена
@@ -251,5 +268,6 @@ namespace Bike18Text
             else
                 MessageBox.Show("Некорректный файл, выберите другой");
         }
+                
     }
 }
