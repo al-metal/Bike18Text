@@ -258,8 +258,8 @@ namespace Bike18
         {
             string otv = "";
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://bike18.nethouse.ru/api/catalog/saveproduct");
-            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
+            req.Accept = "application/json, text/plain, */*";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
             req.CookieContainer = cookie;
@@ -267,10 +267,10 @@ namespace Bike18
             descFull = descFull.Replace("&laquo;", "«").Replace("&raquo;", "»").Replace("&ndash;", "-");
             getProduct[8] = descFull;
             string request = "id=" + getProduct[0] + "&slug=" + getProduct[1] + "&categoryId=" + getProduct[2] + "&productCustomGroup=" + getProduct[41] + "&productGroup=" + getProduct[3] + "&name=" + getProduct[4] + "&serial=" + getProduct[5] + "&serialByUser=" + getProduct[6] + "&desc=" + getProduct[7] + "&descFull=" + getProduct[8] + "&cost=" + getProduct[9] + "&discountCost=" + getProduct[10] + "&seoMetaDesc=" + getProduct[11] + "&seoMetaKeywords=" + getProduct[12] + "&seoTitle=" + getProduct[13] + "&haveDetail=" + getProduct[14] + "&canMakeOrder=" + getProduct[15] + "&balance=" + getProduct[43] + "&showOnMain=" + getProduct[16] + "&isVisible=1&hasSale=0" + "&customDays=" + getProduct[37] + "&isCustom=" + getProduct[38] + getProduct[39] + getProduct[40] + getProduct[42] + "&alsoBuyLabel=%D0%9F%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B5%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B%20%D0%B2%20%D0%BD%D0%B0%D1%88%D0%B5%D0%BC%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B5";
-            request = request.Replace("false", "0").Replace("true", "1").Replace("&mdash;", "-").Replace("&laquo;", "\"").Replace("&raquo;", "\"").Replace("&mdash;", "-");
+            request = request.Replace("false", "0").Replace("true", "1").Replace("&mdash;", "-").Replace("&laquo;", "\"").Replace("&raquo;", "\"").Replace("&mdash;", "-").Replace("+", "%2B");
 
             request = request.Replace("false", "0").Replace("true", "1");
-            byte[] ms = System.Text.Encoding.GetEncoding("utf-8").GetBytes(request);
+            byte[] ms = Encoding.GetEncoding("utf-8").GetBytes(request);
             req.ContentLength = ms.Length;
             Stream stre = req.GetRequestStream();
             stre.Write(ms, 0, ms.Length);
