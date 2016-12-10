@@ -313,8 +313,19 @@ namespace web
                 string isCustom = new Regex("(?<=\",\"isCustom\":).*?(?=,)").Match(otv).Value;
 
                 otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
-                MatchCollection avatarId = new Regex("(?<=\"id\":\").*?(?=\")").Matches(otv);
                 string objektId = new Regex("(?<=\"objectId\":\").*?(?=\")").Match(otv).Value;
+
+                List<string> imagesTovar = new List<string>();
+                MatchCollection imagesStrTovat = new Regex("(?<={\"id\")[\\w\\W]*?(?=jpg\"})").Matches(otv);
+                foreach(Match str in imagesStrTovat)
+                {
+                    if (str.ToString().Contains("type\":\"4\"") || str.ToString().Contains("type\":\"5\""))
+                        imagesTovar.Add(str.ToString());
+                }
+
+
+                MatchCollection avatarId = new Regex("(?<=\"id\":\").*?(?=\")").Matches(otv);
+                
                 MatchCollection timestamp = new Regex("(?<=\"timestamp\":\").*?(?=\")").Matches(otv);
                 MatchCollection type = new Regex("(?<=\"type\":\").*?(?=\")").Matches(otv);
                 MatchCollection name = new Regex("(?<=\",\"name\":\").*?(?=\")").Matches(otv);
@@ -376,7 +387,7 @@ namespace web
                 listTovar.Add(isCustom);        //38
                 listTovar.Add(reklama);         //39
 
-                for(int i = 0; ext.Count > i; i++)
+                for(int i = 0; imagesTovar.Count > i; i++)
                 {
                     listTovar.Add(avatarId[i].ToString());        //40 54 68 82 96 110 124 138 152 166 180 194 208
                     listTovar.Add(timestamp[i].ToString());       //41
@@ -396,6 +407,41 @@ namespace web
                 
             }
             return listTovar;
+        }
+
+        internal List<string> ReturnImagesId(CookieContainer cookie, string url)
+        {
+            List<string> imagesTovar = new List<string>();
+
+            if (!url.Contains("nethouse"))
+                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+
+            string otv = httpReq.PostRequest(cookie, url);
+            if (otv != null)
+            {
+                string productId = new Regex("(?<=<section class=\"comment\" id=\").*?(?=\">)").Match(otv).ToString();
+                
+                otv = httpReq.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
+                
+                otv = httpReq.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
+                string objektId = new Regex("(?<=\"objectId\":\").*?(?=\")").Match(otv).Value;
+
+                MatchCollection imagesStrTovat = new Regex("(?<={\"id\")[\\w\\W]*?(?=jpg\"})").Matches(otv);
+                if(imagesStrTovat.Count == 0)
+                    imagesStrTovat = new Regex("(?<=\"id\":\").*?(?=})").Matches(otv);
+                foreach (Match str in imagesStrTovat)
+                {
+                    if (str.ToString().Contains("type\":\"4\"") || str.ToString().Contains("type\":\"5\""))
+                    {
+                        string s = str.ToString();
+                        string imageId = new Regex("(?<=:\").*?(?=\",\"objectId)").Match(str.ToString()).ToString();
+                        if(imageId == "")
+                            imageId = new Regex(".*?(?=\",\"objectId\":\")").Match(str.ToString()).ToString();
+                        imagesTovar.Add(imageId);
+                    }       
+                }
+            }
+            return imagesTovar;
         }
     }
 }

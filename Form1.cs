@@ -352,7 +352,7 @@ namespace Bike18Text
             }
 
             if (chbAltText.Checked)
-                altText(cookie, urlTovar);
+                altText(cookie, urlTovar, tovarList);
 
             if (chbAlsoBuy.Checked)
                 tovarList[42] = alsoBuyTovars(tovarList);
@@ -502,29 +502,19 @@ namespace Bike18Text
             return fullText;
         }
 
-        private void altText(CookieContainer cookie, string url)
+        private void altText(CookieContainer cookie, string url, List<string> tovarList)
         {
-            List<string> tovarList = webRequest.listTovarImages(cookie, url);
-            int countStringTovar = tovarList.Count;
-            int countImages = returnCountImage(countStringTovar);
+            List<string> imagesId = webRequest.ReturnImagesId(cookie, url);
             string altText = "";
-            string idImg = "";
-
-            if (countImages > 1)
+            if(imagesId.Count > 0)
             {
-                for (int i = 0; countImages - 1 > i; i++)
+                foreach (string str in imagesId)
                 {
                     altText = returnAltText();
                     altText = AutoCorrect(url, altText, "seo", tovarList);
-                    countStringTovar -= 14;
-                    idImg = tovarList[countStringTovar].ToString();
-                    webRequest.loadAltTextImage(cookie, idImg, altText);
+                    webRequest.loadAltTextImage(cookie, str, altText);
                 }
             }
-            altText = returnAltText();
-            altText = AutoCorrect(url, altText, "seo", tovarList);
-            idImg = tovarList[17].ToString();
-            webRequest.loadAltTextImage(cookie, idImg, altText);
         }
 
         private string alsoBuyTovars(List<string> tovarList)
