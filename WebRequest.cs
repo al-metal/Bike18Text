@@ -426,7 +426,7 @@ namespace web
                 otv = httpReq.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
                 string objektId = new Regex("(?<=\"objectId\":\").*?(?=\")").Match(otv).Value;
 
-                MatchCollection imagesStrTovat = new Regex("(?<={\"id\")[\\w\\W]*?(?=jpg\"})").Matches(otv);
+                MatchCollection imagesStrTovat = new Regex("(?<=\"id\":\").*?(?=filters)").Matches(otv);
                 if(imagesStrTovat.Count == 0)
                     imagesStrTovat = new Regex("(?<=\"id\":\").*?(?=})").Matches(otv);
                 foreach (Match str in imagesStrTovat)

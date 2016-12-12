@@ -311,6 +311,7 @@ namespace Bike18Text
                 }
             }
             }
+            urls.Clear();
             MessageBox.Show("Обновление товара прошло успешно!", "Внимание");
         }
 
