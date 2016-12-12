@@ -71,13 +71,58 @@ namespace Bike18
                     reklama = "&markers[1]=1";
                 }
 
+
+                MatchCollection paramsTovar = new Regex("(?<=<label class=\"ptype-view-title infoDigits\">)[\\w\\W]*?(?=</select></li>)").Matches(otv);
+                string parametrsTovar = "";
+                for (int i = 0; paramsTovar.Count > i; i++)
+                {
+                    string param = paramsTovar[i].ToString();
+                    string id = new Regex("(?<=productType-).*?(?=\">)").Match(param).ToString();
+                    string namesParam = new Regex(".*?(?=</label><)").Match(param).ToString();
+                    parametrsTovar += "&params[" + i + "][id]=" + id + "&params[" + i + "][name]=" + namesParam;
+                    MatchCollection valuesStr = new Regex("<option data-impact[\\w\\W]*?</option>").Matches(param);
+                    for (int ii = 0; valuesStr.Count > ii; ii++)
+                    {
+                        string values = valuesStr[ii].ToString();
+                        string idParam = new Regex("(?<=data-impact=\")[\\w\\W]*?(?=\")").Match(values).ToString();
+                        string valueParam = new Regex("(?<=value=\")[\\w\\W]*?(?=\")").Match(values).ToString();
+                        string impactParam = new Regex("(?<=\">)[\\w\\W]*?(?=</option>)").Match(values).ToString();
+                        parametrsTovar += "&params[" + i + "][values][" + ii + "][id]=" + valueParam + "&params[" + i + "][values][" + ii + "][value]=" + impactParam + "&params[" + i + "][values][" + ii + "][impact]=" + idParam;
+
+
+                    }
+                }
+
                 otv = webRequest.PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
                 string slug = new Regex("(?<=\",\"slug\":\").*?(?=\")").Match(otv).ToString();
+                string markers = new Regex("(?<=],\"markers\":{).*?(?=})").Match(otv).ToString();
+                if (markers != "")
+                    markers = new Regex("(?<=\").*?(?=\")").Match(markers).ToString();
+                if (markers == "1")
+                    reklama = "&markers[1]=1";
+
+                if (markers == "2")
+                    reklama = "&markers[2]=1";
+
+                if (markers == "3")
+                    reklama = "&markers[3]=1";
+
+                if (markers == "4")
+                    reklama = "&markers[4]=1";
+
+                if (markers == "5")
+                    reklama = "&markers[5]=1";
+
+                if (markers == "6")
+                    reklama = "&markers[6]=1";
+
+                if (markers == "7")
+                    reklama = "&markers[7]=1";
                 string balance = new Regex("(?<=,\"balance\":).*?(?=,\")").Match(otv).ToString();
                 if (balance.Contains("\""))
                     balance = balance.Replace("\"", "");
                 string productCastomGroup = new Regex("(?<=productCustomGroup\":).*?(?=,\")").Match(otv).ToString();
-                string discountCoast = new Regex("(?<=discountCost\":\").*?(?=\")").Match(otv).Value;
+                string discountCoast = new Regex("(?<=discountCost\":\").*?(?=\",\")").Match(otv).Value;
                 string serial = new Regex("(?<=serial\":\").*?(?=\")").Match(otv).Value;
                 string categoryId = new Regex("(?<=\",\"categoryId\":\").*?(?=\")").Match(otv).Value;
                 string productGroup = new Regex("(?<=productGroup\":).*?(?=,\")").Match(otv).Value;
@@ -192,6 +237,7 @@ namespace Bike18
                 listTovar.Add(productCastomGroup); //41
                 listTovar.Add(alsoBuyStr);      //42
                 listTovar.Add(balance);         //43
+                listTovar.Add(parametrsTovar);  //44
             }
             return listTovar;
         }
@@ -263,10 +309,13 @@ namespace Bike18
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
             req.CookieContainer = cookie;
+            string hasSale = "0";
+            if (getProduct[10] != "")
+                hasSale = "1";
             string descFull = getProduct[8].ToString();
             descFull = descFull.Replace("&laquo;", "«").Replace("&raquo;", "»").Replace("&ndash;", "-");
             getProduct[8] = descFull;
-            string request = "id=" + getProduct[0] + "&slug=" + getProduct[1] + "&categoryId=" + getProduct[2] + "&productCustomGroup=" + getProduct[41] + "&productGroup=" + getProduct[3] + "&name=" + getProduct[4] + "&serial=" + getProduct[5] + "&serialByUser=" + getProduct[6] + "&desc=" + getProduct[7] + "&descFull=" + getProduct[8] + "&cost=" + getProduct[9] + "&discountCost=" + getProduct[10] + "&seoMetaDesc=" + getProduct[11] + "&seoMetaKeywords=" + getProduct[12] + "&seoTitle=" + getProduct[13] + "&haveDetail=" + getProduct[14] + "&canMakeOrder=" + getProduct[15] + "&balance=" + getProduct[43] + "&showOnMain=" + getProduct[16] + "&isVisible=1&hasSale=0" + "&customDays=" + getProduct[37] + "&isCustom=" + getProduct[38] + getProduct[39] + getProduct[40] + getProduct[42] + "&alsoBuyLabel=%D0%9F%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B5%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B%20%D0%B2%20%D0%BD%D0%B0%D1%88%D0%B5%D0%BC%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B5";
+            string request = "id=" + getProduct[0] + "&slug=" + getProduct[1] + "&categoryId=" + getProduct[2] + "&productCustomGroup=" + getProduct[41] + "&productGroup=" + getProduct[3] + "&name=" + getProduct[4] + "&serial=" + getProduct[5] + "&serialByUser=" + getProduct[6] + "&desc=" + getProduct[7] + "&descFull=" + getProduct[8] + "&cost=" + getProduct[9] + "&discountCost=" + getProduct[10] + "&seoMetaDesc=" + getProduct[11] + "&seoMetaKeywords=" + getProduct[12] + "&seoTitle=" + getProduct[13] + "&haveDetail=" + getProduct[14] + "&canMakeOrder=" + getProduct[15] + "&balance=" + getProduct[43] + "&showOnMain=" + getProduct[16] + "&isVisible=1&hasSale=" + hasSale + getProduct[44] + "&customDays=" + getProduct[37] + "&isCustom=" + getProduct[38] + getProduct[39] + getProduct[40] + getProduct[42] + "&alsoBuyLabel=%D0%9F%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B5%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B%20%D0%B2%20%D0%BD%D0%B0%D1%88%D0%B5%D0%BC%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B5";
             request = request.Replace("false", "0").Replace("true", "1").Replace("&mdash;", "-").Replace("&laquo;", "\"").Replace("&raquo;", "\"").Replace("&mdash;", "-").Replace("+", "%2B");
 
             request = request.Replace("false", "0").Replace("true", "1");
