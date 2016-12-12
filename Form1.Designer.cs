@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.chbAltText = new System.Windows.Forms.CheckBox();
             this.rtbAltText = new System.Windows.Forms.RichTextBox();
             this.chbFullText = new System.Windows.Forms.CheckBox();
@@ -659,6 +660,7 @@
             this.ClientSize = new System.Drawing.Size(959, 544);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(975, 423);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

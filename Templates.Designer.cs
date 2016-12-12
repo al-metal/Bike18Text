@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Templates));
             this.rtbMiniText = new System.Windows.Forms.RichTextBox();
             this.rtbFullText = new System.Windows.Forms.RichTextBox();
             this.tbTitle = new System.Windows.Forms.TextBox();
@@ -382,6 +383,7 @@
             this.Controls.Add(this.tbTitle);
             this.Controls.Add(this.rtbFullText);
             this.Controls.Add(this.rtbMiniText);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Templates";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Работа с шаблоном";

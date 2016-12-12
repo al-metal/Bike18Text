@@ -268,6 +268,5 @@ namespace Bike18Text
             else
                 MessageBox.Show("Некорректный файл, выберите другой");
         }
-                
     }
 }
