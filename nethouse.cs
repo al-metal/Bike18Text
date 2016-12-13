@@ -46,7 +46,7 @@ namespace Bike18
             {
                 string productId = new Regex("(?<=<section class=\"comment\" id=\").*?(?=\">)").Match(otv).ToString();
                 String article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).Value.Trim();
-                if (article.Length > 15)
+                if (article.Length > 25)
                 {
                     article = new Regex("(?<=Артикул:)[\\w\\W]*(?=</title>)").Match(otv).ToString().Trim();
                 }
