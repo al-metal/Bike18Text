@@ -156,7 +156,7 @@ namespace Bike18
                             atribut = atribut + "&attributes[" + i + "][primaryKey]=\"" + id + "\"&attributes[" + i + "][attributeId]=\"" + id + "\"&attributes[" + i + "][values][0][empty]=0&attributes[" + i + "][values][0][checkbox]=" + checkBox;
                     }
                 }
-                atribut = atribut.Replace("true", "1").Replace("\"\"", "\"");
+                atribut = atribut.Replace("true", "1").Replace("\"\"", "");
                 string alsoBuy = new Regex("(?<=alsoBuy\":).*?(?=,\"markers)").Match(otv).ToString();
                 alsoBuy = alsoBuy.Remove(alsoBuy.Length - 1, 1).Remove(0, 1);
                 string[] alsoBuyArray = alsoBuy.Split(',');
