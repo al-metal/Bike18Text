@@ -30,6 +30,7 @@ namespace Bike18Text
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
         string boldClose = "</span>%26nbsp%3B";
         int countStrAltText = 0;
+        bool err = false;
 
 
 
@@ -312,11 +313,17 @@ namespace Bike18Text
             }
             }
             urls.Clear();
-            MessageBox.Show("Обновление товара прошло успешно!", "Внимание");
+            string message = "";
+            if (err)
+                message = "Во время обновления произошла ошибка. Опять прога сломалась((";
+            else
+                message = "Обновление товара прошло успешно!";
+            MessageBox.Show(message, "Внимание");
         }
 
         private void updateText(string urlTovar, CookieContainer cookie)
         {
+            err = false;
             List<string> tovarList = nethouse.GetProductList(cookie, urlTovar);
 
             if (chbTitle.Checked)
@@ -363,8 +370,10 @@ namespace Bike18Text
 
             otv = nethouse.SaveTovar(cookie, tovarList);
 
+            
             if (otv.Contains("errors"))
             {
+                err = true;
                 int g = 1;
                 if (otv.Contains("slug"))
                 {
@@ -376,6 +385,7 @@ namespace Bike18Text
                         g++;
                         tovarList[1] = s;
                         otv = nethouse.SaveTovar(cookie, tovarList);
+                        err = false;
                     }
                     while (otv.Contains("errors"));
                 }
