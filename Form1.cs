@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace Bike18Text
         string boldClose = "</span>%26nbsp%3B";
         int countStrAltText = 0;
         bool err = false;
+        bool errLengthMiniText = false;
 
 
 
@@ -214,6 +216,7 @@ namespace Bike18Text
             Properties.Settings.Default.password = tbPassword.Text;
             Properties.Settings.Default.template = template;
             Properties.Settings.Default.Save();
+            File.Delete("errorFiles.txt");
 
             string article = "";
             CookieContainer cookie = nethouse.CookieNethouse(tbLogin.Text, tbPassword.Text);
@@ -315,15 +318,24 @@ namespace Bike18Text
             urls.Clear();
             string message = "";
             if (err)
-                message = "Во время обновления произошла ошибка. Опять прога сломалась((";
+                message = "Во время работы возникли ошибки, можно ";
+            else if (errLengthMiniText)
+                message = "Во время обновления были товары в которых превышена длинна краткого описания, данный товар был пропущен и не обновлен";
             else
                 message = "Обновление товара прошло успешно!";
-            MessageBox.Show(message, "Внимание");
+            var okMessageBox = MessageBox.Show(message, "Внимание", MessageBoxButtons.OK);
+
+            if(okMessageBox == DialogResult.OK)
+            {
+                if(errLengthMiniText)
+                    Process.Start("C:\\Windows\\System32\\notepad.exe", "errorFiles.txt");
+            }
         }
 
         private void updateText(string urlTovar, CookieContainer cookie)
         {
             err = false;
+            errLengthMiniText = false;
             List<string> tovarList = nethouse.GetProductList(cookie, urlTovar);
 
             if (chbTitle.Checked)
@@ -355,6 +367,23 @@ namespace Bike18Text
                 {
                     string miniText = tovarList[7].ToString();
                     miniText += mini_Text_tovar(tovarList, urlTovar);
+
+                    string s = miniText;
+                    MatchCollection tags = new Regex("<.*?>").Matches(s);
+                    for (int i = 0; tags.Count > i; i++)
+                    {
+                        s = s.Replace(tags[i].ToString(), "");
+                    }
+
+                    int lengthMiniText = s.Length;
+                    if (lengthMiniText > 1000)
+                    {
+                        errLengthMiniText = true;
+                        StreamWriter sw = new StreamWriter("errorFiles.txt", true);
+                        sw.WriteLine(urlTovar);
+                        sw.Close();
+                    }
+
                     tovarList[7] = autoCrop(miniText, 16000);
                 }
             }
@@ -368,7 +397,8 @@ namespace Bike18Text
             if(chbCHPU.Checked)
                 tovarList[1] = slug(tovarList);
 
-            otv = nethouse.SaveTovar(cookie, tovarList);
+            if(!errLengthMiniText)
+                otv = nethouse.SaveTovar(cookie, tovarList);
 
             
             if (otv.Contains("errors"))
