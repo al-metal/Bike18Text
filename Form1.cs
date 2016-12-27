@@ -318,7 +318,7 @@ namespace Bike18Text
             urls.Clear();
             string message = "";
             if (err)
-                message = "Во время работы возникли ошибки, можно ";
+                message = "Во время работы возникли ошибки";
             else if (errLengthMiniText)
                 message = "Во время обновления были товары в которых превышена длинна краткого описания, данный товар был пропущен и не обновлен";
             else
