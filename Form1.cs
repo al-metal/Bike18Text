@@ -211,6 +211,7 @@ namespace Bike18Text
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            tbHistory.Clear();
             string template = Properties.Settings.Default.template.ToString();
             Properties.Settings.Default.login = tbLogin.Text;
             Properties.Settings.Default.password = tbPassword.Text;
@@ -231,6 +232,7 @@ namespace Bike18Text
                 MessageBox.Show("Заполните адрес раздела для работы на сайте");
                 return;
             }
+            tbHistory.AppendText("Логин и пароль введен верно\n");
 
             if (rbString.Checked)
                 urls.Add(tbURL.Lines[0].ToString());
@@ -330,10 +332,12 @@ namespace Bike18Text
                 if(errLengthMiniText)
                     Process.Start("C:\\Windows\\System32\\notepad.exe", "errorFiles.txt");
             }
+            tbHistory.AppendText("Обновление карточки закончено\n");
         }
 
         private void updateText(string urlTovar, CookieContainer cookie)
         {
+            tbHistory.AppendText("Получения карточки товара\n");
             err = false;
             errLengthMiniText = false;
             List<string> tovarList = nethouse.GetProductList(cookie, urlTovar);
@@ -397,16 +401,21 @@ namespace Bike18Text
             if(chbCHPU.Checked)
                 tovarList[1] = slug(tovarList);
 
-            if(!errLengthMiniText)
+            if (!errLengthMiniText)
+            {
+                tbHistory.AppendText("Обновление карточки товара\n");
                 otv = nethouse.SaveTovar(cookie, tovarList);
-
+            }
+                
             
             if (otv.Contains("errors"))
             {
+                tbHistory.AppendText("Во время сохранения произошла ошибка\n");
                 err = true;
                 int g = 1;
                 if (otv.Contains("slug"))
                 {
+                    tbHistory.AppendText("Ошибка возникла с чпу, пытаюсь ее исправить\n");
                     do
                     {
                         string s = tovarList[1].ToString();

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.chbAltText = new System.Windows.Forms.CheckBox();
             this.rtbAltText = new System.Windows.Forms.RichTextBox();
@@ -81,6 +82,8 @@
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ofdLoadURLs = new System.Windows.Forms.OpenFileDialog();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tbHistory = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -114,7 +117,7 @@
             this.rtbAltText.Enabled = false;
             this.rtbAltText.Location = new System.Drawing.Point(3, 26);
             this.rtbAltText.Name = "rtbAltText";
-            this.rtbAltText.Size = new System.Drawing.Size(307, 457);
+            this.rtbAltText.Size = new System.Drawing.Size(352, 457);
             this.rtbAltText.TabIndex = 1;
             this.rtbAltText.Text = "";
             // 
@@ -152,7 +155,7 @@
             this.rtbMiniText.Location = new System.Drawing.Point(0, 26);
             this.rtbMiniText.Name = "rtbMiniText";
             this.rtbMiniText.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rtbMiniText.Size = new System.Drawing.Size(305, 211);
+            this.rtbMiniText.Size = new System.Drawing.Size(350, 211);
             this.rtbMiniText.TabIndex = 4;
             this.rtbMiniText.Text = "";
             // 
@@ -164,7 +167,7 @@
             this.rtbFullText.Enabled = false;
             this.rtbFullText.Location = new System.Drawing.Point(3, 26);
             this.rtbFullText.Name = "rtbFullText";
-            this.rtbFullText.Size = new System.Drawing.Size(302, 211);
+            this.rtbFullText.Size = new System.Drawing.Size(347, 211);
             this.rtbFullText.TabIndex = 5;
             this.rtbFullText.Text = "";
             // 
@@ -175,7 +178,7 @@
             this.tbTitle.Enabled = false;
             this.tbTitle.Location = new System.Drawing.Point(11, 55);
             this.tbTitle.Name = "tbTitle";
-            this.tbTitle.Size = new System.Drawing.Size(274, 20);
+            this.tbTitle.Size = new System.Drawing.Size(319, 20);
             this.tbTitle.TabIndex = 6;
             // 
             // tbDescription
@@ -185,7 +188,7 @@
             this.tbDescription.Enabled = false;
             this.tbDescription.Location = new System.Drawing.Point(11, 94);
             this.tbDescription.Name = "tbDescription";
-            this.tbDescription.Size = new System.Drawing.Size(274, 20);
+            this.tbDescription.Size = new System.Drawing.Size(319, 20);
             this.tbDescription.TabIndex = 7;
             // 
             // tbKeywords
@@ -195,7 +198,7 @@
             this.tbKeywords.Enabled = false;
             this.tbKeywords.Location = new System.Drawing.Point(11, 133);
             this.tbKeywords.Name = "tbKeywords";
-            this.tbKeywords.Size = new System.Drawing.Size(274, 20);
+            this.tbKeywords.Size = new System.Drawing.Size(319, 20);
             this.tbKeywords.TabIndex = 8;
             // 
             // label1
@@ -230,7 +233,7 @@
             this.chbTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbTitle.AutoSize = true;
             this.chbTitle.Enabled = false;
-            this.chbTitle.Location = new System.Drawing.Point(291, 58);
+            this.chbTitle.Location = new System.Drawing.Point(336, 58);
             this.chbTitle.Name = "chbTitle";
             this.chbTitle.Size = new System.Drawing.Size(15, 14);
             this.chbTitle.TabIndex = 12;
@@ -242,7 +245,7 @@
             this.chbDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbDescription.AutoSize = true;
             this.chbDescription.Enabled = false;
-            this.chbDescription.Location = new System.Drawing.Point(291, 97);
+            this.chbDescription.Location = new System.Drawing.Point(336, 97);
             this.chbDescription.Name = "chbDescription";
             this.chbDescription.Size = new System.Drawing.Size(15, 14);
             this.chbDescription.TabIndex = 13;
@@ -255,7 +258,7 @@
             this.chbKeywords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chbKeywords.AutoSize = true;
             this.chbKeywords.Enabled = false;
-            this.chbKeywords.Location = new System.Drawing.Point(291, 136);
+            this.chbKeywords.Location = new System.Drawing.Point(336, 136);
             this.chbKeywords.Name = "chbKeywords";
             this.chbKeywords.Size = new System.Drawing.Size(15, 14);
             this.chbKeywords.TabIndex = 14;
@@ -269,7 +272,7 @@
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnStart.Location = new System.Drawing.Point(3, 45);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(309, 35);
+            this.btnStart.Size = new System.Drawing.Size(354, 35);
             this.btnStart.TabIndex = 16;
             this.btnStart.Text = "Обработать";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -280,7 +283,7 @@
             this.tbURL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbURL.Location = new System.Drawing.Point(0, 0);
             this.tbURL.Name = "tbURL";
-            this.tbURL.Size = new System.Drawing.Size(632, 20);
+            this.tbURL.Size = new System.Drawing.Size(722, 20);
             this.tbURL.TabIndex = 17;
             this.tbURL.Text = "http://bike18.ru/products/category/1652579";
             // 
@@ -306,7 +309,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.tableLayoutPanel1.SetRowSpan(this.panel2, 2);
-            this.panel2.Size = new System.Drawing.Size(313, 486);
+            this.panel2.Size = new System.Drawing.Size(358, 486);
             this.panel2.TabIndex = 21;
             // 
             // panel3
@@ -315,9 +318,9 @@
             this.panel3.Controls.Add(this.chbMiniText);
             this.panel3.Controls.Add(this.rtbMiniText);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(322, 3);
+            this.panel3.Location = new System.Drawing.Point(367, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(313, 240);
+            this.panel3.Size = new System.Drawing.Size(358, 240);
             this.panel3.TabIndex = 22;
             // 
             // chbReplaceMiniText
@@ -351,7 +354,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.36842F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.36842F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.263158F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(959, 520);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1094, 520);
             this.tableLayoutPanel1.TabIndex = 26;
             // 
             // panel1
@@ -361,11 +364,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 495);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(632, 22);
+            this.panel1.Size = new System.Drawing.Size(722, 22);
             this.panel1.TabIndex = 23;
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.tbHistory);
             this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.lblUrlCount);
             this.panel5.Controls.Add(this.lblUrlAllCount);
@@ -378,9 +382,9 @@
             this.panel5.Controls.Add(this.tbLogin);
             this.panel5.Controls.Add(this.btnStart);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(641, 249);
+            this.panel5.Location = new System.Drawing.Point(731, 249);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(315, 240);
+            this.panel5.Size = new System.Drawing.Size(360, 240);
             this.panel5.TabIndex = 24;
             // 
             // groupBox1
@@ -389,7 +393,7 @@
             this.groupBox1.Controls.Add(this.rbString);
             this.groupBox1.Location = new System.Drawing.Point(11, 86);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(295, 45);
+            this.groupBox1.Size = new System.Drawing.Size(130, 45);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Источник ссылок";
@@ -421,7 +425,7 @@
             // lblUrlCount
             // 
             this.lblUrlCount.AutoSize = true;
-            this.lblUrlCount.Location = new System.Drawing.Point(267, 220);
+            this.lblUrlCount.Location = new System.Drawing.Point(334, 117);
             this.lblUrlCount.Name = "lblUrlCount";
             this.lblUrlCount.Size = new System.Drawing.Size(13, 13);
             this.lblUrlCount.TabIndex = 29;
@@ -431,7 +435,7 @@
             // lblUrlAllCount
             // 
             this.lblUrlAllCount.AutoSize = true;
-            this.lblUrlAllCount.Location = new System.Drawing.Point(267, 198);
+            this.lblUrlAllCount.Location = new System.Drawing.Point(334, 95);
             this.lblUrlAllCount.Name = "lblUrlAllCount";
             this.lblUrlAllCount.Size = new System.Drawing.Size(13, 13);
             this.lblUrlAllCount.TabIndex = 28;
@@ -441,7 +445,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(167, 220);
+            this.label5.Location = new System.Drawing.Point(234, 117);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(96, 13);
             this.label5.TabIndex = 27;
@@ -451,7 +455,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(167, 198);
+            this.label4.Location = new System.Drawing.Point(234, 95);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 13);
             this.label4.TabIndex = 26;
@@ -460,9 +464,9 @@
             // 
             // btnLoadURLs
             // 
-            this.btnLoadURLs.Location = new System.Drawing.Point(3, 215);
+            this.btnLoadURLs.Location = new System.Drawing.Point(144, 86);
             this.btnLoadURLs.Name = "btnLoadURLs";
-            this.btnLoadURLs.Size = new System.Drawing.Size(158, 22);
+            this.btnLoadURLs.Size = new System.Drawing.Size(84, 53);
             this.btnLoadURLs.TabIndex = 0;
             this.btnLoadURLs.Text = "Загрузить список ссылок";
             this.btnLoadURLs.UseVisualStyleBackColor = true;
@@ -518,9 +522,9 @@
             this.panel4.Controls.Add(this.tbTitle);
             this.panel4.Controls.Add(this.chbSEO);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(641, 3);
+            this.panel4.Location = new System.Drawing.Point(731, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(315, 240);
+            this.panel4.Size = new System.Drawing.Size(360, 240);
             this.panel4.TabIndex = 23;
             // 
             // chbCHPU
@@ -558,9 +562,9 @@
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(641, 495);
+            this.panel6.Location = new System.Drawing.Point(731, 495);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(315, 22);
+            this.panel6.Size = new System.Drawing.Size(360, 22);
             this.panel6.TabIndex = 25;
             // 
             // panel7
@@ -569,9 +573,9 @@
             this.panel7.Controls.Add(this.rtbFullText);
             this.panel7.Controls.Add(this.chbFullText);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(322, 249);
+            this.panel7.Location = new System.Drawing.Point(367, 249);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(313, 240);
+            this.panel7.Size = new System.Drawing.Size(358, 240);
             this.panel7.TabIndex = 26;
             // 
             // chbReplaceFullText
@@ -592,7 +596,7 @@
             this.справкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(959, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1094, 24);
             this.menuStrip1.TabIndex = 27;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -653,11 +657,25 @@
             this.ofdLoadURLs.Filter = "Excel|*.xlsx";
             this.ofdLoadURLs.InitialDirectory = "Environment.CurrentDirectory";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // tbHistory
+            // 
+            this.tbHistory.Location = new System.Drawing.Point(11, 146);
+            this.tbHistory.Multiline = true;
+            this.tbHistory.Name = "tbHistory";
+            this.tbHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbHistory.Size = new System.Drawing.Size(340, 91);
+            this.tbHistory.TabIndex = 31;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(959, 544);
+            this.ClientSize = new System.Drawing.Size(1094, 544);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -743,6 +761,8 @@
         private System.Windows.Forms.RadioButton rbFiles;
         private System.Windows.Forms.RadioButton rbString;
         private System.Windows.Forms.CheckBox chbCHPU;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox tbHistory;
     }
 }
 
