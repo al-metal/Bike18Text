@@ -54,6 +54,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.tbHistory = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbFiles = new System.Windows.Forms.RadioButton();
             this.rbString = new System.Windows.Forms.RadioButton();
@@ -83,7 +84,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ofdLoadURLs = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tbHistory = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -387,6 +387,15 @@
             this.panel5.Size = new System.Drawing.Size(360, 240);
             this.panel5.TabIndex = 24;
             // 
+            // tbHistory
+            // 
+            this.tbHistory.Location = new System.Drawing.Point(11, 146);
+            this.tbHistory.Multiline = true;
+            this.tbHistory.Name = "tbHistory";
+            this.tbHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbHistory.Size = new System.Drawing.Size(340, 91);
+            this.tbHistory.TabIndex = 31;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.rbFiles);
@@ -661,15 +670,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // tbHistory
-            // 
-            this.tbHistory.Location = new System.Drawing.Point(11, 146);
-            this.tbHistory.Multiline = true;
-            this.tbHistory.Name = "tbHistory";
-            this.tbHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbHistory.Size = new System.Drawing.Size(340, 91);
-            this.tbHistory.TabIndex = 31;
             // 
             // Form1
             // 
