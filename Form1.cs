@@ -576,7 +576,11 @@ namespace Bike18Text
             int count = 0;
             if (searchTovars.Count > 1)
             {
-                for (int i = 0; 4 > i; i++)
+                int countSearch = searchTovars.Count;
+                if (countSearch > 5)
+                    countSearch = 5;
+                
+                for (int i = 1; countSearch > i; i++)
                 {
 
                     alsoBuy += "&alsoBuy[" + count + "]=" + searchTovars[i].ToString();
