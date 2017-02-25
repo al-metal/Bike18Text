@@ -574,7 +574,7 @@ namespace Bike18Text
             MatchCollection searchTovars = new Regex("(?<=<div class=\"product-item preview-size-156\" id=\"item).*?(?=\"><div class=\"background\">)").Matches(otv);
             string alsoBuy = "";
             int count = 0;
-            if (searchTovars.Count > 1)
+            if (searchTovars.Count >= 5)
             {
                 int countSearch = searchTovars.Count;
                 if (countSearch > 5)
@@ -585,6 +585,30 @@ namespace Bike18Text
 
                     alsoBuy += "&alsoBuy[" + count + "]=" + searchTovars[i].ToString();
                     count++;
+                }
+            }
+            else
+            {
+                otv = webRequest.getRequest("http://bike18.ru/products/" + tovarList[1].ToString());
+                string urlsCategories = new Regex("(?<=<div class=\"container-bread-crumbs\">).*(?=</div>)").Match(otv).ToString();
+                MatchCollection arrayNamesCategories = new Regex("(?<=<a).*?(?=</a)").Matches(urlsCategories);
+                int maxCategory = arrayNamesCategories.Count - 1;
+                string category = new Regex("(?<=\">).*").Match(arrayNamesCategories[maxCategory].ToString()).ToString();
+
+                otv = webRequest.getRequest("http://bike18.ru/products/search/page/1?sort=0&balance=&categoryId=&min_cost=&max_cost=&text=" + category);
+                searchTovars = new Regex("(?<=<div class=\"product-item preview-size-156\" id=\"item).*?(?=\"><div class=\"background\">)").Matches(otv);
+                if (searchTovars.Count > 2)
+                {
+                    int countSearch = searchTovars.Count;
+                    if (countSearch > 5)
+                        countSearch = 5;
+
+                    for (int i = 1; countSearch > i; i++)
+                    {
+
+                        alsoBuy += "&alsoBuy[" + count + "]=" + searchTovars[i].ToString();
+                        count++;
+                    }
                 }
             }
             return alsoBuy;
