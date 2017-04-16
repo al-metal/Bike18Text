@@ -248,7 +248,8 @@ namespace Bike18Text
                     updateText(str, cookie);
                 else
                 {
-                MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                    otv = webRequest.getRequest(str + "?page=all");
+                    MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
                 MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
 
                 if (tovarUrl.Count != 0)
