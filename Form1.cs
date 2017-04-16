@@ -265,7 +265,7 @@ namespace Bike18Text
                 {
                     for (int i = 0; categoryUrl.Count > i; i++)
                     {
-                        otv = webRequest.getRequest(categoryUrl[i].ToString());
+                        otv = webRequest.getRequest(categoryUrl[i].ToString() + "?page=all");
                         MatchCollection category2Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
                         MatchCollection tovar2Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
                         if (tovar2Url.Count != 0)
@@ -280,7 +280,7 @@ namespace Bike18Text
                         {
                             for (int x = 0; category2Url.Count > x; x++)
                             {
-                                otv = webRequest.getRequest(category2Url[i].ToString());
+                                otv = webRequest.getRequest(category2Url[i].ToString() + "?page=all");
                                 MatchCollection category3Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
                                 MatchCollection tovar3Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
                                 if (tovar3Url.Count != 0)
@@ -295,7 +295,7 @@ namespace Bike18Text
                                 {
                                     for (int m = 0; category3Url.Count > m; m++)
                                     {
-                                        otv = webRequest.getRequest(category3Url[m].ToString());
+                                        otv = webRequest.getRequest(category3Url[m].ToString() + "?page=all");
                                         MatchCollection category4Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
                                         MatchCollection tovar4Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
                                         if (tovar4Url.Count != 0)
