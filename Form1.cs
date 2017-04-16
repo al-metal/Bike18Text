@@ -837,7 +837,9 @@ namespace Bike18Text
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Разработка программы: al-metal\ne-mail: al-metal@bk.ru", "О программе");
+            MessageBox.Show("Разработка программы: al-metal\ne-mail: al-metal@bk.ru\n\n\n"+
+                "Изменения в программе:\n"+
+                "16.04.2017 Обработка всех товаров в разделе", "О программе");
         }
 
         private void btnLoadURLs_Click(object sender, EventArgs e)
@@ -914,5 +916,9 @@ namespace Bike18Text
             }
         }
 
+        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
