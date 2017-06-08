@@ -839,7 +839,8 @@ namespace Bike18Text
         {
             MessageBox.Show("Разработка программы: al-metal\ne-mail: al-metal@bk.ru\n\n\n"+
                 "Изменения в программе:\n"+
-                "16.04.2017 Обработка всех товаров в разделе", "О программе");
+                "16.04.2017 Обработка всех товаров в разделе" +
+                "08.06.2017 Корректная обработка артикула товара", "О программе");
         }
 
         private void btnLoadURLs_Click(object sender, EventArgs e)
