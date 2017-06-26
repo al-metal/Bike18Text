@@ -51,7 +51,7 @@ namespace Bike18Text
                     if (rtbMiniText.Lines[i] == "")
                         break;
                 }
-                if (count - 1 == i)
+                if (count - 2 == i)
                     writers.Write(rtbMiniText.Lines[i].ToString());
                 else
                     writers.Write(rtbMiniText.Lines[i].ToString() + "\\r\\n");
@@ -68,7 +68,7 @@ namespace Bike18Text
                     if (rtbFullText.Lines[i] == "")
                         break;
                 }
-                if(count - 1 == i)
+                if(count - 2 == i)
                     writers.Write(rtbFullText.Lines[i].ToString());
                 else
                     writers.Write(rtbFullText.Lines[i].ToString() + "\\r\\n");

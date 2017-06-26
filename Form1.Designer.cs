@@ -285,7 +285,6 @@
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(722, 20);
             this.tbURL.TabIndex = 17;
-            this.tbURL.Text = "http://bike18.ru/products/category/1652579";
             // 
             // chbMiniText
             // 

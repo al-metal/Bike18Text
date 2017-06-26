@@ -29,7 +29,7 @@ namespace Bike18Text
         string otv = null;
         string pathDirectory = Environment.CurrentDirectory + "\\files";
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
-        string boldClose = "</span>%26nbsp%3B";
+        string boldClose = "</span>";
         int countStrAltText = 0;
         bool err = false;
         bool errLengthMiniText = false;
@@ -359,6 +359,10 @@ namespace Bike18Text
                 else
                 {
                     string fullText = tovarList[8].ToString();
+                    int i = fullText.LastIndexOf("<p><br /></p>");
+                    int length = fullText.Length - 13;
+                    if (i == length)
+                        fullText = fullText.Remove(i);
                     fullText += full_Text_tovar(tovarList, urlTovar);
                     tovarList[8] = fullText;
                 }
@@ -371,6 +375,10 @@ namespace Bike18Text
                 else
                 {
                     string miniText = tovarList[7].ToString();
+                    int n = miniText.LastIndexOf("<p><br /></p>");
+                    int length = miniText.Length - 13;
+                    if (n == length)
+                        miniText = miniText.Remove(n);
                     miniText += mini_Text_tovar(tovarList, urlTovar);
 
                     string s = miniText;
@@ -785,17 +793,25 @@ namespace Bike18Text
                     string miniTextString = templateString[0].ToString().Replace("\\r\\n", "†");
                     miniTextString = miniTextString.TrimEnd('†');
                     string[] miniText = miniTextString.Split('†');
-                    foreach (string str in miniText)
+                    for (int i = 0; miniText.Length > i; i++)
                     {
+                        string str = miniText[i];
+                        if(miniText.Length -1 == i)
+                            rtbMiniText.AppendText(str);
+                        else
                         rtbMiniText.AppendText(str + "\n");
                     }
 
                     string fullTextString = templateString[1].ToString().Replace("\\r\\n", "†");
                     fullTextString = fullTextString.TrimEnd('†');
                     string[] fullText = fullTextString.Split('†');
-                    foreach (string str in fullText)
+                    for (int i = 0; fullText.Length > i; i++)
                     {
-                        rtbFullText.AppendText(str + "\n");
+                        string str = fullText[i];
+                        if (fullText.Length - 1 == i)
+                            rtbFullText.AppendText(str);
+                        else
+                            rtbFullText.AppendText(str + "\n");
                     }
                     string altTextString = templateString[5].ToString().Replace("\\r\\n", "†");
                     altTextString = altTextString.TrimEnd('†');
@@ -839,7 +855,7 @@ namespace Bike18Text
         {
             MessageBox.Show("Разработка программы: al-metal\ne-mail: al-metal@bk.ru\n\n\n"+
                 "Изменения в программе:\n"+
-                "16.04.2017 Обработка всех товаров в разделе" +
+                "16.04.2017 Обработка всех товаров в разделе\n" +
                 "08.06.2017 Корректная обработка артикула товара", "О программе");
         }
 
