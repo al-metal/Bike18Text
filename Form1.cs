@@ -33,6 +33,7 @@ namespace Bike18Text
         int countStrAltText = 0;
         bool err = false;
         bool errLengthMiniText = false;
+        bool chpuCheked;
 
         Dictionary<string, string> ampersands = new Dictionary<string, string>();
 
@@ -515,6 +516,7 @@ namespace Bike18Text
             Properties.Settings.Default.Save();
             File.Delete("errorFiles.txt");
 
+            chpuCheked = chbCHPU.Checked;
             string article = "";
             CookieContainer cookie = nethouse.CookieNethouse(tbLogin.Text, tbPassword.Text);
 
@@ -706,16 +708,19 @@ namespace Bike18Text
             if (chbAlsoBuy.Checked)
                 tovarList[42] = alsoBuyTovars(tovarList);
 
-            if (chbCHPU.Checked)
+            if (chpuCheked)
+            {
+                if (tovarList[1] != "")
+                    nethouse.Redirect(cookie, tovarList[1], slug(tovarList));
                 tovarList[1] = slug(tovarList);
-
+            }
+            
             if (!errLengthMiniText)
             {
                 tbHistory.AppendText("Обновление карточки товара\n");
                 otv = nethouse.SaveTovar(cookie, tovarList);
             }
-
-
+            
             if (otv.Contains("errors"))
             {
                 tbHistory.AppendText("Во время сохранения произошла ошибка\n");
@@ -737,6 +742,11 @@ namespace Bike18Text
                     while (otv.Contains("errors"));
                 }
             }
+        }
+
+        private void RedirectURLProduct(CookieContainer cookie, string oldCHPU, string newCHPU)
+        {
+            nethouse.Redirect(cookie, oldCHPU, newCHPU);
         }
 
         private string DeleteSimbols(string text)
@@ -1166,7 +1176,8 @@ namespace Bike18Text
                 "08.06.2017 Корректная обработка артикула товара\n" +
                 "26.06.2017 Убраны лишние пробелы и переносы строк в шаблоне\n" +
                 "05.07.2017 Удаление неликвидных символов\n" +
-                "16.07.2017 Обработка html тэгов\n", "О программе");
+                "16.07.2017 Обработка html тэгов\n" +
+                "16.07.2017 Добавление редиректа при смене ЧПУ\n", "О программе");
         }
 
         private void btnLoadURLs_Click(object sender, EventArgs e)
