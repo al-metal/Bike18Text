@@ -44,6 +44,7 @@ namespace Bike18Text
             string template = Properties.Settings.Default.template.ToString();
             InitializeComponent();
             #region ampersand
+            ampersands.Add("&bull;", "·");
             ampersands.Add("&#32;", " ");
             ampersands.Add("&#33;", "!");
             ampersands.Add("&#34;", "\"");
@@ -663,7 +664,6 @@ namespace Bike18Text
                     if (i == length)
                         fullText = fullText.Remove(i);
                     fullText += full_Text_tovar(tovarList, urlTovar);
-                    fullText = ampersChar(fullText);
                     tovarList[8] = fullText;
                 }
             }
@@ -718,6 +718,7 @@ namespace Bike18Text
             if (!errLengthMiniText)
             {
                 tbHistory.AppendText("Обновление карточки товара\n");
+                tovarList = ReplaceAmpersChar(tovarList);
                 otv = nethouse.SaveTovar(cookie, tovarList);
             }
             
@@ -742,6 +743,16 @@ namespace Bike18Text
                     while (otv.Contains("errors"));
                 }
             }
+        }
+
+        private List<string> ReplaceAmpersChar(List<string> tovarList)
+        {
+            tovarList[7] = ampersChar(tovarList[7]);
+            tovarList[8] = ampersChar(tovarList[8]);
+            tovarList[11] = ampersChar(tovarList[11]);
+            tovarList[12] = ampersChar(tovarList[12]);
+            tovarList[13] = ampersChar(tovarList[13]);
+            return tovarList;
         }
 
         private void RedirectURLProduct(CookieContainer cookie, string oldCHPU, string newCHPU)
@@ -1074,7 +1085,8 @@ namespace Bike18Text
                 category1 = boldOpen + category1 + boldClose;
                 category2 = boldOpen + category2 + boldClose;
             }
-            text = ampersChar(text);
+            if (text == null)
+                return text = "";
             text = text.Replace("НАЗВАНИЕ", name).Replace("ЦЕНА", price).Replace("АРТИКУЛ", articl).Replace("РАЗДЕЛ1", category1).Replace("РАЗДЕЛ2", category2);
 
             return text;
@@ -1161,6 +1173,8 @@ namespace Bike18Text
 
         private string ampersChar(string text)
         {
+            if (text == null)
+                return text = "";
             foreach (KeyValuePair<string, string> pair in ampersands)
             {
                 text = text.Replace(pair.Key, pair.Value);
@@ -1177,7 +1191,8 @@ namespace Bike18Text
                 "26.06.2017 Убраны лишние пробелы и переносы строк в шаблоне\n" +
                 "05.07.2017 Удаление неликвидных символов\n" +
                 "16.07.2017 Обработка html тэгов\n" +
-                "16.07.2017 Добавление редиректа при смене ЧПУ\n", "О программе");
+                "16.07.2017 Добавление редиректа при смене ЧПУ\n" +
+                "26.07.2017 Обработка спецсимволов на всей карточке товара\n", "О программе");
         }
 
         private void btnLoadURLs_Click(object sender, EventArgs e)
@@ -1258,7 +1273,6 @@ namespace Bike18Text
         {
 
         }
-
-
+        
     }
 }
