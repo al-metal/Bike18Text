@@ -526,7 +526,7 @@ namespace Bike18Text
                 MessageBox.Show("Логин или пароль введены не верно!");
                 return;
             }
-            if (tbURL.Lines.Length == 0)
+            if (tbURL.Lines.Length == 0 && urls.Count == 0)
             {
                 MessageBox.Show("Заполните адрес раздела для работы на сайте");
                 return;
@@ -924,13 +924,10 @@ namespace Bike18Text
             }
             else
             {
-                otv = webRequest.getRequest("http://bike18.ru/products/" + tovarList[1].ToString());
-                string urlsCategories = new Regex("(?<=<div class=\"container-bread-crumbs\">).*(?=</div>)").Match(otv).ToString();
-                MatchCollection arrayNamesCategories = new Regex("(?<=<a).*?(?=</a)").Matches(urlsCategories);
-                int maxCategory = arrayNamesCategories.Count - 1;
-                string category = new Regex("(?<=\">).*").Match(arrayNamesCategories[maxCategory].ToString()).ToString();
-
-                otv = webRequest.getRequest("http://bike18.ru/products/search/page/1?sort=0&balance=&categoryId=&min_cost=&max_cost=&text=" + category);
+                otv = webRequest.getRequest("https://bike18.ru/products/category/" + tovarList[2].ToString());
+                string nameCategory = new Regex("(?<=<h1 class=\"category-name\">).*(?=</h1>)").Match(otv).ToString();
+                
+                otv = webRequest.getRequest("http://bike18.ru/products/search/page/1?sort=0&balance=&categoryId=&min_cost=&max_cost=&text=" + nameCategory);
                 searchTovars = new Regex("(?<=<div class=\"product-item preview-size-156\" id=\"item).*?(?=\"><div class=\"background\">)").Matches(otv);
                 if (searchTovars.Count > 2)
                 {
@@ -1221,7 +1218,7 @@ namespace Bike18Text
                 {
                     try
                     {
-                        string url = w.Cells[i, 2].Value.ToString();
+                        string url = w.Cells[i, 1].Value.ToString();
                         if (url != null)
                         {
                             if (url.Contains("category") || !url.Contains("products/"))
