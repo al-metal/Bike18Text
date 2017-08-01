@@ -131,6 +131,10 @@ namespace Bike18
                 string discountCoast = new Regex("(?<=discountCost\":\").*?(?=\",\")").Match(otv).Value;
                 string serial = new Regex("(?<=serial\":\").*?(?=\")").Match(otv).Value;
                 string categoryId = new Regex("(?<=\",\"categoryId\":\").*?(?=\")").Match(otv).Value;
+                if(categoryId == "")
+                {
+                    categoryId = new Regex("(?<=categoryId\":\").*?(?=\")").Match(otv).ToString();
+                }
                 string productGroup = new Regex("(?<=productGroup\":).*?(?=,\")").Match(otv).Value;
                 string havenDetail = new Regex("(?<=haveDetail\".).*?(?=,\")").Match(otv).Value;
                 string canMakeOrder = new Regex("(?<=canMakeOrder\".).*?(?=,\")").Match(otv).Value;
