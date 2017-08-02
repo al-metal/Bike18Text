@@ -711,7 +711,9 @@ namespace Bike18Text
             if (chpuCheked)
             {
                 if (tovarList[1] != "")
+                {
                     nethouse.Redirect(cookie, tovarList[1], slug(tovarList));
+                }
                 tovarList[1] = slug(tovarList);
             }
             
@@ -776,6 +778,8 @@ namespace Bike18Text
             }
             else
                 str = chpu.vozvr(str);
+
+            str = str.Replace("[", "").Replace("]", "").Replace("#", "");
 
             return str;
         }
