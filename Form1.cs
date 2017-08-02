@@ -38,12 +38,11 @@ namespace Bike18Text
 
         Dictionary<string, string> ampersands = new Dictionary<string, string>();
 
-
-
         public Form1()
         {
             string template = Properties.Settings.Default.template.ToString();
             InitializeComponent();
+            
             #region ampersand
             ampersands.Add("&bull;", "·");
             ampersands.Add("&#32;", " ");
@@ -647,7 +646,10 @@ namespace Bike18Text
         {
             tbHistory.AppendText("Получения карточки раздела\n");
             string idCategory = new Regex("(?<=category/).*").Match(str).ToString();
+
             otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/category?id=" + idCategory);
+
+            otv = utfChar(otv);
 
             string parentId = new Regex("(?<=parent_id\":).*(?=,)").Match(otv).ToString().Trim();
             string name = new Regex("(?<=name\": \").*(?=\")").Match(otv).ToString().Trim();
@@ -665,6 +667,7 @@ namespace Bike18Text
             string seoTitle = new Regex("(?<=seoTitle\": \").*(?=\")").Match(otv).ToString().Trim();
 
             otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/categorymedia?id=" + idCategory);
+            otv = utfChar(otv);
 
             string avatarId = new Regex("(?<=\"id\":).*(?=,)").Match(otv).ToString().Trim();
             string avatarTimesap = new Regex("(?<=timestamp\":).*(?=,)").Match(otv).ToString().Trim();
@@ -696,7 +699,8 @@ namespace Bike18Text
             }
             slug = newSlug;
 
-            string strRequest = String.Format("id={0}&name={1}&avatar[id]={2}&avatar[objectId]={3}&avatar[timestamp]={4}&avatar[type]={5}&avatar[name]={6}&avatar[desc]={7}&avatar[ext]={8}&avatar[formats][raw]={9}&avatar[formats][W215]={10}&avatar[formats][150x120]={11}&avatar[formats][104x82]={12}&avatar[formats][156x120]={13}&avatar[formatParams][raw][fileSize]={14}&avatar[formatParams][156x120][fileSize]={15}&avatar[alt]={16}&avatar[isVisibleOnMain]={17}&avatar[priority]={18}&avatar[url]={19}&slug={20}&seoMetaDesc={21}&seoMetaKeywords={22}&priority={23}&showOnMain={24}&categoryId={25}&isVisible={26}&desc={27}", idCategory, name, avatarId, idCategory, avatarTimesap, avatarType, avatarName, avatarDesc, avatarDesc, avatarExt, avatarFormatsRaw, avatarw215, avatarw150, avatar104, avatar156, avatarFileSize, avatarParamw215, avatarAlt, avatarVisibleOnMan, avatarPriority, avatarURL, slug, seoMetaDesc, seoMetaKeywords, priority, showOnMain, idCategory, visible, description);
+            string strRequest = String.Format("id={0}&name={1}&avatar[id]={2}&avatar[objectId]={3}&avatar[timestamp]={4}&avatar[type]={5}&avatar[name]={6}&avatar[desc]={7}&avatar[ext]={8}&avatar[formats][raw]={9}&avatar[formats][W215]={10}&avatar[formats][150x120]={11}&avatar[formats][104x82]={12}&avatar[formats][156x120]={13}&avatar[formatParams][raw][fileSize]={14}&avatar[formatParams][156x120][fileSize]={15}&avatar[alt]={16}&avatar[isVisibleOnMain]={17}&avatar[priority]={18}&avatar[url]={19}&slug={20}&seoMetaDesc={21}&seoMetaKeywords={22}&priority={23}&showOnMain={24}&categoryId={25}&isVisible={26}&desc={27}", 
+                idCategory, name, avatarId, idCategory, avatarTimesap, avatarType, avatarName, avatarDesc, avatarExt, avatarFormatsRaw, avatarw215, avatarw150, avatar104, avatar156, avatarFileSize, avatarParamw215, avatarAlt, avatarVisibleOnMan, avatarPriority, avatarURL, slug, seoMetaDesc, seoMetaKeywords, priority, showOnMain, parentId, visible, description);
 
             nethouse.PostRequest(cookie, "https://bike18.nethouse.ru/api/catalog/savecategory", strRequest);
             
@@ -1351,6 +1355,14 @@ namespace Bike18Text
         private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private string utfChar(string text)
+        {
+
+            text = Regex.Replace(text, @"\\u([0-9A-Fa-f]{4})", m => "" + (char)Convert.ToInt32(m.Groups[1].Value, 16));
+           
+            return text;
         }
 
     }
