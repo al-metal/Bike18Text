@@ -34,6 +34,7 @@ namespace Bike18Text
         bool err = false;
         bool errLengthMiniText = false;
         bool chpuCheked;
+        bool loadCategoriesCheked;
 
         Dictionary<string, string> ampersands = new Dictionary<string, string>();
 
@@ -538,76 +539,83 @@ namespace Bike18Text
 
             foreach (string str in urls)
             {
-                otv = webRequest.getRequest(str);
-                if (otv == "err")
-                    continue;
-                article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString();
-
-                if (article != "")
-                    updateText(str, cookie);
+                if (loadCategoriesCheked && str.Contains("/category"))
+                {
+                    UpdateCategory(cookie, str);
+                }
                 else
                 {
-                    otv = webRequest.getRequest(str + "?page=all");
-                    MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
-                    MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                    otv = webRequest.getRequest(str);
+                    if (otv == "err")
+                        continue;
+                    article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString();
 
-                    if (tovarUrl.Count != 0)
+                    if (article != "")
+                        updateText(str, cookie);
+                    else
                     {
-                        for (int z = 0; tovarUrl.Count > z; z++)
-                        {
-                            string tovar = tovarUrl[z].ToString();
-                            updateText(tovar, cookie);
-                        }
-                    }
+                        otv = webRequest.getRequest(str + "?page=all");
+                        MatchCollection categoryUrl = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                        MatchCollection tovarUrl = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
 
-                    if (categoryUrl.Count != 0)
-                    {
-                        for (int i = 0; categoryUrl.Count > i; i++)
+                        if (tovarUrl.Count != 0)
                         {
-                            otv = webRequest.getRequest(categoryUrl[i].ToString() + "?page=all");
-                            MatchCollection category2Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
-                            MatchCollection tovar2Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
-                            if (tovar2Url.Count != 0)
+                            for (int z = 0; tovarUrl.Count > z; z++)
                             {
-                                for (int z = 0; tovar2Url.Count > z; z++)
-                                {
-                                    string tovar = tovar2Url[z].ToString();
-                                    updateText(tovar, cookie);
-                                }
+                                string tovar = tovarUrl[z].ToString();
+                                updateText(tovar, cookie);
                             }
-                            else
-                            {
-                                for (int x = 0; category2Url.Count > x; x++)
-                                {
-                                    otv = webRequest.getRequest(category2Url[i].ToString() + "?page=all");
-                                    MatchCollection category3Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
-                                    MatchCollection tovar3Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
-                                    if (tovar3Url.Count != 0)
-                                    {
-                                        for (int z = 0; tovar3Url.Count > z; z++)
-                                        {
-                                            string tovar = tovar3Url[z].ToString();
-                                            updateText(tovar, cookie);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        for (int m = 0; category3Url.Count > m; m++)
-                                        {
-                                            otv = webRequest.getRequest(category3Url[m].ToString() + "?page=all");
-                                            MatchCollection category4Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
-                                            MatchCollection tovar4Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
-                                            if (tovar4Url.Count != 0)
-                                            {
-                                                for (int z = 0; tovar4Url.Count > z; z++)
-                                                {
-                                                    string tovar = tovar4Url[z].ToString();
-                                                    updateText(tovar, cookie);
-                                                }
-                                            }
-                                            else
-                                            {
+                        }
 
+                        if (categoryUrl.Count != 0)
+                        {
+                            for (int i = 0; categoryUrl.Count > i; i++)
+                            {
+                                otv = webRequest.getRequest(categoryUrl[i].ToString() + "?page=all");
+                                MatchCollection category2Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                                MatchCollection tovar2Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                                if (tovar2Url.Count != 0)
+                                {
+                                    for (int z = 0; tovar2Url.Count > z; z++)
+                                    {
+                                        string tovar = tovar2Url[z].ToString();
+                                        updateText(tovar, cookie);
+                                    }
+                                }
+                                else
+                                {
+                                    for (int x = 0; category2Url.Count > x; x++)
+                                    {
+                                        otv = webRequest.getRequest(category2Url[i].ToString() + "?page=all");
+                                        MatchCollection category3Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                                        MatchCollection tovar3Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                                        if (tovar3Url.Count != 0)
+                                        {
+                                            for (int z = 0; tovar3Url.Count > z; z++)
+                                            {
+                                                string tovar = tovar3Url[z].ToString();
+                                                updateText(tovar, cookie);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            for (int m = 0; category3Url.Count > m; m++)
+                                            {
+                                                otv = webRequest.getRequest(category3Url[m].ToString() + "?page=all");
+                                                MatchCollection category4Url = new Regex("(?<=<div class=\"category-capt-txt -text-center\"><a href=\").*?(?=\" class=\"blue\">)").Matches(otv);
+                                                MatchCollection tovar4Url = new Regex("(?<=<div class=\"product-link -text-center\"><a href=\").*?(?=\" >)").Matches(otv);
+                                                if (tovar4Url.Count != 0)
+                                                {
+                                                    for (int z = 0; tovar4Url.Count > z; z++)
+                                                    {
+                                                        string tovar = tovar4Url[z].ToString();
+                                                        updateText(tovar, cookie);
+                                                    }
+                                                }
+                                                else
+                                                {
+
+                                                }
                                             }
                                         }
                                     }
@@ -633,6 +641,73 @@ namespace Bike18Text
                     Process.Start("C:\\Windows\\System32\\notepad.exe", "errorFiles.txt");
             }
             tbHistory.AppendText("Обновление карточки закончено\n");
+        }
+
+        private void UpdateCategory(CookieContainer cookie, string str)
+        {
+            tbHistory.AppendText("Получения карточки раздела\n");
+            string idCategory = new Regex("(?<=category/).*").Match(str).ToString();
+            otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/category?id=" + idCategory);
+
+            string parentId = new Regex("(?<=parent_id\":).*(?=,)").Match(otv).ToString().Trim();
+            string name = new Regex("(?<=name\": \").*(?=\")").Match(otv).ToString().Trim();
+            string slug = new Regex("(?<=slug\": \").*(?=\")").Match(otv).ToString().Trim();
+            string description = new Regex("(?<=description\": \").*(?=\")").Match(otv).ToString().Trim();
+            string priority = new Regex("(?<=priority\": ).*(?=,)").Match(otv).ToString().Trim();
+            string visible = new Regex("(?<=visible\": ).*(?=,)").Match(otv).ToString().Trim();
+            string showOnMain = new Regex("(?<=showOnMain\": ).*(?=,)").Match(otv).ToString().Trim();
+            string contentType = new Regex("(?<=content_type\":).*(?=,)").Match(otv).ToString().Trim();
+            string productsCount = new Regex("(?<=productsCount\": ).*(?=,)").Match(otv).ToString().Trim();
+            string productsCountAll = new Regex("(?<=productsCountAll\": ).*(?=,)").Match(otv).ToString().Trim();
+            string level = new Regex("(?<=level\": ).*(?=,)").Match(otv).ToString().Trim();
+            string seoMetaDesc = new Regex("(?<=seoMetaDesc\": \").*(?=\")").Match(otv).ToString().Trim();
+            string seoMetaKeywords = new Regex("(?<=seoMetaKeywords\": \").*(?=\")").Match(otv).ToString().Trim();
+            string seoTitle = new Regex("(?<=seoTitle\": \").*(?=\")").Match(otv).ToString().Trim();
+
+            otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/categorymedia?id=" + idCategory);
+
+            string avatarId = new Regex("(?<=\"id\":).*(?=,)").Match(otv).ToString().Trim();
+            string avatarTimesap = new Regex("(?<=timestamp\":).*(?=,)").Match(otv).ToString().Trim();
+            string avatarType = new Regex("(?<=type\":).*(?=,)").Match(otv).ToString().Trim();
+            string avatarName = new Regex("(?<=name\":\").*(?=\")").Match(otv).ToString().Trim();
+            string avatarDesc = new Regex("(?<=desc\":\").*(?=\")").Match(otv).ToString().Trim();
+            string avatarExt = new Regex("(?<=ext\":\").*(?=\")").Match(otv).ToString().Trim();
+            string avatarFormatsRaw = new Regex("(?<=raw\":\").*(?=\")").Match(otv).ToString().Trim();
+            string avatarw215 = new Regex("(?<=W215\":\").*(?=\")").Match(otv).ToString().Trim();
+            string avatarw150 = new Regex("(?<=150x120\":\").*(?=\")").Match(otv).ToString().Trim();
+            string avatar104 = new Regex("(?<=104x82\":\").*(?=\")").Match(otv).ToString().Trim();
+            string avatar156 = new Regex("(?<=156x120\":\").*(?=\")").Match(otv).ToString().Trim();
+            string avatarFileSize = new Regex("(?<=fileSize\":).*?(?=})").Match(otv).ToString().Trim();
+            string avatarParamw215 = new Regex("(?<=W215\":{).*?(?=})").Match(otv).ToString().Trim();
+            string avatarParam150 = new Regex("(?<=150x120\":{).*?(?=})").Match(otv).ToString().Trim();
+            string avatarParam104 = new Regex("(?<=104x82\":{).*?(?=})").Match(otv).ToString().Trim();
+            string avatarParam156 = new Regex("(?<=156x120\":{)[\\w\\W]*(?=})").Match(otv).ToString().Trim();
+            string avatarFileSizeImg = new Regex("(?<=fileSize\":).*?(?=}})").Match(otv).ToString().Trim();
+            string avatarAlt = new Regex("(?<=alt\":\").*?(?=\")").Match(otv).ToString().Trim();
+            string avatarVisibleOnMan = new Regex("(?<=isVisibleOnMain\":).*?(?=,)").Match(otv).ToString().Trim();
+            string avatarPriority = new Regex("(?<=priority\":).*?(?=,)").Match(otv).ToString().Trim();
+            string avatarURL = new Regex("(?<=url\":).*?(?=,)").Match(otv).ToString().Trim();
+            string avatarFiltrs = new Regex("(?<=filters\":{).*?(?=})").Match(otv).ToString().Trim();
+
+            string newSlug = chpu.vozvr(name);
+            if (slug == newSlug)
+            {
+                nethouse.Redirect(cookie, slug, newSlug);
+            }
+            slug = newSlug;
+
+            string strRequest = String.Format("id={0}&name={1}&avatar[id]={2}&avatar[objectId]={3}&avatar[timestamp]={4}&avatar[type]={5}&avatar[name]={6}&avatar[desc]={7}&avatar[ext]={8}&avatar[formats][raw]={9}&avatar[formats][W215]={10}&avatar[formats][150x120]={11}&avatar[formats][104x82]={12}&avatar[formats][156x120]={13}&avatar[formatParams][raw][fileSize]={14}&avatar[formatParams][156x120][fileSize]={15}&avatar[alt]={16}&avatar[isVisibleOnMain]={17}&avatar[priority]={18}&avatar[url]={19}&slug={20}&seoMetaDesc={21}&seoMetaKeywords={22}&priority={23}&showOnMain={24}&categoryId={25}&isVisible={26}&desc={27}", idCategory, name, avatarId, idCategory, avatarTimesap, avatarType, avatarName, avatarDesc, avatarDesc, avatarExt, avatarFormatsRaw, avatarw215, avatarw150, avatar104, avatar156, avatarFileSize, avatarParamw215, avatarAlt, avatarVisibleOnMan, avatarPriority, avatarURL, slug, seoMetaDesc, seoMetaKeywords, priority, showOnMain, idCategory, visible, description);
+
+            nethouse.PostRequest(cookie, "https://bike18.nethouse.ru/api/catalog/savecategory", strRequest);
+            
+
+
+            tbHistory.AppendText("Обновление карточки раздела\n");
+
+            if (otv.Contains("errors"))
+            {
+
+            }
         }
 
         private void updateText(string urlTovar, CookieContainer cookie)
@@ -716,14 +791,14 @@ namespace Bike18Text
                 }
                 tovarList[1] = slug(tovarList);
             }
-            
+
             if (!errLengthMiniText)
             {
                 tbHistory.AppendText("Обновление карточки товара\n");
                 tovarList = ReplaceAmpersChar(tovarList);
                 otv = nethouse.SaveTovar(cookie, tovarList);
             }
-            
+
             if (otv.Contains("errors"))
             {
                 tbHistory.AppendText("Во время сохранения произошла ошибка\n");
@@ -930,7 +1005,7 @@ namespace Bike18Text
             {
                 otv = webRequest.getRequest("https://bike18.ru/products/category/" + tovarList[2].ToString());
                 string nameCategory = new Regex("(?<=<h1 class=\"category-name\">).*(?=</h1>)").Match(otv).ToString();
-                
+
                 otv = webRequest.getRequest("http://bike18.ru/products/search/page/1?sort=0&balance=&categoryId=&min_cost=&max_cost=&text=" + nameCategory);
                 searchTovars = new Regex("(?<=<div class=\"product-item preview-size-156\" id=\"item).*?(?=\"><div class=\"background\">)").Matches(otv);
                 if (searchTovars.Count > 2)
@@ -1201,6 +1276,7 @@ namespace Bike18Text
             ofdLoadURLs.ShowDialog();
 
             string fileUrls = ofdLoadURLs.FileName.ToString();
+            loadCategoriesCheked = cbCategories.Checked;
 
             if (ofdLoadURLs.FileName != "openFileDialog1" & ofdLoadURLs.FileName != "")
             {
@@ -1225,7 +1301,7 @@ namespace Bike18Text
                         string url = w.Cells[i, 1].Value.ToString();
                         if (url != null)
                         {
-                            if (url.Contains("category") || !url.Contains("products/"))
+                            if (url.Contains("category") /*|| !url.Contains("products/") */&& !loadCategoriesCheked)
                                 urlsBad.Add(url);
                             else
                                 urls.Add(url);
@@ -1249,6 +1325,7 @@ namespace Bike18Text
             if (rbString.Checked)
             {
                 btnLoadURLs.Visible = false;
+                cbCategories.Visible = false;
                 lblUrlAllCount.Visible = false;
                 lblUrlCount.Visible = false;
                 label4.Visible = false;
@@ -1262,6 +1339,7 @@ namespace Bike18Text
             if (rbFiles.Checked)
             {
                 btnLoadURLs.Visible = true;
+                cbCategories.Visible = true;
                 lblUrlAllCount.Visible = true;
                 lblUrlCount.Visible = true;
                 label4.Visible = true;
@@ -1274,6 +1352,6 @@ namespace Bike18Text
         {
 
         }
-        
+
     }
 }

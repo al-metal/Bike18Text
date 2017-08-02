@@ -571,5 +571,30 @@ namespace Bike18
             return otvSave;
         }
 
+        public string PostRequest(CookieContainer cookie, string url, string requestStr)
+        {
+            string otv = "";
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Accept = "application/json, text/plain, */*";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
+            req.Method = "POST";
+            req.ContentType = "application/x-www-form-urlencoded";
+            req.CookieContainer = cookie;
+            requestStr = requestStr.Replace("false", "0").Replace("true", "1").Replace("+", "%2B");
+
+            byte[] ms = Encoding.GetEncoding("utf-8").GetBytes(requestStr);
+            req.ContentLength = ms.Length;
+            Stream stre = req.GetRequestStream();
+            stre.Write(ms, 0, ms.Length);
+            stre.Close();
+            HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
+            StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
+            otv = ressr1.ReadToEnd();
+            res1.Close();
+            ressr1.Close();
+
+            return otv;
+        }
+
     }
 }

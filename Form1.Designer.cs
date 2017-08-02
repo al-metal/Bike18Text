@@ -84,6 +84,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ofdLoadURLs = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cbCategories = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -117,7 +118,7 @@
             this.rtbAltText.Enabled = false;
             this.rtbAltText.Location = new System.Drawing.Point(3, 26);
             this.rtbAltText.Name = "rtbAltText";
-            this.rtbAltText.Size = new System.Drawing.Size(352, 457);
+            this.rtbAltText.Size = new System.Drawing.Size(352, 507);
             this.rtbAltText.TabIndex = 1;
             this.rtbAltText.Text = "";
             // 
@@ -155,7 +156,7 @@
             this.rtbMiniText.Location = new System.Drawing.Point(0, 26);
             this.rtbMiniText.Name = "rtbMiniText";
             this.rtbMiniText.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rtbMiniText.Size = new System.Drawing.Size(350, 211);
+            this.rtbMiniText.Size = new System.Drawing.Size(350, 203);
             this.rtbMiniText.TabIndex = 4;
             this.rtbMiniText.Text = "";
             // 
@@ -167,7 +168,7 @@
             this.rtbFullText.Enabled = false;
             this.rtbFullText.Location = new System.Drawing.Point(3, 26);
             this.rtbFullText.Name = "rtbFullText";
-            this.rtbFullText.Size = new System.Drawing.Size(347, 211);
+            this.rtbFullText.Size = new System.Drawing.Size(347, 269);
             this.rtbFullText.TabIndex = 5;
             this.rtbFullText.Text = "";
             // 
@@ -308,7 +309,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.tableLayoutPanel1.SetRowSpan(this.panel2, 2);
-            this.panel2.Size = new System.Drawing.Size(358, 486);
+            this.panel2.Size = new System.Drawing.Size(358, 536);
             this.panel2.TabIndex = 21;
             // 
             // panel3
@@ -319,7 +320,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(367, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(358, 240);
+            this.panel3.Size = new System.Drawing.Size(358, 232);
             this.panel3.TabIndex = 22;
             // 
             // chbReplaceMiniText
@@ -350,10 +351,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.36842F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.36842F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.53578F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.0541F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.263158F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1094, 520);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1094, 573);
             this.tableLayoutPanel1.TabIndex = 26;
             // 
             // panel1
@@ -361,13 +362,14 @@
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
             this.panel1.Controls.Add(this.tbURL);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 495);
+            this.panel1.Location = new System.Drawing.Point(3, 545);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(722, 22);
+            this.panel1.Size = new System.Drawing.Size(722, 25);
             this.panel1.TabIndex = 23;
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.cbCategories);
             this.panel5.Controls.Add(this.tbHistory);
             this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.lblUrlCount);
@@ -381,18 +383,18 @@
             this.panel5.Controls.Add(this.tbLogin);
             this.panel5.Controls.Add(this.btnStart);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(731, 249);
+            this.panel5.Location = new System.Drawing.Point(731, 241);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(360, 240);
+            this.panel5.Size = new System.Drawing.Size(360, 298);
             this.panel5.TabIndex = 24;
             // 
             // tbHistory
             // 
-            this.tbHistory.Location = new System.Drawing.Point(11, 146);
+            this.tbHistory.Location = new System.Drawing.Point(11, 167);
             this.tbHistory.Multiline = true;
             this.tbHistory.Name = "tbHistory";
             this.tbHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbHistory.Size = new System.Drawing.Size(340, 91);
+            this.tbHistory.Size = new System.Drawing.Size(340, 128);
             this.tbHistory.TabIndex = 31;
             // 
             // groupBox1
@@ -401,7 +403,7 @@
             this.groupBox1.Controls.Add(this.rbString);
             this.groupBox1.Location = new System.Drawing.Point(11, 86);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(130, 45);
+            this.groupBox1.Size = new System.Drawing.Size(95, 75);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Источник ссылок";
@@ -409,7 +411,7 @@
             // rbFiles
             // 
             this.rbFiles.AutoSize = true;
-            this.rbFiles.Location = new System.Drawing.Point(73, 19);
+            this.rbFiles.Location = new System.Drawing.Point(6, 53);
             this.rbFiles.Name = "rbFiles";
             this.rbFiles.Size = new System.Drawing.Size(54, 17);
             this.rbFiles.TabIndex = 1;
@@ -421,7 +423,7 @@
             // 
             this.rbString.AutoSize = true;
             this.rbString.Checked = true;
-            this.rbString.Location = new System.Drawing.Point(6, 19);
+            this.rbString.Location = new System.Drawing.Point(6, 30);
             this.rbString.Name = "rbString";
             this.rbString.Size = new System.Drawing.Size(61, 17);
             this.rbString.TabIndex = 0;
@@ -433,7 +435,7 @@
             // lblUrlCount
             // 
             this.lblUrlCount.AutoSize = true;
-            this.lblUrlCount.Location = new System.Drawing.Point(334, 117);
+            this.lblUrlCount.Location = new System.Drawing.Point(334, 109);
             this.lblUrlCount.Name = "lblUrlCount";
             this.lblUrlCount.Size = new System.Drawing.Size(13, 13);
             this.lblUrlCount.TabIndex = 29;
@@ -443,7 +445,7 @@
             // lblUrlAllCount
             // 
             this.lblUrlAllCount.AutoSize = true;
-            this.lblUrlAllCount.Location = new System.Drawing.Point(334, 95);
+            this.lblUrlAllCount.Location = new System.Drawing.Point(334, 87);
             this.lblUrlAllCount.Name = "lblUrlAllCount";
             this.lblUrlAllCount.Size = new System.Drawing.Size(13, 13);
             this.lblUrlAllCount.TabIndex = 28;
@@ -453,7 +455,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(234, 117);
+            this.label5.Location = new System.Drawing.Point(234, 109);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(96, 13);
             this.label5.TabIndex = 27;
@@ -463,7 +465,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(234, 95);
+            this.label4.Location = new System.Drawing.Point(234, 87);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 13);
             this.label4.TabIndex = 26;
@@ -472,9 +474,9 @@
             // 
             // btnLoadURLs
             // 
-            this.btnLoadURLs.Location = new System.Drawing.Point(144, 86);
+            this.btnLoadURLs.Location = new System.Drawing.Point(112, 87);
             this.btnLoadURLs.Name = "btnLoadURLs";
-            this.btnLoadURLs.Size = new System.Drawing.Size(84, 53);
+            this.btnLoadURLs.Size = new System.Drawing.Size(116, 35);
             this.btnLoadURLs.TabIndex = 0;
             this.btnLoadURLs.Text = "Загрузить список ссылок";
             this.btnLoadURLs.UseVisualStyleBackColor = true;
@@ -532,7 +534,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(731, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(360, 240);
+            this.panel4.Size = new System.Drawing.Size(360, 232);
             this.panel4.TabIndex = 23;
             // 
             // chbCHPU
@@ -570,9 +572,9 @@
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(731, 495);
+            this.panel6.Location = new System.Drawing.Point(731, 545);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(360, 22);
+            this.panel6.Size = new System.Drawing.Size(360, 25);
             this.panel6.TabIndex = 25;
             // 
             // panel7
@@ -581,9 +583,9 @@
             this.panel7.Controls.Add(this.rtbFullText);
             this.panel7.Controls.Add(this.chbFullText);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(367, 249);
+            this.panel7.Location = new System.Drawing.Point(367, 241);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(358, 240);
+            this.panel7.Size = new System.Drawing.Size(358, 298);
             this.panel7.TabIndex = 26;
             // 
             // chbReplaceFullText
@@ -671,11 +673,22 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // cbCategories
+            // 
+            this.cbCategories.AutoSize = true;
+            this.cbCategories.Location = new System.Drawing.Point(112, 128);
+            this.cbCategories.Name = "cbCategories";
+            this.cbCategories.Size = new System.Drawing.Size(139, 17);
+            this.cbCategories.TabIndex = 32;
+            this.cbCategories.Text = "Загрузить картегории";
+            this.cbCategories.UseVisualStyleBackColor = true;
+            this.cbCategories.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1094, 544);
+            this.ClientSize = new System.Drawing.Size(1094, 597);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -763,6 +776,7 @@
         private System.Windows.Forms.CheckBox chbCHPU;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox tbHistory;
+        private System.Windows.Forms.CheckBox cbCategories;
     }
 }
 
