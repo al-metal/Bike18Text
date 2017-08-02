@@ -53,6 +53,10 @@ namespace Bike18
                 String prodName = new Regex("(?<=<h1>).*(?=</h1>)").Match(otv).Value;
                 prodName = specChar(prodName);
                 String price = new Regex("(?<=<span class=\"product-price-data\" data-cost=\").*?(?=\">)").Match(otv).Value;
+                if(price == "")
+                {
+                    price = "0";
+                }
                 String imgId = new Regex("(?<=<div id=\"avatar-).*(?=\")").Match(otv).Value;
                 String desc = new Regex("(?<=<div class=\"user-inner\">).*?(?=</div>)").Match(otv).Value;
                 desc = specChar(desc);
