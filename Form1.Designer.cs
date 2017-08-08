@@ -54,6 +54,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.cbCategories = new System.Windows.Forms.CheckBox();
             this.tbHistory = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbFiles = new System.Windows.Forms.RadioButton();
@@ -84,7 +85,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ofdLoadURLs = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cbCategories = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -388,6 +388,17 @@
             this.panel5.Size = new System.Drawing.Size(360, 298);
             this.panel5.TabIndex = 24;
             // 
+            // cbCategories
+            // 
+            this.cbCategories.AutoSize = true;
+            this.cbCategories.Location = new System.Drawing.Point(112, 128);
+            this.cbCategories.Name = "cbCategories";
+            this.cbCategories.Size = new System.Drawing.Size(139, 17);
+            this.cbCategories.TabIndex = 32;
+            this.cbCategories.Text = "Загрузить картегории";
+            this.cbCategories.UseVisualStyleBackColor = true;
+            this.cbCategories.Visible = false;
+            // 
             // tbHistory
             // 
             this.tbHistory.Location = new System.Drawing.Point(11, 167);
@@ -672,17 +683,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // cbCategories
-            // 
-            this.cbCategories.AutoSize = true;
-            this.cbCategories.Location = new System.Drawing.Point(112, 128);
-            this.cbCategories.Name = "cbCategories";
-            this.cbCategories.Size = new System.Drawing.Size(139, 17);
-            this.cbCategories.TabIndex = 32;
-            this.cbCategories.Text = "Загрузить картегории";
-            this.cbCategories.UseVisualStyleBackColor = true;
-            this.cbCategories.Visible = false;
             // 
             // Form1
             // 
