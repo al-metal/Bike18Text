@@ -786,7 +786,7 @@ namespace Bike18Text
                 altText(cookie, urlTovar, tovarList);
 
             if (chbAlsoBuy.Checked)
-                tovarList[42] = alsoBuyTovars(tovarList);
+                tovarList[42] = nethouse.alsoBuyTovars(tovarList);
 
             if (chpuCheked)
             {
@@ -986,49 +986,6 @@ namespace Bike18Text
             }
         }
 
-        private string alsoBuyTovars(List<string> tovarList)
-        {
-            string name = tovarList[4].ToString();
-            otv = webRequest.getRequest("http://bike18.ru/products/search/page/1?sort=0&balance=&categoryId=&min_cost=&max_cost=&text=" + name);
-            MatchCollection searchTovars = new Regex("(?<=<div class=\"product-item preview-size-156\" id=\"item).*?(?=\"><div class=\"background\">)").Matches(otv);
-            string alsoBuy = "";
-            int count = 0;
-            if (searchTovars.Count >= 5)
-            {
-                int countSearch = searchTovars.Count;
-                if (countSearch > 5)
-                    countSearch = 5;
-
-                for (int i = 1; countSearch > i; i++)
-                {
-
-                    alsoBuy += "&alsoBuy[" + count + "]=" + searchTovars[i].ToString();
-                    count++;
-                }
-            }
-            else
-            {
-                otv = webRequest.getRequest("https://bike18.ru/products/category/" + tovarList[2].ToString());
-                string nameCategory = new Regex("(?<=<h1 class=\"category-name\">).*(?=</h1>)").Match(otv).ToString();
-
-                otv = webRequest.getRequest("http://bike18.ru/products/search/page/1?sort=0&balance=&categoryId=&min_cost=&max_cost=&text=" + nameCategory);
-                searchTovars = new Regex("(?<=<div class=\"product-item preview-size-156\" id=\"item).*?(?=\"><div class=\"background\">)").Matches(otv);
-                if (searchTovars.Count > 2)
-                {
-                    int countSearch = searchTovars.Count;
-                    if (countSearch > 5)
-                        countSearch = 5;
-
-                    for (int i = 1; countSearch > i; i++)
-                    {
-
-                        alsoBuy += "&alsoBuy[" + count + "]=" + searchTovars[i].ToString();
-                        count++;
-                    }
-                }
-            }
-            return alsoBuy;
-        }
         #endregion
 
         public string miniTextTemplate()
@@ -1274,7 +1231,7 @@ namespace Bike18Text
                 "16.07.2017 Обработка html тэгов\n" +
                 "16.07.2017 Добавление редиректа при смене ЧПУ\n" +
                 "26.07.2017 Обработка спецсимволов на всей карточке товара\n" +
-                "08.08.2017 Обработка разделов из списка\n", "О программе");
+                "08.08.2017 Обработка разделов из списка\n", "Изменения в программе");
         }
 
         private void btnLoadURLs_Click(object sender, EventArgs e)
@@ -1366,5 +1323,10 @@ namespace Bike18Text
             return text;
         }
 
+        private void aboutToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            AboutBox1 a = new AboutBox1();
+            a.ShowDialog();
+        }
     }
 }

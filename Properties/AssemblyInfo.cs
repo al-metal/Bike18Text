@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Bike18Text")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Обработчик текстов BIKE18")]
+[assembly: AssemblyDescription("Программа для обработки карточек товара на CMS Nethouse")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Bike18Text")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("al-metal")]
+[assembly: AssemblyProduct("Обработчик текстов")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
