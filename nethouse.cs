@@ -875,39 +875,10 @@ namespace Bike18
             string seometa = new Regex("(?<=<meta name=\"description\" content=\").*?(?=\" >)").Match(otv).Value;
             string keywords = new Regex("(?<=<meta name=\"keywords\" content=\").*?(?=\" >)").Match(otv).Value;
             string title = new Regex("(?<=<title>).*?(?=</title>)").Match(otv).Value;
-            //string visible = new Regex("(?<=,\"balance\":).*?(?=,\")").Match(otv).Value;
-            /*string reklama = new Regex("(?<=<div class=\"marker-icon size-big type-4\"><div class=\"left\"></div><div class=\"center\"><div class=\"text\">).*?(?=</div></div>)").Match(otv).ToString();
-            if (reklama == "акция")
-            {
-                reklama = "&markers[3]=1";
-            }
-            if (reklama == "новинка")
-            {
-                reklama = "&markers[1]=1";
-            }
-            */
 
             MatchCollection paramsTovar = new Regex("(?<=<label class=\"ptype-view-title infoDigits\">)[\\w\\W]*?(?=</select></li>)").Matches(otv);
             string parametrsTovar = "";
-            /*for (int i = 0; paramsTovar.Count > i; i++)
-            {
-                string param = paramsTovar[i].ToString();
-                string id = new Regex("(?<=productType-).*?(?=\">)").Match(param).ToString();
-                string namesParam = new Regex(".*?(?=</label><)").Match(param).ToString();
-                parametrsTovar += "&params[" + i + "][id]=" + id + "&params[" + i + "][name]=" + namesParam;
-                MatchCollection valuesStr = new Regex("<option data-impact[\\w\\W]*?</option>").Matches(param);
-                for (int ii = 0; valuesStr.Count > ii; ii++)
-                {
-                    string values = valuesStr[ii].ToString();
-                    string idParam = new Regex("(?<=data-impact=\")[\\w\\W]*?(?=\")").Match(values).ToString();
-                    string valueParam = new Regex("(?<=value=\")[\\w\\W]*?(?=\")").Match(values).ToString();
-                    string impactParam = new Regex("(?<=\">)[\\w\\W]*?(?=</option>)").Match(values).ToString();
-                    parametrsTovar += "&params[" + i + "][values][" + ii + "][id]=" + valueParam + "&params[" + i + "][values][" + ii + "][value]=" + impactParam + "&params[" + i + "][values][" + ii + "][impact]=" + idParam;
-
-
-                }
-            }*/
-
+           
             otv = PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
             string slug = new Regex("(?<=\",\"slug\":\").*?(?=\")").Match(otv).ToString();
             string reklama = "";
@@ -1027,7 +998,6 @@ namespace Bike18
             listTovar.Add(title);           //13
             listTovar.Add(havenDetail);     //14
             listTovar.Add(canMakeOrder);    //15 купить с сайта в 1 клик
-                                            //listTovar.Add(balance);
             listTovar.Add(showOnMain);      //16
             listTovar.Add(avatarId);        //17
             listTovar.Add(objektId);        //18
