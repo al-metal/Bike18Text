@@ -338,6 +338,7 @@ namespace Bike18Text
             ampersands.Add("&yuml;", "ÿ");
 
             #endregion
+
             if (!Directory.Exists("files"))
             {
                 Directory.CreateDirectory("files");
@@ -1360,7 +1361,6 @@ namespace Bike18Text
 
         private string utfChar(string text)
         {
-
             text = Regex.Replace(text, @"\\u([0-9A-Fa-f]{4})", m => "" + (char)Convert.ToInt32(m.Groups[1].Value, 16));
            
             return text;

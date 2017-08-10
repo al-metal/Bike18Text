@@ -15,7 +15,9 @@ namespace web
     
     class WebRequest
     {
-        httpRequest httpReq = new httpRequest();
+
+        nethouse netouse = new nethouse();
+        
         public string getRequestEncod(string url)
         {
             HttpWebResponse res = null;
@@ -269,7 +271,7 @@ namespace web
             if (!url.Contains("nethouse"))
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
-            string otv = httpReq.PostRequest(cookie, url);
+            string otv = netouse.PostRequest(cookie, url);
             if (otv != null)
             {
                 string productId = new Regex("(?<=<section class=\"comment\" id=\").*?(?=\">)").Match(otv).ToString();
@@ -416,14 +418,14 @@ namespace web
             if (!url.Contains("nethouse"))
                 url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
 
-            string otv = httpReq.PostRequest(cookie, url);
+            string otv = netouse.PostRequest(cookie, url);
             if (otv != null)
             {
                 string productId = new Regex("(?<=<section class=\"comment\" id=\").*?(?=\">)").Match(otv).ToString();
                 
-                otv = httpReq.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
+                otv = netouse.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
                 
-                otv = httpReq.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
+                otv = netouse.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
                 string objektId = new Regex("(?<=\"objectId\":\").*?(?=\")").Match(otv).Value;
 
                 MatchCollection imagesStrTovat = new Regex("(?<=\"id\":\").*?(?=filters)").Matches(otv);
