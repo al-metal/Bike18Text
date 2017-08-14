@@ -1101,7 +1101,7 @@ namespace Bike18Text
             string category1 = "";
             string category2 = "";
 
-            MatchCollection categories = new Regex("(?<=<span class=\"separator\">/</span><a href=\").*?(?=</a>)").Matches(otv);
+            MatchCollection categories = new Regex("(?<=class=\"bread-crumbs__item bread-crumbs__text\">).*?(?=</div>)").Matches(otv);
             int countCategories = categories.Count;
             if (countCategories == 1)
             {
