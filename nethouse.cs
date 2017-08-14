@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Bike18
 {
@@ -183,7 +180,7 @@ namespace Bike18
 
         public void UploadCSVNethouse(CookieContainer cookie, string nameFile)
         {
-            string trueOtv = null;
+            otv = "";
             do
             {
                 string otvimg = DownloadNaSite(cookie, nameFile);
@@ -195,7 +192,7 @@ namespace Bike18
                 }
                 while (otvimg == check);
 
-                trueOtv = new Regex("(?<=\":{\"state\":).*?(?=,\")").Match(otvimg).ToString();
+                otv = new Regex("(?<=\":{\"state\":).*?(?=,\")").Match(otvimg).ToString();
                 string error = new Regex("(?<=errorCode\":).*?(?=,\")").Match(otvimg).ToString();
 
                 if (error == "13")
@@ -210,11 +207,12 @@ namespace Bike18
                 if (error == "10")
                     ErrUpload13(otvimg, nameFile);
             }
-            while (trueOtv != "2");
+            while (otv != "2");
         }
 
         private string DownloadNaSite(CookieContainer cookie, string nameFile)
         {
+            otv = "";
             string epoch = (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalMilliseconds.ToString().Replace(",", "");
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/export-import/import-from-csv?fileapi" + epoch);
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -234,8 +232,8 @@ namespace Bike18
             stre1.Close();
             HttpWebResponse resimg = (HttpWebResponse)req.GetResponse();
             StreamReader ressrImg = new StreamReader(resimg.GetResponseStream());
-            string otvimg = ressrImg.ReadToEnd();
-            return otvimg;
+            otv = ressrImg.ReadToEnd();
+            return otv;
         }
 
         private void ErrUpload10(string otv, string nameFile)
@@ -324,6 +322,7 @@ namespace Bike18
 
         private string ChekedLoading(CookieContainer cookie)
         {
+            otv = "";
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/export-import/check-import");
             req.Accept = "application/json, text/plain, */*";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
@@ -335,8 +334,8 @@ namespace Bike18
             stre1.Close();
             HttpWebResponse resimg = (HttpWebResponse)req.GetResponse();
             StreamReader ressrImg = new StreamReader(resimg.GetResponseStream());
-            string otvimg = ressrImg.ReadToEnd();
-            return otvimg;
+            otv = ressrImg.ReadToEnd();
+            return otv;
         }
 
         #endregion
@@ -345,8 +344,7 @@ namespace Bike18
 
         public void UploadImage(CookieContainer cookieBike18, string urlProduct)
         {
-            string otv = null;
-
+            otv = "";
             if (!urlProduct.Contains("nethouse"))
             {
                 urlProduct = urlProduct.Replace(".ru", ".nethouse.ru");
@@ -427,11 +425,12 @@ namespace Bike18
             StreamReader ressrSave = new StreamReader(resSave.GetResponseStream());
             ressrImg.Close();
 
-            string otvSave = ressrSave.ReadToEnd();
+            otv = ressrSave.ReadToEnd();
         }
 
         public string DownloadImages(CookieContainer cookie, string artProd)
         {
+            otv = "";
             string epoch = (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalMilliseconds.ToString().Replace(",", "");
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/putimg?fileapi" + epoch);
             req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -451,12 +450,13 @@ namespace Bike18
             stre1.Close();
             HttpWebResponse resimg = (HttpWebResponse)req.GetResponse();
             StreamReader ressrImg = new StreamReader(resimg.GetResponseStream());
-            string otvimg = ressrImg.ReadToEnd();
-            return otvimg;
+            otv = ressrImg.ReadToEnd();
+            return otv;
         }
 
         public string SaveImages(CookieContainer cookie, string urlSaveImg, int prodId, double widthImg, double heigthImg)
         {
+            otv = "";
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/catalog/save-image");
             req.Accept = "application/json, text/plain, */*";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
@@ -470,8 +470,8 @@ namespace Bike18
             srSave.Close();
             HttpWebResponse resSave = (HttpWebResponse)req.GetResponse();
             StreamReader ressrSave = new StreamReader(resSave.GetResponseStream());
-            string otvSave = ressrSave.ReadToEnd();
-            return otvSave;
+            otv = ressrSave.ReadToEnd();
+            return otv;
         }
 
         #endregion
@@ -1129,8 +1129,9 @@ namespace Bike18
         /// <returns></returns>
         public string alsoBuyTovars(List<string> tovarList)
         {
+            otv = "";
             string name = tovarList[4].ToString();
-            string otv = getRequest("https://bike18.ru/products/search?sort=0&balance=&categoryId=&min_cost=&max_cost=&page=1&text=" + name);
+            otv = getRequest("https://bike18.ru/products/search?sort=0&balance=&categoryId=&min_cost=&max_cost=&page=1&text=" + name);
             MatchCollection searchTovars = new Regex("(?<=id=\"item).*?(?=\">)").Matches(otv);
             string alsoBuy = "";
             int count = 0;
@@ -1180,6 +1181,7 @@ namespace Bike18
         /// <returns></returns>
         public string Redirect(CookieContainer cookie, string oldCHPU, string newCHPU)
         {
+            otv = "";
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://bike18.nethouse.ru/redirect/savelink");
             req.Accept = "application/json, text/plain, */*";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36";
@@ -1193,13 +1195,13 @@ namespace Bike18
             srSave.Close();
             HttpWebResponse resSave = (HttpWebResponse)req.GetResponse();
             StreamReader ressrSave = new StreamReader(resSave.GetResponseStream());
-            string otvSave = ressrSave.ReadToEnd();
-            return otvSave;
+            otv = ressrSave.ReadToEnd();
+            return otv;
         }
 
         public string searchTovar(string name, string searchString)
         {
-            string otv = null;
+            otv = "";
             string urlTovarBike = null;
 
             otv = getRequest("http://bike18.ru/products/search/page/1?sort=0&balance=&categoryId=&min_cost=&max_cost=&text=" + searchString);
