@@ -548,7 +548,7 @@ namespace Bike18Text
                     otv = webRequest.getRequest(str);
                     if (otv == "err")
                         continue;
-                    article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString();
+                    article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString().Trim();
 
                     if (article != "")
                         updateText(str, cookie);

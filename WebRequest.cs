@@ -416,12 +416,12 @@ namespace web
             List<string> imagesTovar = new List<string>();
 
             if (!url.Contains("nethouse"))
-                url = url.Replace("http://bike18.ru/", "http://bike18.nethouse.ru/");
+                url = url.Replace("https://bike18.ru/", "https://bike18.nethouse.ru/");
 
             string otv = netouse.PostRequest(cookie, url);
             if (otv != null)
             {
-                string productId = new Regex("(?<=<section class=\"comment\" id=\").*?(?=\">)").Match(otv).ToString();
+                string productId = new Regex("(?<=data-product-id=\").*?(?=\">)").Match(otv).ToString();
                 
                 otv = netouse.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
                 
