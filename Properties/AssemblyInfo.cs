@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Обработчик текстов BIKE18")]
+[assembly: AssemblyTitle("Заполнятор ёпта")]
 [assembly: AssemblyDescription("Программа для обработки карточек товара на CMS Nethouse")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("al-metal")]
-[assembly: AssemblyProduct("Обработчик текстов")]
+[assembly: AssemblyProduct("Заполнятор ёпта")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.1.1")]
+[assembly: AssemblyVersion("1.1.1.2")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
