@@ -331,6 +331,12 @@ namespace Bike18Text
             ampersands.Add("&#255;", "ÿ");
             ampersands.Add("&yuml;", "ÿ");
 
+            ampersands.Add("&hyphen;", "‐");
+            ampersands.Add("&dash;", "‐");
+            ampersands.Add("&ndash;", "–");
+            ampersands.Add("&mdash;", "—");
+            ampersands.Add("&horbar;", "―");
+
             #endregion
 
             if (!Directory.Exists("files"))
@@ -1226,7 +1232,8 @@ namespace Bike18Text
                 "16.07.2017 Добавление редиректа при смене ЧПУ\n" +
                 "26.07.2017 Обработка спецсимволов на всей карточке товара\n" +
                 "08.08.2017 Обработка разделов из списка\n" +
-                "10.08.2017 Настройка под новый шаблон\n", "Изменения в программе");
+                "10.08.2017 Настройка под новый шаблон\n" +
+                "22.08.2017 Исправление ошибок при работе с товарами\n", "Изменения в программе");
         }
 
         private void btnLoadURLs_Click(object sender, EventArgs e)

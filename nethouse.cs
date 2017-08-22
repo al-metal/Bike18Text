@@ -772,6 +772,12 @@ namespace Bike18
             ampersands.Add("&thorn;", "þ");
             ampersands.Add("&#255;", "ÿ");
             ampersands.Add("&yuml;", "ÿ");
+
+            ampersands.Add("&hyphen;", "‐");
+            ampersands.Add("&dash;", "‐");
+            ampersands.Add("&ndash;", "–");
+            ampersands.Add("&mdash;", "—");
+            ampersands.Add("&horbar;", "―");
         }
 
         /// <summary>
