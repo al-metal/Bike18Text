@@ -2,18 +2,12 @@
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using web;
 using Формирование_ЧПУ;
 
 namespace Bike18Text
@@ -42,7 +36,7 @@ namespace Bike18Text
         {
             string template = Properties.Settings.Default.template.ToString();
             InitializeComponent();
-            
+
             #region ampersand
             ampersands.Add("&bull;", "·");
             ampersands.Add("&#32;", " ");
@@ -700,11 +694,11 @@ namespace Bike18Text
             }
             slug = newSlug;
 
-            string strRequest = String.Format("id={0}&name={1}&avatar[id]={2}&avatar[objectId]={3}&avatar[timestamp]={4}&avatar[type]={5}&avatar[name]={6}&avatar[desc]={7}&avatar[ext]={8}&avatar[formats][raw]={9}&avatar[formats][W215]={10}&avatar[formats][150x120]={11}&avatar[formats][104x82]={12}&avatar[formats][156x120]={13}&avatar[formatParams][raw][fileSize]={14}&avatar[formatParams][156x120][fileSize]={15}&avatar[alt]={16}&avatar[isVisibleOnMain]={17}&avatar[priority]={18}&avatar[url]={19}&slug={20}&seoMetaDesc={21}&seoMetaKeywords={22}&priority={23}&showOnMain={24}&categoryId={25}&isVisible={26}&desc={27}", 
+            string strRequest = String.Format("id={0}&name={1}&avatar[id]={2}&avatar[objectId]={3}&avatar[timestamp]={4}&avatar[type]={5}&avatar[name]={6}&avatar[desc]={7}&avatar[ext]={8}&avatar[formats][raw]={9}&avatar[formats][W215]={10}&avatar[formats][150x120]={11}&avatar[formats][104x82]={12}&avatar[formats][156x120]={13}&avatar[formatParams][raw][fileSize]={14}&avatar[formatParams][156x120][fileSize]={15}&avatar[alt]={16}&avatar[isVisibleOnMain]={17}&avatar[priority]={18}&avatar[url]={19}&slug={20}&seoMetaDesc={21}&seoMetaKeywords={22}&priority={23}&showOnMain={24}&categoryId={25}&isVisible={26}&desc={27}",
                 idCategory, name, avatarId, idCategory, avatarTimesap, avatarType, avatarName, avatarDesc, avatarExt, avatarFormatsRaw, avatarw215, avatarw150, avatar104, avatar156, avatarFileSize, avatarParamw215, avatarAlt, avatarVisibleOnMan, avatarPriority, avatarURL, slug, seoMetaDesc, seoMetaKeywords, priority, showOnMain, parentId, visible, description);
 
             nethouse.PostRequest(cookie, "https://bike18.nethouse.ru/api/catalog/savecategory", strRequest);
-            
+
 
 
             tbHistory.AppendText("Обновление карточки раздела\n");
@@ -1320,7 +1314,7 @@ namespace Bike18Text
         private string utfChar(string text)
         {
             text = Regex.Replace(text, @"\\u([0-9A-Fa-f]{4})", m => "" + (char)Convert.ToInt32(m.Groups[1].Value, 16));
-           
+
             return text;
         }
 

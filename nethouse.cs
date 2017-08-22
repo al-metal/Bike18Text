@@ -850,6 +850,8 @@ namespace Bike18
             }
 
             string productId = new Regex("(?<=data-product-id=\").*?(?=\">)").Match(otv).ToString();
+            if (productId == "")
+                productId = new Regex("(?<=data-id=\").*?(?=\")").Match(otv).ToString();
             string article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).Value.Trim();
             if (article.Length > 128)
             {
