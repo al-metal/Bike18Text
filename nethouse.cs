@@ -884,9 +884,28 @@ namespace Bike18
             string keywords = new Regex("(?<=<meta name=\"keywords\" content=\").*?(?=\" >)").Match(otv).Value;
             string title = new Regex("(?<=<title>).*?(?=</title>)").Match(otv).Value;
 
-            MatchCollection paramsTovar = new Regex("(?<=<label class=\"ptype-view-title infoDigits\">)[\\w\\W]*?(?=</select></li>)").Matches(otv);
+            MatchCollection paramsTovar = new Regex("<div class=\"small-12 product-params__title\">[\\w\\W]*?(?=<div class=\"ui-dropdown__close svg-icon_smallx svg-icon\">)").Matches(otv);
             string parametrsTovar = "";
-           
+            for (int i = 0; paramsTovar.Count > i; i++)
+            {
+                string param = paramsTovar[i].ToString();
+                string id = new Regex("(?<=productType-).*?(?=\">)").Match(param).ToString();
+                string namesParam = new Regex("(?<=class=\"small-12 product-params__title\">)[\\w\\W]*?(?=</div>)").Match(param).ToString().Trim();
+
+                parametrsTovar += "&params[" + i + "][id]=" + id + "&params[" + i + "][name]=" + namesParam;
+                MatchCollection valuesStr = new Regex("<option data-impact[\\w\\W]*?</option>").Matches(param);
+                for (int ii = 0; valuesStr.Count > ii; ii++)
+                {
+                    string values = valuesStr[ii].ToString();
+                    string idParam = new Regex("(?<=data-impact=\")[\\w\\W]*?(?=\")").Match(values).ToString();
+                    string valueParam = new Regex("(?<=value=\")[\\w\\W]*?(?=\")").Match(values).ToString();
+                    string impactParam = new Regex("(?<=\">)[\\w\\W]*?(?=</option>)").Match(values).ToString();
+                    parametrsTovar += "&params[" + i + "][values][" + ii + "][id]=" + valueParam + "&params[" + i + "][values][" + ii + "][value]=" + impactParam + "&params[" + i + "][values][" + ii + "][impact]=" + idParam;
+
+
+                }
+            }
+
             otv = PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
             string slug = new Regex("(?<=\",\"slug\":\").*?(?=\")").Match(otv).ToString();
             string reklama = "";
