@@ -168,7 +168,11 @@ namespace Bike18Text
 
         private void btnURLMini_Click(object sender, EventArgs e)
         {
-            if (rtbMiniText.SelectedText != "" & tbURLMini.Text != "" & tbURLMini.Text.Contains("http://"))
+            bool httpStr = false;
+            if (tbURLMini.Text.Contains("http://") || tbURLMini.Text.Contains("https://"))
+                httpStr = true;
+
+            if (rtbMiniText.SelectedText != "" & tbURLMini.Text != "" & httpStr)
             {
                 rtbMiniText.SelectedText = "<ссылка на =\"" + tbURLMini.Text + "\">" + rtbMiniText.SelectedText + "</ссылка>";
             }
@@ -180,7 +184,10 @@ namespace Bike18Text
 
         private void btnURLFull_Click(object sender, EventArgs e)
         {
-            if (rtbFullText.SelectedText != "" & tbURLFull.Text != "" & tbURLFull.Text.Contains("http://"))
+            bool httpStr = false;
+            if (tbURLMini.Text.Contains("http://") || tbURLMini.Text.Contains("https://"))
+                httpStr = true;
+            if (rtbFullText.SelectedText != "" & tbURLFull.Text != "" & httpStr)
             {
                 rtbFullText.SelectedText = "<ссылка на =\"" + tbURLFull.Text + "\">" + rtbFullText.SelectedText + "</ссылка>";
             }
