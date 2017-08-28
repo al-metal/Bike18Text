@@ -923,12 +923,12 @@ namespace Bike18
 
             otv = PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
 
-            string price = new Regex("(?<=<span class=\"product-price-data\" data-cost=\").*?(?=\">)").Match(otv).Value;
-            if (price == "")
+            string coast = new Regex("(?<=\"cost\":\").*?(?=\")").Match(otv).Value;
+            if (coast == "")
             {
-                price = "0";
+                coast = "0";
             }
-            string discountCoast = new Regex("(?<=discountCost\":\").*?(?=\",\")").Match(otv).Value;
+            string discountCoast = new Regex("(?<=\"discountCost\":\").*?(?=\")").Match(otv).Value;
 
             string slug = new Regex("(?<=\",\"slug\":\").*?(?=\")").Match(otv).ToString();
             string reklama = "";
@@ -1041,7 +1041,7 @@ namespace Bike18
             listTovar.Add(article);         //6
             listTovar.Add(desc);            //7
             listTovar.Add(fulldesc);        //8
-            listTovar.Add(price);           //9
+            listTovar.Add(coast);           //9
             listTovar.Add(discountCoast);   //10
             listTovar.Add(seometa);         //11
             listTovar.Add(keywords);        //12
