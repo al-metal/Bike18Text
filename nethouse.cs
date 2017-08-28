@@ -858,18 +858,33 @@ namespace Bike18
             string productId = new Regex("(?<=data-product-id=\").*?(?=\">)").Match(otv).ToString();
             if (productId == "")
                 productId = new Regex("(?<=data-id=\").*?(?=\")").Match(otv).ToString();
-            string article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).Value.Trim();
-            if (article.Length > 128)
+            string article = "";
+            MatchCollection articlArray = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Matches(otv);
+            for (int i = 0; articlArray.Count > i; i++)
             {
-                article = new Regex("(?<=Артикул:)[\\w\\W]*(?=</title>)").Match(otv).ToString().Trim();
+                string str = articlArray[i].ToString().Trim();
+                if (str.Length > 128)
+                {
+                    article = new Regex("(?<=Артикул:)[\\w\\W]*(?=</title>)").Match(otv).ToString().Trim();
+                    if(article.Length > 128)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    article = str;
+                    break;
+                }
+                    
             }
             string prodName = new Regex("(?<=<h1>).*(?=</h1>)").Match(otv).Value;
             prodName = ReplaceAmpersandsChar(prodName);
-            string price = new Regex("(?<=<span class=\"product-price-data\" data-cost=\").*?(?=\">)").Match(otv).Value;
-            if (price == "")
-            {
-                price = "0";
-            }
+            
             string imgId = new Regex("(?<=<div id=\"avatar-).*(?=\")").Match(otv).Value;
             string desc = new Regex("(?<=<div class=\"product__desc show-for-large user-inner\">)[\\w\\W]*?(?=</div>)").Match(otv).Value;
             desc = ReplaceAmpersandsChar(desc);
@@ -907,6 +922,14 @@ namespace Bike18
             }
 
             otv = PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
+
+            string price = new Regex("(?<=<span class=\"product-price-data\" data-cost=\").*?(?=\">)").Match(otv).Value;
+            if (price == "")
+            {
+                price = "0";
+            }
+            string discountCoast = new Regex("(?<=discountCost\":\").*?(?=\",\")").Match(otv).Value;
+
             string slug = new Regex("(?<=\",\"slug\":\").*?(?=\")").Match(otv).ToString();
             string reklama = "";
             string markers = new Regex("(?<=markers\":{\").*?(?=\")").Match(otv).ToString();
@@ -935,7 +958,7 @@ namespace Bike18
             if (balance.Contains("\""))
                 balance = balance.Replace("\"", "");
             string productCastomGroup = new Regex("(?<=productCustomGroup\":).*?(?=,\")").Match(otv).ToString();
-            string discountCoast = new Regex("(?<=discountCost\":\").*?(?=\",\")").Match(otv).Value;
+            //string discountCoast = new Regex("(?<=discountCost\":\").*?(?=\",\")").Match(otv).Value;
             string serial = new Regex("(?<=serial\":\").*?(?=\")").Match(otv).Value;
             string categoryId = new Regex("(?<=\",\"categoryId\":\").*?(?=\")").Match(otv).Value;
             if (categoryId == "")
