@@ -69,6 +69,9 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CookComputing.XmlRpcV3, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\OpenXNet.0.2\lib\CookComputing.XmlRpcV3.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus">
       <HintPath>.\EPPlus.dll</HintPath>
     </Reference>
@@ -127,6 +130,7 @@
       <DependentUpon>Templates.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Bike18Text_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,6 +146,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Bike18.ico" />
+    <Content Include="CookComputing.XmlRpcV3.license.txt" />
+    <Content Include="license.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
