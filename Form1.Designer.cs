@@ -86,6 +86,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ofdLoadURLs = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -108,6 +109,7 @@
             this.chbAltText.Size = new System.Drawing.Size(142, 17);
             this.chbAltText.TabIndex = 0;
             this.chbAltText.Text = "Альтернативный текст";
+            this.toolTip1.SetToolTip(this.chbAltText, "Заменяет альтернативный текст на всех картинках товара");
             this.chbAltText.UseVisualStyleBackColor = true;
             this.chbAltText.CheckedChanged += new System.EventHandler(this.chbAltText_CheckedChanged);
             // 
@@ -134,6 +136,7 @@
             this.chbFullText.Size = new System.Drawing.Size(153, 17);
             this.chbFullText.TabIndex = 2;
             this.chbFullText.Text = "Полное описание товара";
+            this.toolTip1.SetToolTip(this.chbFullText, "Добавляет текст к полному описанию товара");
             this.chbFullText.UseVisualStyleBackColor = true;
             this.chbFullText.CheckedChanged += new System.EventHandler(this.chbAddTextTovar_CheckedChanged);
             // 
@@ -145,6 +148,7 @@
             this.chbSEO.Size = new System.Drawing.Size(113, 17);
             this.chbSEO.TabIndex = 3;
             this.chbSEO.Text = "СЕО поля товара";
+            this.toolTip1.SetToolTip(this.chbSEO, "Обновление СЕО полей товара");
             this.chbSEO.UseVisualStyleBackColor = true;
             this.chbSEO.CheckedChanged += new System.EventHandler(this.chbSEO_CheckedChanged);
             // 
@@ -182,6 +186,7 @@
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(319, 20);
             this.tbTitle.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.tbTitle, "Заголовок товара");
             // 
             // tbDescription
             // 
@@ -192,6 +197,7 @@
             this.tbDescription.Name = "tbDescription";
             this.tbDescription.Size = new System.Drawing.Size(319, 20);
             this.tbDescription.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.tbDescription, "Описание товара");
             // 
             // tbKeywords
             // 
@@ -202,6 +208,7 @@
             this.tbKeywords.Name = "tbKeywords";
             this.tbKeywords.Size = new System.Drawing.Size(319, 20);
             this.tbKeywords.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.tbKeywords, "Ключевые слова товара");
             // 
             // label1
             // 
@@ -239,6 +246,7 @@
             this.chbTitle.Name = "chbTitle";
             this.chbTitle.Size = new System.Drawing.Size(15, 14);
             this.chbTitle.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.chbTitle, "Прописывает заголовок товара");
             this.chbTitle.UseVisualStyleBackColor = true;
             this.chbTitle.CheckedChanged += new System.EventHandler(this.chbTitle_CheckedChanged);
             // 
@@ -251,6 +259,7 @@
             this.chbDescription.Name = "chbDescription";
             this.chbDescription.Size = new System.Drawing.Size(15, 14);
             this.chbDescription.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.chbDescription, "Прописывает описание товара");
             this.chbDescription.UseVisualStyleBackColor = true;
             this.chbDescription.CheckedChanged += new System.EventHandler(this.chbDescription_CheckedChanged);
             this.chbDescription.EnabledChanged += new System.EventHandler(this.chbDescription_EnabledChanged);
@@ -264,13 +273,13 @@
             this.chbKeywords.Name = "chbKeywords";
             this.chbKeywords.Size = new System.Drawing.Size(15, 14);
             this.chbKeywords.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.chbKeywords, "Прописывает ключевые слова товара");
             this.chbKeywords.UseVisualStyleBackColor = true;
             this.chbKeywords.CheckedChanged += new System.EventHandler(this.chbKeywords_CheckedChanged);
             // 
             // btnStart
             // 
-            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnStart.Location = new System.Drawing.Point(3, 45);
             this.btnStart.Name = "btnStart";
@@ -287,6 +296,7 @@
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(722, 20);
             this.tbURL.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.tbURL, "Ссылка на товар или раздел");
             // 
             // chbMiniText
             // 
@@ -299,6 +309,7 @@
             this.chbMiniText.Size = new System.Drawing.Size(157, 17);
             this.chbMiniText.TabIndex = 18;
             this.chbMiniText.Text = "Краткое описание товара";
+            this.toolTip1.SetToolTip(this.chbMiniText, "Добавляет текст к краткому описанию товара");
             this.chbMiniText.UseVisualStyleBackColor = true;
             this.chbMiniText.CheckedChanged += new System.EventHandler(this.chbFullText_CheckedChanged);
             // 
@@ -333,6 +344,7 @@
             this.chbReplaceMiniText.Size = new System.Drawing.Size(127, 17);
             this.chbReplaceMiniText.TabIndex = 21;
             this.chbReplaceMiniText.Text = "Заменить описание";
+            this.toolTip1.SetToolTip(this.chbReplaceMiniText, "Полностью заменяет краткое описание товара");
             this.chbReplaceMiniText.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -519,6 +531,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(135, 20);
             this.tbPassword.TabIndex = 23;
+            this.toolTip1.SetToolTip(this.tbPassword, "Пароль Nethouse");
             this.tbPassword.UseSystemPasswordChar = true;
             // 
             // tbLogin
@@ -527,6 +540,7 @@
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(135, 20);
             this.tbLogin.TabIndex = 22;
+            this.toolTip1.SetToolTip(this.tbLogin, "Логин Netjouse");
             // 
             // panel4
             // 
@@ -557,6 +571,7 @@
             this.chbCHPU.Size = new System.Drawing.Size(103, 17);
             this.chbCHPU.TabIndex = 17;
             this.chbCHPU.Text = "Заменять ЧПУ";
+            this.toolTip1.SetToolTip(this.chbCHPU, "Заменяет ЧПУ товара");
             this.chbCHPU.UseVisualStyleBackColor = true;
             // 
             // chbUrlArticle
@@ -567,6 +582,7 @@
             this.chbUrlArticle.Size = new System.Drawing.Size(186, 17);
             this.chbUrlArticle.TabIndex = 16;
             this.chbUrlArticle.Text = "Добавлять к url артикул товара";
+            this.toolTip1.SetToolTip(this.chbUrlArticle, "Добавляет к ЧПУ артикул товара");
             this.chbUrlArticle.UseVisualStyleBackColor = true;
             // 
             // chbAlsoBuy
@@ -579,6 +595,7 @@
             this.chbAlsoBuy.Size = new System.Drawing.Size(158, 17);
             this.chbAlsoBuy.TabIndex = 15;
             this.chbAlsoBuy.Text = "С этим товаром покупают";
+            this.toolTip1.SetToolTip(this.chbAlsoBuy, "Добавляет товары \"С этим товаром покупают\"");
             this.chbAlsoBuy.UseVisualStyleBackColor = true;
             // 
             // panel6
@@ -609,6 +626,7 @@
             this.chbReplaceFullText.Size = new System.Drawing.Size(166, 17);
             this.chbReplaceFullText.TabIndex = 22;
             this.chbReplaceFullText.Text = "Заменить полное описание";
+            this.toolTip1.SetToolTip(this.chbReplaceFullText, "Полностью заменяет текст в полном описании");
             this.chbReplaceFullText.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
@@ -704,7 +722,7 @@
             this.MinimumSize = new System.Drawing.Size(975, 423);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Заполнятор ёпта";
+            this.Text = "Редактор карточек товара";
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel2.ResumeLayout(false);
@@ -787,6 +805,7 @@
         private System.Windows.Forms.TextBox tbHistory;
         private System.Windows.Forms.CheckBox cbCategories;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
