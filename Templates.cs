@@ -275,5 +275,30 @@ namespace Bike18Text
             else
                 MessageBox.Show("Некорректный файл, выберите другой");
         }
+
+        private void lblName_DoubleClick(object sender, EventArgs e)
+        {
+            Clipboard.SetText("НАЗВАНИЕ");
+        }
+
+        private void lblArticl_DoubleClick(object sender, EventArgs e)
+        {
+            Clipboard.SetText("АРТИКУЛ");
+        }
+
+        private void lblPrice_DoubleClick(object sender, EventArgs e)
+        {
+            Clipboard.SetText("ЦЕНА");
+        }
+
+        private void lblCategory1_DoubleClick(object sender, EventArgs e)
+        {
+            Clipboard.SetText("РАЗДЕЛ1");
+        }
+
+        private void lblCategory2_DoubleClick(object sender, EventArgs e)
+        {
+            Clipboard.SetText("РАЗДЕЛ2");
+        }
     }
 }
