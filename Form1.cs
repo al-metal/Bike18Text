@@ -1053,11 +1053,16 @@ namespace Bike18Text
                     string str = rtbFullText.Lines[z].ToString();
                     if (str.Contains("<ссылка"))
                     {
-                        string urlstring = new Regex("<ссылка .*</ссылка>").Match(str).ToString();
-                        string text = new Regex("(?<=>).*(?=<)").Match(urlstring).ToString();
-                        string url = new Regex("(?<=\").*(?=\")").Match(urlstring).ToString();
-                        string newString = "<a href=\"" + url + "\">" + text + "</a></span>";
-                        str = str.Replace(urlstring, newString);
+                        MatchCollection urlstrings = new Regex("<ссылка.*?</ссылка>").Matches(str);
+                        foreach(var urlstring in urlstrings)
+                        {
+                            string urlStr = urlstring.ToString();
+                            string text = new Regex("(?<=\">).*?(?=</ссылка>)").Match(urlStr).ToString();
+                            string url = new Regex("(?<==\").*?(?=\">)").Match(urlStr).ToString();
+                            string newString = "<a href=\"" + url + "\">" + text + "</a>";
+                            str = str.Replace(urlStr, newString);
+                        }
+                        
                     }
 
                     if (str.Contains("<align center>"))
@@ -1237,7 +1242,8 @@ namespace Bike18Text
                 "22.08.2017 Исправление ошибок при работе с товарами\n" +
                 "25.08.2017 Восстановил работу с параметрами. Исправил ссылки в редакторе шаблона\n" +
                 "28.08.2017 Актуальная цена и скидки\n" +
-                "05.09.2017 Дополнительно убрал html - символы\n", "Изменения в программе");
+                "05.09.2017 Дополнительно убрал html - символы\n" +
+                "07.09.2017 Обработка ссылок в шаблоне\n", "Изменения в программе");
         }
 
         private void btnLoadURLs_Click(object sender, EventArgs e)
