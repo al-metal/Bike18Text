@@ -422,6 +422,10 @@ namespace web
             if (otv != null)
             {
                 string productId = new Regex("(?<=data-product-id=\").*?(?=\">)").Match(otv).ToString();
+                if(productId == "")
+                {
+                    productId = new Regex("(?<=data-id=\").*?(?=\")").Match(otv).ToString();
+                }
                 
                 otv = netouse.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
                 
