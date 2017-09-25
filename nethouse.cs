@@ -793,6 +793,7 @@ namespace Bike18
             {
                 text = text.Replace(pair.Key, pair.Value);
             }
+            text = WebUtility.HtmlDecode(text);
             return text;
         }
 
