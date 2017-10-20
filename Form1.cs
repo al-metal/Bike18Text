@@ -1054,7 +1054,7 @@ namespace Bike18Text
                     if (str.Contains("<ссылка"))
                     {
                         MatchCollection urlstrings = new Regex("<ссылка.*?</ссылка>").Matches(str);
-                        foreach(var urlstring in urlstrings)
+                        foreach (var urlstring in urlstrings)
                         {
                             string urlStr = urlstring.ToString();
                             string text = new Regex("(?<=\">).*?(?=</ссылка>)").Match(urlStr).ToString();
@@ -1062,7 +1062,7 @@ namespace Bike18Text
                             string newString = "<a href=\"" + url + "\">" + text + "</a>";
                             str = str.Replace(urlStr, newString);
                         }
-                        
+
                     }
 
                     if (str.Contains("<align center>"))
@@ -1223,6 +1223,7 @@ namespace Bike18Text
                 text = text.Replace(pair.Key, pair.Value);
             }
             text = WebUtility.HtmlDecode(text);
+            text = text.Replace("&", " ");
             return text;
         }
 
