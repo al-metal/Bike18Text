@@ -1219,6 +1219,21 @@ namespace Bike18
                         count++;
                     }
                 }
+                else
+                {
+                    otv = getRequest("https://bike18.ru/products/category/" + tovarList[2].ToString());
+                    MatchCollection product = new Regex("(?<=id=\"item).*?(?=\">)").Matches(otv);
+                    int countSearch = product.Count;
+                    if (countSearch > 5)
+                        countSearch = 5;
+
+                    for (int i = 1; countSearch > i; i++)
+                    {
+
+                        alsoBuy += "&alsoBuy[" + count + "]=" + product[i].ToString();
+                        count++;
+                    }
+                }
             }
             return alsoBuy;
         }
