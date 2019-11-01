@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Bike18Text
+namespace Bike18
 {
     public partial class Templates : Form
     {

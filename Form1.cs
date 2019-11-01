@@ -1,4 +1,4 @@
-﻿using Bike18;
+﻿using Bike18Text;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -8,18 +8,20 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using xNet;
 using Формирование_ЧПУ;
 
-namespace Bike18Text
+namespace Bike18
 {
     public partial class Form1 : Form
     {
         web.WebRequest webRequest = new web.WebRequest();
         CHPU chpu = new CHPU();
-        nethouse nethouse = new nethouse();
+        NehouseLibrary.nethouse nethouse = new NehouseLibrary.nethouse();
         List<string> urls = new List<string>();
         List<string> urlsBad = new List<string>();
-
+        Product product;
+        
         string otv = null;
         string pathDirectory = Environment.CurrentDirectory + "\\files";
         string boldOpen = "<span style=\"font-weight: bold; font-weight: bold; \">";
@@ -30,7 +32,7 @@ namespace Bike18Text
         bool chpuCheked;
         bool loadCategoriesCheked;
 
-        Dictionary<string, string> ampersands = new Dictionary<string, string>();
+        public Dictionary<string, string> ampersands = new Dictionary<string, string>();
 
         public Form1()
         {
@@ -357,6 +359,8 @@ namespace Bike18Text
         {
             tbLogin.Text = Properties.Settings.Default.login.ToString();
             tbPassword.Text = Properties.Settings.Default.password.ToString();
+            //tbURL.Text = "https://bike18.ru/products/maslyanij-filjtr-hf151";
+            //tbURL.Text = "https://bike18.ru/products/snegohod-shihan-d-2-d-2e";
         }
 
         private void Form1_Activated(object sender, EventArgs e)
@@ -519,10 +523,10 @@ namespace Bike18Text
             File.Delete("errorFiles.txt");
 
             chpuCheked = chbCHPU.Checked;
-            string article = "";
-            CookieContainer cookie = nethouse.CookieNethouse(tbLogin.Text, tbPassword.Text);
 
-            if (cookie.Count != 4)
+            CookieDictionary cookie = nethouse.CookieNethouse(tbLogin.Text, tbPassword.Text, false);
+
+            if (cookie.Count != 10)
             {
                 MessageBox.Show("Логин или пароль введены не верно!");
                 return;
@@ -545,13 +549,10 @@ namespace Bike18Text
                 }
                 else
                 {
-                    otv = webRequest.getRequest(str);
-                    if (otv == "err")
-                        continue;
-                    article = new Regex("(?<=Артикул:)[\\w\\W]*?(?=</div>)").Match(otv).ToString().Trim();
+                    product = new Product(cookie, str);
 
-                    if (article != "")
-                        updateText(str, cookie);
+                    if (product.Article != "")
+                        updateText(cookie, product);
                     else
                     {
                         otv = webRequest.getRequest(str + "?page=all");
@@ -563,7 +564,7 @@ namespace Bike18Text
                             for (int z = 0; tovarUrl.Count > z; z++)
                             {
                                 string tovar = tovarUrl[z].ToString();
-                                updateText(tovar, cookie);
+                                updateText(cookie, product);
                             }
                         }
 
@@ -579,7 +580,7 @@ namespace Bike18Text
                                     for (int z = 0; tovar2Url.Count > z; z++)
                                     {
                                         string tovar = tovar2Url[z].ToString();
-                                        updateText(tovar, cookie);
+                                        updateText(cookie, product);
                                     }
                                 }
                                 else
@@ -594,7 +595,7 @@ namespace Bike18Text
                                             for (int z = 0; tovar3Url.Count > z; z++)
                                             {
                                                 string tovar = tovar3Url[z].ToString();
-                                                updateText(tovar, cookie);
+                                                updateText(cookie, product);
                                             }
                                         }
                                         else
@@ -609,7 +610,7 @@ namespace Bike18Text
                                                     for (int z = 0; tovar4Url.Count > z; z++)
                                                     {
                                                         string tovar = tovar4Url[z].ToString();
-                                                        updateText(tovar, cookie);
+                                                        updateText(cookie, product);
                                                     }
                                                 }
                                                 else
@@ -643,12 +644,12 @@ namespace Bike18Text
             tbHistory.AppendText("Обновление карточки закончено\n");
         }
 
-        private void UpdateCategory(CookieContainer cookie, string str)
+        private void UpdateCategory(CookieDictionary cookie, string str)
         {
             tbHistory.AppendText("Получения карточки раздела\n");
             string idCategory = new Regex("(?<=category/).*").Match(str).ToString();
 
-            otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/category?id=" + idCategory);
+            otv = nethouse.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/category?id=" + idCategory);
 
             otv = utfChar(otv);
 
@@ -667,7 +668,7 @@ namespace Bike18Text
             string seoMetaKeywords = new Regex("(?<=seoMetaKeywords\": \").*(?=\")").Match(otv).ToString().Trim();
             string seoTitle = new Regex("(?<=seoTitle\": \").*(?=\")").Match(otv).ToString().Trim();
 
-            otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/categorymedia?id=" + idCategory);
+            otv = nethouse.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/categorymedia?id=" + idCategory);
             otv = utfChar(otv);
 
             string avatarId = new Regex("(?<=\"id\":).*(?=,)").Match(otv).ToString().Trim();
@@ -705,8 +706,6 @@ namespace Bike18Text
 
             nethouse.PostRequest(cookie, "https://bike18.nethouse.ru/api/catalog/savecategory", strRequest);
 
-
-
             tbHistory.AppendText("Обновление карточки раздела\n");
 
             if (otv.Contains("errors"))
@@ -715,52 +714,51 @@ namespace Bike18Text
             }
         }
 
-        private void updateText(string urlTovar, CookieContainer cookie)
+        private void updateText(CookieDictionary cookie, Product product)
         {
-            tbHistory.AppendText("Получения карточки товара\n");
             err = false;
             errLengthMiniText = false;
-            List<string> tovarList = nethouse.GetProductList(cookie, urlTovar);
+            string response = "";
 
             if (chbTitle.Checked)
-                tovarList[13] = seoTitle(tovarList, urlTovar);
+                product.SeoTitle = seoTitle(product);
 
             if (chbDescription.Checked)
-                tovarList[11] = seoDescription(tovarList, urlTovar);
+                product.SeoDescription = seoDescription(product);
 
             if (chbKeywords.Checked)
-                tovarList[12] = seoKeywords(tovarList, urlTovar);
+                product.SeoKeywords = seoKeywords(product);
 
             if (chbFullText.Checked)
             {
                 if (chbReplaceFullText.Checked)
-                    tovarList[8] = full_Text_tovar(tovarList, urlTovar);
+                    product.DescriptionFull = full_Text_tovar(product);
                 else
                 {
-                    string fullText = tovarList[8].ToString();
+                    string fullText = product.DescriptionFull;
                     fullText = DeleteSimbols(fullText);
                     int i = fullText.LastIndexOf("<p><br /></p>");
                     int length = fullText.Length - 13;
                     if (i == length)
                         fullText = fullText.Remove(i);
-                    fullText += full_Text_tovar(tovarList, urlTovar);
-                    tovarList[8] = fullText;
+                    fullText += full_Text_tovar(product);
+                    product.DescriptionFull = fullText;
                 }
             }
 
             if (chbMiniText.Checked)
             {
                 if (chbReplaceMiniText.Checked)
-                    tovarList[7] = mini_Text_tovar(tovarList, urlTovar);
+                    product.Description = mini_Text_tovar(product);
                 else
                 {
-                    string miniText = tovarList[7].ToString();
+                    string miniText = product.Description;
                     miniText = DeleteSimbols(miniText);
                     int n = miniText.LastIndexOf("<p><br /></p>");
                     int length = miniText.Length - 13;
                     if (n == length)
                         miniText = miniText.Remove(n);
-                    miniText += mini_Text_tovar(tovarList, urlTovar);
+                    miniText += mini_Text_tovar(product);
 
                     string s = miniText;
                     MatchCollection tags = new Regex("<.*?>").Matches(s);
@@ -774,70 +772,77 @@ namespace Bike18Text
                     {
                         errLengthMiniText = true;
                         StreamWriter sw = new StreamWriter("errorFiles.txt", true);
-                        sw.WriteLine(urlTovar);
+                        sw.WriteLine("тут должна быть ссылка");
                         sw.Close();
                     }
 
-                    tovarList[7] = autoCrop(miniText, 16000);
+                    product.Description = autoCrop(miniText, 16000);
                 }
             }
 
             if (chbAltText.Checked)
-                altText(cookie, urlTovar, tovarList);
+            {
+                altText(cookie, product);
+            }
 
             if (chbAlsoBuy.Checked)
-                tovarList[42] = nethouse.alsoBuyTovars(tovarList);
+                product.alsoByUpdate();
 
             if (chpuCheked)
             {
-                if (tovarList[1] != "")
+                if (product.Slug != "")
                 {
-                    nethouse.Redirect(cookie, tovarList[1], slug(tovarList));
+                    nethouse.Redirect(cookie, product.Slug, slug(product));
                 }
-                tovarList[1] = slug(tovarList);
+                product.Slug = slug(product);
             }
 
             if (!errLengthMiniText)
             {
                 tbHistory.AppendText("Обновление карточки товара\n");
-                tovarList = ReplaceAmpersChar(tovarList);
-                otv = nethouse.SaveTovar(cookie, tovarList);
-            }
+                product = ReplaceAmpersChar(product);
+                response = product.save(cookie);
+                }
 
-            if (otv.Contains("errors"))
+            if (response.Contains("errors"))
             {
                 tbHistory.AppendText("Во время сохранения произошла ошибка\n");
                 err = true;
                 int g = 1;
-                if (otv.Contains("slug"))
+                if (response.Contains("slug"))
                 {
                     tbHistory.AppendText("Ошибка возникла с чпу, пытаюсь ее исправить\n");
+                    Random rnd = new Random();
                     do
                     {
-                        string s = tovarList[1].ToString();
+                        string s = product.Slug;
                         s = s.Remove(s.Length - 1, 1);
-                        s = s + g;
+                        //Создание объекта для генерации чисел
+                       
+                        //Получить случайное число (в диапазоне от 0 до 10)
+                        int value = rnd.Next(0, 100);
+                        s = s + value;
                         g++;
-                        tovarList[1] = s;
-                        otv = nethouse.SaveTovar(cookie, tovarList);
+                        product.Slug = s;
+                        response = product.save(cookie);
                         err = false;
                     }
-                    while (otv.Contains("errors"));
+                    while (response.Contains("errors"));
                 }
             }
         }
 
-        private List<string> ReplaceAmpersChar(List<string> tovarList)
+        private Product ReplaceAmpersChar(Product product)
         {
-            tovarList[7] = ampersChar(tovarList[7]);
-            tovarList[8] = ampersChar(tovarList[8]);
-            tovarList[11] = ampersChar(tovarList[11]);
-            tovarList[12] = ampersChar(tovarList[12]);
-            tovarList[13] = ampersChar(tovarList[13]);
-            return tovarList;
+            product.Description = ampersChar(product.Description);
+            product.DescriptionFull = ampersChar(product.DescriptionFull);
+            product.SeoDescription = ampersChar(product.SeoDescription);
+            product.SeoTitle = ampersChar(product.SeoTitle);
+            product.SeoKeywords = ampersChar(product.SeoKeywords);
+            return product;
         }
 
-        private void RedirectURLProduct(CookieContainer cookie, string oldCHPU, string newCHPU)
+        private void RedirectURLProduct(CookieDictionary cookie, string oldCHPU, string newCHPU)
         {
             nethouse.Redirect(cookie, oldCHPU, newCHPU);
         }
@@ -848,12 +853,12 @@ namespace Bike18Text
             return text;
         }
 
-        private string slug(List<string> tovarList)
+        private string slug(Product product)
         {
-            string str = tovarList[4].ToString();
+            string str = product.Name;
             if (chbUrlArticle.Checked)
             {
-                string chpuArticle = chpu.vozvr(tovarList[6].ToString());
+                string chpuArticle = chpu.vozvr(product.Article);
                 str = chpu.vozvr(str) + "-" + chpuArticle;
             }
             else
@@ -932,56 +937,56 @@ namespace Bike18Text
         }
 
         #region//Обработка текста
-        private string seoKeywords(List<string> tovarList, string url)
+        private string seoKeywords(Product product)
         {
             string seoKeywordsText = tbKeywords.Lines[0];
-            seoKeywordsText = AutoCorrect(url, seoKeywordsText, "seo", tovarList);
+            seoKeywordsText = AutoCorrect(seoKeywordsText, "seo", product);
             seoKeywordsText = autoCrop(seoKeywordsText, 100);
             return seoKeywordsText;
         }
 
-        private string seoDescription(List<string> tovarList, string url)
+        private string seoDescription(Product product)
         {
             string seoDescriptionText = tbDescription.Lines[0];
-            seoDescriptionText = AutoCorrect(url, seoDescriptionText, "seo", tovarList);
+            seoDescriptionText = AutoCorrect(seoDescriptionText, "seo", product);
             seoDescriptionText = autoCrop(seoDescriptionText, 200);
             return seoDescriptionText;
         }
 
-        private string seoTitle(List<string> tovarList, string url)
+        private string seoTitle(Product product)
         {
             string seoTitleText = tbTitle.Lines[0];
-            seoTitleText = AutoCorrect(url, seoTitleText, "seo", tovarList);
+            seoTitleText = AutoCorrect(seoTitleText, "seo", product);
             seoTitleText = autoCrop(seoTitleText, 200);
             return seoTitleText;
         }
 
-        private string mini_Text_tovar(List<string> tovarList, string url)
+        private string mini_Text_tovar(Product product)
         {
             string miniText = miniTextTemplate();
-            miniText = AutoCorrect(url, miniText, "", tovarList);
+            miniText = AutoCorrect(miniText, "", product);
             miniText = autoCrop(miniText, 10000);
             return miniText;
         }
 
-        private string full_Text_tovar(List<string> tovarList, string url)
+        private string full_Text_tovar(Product product)
         {
             string fullText = fullTextTemplate();
-            fullText = AutoCorrect(url, fullText, "", tovarList);
+            fullText = AutoCorrect(fullText, "", product);
             return fullText;
         }
 
-        private void altText(CookieContainer cookie, string url, List<string> tovarList)
+        private void altText(CookieDictionary cookie, Product product)
         {
-            List<string> imagesId = webRequest.ReturnImagesId(cookie, url);
+            List<string> imagesId = product.ReturnImagesId(cookie, product);
             string altText = "";
             if (imagesId.Count > 0)
             {
                 foreach (string str in imagesId)
                 {
                     altText = returnAltText();
-                    altText = AutoCorrect(url, altText, "seo", tovarList);
-                    webRequest.loadAltTextImage(cookie, str, altText);
+                    altText = AutoCorrect(altText, "seo", product);
+                    nethouse.loadAltTextImage(cookie, str, altText);
                 }
             }
         }
@@ -1062,7 +1067,6 @@ namespace Bike18Text
                             string newString = "<a href=\"" + url + "\">" + text + "</a>";
                             str = str.Replace(urlStr, newString);
                         }
-
                     }
 
                     if (str.Contains("<align center>"))
@@ -1095,18 +1099,16 @@ namespace Bike18Text
             return fullText;
         }
 
-        public string AutoCorrect(string urlTovar, string text, string descriptionCartTovar, List<string> tovarList)
+        public string AutoCorrect(string text, string descriptionCartTovar, Product product)
         {
-            otv = webRequest.getRequest(urlTovar);
-
-            string name = tovarList[4].ToString();
-            string price = tovarList[9].ToString();
-            string articl = tovarList[6].ToString();
+            string name = product.Name;
+            string price = product.Coast;
+            string articl = product.Article;
 
             string category1 = "";
             string category2 = "";
 
-            MatchCollection categories = new Regex("(?<=class=\"bread-crumbs__item bread-crumbs__text\">).*?(?=</div>)").Matches(otv);
+            MatchCollection categories = product.Categories;
             int countCategories = categories.Count;
             if (countCategories == 1)
             {
@@ -1122,9 +1124,9 @@ namespace Bike18Text
             }
             if (descriptionCartTovar != "seo")
             {
-                name = boldOpen + tovarList[4].ToString() + boldClose;
-                price = boldOpen + tovarList[9].ToString() + boldClose;
-                articl = boldOpen + tovarList[6].ToString() + boldClose;
+                name = boldOpen + name + boldClose;
+                price = boldOpen + price + boldClose;
+                articl = boldOpen + articl + boldClose;
                 category1 = boldOpen + category1 + boldClose;
                 category2 = boldOpen + category2 + boldClose;
             }
@@ -1213,7 +1215,6 @@ namespace Bike18Text
                 Properties.Settings.Default.Save();
             }
         }
-
         private string ampersChar(string text)
         {
             if (text == null)
@@ -1247,7 +1248,8 @@ namespace Bike18Text
                 "07.09.2017 Обработка ссылок в шаблоне\n" +
                 "15.09.2017 Обновление модуля работы с альт. текстами\n" +
                 "25.09.2017 Спецсимволы в названии\n" +
-                "20.10.2017 Доработан метод \"С этим товаром покупают\"\n", "Изменения в программе");
+                "20.10.2017 Доработан метод \"С этим товаром покупают\"\n" +
+                "01.11.2019 Исправления под новый nethouse\n", "Изменения в программе");
         }
 
         private void btnLoadURLs_Click(object sender, EventArgs e)

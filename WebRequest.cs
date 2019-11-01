@@ -1,5 +1,5 @@
 ﻿using Bike18;
-using Bike18Text;
+using NehouseLibrary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using xNet;
 
 namespace web
 {
@@ -16,7 +17,7 @@ namespace web
     class WebRequest
     {
 
-        nethouse netouse = new nethouse();
+        NehouseLibrary.nethouse netouse = new NehouseLibrary.nethouse();
         
         public string getRequestEncod(string url)
         {
@@ -33,16 +34,16 @@ namespace web
 
             return otv;
         }
-
-        public string getRequest(CookieContainer cookie, string url)
+        /*
+        public string getRequest(CookieDictionary cookie, string url)
         {
             string otv = null;
             HttpWebResponse res = null;
             HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(url);
             //req.Proxy = null;
-            req.Accept = "application/json, text/plain, */*";
+            req.Accept = "application/json, text/plain, *//*";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
-            req.CookieContainer = cookie;
+            req.CookieDictionary = cookie;
 
                 res = (HttpWebResponse)req.GetResponse();
                 StreamReader ressr = new StreamReader(res.GetResponseStream());
@@ -55,7 +56,7 @@ namespace web
 
 
             return otv;
-        }
+        }*/
 
         public string getRequest(string url)
         {
@@ -83,56 +84,11 @@ namespace web
             return otv;
         }
 
-        public string PostRequest(CookieContainer cookie, string nethouseTovar)
-        {
-            string otv = null;
-            HttpWebResponse res = null;
-            HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(nethouseTovar);
-            req.Proxy = null;
-            req.KeepAlive = false;
-            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
-            req.Method = "POST";
-            req.ContentType = "application/x-www-form-urlencoded";
-            req.CookieContainer = cookie;
-            res = (HttpWebResponse)req.GetResponse();
-            StreamReader ressr = new StreamReader(res.GetResponseStream());
-            otv = ressr.ReadToEnd();
-            res.Close();
-            ressr.Close();
-            return otv;
-        }
+    
 
-        public CookieContainer webCookie(string url)
-        {
-            CookieContainer cooc = new CookieContainer();
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(url);
-            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
-            req.Method = "POST";
-            req.ContentType = "application/x-www-form-urlencoded";
-            req.CookieContainer = cooc;
-            Stream stre = req.GetRequestStream();
-            stre.Close();
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            return cooc;
-        }
+       
 
-        public CookieContainer webCookievk()
-        {
-            CookieContainer cooc = new CookieContainer();
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://oauth.vk.com/authorize?client_id=5464980&display=popup&redirect_uri=http://api.vk.com/blank.html&scope=market,photos&response_type=token&v=5.52");
-            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
-            req.Method = "POST";
-            req.ContentType = "application/x-www-form-urlencoded";
-            req.CookieContainer = cooc;
-            Stream stre = req.GetRequestStream();
-            stre.Close();
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            return cooc;
-        }
-
+       
         internal int price(double priceTovarRacerMotors, double discount)
         {
             priceTovarRacerMotors = priceTovarRacerMotors - (priceTovarRacerMotors * discount);
@@ -142,70 +98,70 @@ namespace web
             return price;
         }
 
-        internal void loadAltTextImage(CookieContainer cookie, string idImg, string altText)
-        {
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://bike18.nethouse.ru/api/images/savealt");
-            req.Accept = "application/json, text/plain, */*";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
-            req.Method = "POST";
-            req.Proxy = null;
-            req.ContentType = "application/x-www-form-urlencoded";
-            req.CookieContainer = cookie;
-            byte[] ms = Encoding.GetEncoding("utf-8").GetBytes("id=" + idImg + "&alt=" + altText);
-            req.ContentLength = ms.Length;
-            Stream stre = req.GetRequestStream();
-            stre.Write(ms, 0, ms.Length);
-            stre.Close();
-            HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
-            StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
-            res1.Close();
-            ressr1.Close();
-        }
+        //internal void loadAltTextImage(CookieDictionary cookie, string idImg, string altText)
+        //{
+        //    HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://bike18.nethouse.ru/api/images/savealt");
+        //    req.Accept = "application/json, text/plain, */*";
+        //    req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
+        //    req.Method = "POST";
+        //    req.Proxy = null;
+        //    req.ContentType = "application/x-www-form-urlencoded";
+        //    req.CookieDictionary = cookie;
+        //    byte[] ms = Encoding.GetEncoding("utf-8").GetBytes("id=" + idImg + "&alt=" + altText);
+        //    req.ContentLength = ms.Length;
+        //    Stream stre = req.GetRequestStream();
+        //    stre.Write(ms, 0, ms.Length);
+        //    stre.Close();
+        //    HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
+        //    StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
+        //    res1.Close();
+        //    ressr1.Close();
+        //}
 
-        internal void savePrice(CookieContainer cookie, string urlTovar, MatchCollection articl, double priceTrue, WebRequest webRequest)
+        internal void savePrice(CookieDictionary cookie, string urlTovar, MatchCollection articl, double priceTrue, WebRequest webRequest)
         {
-            string otv = webRequest.PostRequest(cookie, urlTovar);
+            string otv = netouse.PostRequest(cookie, urlTovar);
             string productId = new Regex("(?<=<section class=\"comment\" id=\").*?(?=\">)").Match(otv).ToString();
-            otv = webRequest.PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
+            otv = netouse.PostRequest(cookie, "http://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
         }
 
-        internal void DeleteImage(CookieContainer cookie, string productId, string objectId, string type, string name, string desc, string alt, string priority)
+        internal void DeleteImage(CookieDictionary cookie, string productId, string objectId, string type, string name, string desc, string alt, string priority)
         {
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/images/delete");
-            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
-            req.Method = "POST";
+            //HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/images/delete");
+            //req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+           // req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
+           /* req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
-            req.CookieContainer = cookie;
+            req.CookieDictionary = cookie;
             byte[] ms = Encoding.GetEncoding("utf-8").GetBytes("id=" + productId + "&objectId=" + objectId + "&type=" + type + "&name=" + name + "&desc=" + desc + "&alt=" + alt + "&isVisibleOnMain=0&priority=" + priority);
             req.ContentLength = ms.Length;
             Stream stre6 = req.GetRequestStream();
             stre6.Write(ms, 0, ms.Length);
             stre6.Close();
             HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            StreamReader ressr = new StreamReader(res.GetResponseStream());
+            StreamReader ressr = new StreamReader(res.GetResponseStream());*/
         }
 
-        internal void saveProductAlsoBuy(CookieContainer cookie, List<string> getProduct, List<string> alsoBuy)
+        internal void saveProductAlsoBuy(CookieDictionary cookie, List<string> getProduct, List<string> alsoBuy)
         {
-            string alsoBuyStr = null;
+            /*string alsoBuyStr = null;
             foreach (string element in alsoBuy)
             {
                 alsoBuyStr += element;
             }
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://bike18.nethouse.ru/api/catalog/saveproduct");
-            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*//**;q=0.8";
             req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0";
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
-            req.CookieContainer = cookie;
+            req.CookieDictionary = cookie;
             byte[] ms = System.Text.Encoding.GetEncoding("utf-8").GetBytes("id=" + getProduct[0] + "&slug=" + getProduct[1] + "&categoryId=" + getProduct[2] + "&productGroup=" + getProduct[3] + "&name=" + getProduct[4] + "&serial=" + getProduct[5] + "&serialByUser=" + getProduct[6] + "&desc=" + getProduct[7] + "&descFull=" + getProduct[8] + "&cost=" + getProduct[9] + "&discountCost=" + getProduct[10] + "&seoMetaDesc=" + getProduct[11] + "&seoMetaKeywords=" + getProduct[12] + "&seoTitle=" + getProduct[13] + "&haveDetail=" + getProduct[14] + "&canMakeOrder=" + getProduct[15] + "&balance=100&showOnMain=" + getProduct[16] + "&isVisible=1&hasSale=0&avatar[id]=" + getProduct[17] + "&avatar[objectId]=" + getProduct[18] + "&avatar[timestamp]=" + getProduct[19] + "&avatar[type]=" + getProduct[20] + "&avatar[name]=" + getProduct[21] + "&avatar[desc]=" + getProduct[22] + "&avatar[ext]=" + getProduct[23] + "&avatar[formats][raw]=" + getProduct[24] + "&avatar[formats][W215]=" + getProduct[25] + "&avatar[formats][150x120]=" + getProduct[26] + "&avatar[formats][104x82]=" + getProduct[27] + "&avatar[formatParams][raw][fileSize]=" + getProduct[28] + "&avatar[alt]=" + getProduct[29] + "&avatar[isVisibleOnMain]=" + getProduct[30] + "&avatar[priority]=" + getProduct[31] + "&avatar[url]=" + getProduct[32] + "&avatar[filters][crop][left]=" + getProduct[33] + "&avatar[filters][crop][top]=" + getProduct[34] + "&avatar[filters][crop][right]=" + getProduct[35] + "&avatar[filters][crop][bottom]=" + getProduct[36] + "&customDays=" + getProduct[37] + "&isCustom=" + getProduct[38] + alsoBuyStr + "&alsoBuyLabel=%D0%9F%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B5%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B%20%D0%B2%20%D0%BD%D0%B0%D1%88%D0%B5%D0%BC%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B5");
             req.ContentLength = ms.Length;
             Stream stre = req.GetRequestStream();
             stre.Write(ms, 0, ms.Length);
             stre.Close();
             HttpWebResponse res1 = (HttpWebResponse)req.GetResponse();
-            StreamReader ressr1 = new StreamReader(res1.GetResponseStream());
+            StreamReader ressr1 = new StreamReader(res1.GetResponseStream());*/
         }
 
         internal void fileWriter(string v1, string v2)
@@ -263,7 +219,7 @@ namespace web
 
         }
 
-        internal List<string> listTovarImages(CookieContainer cookie, string url)
+        internal List<string> listTovarImages(CookieDictionary cookie, string url)
         {
             WebRequest webRequest = new WebRequest();
             List<string> listTovar = new List<string>();
@@ -299,7 +255,7 @@ namespace web
                     reklama = "&markers[1]=1";
                 }
 
-                otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
+                otv = netouse.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/getproduct?id=" + productId);
                 string slug = new Regex("(?<=\",\"slug\":\").*?(?=\")").Match(otv).ToString();
                 string discountCoast = new Regex("(?<=discountCost\":\").*?(?=\")").Match(otv).Value;
                 string serial = new Regex("(?<=serial\":\").*?(?=\")").Match(otv).Value;
@@ -314,7 +270,7 @@ namespace web
                 string customDays = new Regex("(?<=,\"customDays\":\").*?(?=\")").Match(otv).Value;
                 string isCustom = new Regex("(?<=\",\"isCustom\":).*?(?=,)").Match(otv).Value;
 
-                otv = webRequest.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
+                otv = netouse.getRequest(cookie, "https://bike18.nethouse.ru/api/catalog/productmedia?id=" + productId);
                 string objektId = new Regex("(?<=\"objectId\":\").*?(?=\")").Match(otv).Value;
 
                 List<string> imagesTovar = new List<string>();
@@ -411,7 +367,7 @@ namespace web
             return listTovar;
         }
 
-        internal List<string> ReturnImagesId(CookieContainer cookie, string url)
+        internal List<string> ReturnImagesId(CookieDictionary cookie, string url)
         {
             List<string> imagesTovar = new List<string>();
 

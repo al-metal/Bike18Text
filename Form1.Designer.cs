@@ -1,4 +1,4 @@
-﻿namespace Bike18Text
+﻿namespace Bike18
 {
     partial class Form1
     {

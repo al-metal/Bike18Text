@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bike18Text.Properties {
+namespace Bike18.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
